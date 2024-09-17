@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "TvFGMb6SlTU=",
-  "success": false,
+  "dgSpecHash": "NFIHMzaBDg0=",
+  "success": true,
   "projectFilePath": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\Roblox_SharpTests\\Roblox_SharpTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\babum\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
@@ -15,15 +15,5 @@
     "C:\\Users\\babum\\.nuget\\packages\\nuget.frameworks\\6.5.0\\nuget.frameworks.6.5.0.nupkg.sha512",
     "C:\\Users\\babum\\.nuget\\packages\\system.reflection.metadata\\1.6.0\\system.reflection.metadata.1.6.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1104",
-      "level": "Error",
-      "message": "Unable to find project 'C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\Roblox_Sharp\\source\\Roblox_Sharp.csproj'. Check that the project reference is valid and that the project file exists.",
-      "libraryId": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\Roblox_Sharp\\source\\Roblox_Sharp.csproj",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

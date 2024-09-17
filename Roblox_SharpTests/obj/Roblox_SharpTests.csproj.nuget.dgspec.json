@@ -27,11 +27,7 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {
-              "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\Roblox_Sharp\\source\\Roblox_Sharp.csproj": {
-                "projectPath": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\Roblox_Sharp\\source\\Roblox_Sharp.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {

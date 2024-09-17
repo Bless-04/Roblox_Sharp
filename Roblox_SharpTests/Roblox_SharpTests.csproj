@@ -17,12 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Roblox_Sharp\source\Roblox_Sharp.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="Roblox_Sharp">
-      <HintPath>..\source\bin\Debug\net8.0\Roblox_Sharp.dll</HintPath>
+      <HintPath>..\SRC\bin\Debug\net8.0\Roblox_Sharp.dll</HintPath>
     </Reference>
   </ItemGroup>
 
