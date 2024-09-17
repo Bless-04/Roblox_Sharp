@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\source\\Roblox_Sharp.csproj": {}
+    "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\SRC\\Roblox_Sharp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\source\\Roblox_Sharp.csproj": {
+    "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\SRC\\Roblox_Sharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\source\\Roblox_Sharp.csproj",
+        "projectUniqueName": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\SRC\\Roblox_Sharp.csproj",
         "projectName": "Roblox_Sharp",
-        "projectPath": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\source\\Roblox_Sharp.csproj",
+        "projectPath": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\SRC\\Roblox_Sharp.csproj",
         "packagesPath": "C:\\Users\\babum\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\source\\obj\\",
+        "outputPath": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\SRC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\babum\\AppData\\Roaming\\NuGet\\NuGet.Config",

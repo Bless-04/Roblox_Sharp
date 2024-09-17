@@ -2,32 +2,14 @@
 {
 
     /// <summary>
-    /// used to get string representations of all enums 
+    /// used to get string representations of enums cant use the literal variable name 
     /// </summary>
     public abstract class EnumExtensions
     {
-        public static string ToString(Thumbnail.Format FORMAT)
-        {
-            return FORMAT switch
-            {
-                Thumbnail.Format.Png => "Png",
-                Thumbnail.Format.Jpeg => "Jpeg",
-                Thumbnail.Format.Webp => "Webp",
-                _ => throw new ArgumentOutOfRangeException()
-            };
-        }
-
+       
         public static string ToString(Thumbnail.Size SIZE) => $"{(ushort)SIZE}x{(ushort)SIZE}";
 
-        public static string ToString(Sort SORT)
-        {
-            return SORT switch
-            {
-                Sort.Asc => "Asc",
-                Sort.Desc => "Desc",
-                _ => throw new ArgumentOutOfRangeException()
-            };
-        }
+       
 
         public static string ToString(Limit LIMIT)
         {

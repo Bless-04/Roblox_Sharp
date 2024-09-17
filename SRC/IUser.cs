@@ -5,7 +5,7 @@ namespace Roblox_Sharp
     /// <summary>
     /// Defines a generalized structure for any roblox User based object
     /// </summary>
-    public abstract class IUser :
+    public abstract class IUser : 
             IComparable<IUser>
     {
         /// <summary>

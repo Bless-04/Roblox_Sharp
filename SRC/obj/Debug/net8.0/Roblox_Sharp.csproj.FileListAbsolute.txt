@@ -48,3 +48,16 @@ C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\source\obj\
 C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\source\obj\Debug\net8.0\Roblox_Sharp.pdb
 C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\source\obj\Debug\net8.0\ref\Roblox_Sharp.dll
 C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\source\obj\Debug\net8.0\Roblox_Sharp.sourcelink.json
+C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\SRC\obj\Debug\net8.0\Roblox_Sharp.csproj.AssemblyReference.cache
+C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\SRC\obj\Debug\net8.0\Roblox_Sharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\SRC\obj\Debug\net8.0\Roblox_Sharp.AssemblyInfoInputs.cache
+C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\SRC\obj\Debug\net8.0\Roblox_Sharp.AssemblyInfo.cs
+C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\SRC\obj\Debug\net8.0\Roblox_Sharp.csproj.CoreCompileInputs.cache
+C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\SRC\obj\Debug\net8.0\Roblox_Sharp.sourcelink.json
+C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\SRC\obj\Debug\net8.0\Roblox_Sharp.dll
+C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\SRC\obj\Debug\net8.0\refint\Roblox_Sharp.dll
+C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\SRC\obj\Debug\net8.0\Roblox_Sharp.pdb
+C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\SRC\bin\Debug\net8.0\Roblox_Sharp.deps.json
+C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\SRC\bin\Debug\net8.0\Roblox_Sharp.dll
+C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\SRC\bin\Debug\net8.0\Roblox_Sharp.pdb
+C:\Users\babum\OneDrive - Towson University\Programs\C#\Roblox_Sharp\SRC\obj\Debug\net8.0\ref\Roblox_Sharp.dll

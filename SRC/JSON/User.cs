@@ -50,6 +50,7 @@ namespace Roblox_Sharp.JSON
         }
 
         public User(ulong id,string name,string? displayName = null) { this.id = id; this.name = name; this.displayName = displayName; }
+
         [Newtonsoft.Json.JsonConstructor]
         public User() { }
 
@@ -95,12 +96,6 @@ namespace Roblox_Sharp.JSON
         [JsonPropertyName("friendFrequentRank")]
         public int friendFrequentRank { get; init; }
 
-        
-
-
-        
-        
-
     }
 
     public class UserPOST
@@ -120,9 +115,7 @@ namespace Roblox_Sharp.JSON
             this.usernames = usernames;
             this.excludeBannedUsers = excludeBannedUsers;
         }
-
-      
-             
+       
     }
 
 }

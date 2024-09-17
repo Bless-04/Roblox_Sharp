@@ -4,7 +4,6 @@ using Roblox_Sharp.JSON;
 using Roblox_Sharp.Enums;
 using System.Text;
 using System.Net;
-using System.Diagnostics.CodeAnalysis;
 
 
 namespace Roblox_Sharp
@@ -14,7 +13,6 @@ namespace Roblox_Sharp
     /// static class for retrieving data from the Roblox API <br></br>
     /// <b><see href="https://github.com/matthewdean/roblox-web-apis?tab=readme-ov-file"></see></b>
     /// </summary>
-    
     public static class WebData
     {
         /// <summary>
@@ -25,10 +23,13 @@ namespace Roblox_Sharp
         /// <summary>
         /// an event that is raised when the web request fails
         /// </summary>
-        
         public static event EventHandler? OnFailedRequest;
 
+        /// <summary>
+        /// an instance of the http client. Used for all web requests
+        /// </summary>
         public static readonly HttpClient client = new(); 
+        
         //public static HttpStatusCode statusCode { get; private set; }
         
         /// <summary>
@@ -159,7 +160,7 @@ namespace Roblox_Sharp
         /// <returns>User[]</returns>
         public static async Task<User[]> Get_UsernamesAsync(ulong[] userIds, bool excludeBannedUsers = false)
         {
-            //url https://users.roblox.com/v1/users
+            //url example https://users.roblox.com/v1/users
             string content = await Post_RequestAsync("https://users.roblox.com/v1/users", new UserPOST(userIds, excludeBannedUsers));
 
             User[] users = JsonConvert.DeserializeObject<Page<User>>(content)!.data;
@@ -181,10 +182,10 @@ namespace Roblox_Sharp
         /// <returns>User[]</returns>
         public static async Task<User[]> Get_UsersAsync(string[] usernames, bool excludeBannedUsers = false)
         {
-            //url https://users.roblox.com/v1/usernames/users
+            //url example https://users.roblox.com/v1/usernames/users
             
             //StringContent(json, Encoding.UTF8, "application/json");
-            string? content = await Post_RequestAsync("https://users.roblox.com/v1/usernames/users", new UserPOST(usernames, excludeBannedUsers));
+            string content = await Post_RequestAsync("https://users.roblox.com/v1/usernames/users", new UserPOST(usernames, excludeBannedUsers));
 
             User[] users = JsonConvert.DeserializeObject<Page<User>>(content)!.data;
             if (users.Length == 0) throw new InvalidUsernameException($"No valid usernames\n[{string.Join(',', usernames)}]");
@@ -218,7 +219,7 @@ namespace Roblox_Sharp
         /// <returns>User[]</returns>
         public static async Task<User[]> Get_FriendsAsync(ulong userId)
         {
-            //url 'https://friends.roblox.com/v1/users/16/friends?userSort=0
+            //url example 'https://friends.roblox.com/v1/users/16/friends?userSort=0
 
             string content = await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/friends");
 
@@ -291,7 +292,7 @@ namespace Roblox_Sharp
         /// <returns>Page</returns>
         public static async Task<Page<User>> Get_FollowingsAsync(ulong userId, Limit limit = Limit.Minimum, Sort sortOrder = Sort.Asc, string? cursor = null)
         {
-            // url https://friends.roblox.com/v1/users/1/followers?limit=10&sortOrder=Asc
+            // url example https://friends.roblox.com/v1/users/1/followers?limit=10&sortOrder=Asc
 
             string content = await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/followings?limit=50&sortOrder={sortOrder}&cursor={cursor}");
 
@@ -309,12 +310,12 @@ namespace Roblox_Sharp
         public static async Task<Avatar[]> Get_AvatarsAsync(ulong[] userIds, Enums.Thumbnail.Size SIZE = Enums.Thumbnail.Size.x48, Enums.Thumbnail.Format FORMAT = Enums.Thumbnail.Format.Png, bool isCircular = false)
         {
             if (SIZE == Enums.Thumbnail.Size.x50) throw new ArgumentOutOfRangeException($"{SIZE} is not supported for this request.");
-            //url https://thumbnails.roblox.com/v1/users/avatar?userIds=1,156&size=30x30&format=Png&isCircular=false
+            //url example https://thumbnails.roblox.com/v1/users/avatar?userIds=1,156&size=30x30&format=Png&isCircular=false
 
             string content = await Get_RequestAsync(
                 $"https://thumbnails.roblox.com/v1/users/avatar?userIds={string.Join(",", userIds)}" +
                 $"&size={EnumExtensions.ToString(SIZE)}" +
-                $"&format={EnumExtensions.ToString(FORMAT)}" +
+                $"&format={FORMAT.ToString()}" +
                 $"&isCircular={isCircular}"
             );
             
@@ -342,12 +343,14 @@ namespace Roblox_Sharp
             if (SIZE < Enums.Thumbnail.Size.x48 || Enums.Thumbnail.Size.x720 < SIZE) throw new ArgumentOutOfRangeException("range is from x48 to x720\n"+SIZE.ToString());
             /// example https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=1&size=48x48&format=Png&isCircular=false
 
-            string url = $"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={string.Join(",", userIds)}" +
-                $"&size={EnumExtensions.ToString(SIZE)}" +
-                $"&format={EnumExtensions.ToString(FORMAT)}" +
-                $"&isCircular={isCircular}";
+            
 
-            string content = await Get_RequestAsync(url);
+            string content = await Get_RequestAsync(
+                $"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={string.Join(",", userIds)}" +
+                $"&size={EnumExtensions.ToString(SIZE)}" +
+                $"&format={FORMAT}" +
+                $"&isCircular={isCircular}"
+            );
 
             return JsonConvert.DeserializeObject<Page<Avatar>>(content)!.data;
         }
@@ -371,15 +374,15 @@ namespace Roblox_Sharp
         public static async Task<Avatar[]> Get_AvatarBustsAsync(ulong[] userIds, Enums.Thumbnail.Size SIZE = Enums.Thumbnail.Size.x48, Enums.Thumbnail.Format FORMAT = Enums.Thumbnail.Format.Png, bool isCircular = false)
         {
             if ((SIZE < Enums.Thumbnail.Size.x48 || Enums.Thumbnail.Size.x420 < SIZE) && (Enums.Thumbnail.Size.x110 == SIZE)) throw new ArgumentOutOfRangeException("range: \nx48 <= SIZE < x110 || SIZE <= x420\n" + SIZE.ToString());
-            //url https://thumbnails.roblox.com/v1/users/avatar-bust?userIds=1,156,256,2,16&size=48x48&format=Png&isCircular=false
+            // url example https://thumbnails.roblox.com/v1/users/avatar-bust?userIds=1,156,256,2,16&size=48x48&format=Png&isCircular=false
             if (FORMAT == Enums.Thumbnail.Format.Jpeg) throw new ArgumentException($"{FORMAT} is not supported for this request");
 
-            string url = $"https://thumbnails.roblox.com/v1/users/avatar-bust?userIds={string.Join(",", userIds)}" +
+            string content = await Get_RequestAsync(
+                $"https://thumbnails.roblox.com/v1/users/avatar-bust?userIds={string.Join(",", userIds)}" +
                 $"&size={EnumExtensions.ToString(SIZE)}" +
-                $"&format={EnumExtensions.ToString(FORMAT)}" +
-                $"&isCircular={isCircular}";
-
-            string content = await Get_RequestAsync(url);
+                $"&format={FORMAT}" +
+                $"&isCircular={isCircular}"
+            );
 
             return JsonConvert.DeserializeObject<Page<Avatar>>(content)!.data;
         }
@@ -397,9 +400,11 @@ namespace Roblox_Sharp
         {
             if (badgeIds.Length == 0) throw new ArgumentException("atleast one badge id is required");
 
-            //URL https://badges.roblox.com/v1/users/63225213/badges/awarded-dates?badgeIds=2126601323,2126601209,94278219,-1
+            //URL example https://badges.roblox.com/v1/users/63225213/badges/awarded-dates?badgeIds=2126601323,2126601209,94278219,-1
            
-            string content = await Get_RequestAsync($"https://badges.roblox.com/v1/users/{userId}/badges/awarded-dates?badgeIds={string.Join(',', badgeIds)}");
+            string content = await Get_RequestAsync(
+                $"https://badges.roblox.com/v1/users/{userId}/badges/awarded-dates?badgeIds={string.Join(',', badgeIds)}"
+            );
 
             return JsonConvert.DeserializeObject<Page<BadgeAward>>(content)!.data;
             
@@ -414,7 +419,7 @@ namespace Roblox_Sharp
         /// <returns>userPresence[]</returns>
         public static async Task<userPresence[]> Get_PresencesAsync(ulong[] userIds)
         {
-            // url https://presence.roblox.com/v1/presence/users
+            // url example https://presence.roblox.com/v1/presence/users
             string content = await Post_RequestAsync($"https://presence.roblox.com/v1/presence/users", new UserPOST(userIds));
 
             return JsonConvert.DeserializeObject<Page<userPresence>>(content)!.userPresences;
@@ -430,7 +435,7 @@ namespace Roblox_Sharp
         
         public static async Task<userPresence[]> Get_LastOnlinesAsync(ulong[] userIds)
         {
-            //url https://presence.roblox.com/v1/presence/last-online
+            //url example https://presence.roblox.com/v1/presence/last-online
             string content = await Post_RequestAsync($"https://presence.roblox.com/v1/presence/last-online", new UserPOST(userIds));
 
             return  JsonConvert.DeserializeObject<Page<userPresence>>(content)!.lastOnlineTimestamps;
