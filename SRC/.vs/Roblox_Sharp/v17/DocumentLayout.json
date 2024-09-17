@@ -3,19 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\SRC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B5FC79D9-64BE-47B9-8327-6D1A8357F4D2}|Roblox_Sharp.csproj|c:\\users\\babum\\onedrive - towson university\\programs\\c#\\roblox_sharp\\src\\json\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5FC79D9-64BE-47B9-8327-6D1A8357F4D2}|Roblox_Sharp.csproj|solutionrelative:json\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5B41A2FE-5002-4360-9D04-C9D981019EB9}|..\\Roblox_SharpTests\\Roblox_SharpTests.csproj|c:\\users\\babum\\onedrive - towson university\\programs\\c#\\roblox_sharp\\roblox_sharptests\\webdata_test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5FC79D9-64BE-47B9-8327-6D1A8357F4D2}|Roblox_Sharp.csproj|c:\\users\\babum\\onedrive - towson university\\programs\\c#\\roblox_sharp\\src\\webdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5FC79D9-64BE-47B9-8327-6D1A8357F4D2}|Roblox_Sharp.csproj|solutionrelative:webdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5FC79D9-64BE-47B9-8327-6D1A8357F4D2}|Roblox_Sharp.csproj|c:\\users\\babum\\onedrive - towson university\\programs\\c#\\roblox_sharp\\src\\iuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5FC79D9-64BE-47B9-8327-6D1A8357F4D2}|Roblox_Sharp.csproj|solutionrelative:iuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5B41A2FE-5002-4360-9D04-C9D981019EB9}|..\\Roblox_SharpTests\\Roblox_SharpTests.csproj|c:\\users\\babum\\onedrive - towson university\\programs\\c#\\roblox_sharp\\roblox_sharptests\\webdata_test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B5FC79D9-64BE-47B9-8327-6D1A8357F4D2}|Roblox_Sharp.csproj|c:\\users\\babum\\onedrive - towson university\\programs\\c#\\roblox_sharp\\src\\json\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5FC79D9-64BE-47B9-8327-6D1A8357F4D2}|Roblox_Sharp.csproj|solutionrelative:json\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,7 +21,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -33,7 +29,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\SRC\\JSON\\User.cs",
               "RelativeDocumentMoniker": "JSON\\User.cs",
@@ -46,27 +42,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "WebData_Test.cs",
               "DocumentMoniker": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\Roblox_SharpTests\\WebData_Test.cs",
               "RelativeDocumentMoniker": "..\\Roblox_SharpTests\\WebData_Test.cs",
               "ToolTip": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\Roblox_SharpTests\\WebData_Test.cs",
               "RelativeToolTip": "..\\Roblox_SharpTests\\WebData_Test.cs",
-              "ViewState": "AgIAACsAAAAAAABO3GMWwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIMAAAAAAIDat9ckwJcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T04:06:17.071Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IUser.cs",
-              "DocumentMoniker": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\SRC\\IUser.cs",
-              "RelativeDocumentMoniker": "IUser.cs",
-              "ToolTip": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\SRC\\IUser.cs",
-              "RelativeToolTip": "IUser.cs",
-              "ViewState": "AgIAAAYAAAAAAIAioIovwBIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T04:04:51.885Z"
+              "WhenOpened": "2024-09-17T04:06:17.071Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -76,9 +61,10 @@
               "RelativeDocumentMoniker": "WebData.cs",
               "ToolTip": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\SRC\\WebData.cs",
               "RelativeToolTip": "WebData.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAzMwowB8AAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T04:04:05.957Z"
+              "WhenOpened": "2024-09-17T04:04:05.957Z",
+              "EditorCaption": ""
             }
           ]
         }
