@@ -11,8 +11,6 @@ namespace Roblox_SharpTests
     [TestClass]
     public class WebData_Test
     {
-       
-        
         public WebData_Test()
         {
             WebData.OnSuccessfulRequest += OnSuccessfulRequest;
@@ -149,9 +147,17 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void PreviousUsernames()
         {
-            Page<User> x = Get_PreviousUsernamesAsync(416181091).Result;
 
-            Debug.WriteLine(x.data.Length);
+            //7733466 is an admin
+            Page<User> x = Get_PreviousUsernamesAsync(1).Result;
+            Page<User> y = Get_PreviousUsernamesAsync(7733466).Result;
+
+            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_PreviousUsernamesAsync(0)); //doesnt exist
+            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_PreviousUsernamesAsync(5)); //terminated user
+            
+            Assert.AreEqual(x.data.Length,0);
+            Assert.AreNotEqual(y.data.Length, 0);
+            Assert.IsTrue(x.previousPageCursor == null);
         }
 
         [TestMethod]

@@ -7,15 +7,15 @@ namespace Roblox_Sharp.Enums
     public enum Limit : byte
     {
         Ten = 10,
+        Min = 10,
+        Minimum = 10,
+
         TwentyFive = 25,
         Fifty = 50,
+
         OneHundred = 100,
-
-
-        Min = Ten,
-        Minimum = Ten,
-
-        Max = OneHundred,
-        Maximum = OneHundred
+        MAX = 100,
+        Max = 100,
+        Maximum = 100
     }
 }
