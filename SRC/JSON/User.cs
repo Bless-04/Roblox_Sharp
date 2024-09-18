@@ -39,6 +39,9 @@ namespace Roblox_Sharp.JSON
         }
 */
 
+    /// <summary>
+    /// class used to serialize User based requests
+    /// </summary>
     public class User : IUser
     {
         

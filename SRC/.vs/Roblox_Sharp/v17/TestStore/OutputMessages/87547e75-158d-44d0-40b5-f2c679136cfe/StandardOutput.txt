@@ -34,32 +34,28 @@ SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 
 SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
 {
   Content-Type: application/json; charset=utf-8
-  Content-Length: 59
+  Content-Length: 66
 }
-SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
+SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/1', Version: 1.1, Content: <null>, Headers:
 {
-  Content-Type: application/json; charset=utf-8
-  Content-Length: 59
 }
-SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
+SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/1', Version: 1.1, Content: <null>, Headers:
 {
-  Content-Type: application/json; charset=utf-8
-  Content-Length: 59
 }
-SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
+SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/1', Version: 1.1, Content: <null>, Headers:
 {
-  Content-Type: application/json; charset=utf-8
-  Content-Length: 59
 }
-SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
+SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/1', Version: 1.1, Content: <null>, Headers:
 {
-  Content-Type: application/json; charset=utf-8
-  Content-Length: 59
 }
-SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
+SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/1', Version: 1.1, Content: <null>, Headers:
 {
-  Content-Type: application/json; charset=utf-8
-  Content-Length: 59
+}
+SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/1', Version: 1.1, Content: <null>, Headers:
+{
+}
+SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/1', Version: 1.1, Content: <null>, Headers:
+{
 }
 SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
 {
@@ -91,23 +87,45 @@ SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 
   Content-Type: application/json; charset=utf-8
   Content-Length: 58
 }
-SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/1', Version: 1.1, Content: <null>, Headers:
+SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
 {
+  Content-Type: application/json; charset=utf-8
+  Content-Length: 58
 }
-SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/1', Version: 1.1, Content: <null>, Headers:
+SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
 {
+  Content-Type: application/json; charset=utf-8
+  Content-Length: 59
 }
-SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/1', Version: 1.1, Content: <null>, Headers:
+SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
 {
+  Content-Type: application/json; charset=utf-8
+  Content-Length: 59
 }
-SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/1', Version: 1.1, Content: <null>, Headers:
+SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
 {
+  Content-Type: application/json; charset=utf-8
+  Content-Length: 59
 }
-SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/1', Version: 1.1, Content: <null>, Headers:
+SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
 {
+  Content-Type: application/json; charset=utf-8
+  Content-Length: 59
 }
-SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/1', Version: 1.1, Content: <null>, Headers:
+SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
 {
+  Content-Type: application/json; charset=utf-8
+  Content-Length: 59
+}
+SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
+{
+  Content-Type: application/json; charset=utf-8
+  Content-Length: 59
+}
+SUCCESS Method: POST, RequestUri: 'https://users.roblox.com/v1/users', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
+{
+  Content-Type: application/json; charset=utf-8
+  Content-Length: 59
 }
 SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/16', Version: 1.1, Content: <null>, Headers:
 {
@@ -125,6 +143,12 @@ SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/16', Version
 {
 }
 SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/16', Version: 1.1, Content: <null>, Headers:
+{
+}
+SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/16', Version: 1.1, Content: <null>, Headers:
+{
+}
+SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/156', Version: 1.1, Content: <null>, Headers:
 {
 }
 SUCCESS Method: GET, RequestUri: 'https://users.roblox.com/v1/users/156', Version: 1.1, Content: <null>, Headers:

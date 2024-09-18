@@ -16,7 +16,6 @@
             return (LIMIT) switch
             {
                 Limit.Ten => "10",
-                Limit.EightTeen => "18",
                 Limit.TwentyFive => "25",
                 Limit.Fifty => "50",
                 Limit.OneHundred => "100",
