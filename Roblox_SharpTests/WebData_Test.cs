@@ -149,7 +149,9 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void PreviousUsernames()
         {
+            Page<User> x = Get_PreviousUsernamesAsync(416181091).Result;
 
+            Debug.WriteLine(x.data.Length);
         }
 
         [TestMethod]

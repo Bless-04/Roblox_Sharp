@@ -23,7 +23,7 @@ namespace Roblox_Sharp.JSON
 
         /** webRequest Specific fields */
         [JsonPropertyName("userPresences")]
-        required public userPresence[] userPresences { get; init; }
+        public userPresence[]? userPresences { get; init; }
 
         
         [JsonPropertyName("lastOnlineTimestamps")]

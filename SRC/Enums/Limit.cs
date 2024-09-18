@@ -7,7 +7,6 @@ namespace Roblox_Sharp.Enums
     public enum Limit : byte
     {
         Ten = 10,
-        EightTeen = 18,
         TwentyFive = 25,
         Fifty = 50,
         OneHundred = 100,

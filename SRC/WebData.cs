@@ -169,6 +169,20 @@ namespace Roblox_Sharp
             return users;
         }
 
+        public static async Task<Page<User>> Get_PreviousUsernamesAsync(ulong userId, Limit LIMIT = Limit.Minimum, Sort SORT = Sort.Asc, Page<User>? page = null)
+        {
+            ///url example 'https://users.roblox.com/v1/users/416181091/username-history?limit=100&sortOrder=Asc
+            ///
+
+            string content = await Get_RequestAsync("https://users.roblox.com/v1/users/416181091/username-history?limit=100&sortOrder=Asc"); /*Get_RequestAsync($"https://users.roblox.com/v1/users/" +
+                $"{userId}/username-history?" +
+                $"limit={EnumExtensions.ToString(LIMIT)}" +
+                $"&cursor={page?.nextPageCursor}" +
+                $"&sortOrder={SORT}");*/
+
+            return JsonConvert.DeserializeObject<Page<User>>(content)!;
+        }
+
         /// <summary>
         /// get usersIds using the given array of <paramref name="usernames"/> asynchronously
         /// <br></br>
