@@ -53,7 +53,6 @@ namespace Roblox_Sharp
                 //errors
                 switch (response.StatusCode)
                 {
-
                     case HttpStatusCode.TooManyRequests:
                     {
                         if (RateLimitRetry)

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Roblox_Sharp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f749b55bd70a40c36ca7c4187b85e6a2a8c3626e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8397ea68a7a044425fc90e7cb743f93bce0f8ef1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Roblox_Sharp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Roblox_Sharp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
