@@ -22,7 +22,7 @@ namespace Roblox_Sharp.JSON
     public record Avatar
     {
         [JsonProperty("targetId")]
-        public int targetId { get; init; }
+        public ulong targetId { get; init; }
 
         [JsonProperty("state")]
         required public string state { get; init; }

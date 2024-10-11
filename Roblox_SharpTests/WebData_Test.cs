@@ -16,8 +16,9 @@ namespace Roblox_SharpTests
             WebData.OnSuccessfulRequest += OnSuccessfulRequest;
             WebData.OnFailedRequest += OnFailedRequest;
         }
-        //test event successfulrequest event
 
+        
+        
         public void OnSuccessfulRequest(object? sender, EventArgs e) => Debug.WriteLine("SUCCESS " + (sender as HttpResponseMessage)?.RequestMessage);
         public void OnFailedRequest(object? sender, EventArgs e) => Debug.WriteLine("FAILED "  + (sender as HttpResponseMessage)?.RequestMessage );
 

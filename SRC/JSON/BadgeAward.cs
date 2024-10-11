@@ -8,7 +8,7 @@ namespace Roblox_Sharp.JSON
     public record BadgeAward 
     {
         [JsonProperty("badgeId")]
-        public UInt64 badgeId { get; init; }
+        public ulong badgeId { get; init; }
 
         [JsonProperty("awardedDate")]
         public DateTime awardedDate { get; init; }

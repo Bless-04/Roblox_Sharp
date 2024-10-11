@@ -12,16 +12,16 @@ namespace Roblox_Sharp.JSON
         public string? lastLocation { get; init; }
 
         [JsonPropertyName("placeId")]
-        public int? placeId  { get; init; }
+        public ulong? placeId  { get; init; }
 
         [JsonPropertyName("rootPlaceId")]
-        public int? rootPlaceId { get; init; }
+        public ulong? rootPlaceId { get; init; }
 
         [JsonPropertyName("gameId")]
         public string? gameId { get; init; }
 
         [JsonPropertyName("universeId")]
-        public int? universeId { get; init; }
+        public ulong? universeId { get; init; }
 
         [JsonPropertyName("userId")]
         public ulong? userId { get; init; }
