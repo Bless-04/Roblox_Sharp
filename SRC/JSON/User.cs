@@ -57,6 +57,7 @@ namespace Roblox_Sharp.JSON
         [Newtonsoft.Json.JsonConstructor]
         public User() { }
 
+        //id had to be overrided because there are cases in which the id is not in the json
         /// <summary>
         /// unique user id for the user
         /// </summary>

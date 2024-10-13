@@ -99,7 +99,7 @@ namespace Roblox_SharpTests
         public void Followings()
         {
             Page<User> x = Get_FollowingsAsync(1).Result; //roblox
-            Page<User> y = Get_FollowingsAsync(16).Result; //erik.cassel
+            Page<User> y = Get_FollowingsAsync(16,Roblox_Sharp.Enums.Limit.Ten).Result; //erik.cassel
 
             Assert.IsTrue(x.data.Length == 0);
             Assert.IsTrue(y.data.Length != 0);
@@ -141,6 +141,8 @@ namespace Roblox_SharpTests
         {
             userPresence[] x =  Get_LastOnlinesAsync([1,16,156]).Result;
             userPresence[] y = Get_PresencesAsync([1,16,156]).Result;
+
+           
 
             Assert.AreEqual(x[0].userId, y[0].userId);
         }
