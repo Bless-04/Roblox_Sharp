@@ -10,7 +10,7 @@ namespace Roblox_Sharp.JSON
     /// used for all the page based requests ; requests that can return multiple pages or have a data[] field
     /// </summary>
     /// <typeparam name="T[]"></typeparam> 
-    public class Page<T> 
+    public class Page<T>
     {
         /// <summary>
         /// previous page cursor of the request . if <b>null</b> there are no previous pages / is the first page

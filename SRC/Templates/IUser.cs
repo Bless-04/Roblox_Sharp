@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Roblox_Sharp
+namespace Roblox_Sharp.Templates
 {
     /// <summary>
-    /// Defines a generalized structure for any roblox User based object
+    /// Defines a generalized template for any roblox <paramref name="User"></paramref> based object
     /// </summary>
     public abstract class IUser : 
             IComparable<IUser>
