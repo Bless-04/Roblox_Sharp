@@ -355,7 +355,7 @@ namespace Roblox_Sharp
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static async Task<Avatar[]> Get_AvatarHeadshotsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
         {
-            if (EnumExtensions.IsBlackListed(SIZE, [Size.x30])) throw new ArgumentOutOfRangeException("range is from x48 to x720\n" + SIZE.ToString());
+            if (EnumExtensions.IsBlackListed(SIZE, [Size.x30])) throw new ArgumentOutOfRangeException($"{SIZE} is not supported for this request.");
             /// example https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=1&size=48x48&format=Png&isCircular=false
 
             string content = await Get_RequestAsync(
@@ -388,7 +388,7 @@ namespace Roblox_Sharp
         /// <exception cref="ArgumentException"></exception>
         public static async Task<Avatar[]> Get_AvatarBustsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
         {
-            if (EnumExtensions.IsBlackListed(SIZE, [Size.x30, Size.x110, Size.x720])) throw new ArgumentOutOfRangeException("range: \nx48 <= SIZE < x110 || SIZE <= x420\n" + SIZE.ToString());
+            if (EnumExtensions.IsBlackListed(SIZE, [Size.x30, Size.x110, Size.x720])) throw new ArgumentOutOfRangeException($"{SIZE} is not in range for this request");
             // url example https://thumbnails.roblox.com/v1/users/avatar-bust?userIds=1,156,256,2,16&size=48x48&format=Png&isCircular=false
             if (FORMAT == Format.Jpeg) throw new ArgumentException($"{FORMAT} is not supported for this request");
 
