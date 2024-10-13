@@ -12,7 +12,7 @@ namespace Roblox_Sharp
         /// the numeric <paramref name="id"/> of the user. Can only be set in the constructor
         /// </summary>
         abstract public ulong id { get; init; }
-
+        
         public IUser() { }
 
         public IUser(ulong id) => this.id = id;

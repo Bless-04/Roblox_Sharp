@@ -4,28 +4,42 @@ namespace Roblox_Sharp.JSON
 {
     public class userPresence
     {
-
+        /// <summary>
+        /// <see cref="Enums.Presence"/> type of user
+        /// </summary>
         [JsonPropertyName("userPresenceType")]
         public Enums.Presence userPresenceType { get; init; }
 
         [JsonPropertyName("lastLocation")]
         public string? lastLocation { get; init; }
 
+        /// <summary>
+        /// unique place id
+        /// </summary>
         [JsonPropertyName("placeId")]
         public ulong? placeId  { get; init; }
 
         [JsonPropertyName("rootPlaceId")]
         public ulong? rootPlaceId { get; init; }
 
+        /// <summary>
+        /// unique game id
+        /// </summary>
         [JsonPropertyName("gameId")]
         public string? gameId { get; init; }
 
         [JsonPropertyName("universeId")]
         public ulong? universeId { get; init; }
 
+        /// <summary>
+        /// unique user id
+        /// </summary>
         [JsonPropertyName("userId")]
         public ulong? userId { get; init; }
 
+        /// <summary>
+        /// exact date and time user was last online
+        /// </summary>
         [JsonPropertyName("lastOnline")]
         public DateTime? lastOnline { get; init; }
 
