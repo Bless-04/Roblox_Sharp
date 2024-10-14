@@ -10,8 +10,11 @@ namespace Roblox_Sharp.JSON
     /// <summary>
     /// for all count requests
     /// </summary>
-    public readonly struct CountType
+    public readonly struct A_Count
     {
+        /// <summary>
+        /// the count
+        /// </summary>
         [JsonProperty("count")]
         public ulong count { get; init; }
     }

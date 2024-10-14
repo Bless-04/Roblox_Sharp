@@ -21,12 +21,16 @@ namespace Roblox_Sharp.JSON
 
     public record Avatar
     {
+
         [JsonProperty("targetId")]
-        public int targetId { get; init; }
+        public ulong targetId { get; init; }
 
         [JsonProperty("state")]
         required public string state { get; init; }
 
+        /// <summary>
+        /// image url of avatar based request
+        /// </summary>
         [JsonProperty("imageUrl")] 
         required public string imageUrl {  get; init; }
 

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
 namespace Roblox_Sharp.JSON
@@ -7,9 +6,15 @@ namespace Roblox_Sharp.JSON
     
     public record BadgeAward 
     {
+        /// <summary>
+        /// unique badge id
+        /// </summary>
         [JsonProperty("badgeId")]
-        public UInt64 badgeId { get; init; }
+        public ulong badgeId { get; init; }
 
+        /// <summary>
+        /// date badge was awarded
+        /// </summary>
         [JsonProperty("awardedDate")]
         public DateTime awardedDate { get; init; }
     }

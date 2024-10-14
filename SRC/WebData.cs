@@ -2,6 +2,7 @@
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON;
 using Roblox_Sharp.Enums;
+using Roblox_Sharp.Enums.Thumbnail;
 using System.Text;
 using System.Net;
 
@@ -215,7 +216,7 @@ namespace Roblox_Sharp
         {
             string content = await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/friends/count");
            
-            return (byte)JsonConvert.DeserializeObject<CountType>(content).count;
+            return (byte)JsonConvert.DeserializeObject<A_Count>(content).count;
         }
 
         /// <summary>
@@ -248,7 +249,7 @@ namespace Roblox_Sharp
         public static async Task<ulong> Get_FollowersCountAsync(ulong userId)
         {
             string content = await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/followings/count");
-            return JsonConvert.DeserializeObject<CountType>(content).count;
+            return JsonConvert.DeserializeObject<A_Count>(content).count;
         }
 
         /// <summary>
@@ -285,7 +286,7 @@ namespace Roblox_Sharp
         {
             string content = await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/followings/count");
 
-            return JsonConvert.DeserializeObject<CountType>(content).count;
+            return JsonConvert.DeserializeObject<A_Count>(content).count;
         }
 
         /// <summary>
@@ -300,9 +301,14 @@ namespace Roblox_Sharp
         /// <returns>Page</returns>
         public static async Task<Page<User>> Get_FollowingsAsync(ulong userId, Limit limit = Limit.Minimum, Sort sortOrder = Sort.Asc, string? cursor = null)
         {
+            
             // url example https://friends.roblox.com/v1/users/1/followers?limit=10&sortOrder=Asc
 
-            string content = await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/followings?limit=50&sortOrder={sortOrder}&cursor={cursor}");
+            string content = await Get_RequestAsync(
+                $"https://friends.roblox.com/v1/users/{userId}/followings?" +
+                $"limit={EnumExtensions.ToString(limit)}" +
+                $"&sortOrder={sortOrder}" +
+                $"&cursor={cursor}");
 
             return JsonConvert.DeserializeObject<Page<User>>(content)!;
         }
@@ -315,9 +321,9 @@ namespace Roblox_Sharp
         /// <param name="FORMAT"></param>
         /// <param name="isCircular"></param>
         /// <returns>Avatar[]</returns>
-        public static async Task<Avatar[]> Get_AvatarsAsync(ulong[] userIds, Enums.Thumbnail.Size SIZE = Enums.Thumbnail.Size.x48, Enums.Thumbnail.Format FORMAT = Enums.Thumbnail.Format.Png, bool isCircular = false)
+        public static async Task<Avatar[]> Get_AvatarsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
         {
-            if (SIZE == Enums.Thumbnail.Size.x50) throw new ArgumentOutOfRangeException($"{SIZE} is not supported for this request.");
+            if (SIZE == Size.x50) throw new ArgumentOutOfRangeException($"{SIZE} is not supported for this request.");
             //url example https://thumbnails.roblox.com/v1/users/avatar?userIds=1,156&size=30x30&format=Png&isCircular=false
 
             string content = await Get_RequestAsync(
@@ -337,7 +343,9 @@ namespace Roblox_Sharp
         /// <br></br>
         /// <b>Will ignore users that, dont exist , are terminated/banned or are already in list</b>
         /// <br></br>
-        /// <code>range (x48 to x720)</code>
+        /// <br></br>
+        /// <code><paramref name="SIZE"/> blacklist: 
+        /// <br></br> Size.x30</code>
         /// </summary>
         /// <param name="userIds"></param>
         /// <param name="SIZE"></param>
@@ -345,13 +353,10 @@ namespace Roblox_Sharp
         /// <param name="isCircular"></param>
         /// <returns>Avatar[]</returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static async Task<Avatar[]> Get_AvatarHeadshotsAsync(ulong[] userIds, Enums.Thumbnail.Size SIZE = Enums.Thumbnail.Size.x48, Enums.Thumbnail.Format FORMAT = Enums.Thumbnail.Format.Png, bool isCircular = false)
+        public static async Task<Avatar[]> Get_AvatarHeadshotsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
         {
-            //size smaller than minumum or larger than maximum
-            if (SIZE < Enums.Thumbnail.Size.x48 || Enums.Thumbnail.Size.x720 < SIZE) throw new ArgumentOutOfRangeException("range is from x48 to x720\n"+SIZE.ToString());
+            if (EnumExtensions.IsBlackListed(SIZE, [Size.x30])) throw new ArgumentOutOfRangeException($"{SIZE} is not supported for this request.");
             /// example https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=1&size=48x48&format=Png&isCircular=false
-
-            
 
             string content = await Get_RequestAsync(
                 $"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={string.Join(",", userIds)}" +
@@ -370,7 +375,9 @@ namespace Roblox_Sharp
         /// <br></br>
         /// <b>Will ignore users that, dont exist , are terminated/banned or are already in list</b>
         /// <br></br>
-        /// <code>range (x48 to x100) or (x150 to x720)</code>
+        /// <br></br>
+        /// <code><paramref name="SIZE"/> blacklist:
+        /// <br></br> Size.x30, Size.x110, Size.x720</code> 
         /// </summary>
         /// <param name="userIds"></param>
         /// <param name="SIZE"></param>
@@ -379,11 +386,11 @@ namespace Roblox_Sharp
         /// <returns>Avatar[]</returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public static async Task<Avatar[]> Get_AvatarBustsAsync(ulong[] userIds, Enums.Thumbnail.Size SIZE = Enums.Thumbnail.Size.x48, Enums.Thumbnail.Format FORMAT = Enums.Thumbnail.Format.Png, bool isCircular = false)
+        public static async Task<Avatar[]> Get_AvatarBustsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
         {
-            if ((SIZE < Enums.Thumbnail.Size.x48 || Enums.Thumbnail.Size.x420 < SIZE) && (Enums.Thumbnail.Size.x110 == SIZE)) throw new ArgumentOutOfRangeException("range: \nx48 <= SIZE < x110 || SIZE <= x420\n" + SIZE.ToString());
+            if (EnumExtensions.IsBlackListed(SIZE, [Size.x30, Size.x110, Size.x720])) throw new ArgumentOutOfRangeException($"{SIZE} is not in range for this request");
             // url example https://thumbnails.roblox.com/v1/users/avatar-bust?userIds=1,156,256,2,16&size=48x48&format=Png&isCircular=false
-            if (FORMAT == Enums.Thumbnail.Format.Jpeg) throw new ArgumentException($"{FORMAT} is not supported for this request");
+            if (FORMAT == Format.Jpeg) throw new ArgumentException($"{FORMAT} is not supported for this request");
 
             string content = await Get_RequestAsync(
                 $"https://thumbnails.roblox.com/v1/users/avatar-bust?userIds={string.Join(",", userIds)}" +
@@ -430,7 +437,7 @@ namespace Roblox_Sharp
             // url example https://presence.roblox.com/v1/presence/users
             string content = await Post_RequestAsync($"https://presence.roblox.com/v1/presence/users", new UserPOST(userIds));
 
-            return JsonConvert.DeserializeObject<Page<userPresence>>(content)!.userPresences!;
+            return JsonConvert.DeserializeObject<PresencePage>(content)!.userPresences!;
         }
 
         /// <summary>
@@ -446,7 +453,7 @@ namespace Roblox_Sharp
             //url example https://presence.roblox.com/v1/presence/last-online
             string content = await Post_RequestAsync($"https://presence.roblox.com/v1/presence/last-online", new UserPOST(userIds));
 
-            return  JsonConvert.DeserializeObject<Page<userPresence>>(content)!.lastOnlineTimestamps;
+            return  JsonConvert.DeserializeObject<PresencePage>(content)!.lastOnlineTimestamps;
         }
     }
 }

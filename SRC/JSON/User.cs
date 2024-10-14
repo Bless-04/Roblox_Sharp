@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
-
+using Roblox_Sharp.Templates;
 //for the user based requests
 namespace Roblox_Sharp.JSON
 {
@@ -57,21 +57,40 @@ namespace Roblox_Sharp.JSON
         [Newtonsoft.Json.JsonConstructor]
         public User() { }
 
+        //id had to be overrided because there are cases in which the id is not in the json
+        /// <summary>
+        /// unique user id for the user
+        /// </summary>
         [JsonProperty("id")]
         override public ulong id { get; init; }
         
+        /// <summary>
+        /// unique username for the user
+        /// </summary>
         [JsonProperty("name")]
         public string name { get; init; }
 
+        /// <summary>
+        /// display name for the user
+        /// </summary>
         [JsonProperty("displayName")]
         public string? displayName { get; init; }
         
+        /// <summary>
+        /// description for the user
+        /// </summary>
         [JsonProperty("description")]
         public string? description { get; init; }
 
+        /// <summary>
+        /// creation date and time of user
+        /// </summary>
         [JsonProperty("created")]
         public DateTime created { get; init; }
 
+        /// <summary>
+        /// <b>true</b> if user is banned, <b>false</b> otherwise
+        /// </summary>
         [JsonProperty("isBanned")]
         public bool isBanned { get; init; }
 
@@ -87,6 +106,9 @@ namespace Roblox_Sharp.JSON
         [JsonPropertyName("presenceType")]
         public Enums.Presence presenceType { get; init; }
 
+        /// <summary>
+        /// <b>true</b> if user is currently online, <b>false</b> otherwise
+        /// </summary>
         [JsonPropertyName("isOnline")]
         public bool isOnline { get; init; }
 
@@ -103,8 +125,19 @@ namespace Roblox_Sharp.JSON
 
     public class UserPOST
     {
+        /// <summary>
+        /// exclude banned users
+        /// </summary>
         public bool excludeBannedUsers { get; init; }
+
+        /// <summary>
+        /// array of user ids
+        /// </summary>
         public ulong[]? userIds { get; init; }
+
+        /// <summary>
+        /// array of username
+        /// </summary>
         public string[]? usernames { get; init; }
 
         public UserPOST(ulong[] userIds, bool excludeBannedUsers=false)

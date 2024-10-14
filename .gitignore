@@ -1,3 +1,8 @@
-.vs/
-bin/
-obj/
+SRC/.vs/
+SRC/bin/
+SRC/obj/
+SRC/TestResults/
+
+Roblox_SharpTests/.vs/
+Roblox_SharpTests/bin/
+Roblox_SharpTests/obj/
