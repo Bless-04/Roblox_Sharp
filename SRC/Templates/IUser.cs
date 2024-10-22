@@ -31,6 +31,14 @@ namespace Roblox_Sharp.Templates
         }
         public override int GetHashCode() => id.GetHashCode();
 
+        /** might not be a good idea*/
+        /// <summary>
+        /// explicit conversion from <see cref="IUser"/> to <see cref="ulong"/> <br></br>
+        /// simply returns the users id
+        /// </summary>
+        /// <param name="user"></param>
+        public static explicit operator ulong(IUser user) => user.id;
+
         /// <summary>
         /// a user is <b> less than </b> another if it is younger. Younger users have larger ids than older ones
         /// </summary>
@@ -39,14 +47,7 @@ namespace Roblox_Sharp.Templates
         /// <returns>bool</returns>
         public static bool operator <(IUser left, IUser right) => left.id > right.id;
 
-        /// <summary>
-        /// a user is <b>less than or equal to </b>another if it is younger. Younger users have larger ids than older ones
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns>bool</returns>
-        public static bool operator <=(IUser left, IUser right) => left.id >= right.id;
-
+       
         /// <summary>
         /// a user is <b>greater than</b> another if it is older. Older users have smaller ids than newer users.
         /// </summary>
@@ -55,14 +56,7 @@ namespace Roblox_Sharp.Templates
         /// <returns>bool</returns>
         public static bool operator >(IUser left, IUser right) => left.id < right.id;
         
-        /// <summary>
-        /// a user is <b>greater than or equal to</b> another if it is older. Older users have smaller ids than newer users.
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns>bool</returns>
-        public static bool operator >=(IUser left, IUser right) => left.id <= right.id;
-
+        
         /// <summary>
         /// a user is greater than another if it is older. Older users have smaller ids than newer users.
         /// <br></br>
@@ -82,6 +76,9 @@ namespace Roblox_Sharp.Templates
 
             return 0;
         }
+
+
+        
     }
 
 }

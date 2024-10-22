@@ -14,7 +14,7 @@ namespace Roblox_Sharp
     /// static class for retrieving data from the Roblox API <br></br>
     /// <b><see href="https://github.com/matthewdean/roblox-web-apis?tab=readme-ov-file"></see></b>
     /// </summary>
-    public static class WebData
+    public static class WebAPI
     {
         /// <summary>
         /// an event that is raised when the web request is successful/statuscode 200

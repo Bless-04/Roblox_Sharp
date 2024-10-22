@@ -1,4 +1,4 @@
-using static Roblox_Sharp.WebData;
+using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.Enums.Thumbnail;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON;
@@ -9,12 +9,12 @@ namespace Roblox_SharpTests
 
     
     [TestClass]
-    public class WebData_Test
+    public class WebAPI_Test
     {
-        public WebData_Test()
+        public WebAPI_Test()
         {
-            WebData.OnSuccessfulRequest += OnSuccessfulRequest;
-            WebData.OnFailedRequest += OnFailedRequest;
+            WebAPI.OnSuccessfulRequest += OnSuccessfulRequest;
+            WebAPI.OnFailedRequest += OnFailedRequest;
         }
 
         

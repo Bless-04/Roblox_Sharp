@@ -121,8 +121,17 @@ namespace Roblox_Sharp.JSON
         [JsonPropertyName("friendFrequentRank")]
         public int friendFrequentRank { get; init; }
 
+        /// <summary>
+        /// string representation of the user <br></br> 
+        /// Format: <b> <paramref name="displayName"/> @ <paramref name="name"/> (<paramref name="id"/>) </b>
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"{displayName} @ {name} ({id})";
     }
 
+    /// <summary>
+    /// class used to serialize User POST based requests
+    /// </summary>
     public class UserPOST
     {
         /// <summary>

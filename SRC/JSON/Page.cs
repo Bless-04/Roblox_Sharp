@@ -11,14 +11,9 @@ namespace Roblox_Sharp.JSON
     /// <typeparam name="T[]"></typeparam> 
     public class Page<T> : IPage<T>
     {
-        
-
         [JsonConstructor]
         public Page(string? previousPageCursor, string? nextPageCursor, T[] data) 
             : base (previousPageCursor, nextPageCursor, data) { }
-        
-        
 
-        
     }
 }
