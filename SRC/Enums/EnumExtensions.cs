@@ -26,7 +26,7 @@ namespace Roblox_Sharp.Enums
         public static bool IsBlackListed(Enum value,Enum[] blacklist) => blacklist.Contains(value);
         
 
-        public static string ToString(Limit LIMIT)
+        public static string ToString(Limit? LIMIT)
         {
             return (LIMIT) switch
             {
@@ -35,7 +35,6 @@ namespace Roblox_Sharp.Enums
                 Limit.Fifty => "50",
                 Limit.OneHundred => "100",
                 _ => throw new ArgumentOutOfRangeException()
-
             };
         }
     }

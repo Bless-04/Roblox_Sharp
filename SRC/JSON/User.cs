@@ -106,6 +106,9 @@ namespace Roblox_Sharp.JSON
         [JsonPropertyName("presenceType")]
         public Enums.Presence presenceType { get; init; }
 
+        [JsonPropertyName("previousUsernames")]
+        public string[]? previousUsernames { get; init; }
+
         /// <summary>
         /// <b>true</b> if user is currently online, <b>false</b> otherwise
         /// </summary>
@@ -129,6 +132,7 @@ namespace Roblox_Sharp.JSON
         public override string ToString() => $"{displayName} @ {name} ({id})";
     }
 
+   
     /// <summary>
     /// class used to serialize User POST based requests
     /// </summary>

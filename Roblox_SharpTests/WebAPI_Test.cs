@@ -68,6 +68,21 @@ namespace Roblox_SharpTests
         }
 
         [TestMethod]
+        public void UserSearch()
+        {
+            Page<User> page =  Get_UserSearchAsync("robl",Roblox_Sharp.Enums.Limit.MAX).Result;
+
+            Assert.IsTrue(page.data.Length != 0);
+
+            Assert.IsNull(page.previousPageCursor);
+
+            Assert.IsNotNull(page.nextPageCursor);
+
+
+
+        }
+
+        [TestMethod]
         public void Followers()
         {
             Page<User> x = Get_FollowersAsync(1).Result; //roblox

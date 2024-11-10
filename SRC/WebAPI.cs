@@ -147,6 +147,22 @@ namespace Roblox_Sharp
             return user;
         }
 
+        public static async Task<Page<User>> Get_UserSearchAsync(string keyword, Limit LIMIT = Limit.Minimum, Page<User>? page = null)
+        {
+            /* example url https://users.roblox.com/v1/users/search?keyword=robl&sessionId=l&limit=10 */
+            string content = await Get_RequestAsync($"https://users.roblox.com/v1/users/search?" +
+                $"keyword={keyword}" +
+                $"&limit={EnumExtensions.ToString(LIMIT)}" +
+                $"&cursor={page?.nextPageCursor}"
+            );
+
+           return JsonConvert.DeserializeObject<Page<User>>(content)!;
+
+            
+
+
+        }
+
         /// <summary>
         /// get usernames using the given array of <paramref name="userIds"/> asynchronousoly 
         /// <br></br>

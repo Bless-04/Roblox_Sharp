@@ -76,9 +76,5 @@ namespace Roblox_Sharp.Templates
 
             return 0;
         }
-
-
-        
     }
-
 }
