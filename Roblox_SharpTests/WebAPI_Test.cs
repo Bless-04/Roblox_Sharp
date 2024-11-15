@@ -14,19 +14,15 @@ using static Roblox_Sharp.Endpoints.Users_v1;
 
 namespace Roblox_SharpTests
 {
-
-
     [TestClass]
     public class WebAPI_Test
     {
         public WebAPI_Test()
         {
            WebAPI.OnSuccessfulRequest += OnSuccessfulRequest;
-           WebAPI.OnFailedRequest += OnFailedRequest;
+           WebAPI.OnFailedRequest += OnFailedRequest;  
         }
 
-        
-        
         public void OnSuccessfulRequest(object? sender, EventArgs e) => Debug.WriteLine("SUCCESS " + (sender as HttpResponseMessage)?.RequestMessage);
         public void OnFailedRequest(object? sender, EventArgs e) => Debug.WriteLine("HANDLED "  + (sender as HttpResponseMessage)?.RequestMessage );
 
@@ -54,7 +50,7 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void Usernames()
         {
-
+            
             User[] user_list = Get_UsernamesAsync([1,16,156]).Result;//roblox, erik.cassel, builderman
             
             Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_UsernamesAsync([0])); //doesnt exist
@@ -127,12 +123,9 @@ namespace Roblox_SharpTests
             Assert.IsTrue(x.data.Length == 0);
             Assert.IsTrue(y.data.Length != 0);
 
-            
-
             //error checking
             Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_FollowingsAsync(0)); //doesnt exist
             Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_FollowingsAsync(5)); //terminated user
-           
         }
 
         [TestMethod]

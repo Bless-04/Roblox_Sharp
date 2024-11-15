@@ -75,9 +75,6 @@ namespace Roblox_Sharp.JSON
        
        [JsonPropertyName("userPresences")]
        public userPresence[]? userPresences { get; init; }
-
-       
-
        
    }
 

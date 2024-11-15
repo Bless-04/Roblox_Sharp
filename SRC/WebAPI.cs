@@ -29,7 +29,7 @@ namespace Roblox_Sharp
         /// <summary>
         /// an instance of the http client. Used for all web requests
         /// </summary>
-        public static readonly HttpClient client = new(); 
+        internal static readonly HttpClient client = new(); 
         
         //public static HttpStatusCode statusCode { get; private set; }
         
@@ -39,7 +39,7 @@ namespace Roblox_Sharp
         /// <param name="url"></param>
         /// <returns>content string</returns>
         /// <exception cref="InvalidUserIdException"></exception>
-        public static async Task<string> Get_RequestAsync(string url, bool RateLimitRetry = false,int MS_Delay = 59000)
+        internal static async Task<string> Get_RequestAsync(string url, bool RateLimitRetry = false,int MS_Delay = 59000)
         {
             using HttpResponseMessage response = await client.GetAsync(url);
             {
@@ -90,7 +90,7 @@ namespace Roblox_Sharp
         /// <returns></returns>
         /// <exception cref="InvalidUsernameException"></exception>
         /// <exception cref="InvalidUserIdException"></exception>
-        public static async Task<string> Post_RequestAsync(string url, object postreq)
+        internal static async Task<string> Post_RequestAsync(string url, object postreq)
         {
             string json = JsonConvert.SerializeObject(postreq);
 

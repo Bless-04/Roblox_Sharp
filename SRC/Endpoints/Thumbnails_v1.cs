@@ -36,6 +36,7 @@ namespace Roblox_Sharp.Endpoints
             if (EnumExtensions.IsBlackListed(SIZE, [Size.x30])) throw new ArgumentOutOfRangeException($"{SIZE} is not supported for this request.");
             /// example https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=1&size=48x48&format=Png&isCircular=false
 
+            
             string content = await Get_RequestAsync(
                 $"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={string.Join(",", userIds)}" +
                 $"&size={EnumExtensions.ToString(SIZE)}" +
