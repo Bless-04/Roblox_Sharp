@@ -10,7 +10,7 @@ namespace Roblox_Sharp.JSON
     /// <summary>
     /// for all count requests
     /// </summary>
-    public readonly struct A_Count
+    internal readonly struct A_Count
     {
         /// <summary>
         /// the count

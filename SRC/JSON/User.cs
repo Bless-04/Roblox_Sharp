@@ -1,6 +1,8 @@
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 using Roblox_Sharp.Templates;
+using System;
+
 //for the user based requests
 namespace Roblox_Sharp.JSON
 {
@@ -129,7 +131,7 @@ namespace Roblox_Sharp.JSON
         /// Format: <b> <paramref name="displayName"/> @ <paramref name="name"/> (<paramref name="id"/>) </b>
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"{displayName} @ {name} ({id})";
+        public string ToString() => $"{displayName} @ {name} ({id})";
     }
 
    

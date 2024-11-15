@@ -1,26 +1,34 @@
-using static Roblox_Sharp.WebAPI;
+
+using System.Diagnostics;
+
+using Roblox_Sharp;
 using Roblox_Sharp.Enums.Thumbnail;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON;
-using System.Diagnostics;
-using Roblox_Sharp;
+
+using static Roblox_Sharp.Endpoints.Badges_v1;
+using static Roblox_Sharp.Endpoints.Friends_v1;
+using static Roblox_Sharp.Endpoints.Presence_v1;
+using static Roblox_Sharp.Endpoints.Thumbnails_v1;
+using static Roblox_Sharp.Endpoints.Users_v1;
+
 namespace Roblox_SharpTests
 {
 
-    
+
     [TestClass]
     public class WebAPI_Test
     {
         public WebAPI_Test()
         {
-            WebAPI.OnSuccessfulRequest += OnSuccessfulRequest;
-            WebAPI.OnFailedRequest += OnFailedRequest;
+           WebAPI.OnSuccessfulRequest += OnSuccessfulRequest;
+           WebAPI.OnFailedRequest += OnFailedRequest;
         }
 
         
         
         public void OnSuccessfulRequest(object? sender, EventArgs e) => Debug.WriteLine("SUCCESS " + (sender as HttpResponseMessage)?.RequestMessage);
-        public void OnFailedRequest(object? sender, EventArgs e) => Debug.WriteLine("FAILED "  + (sender as HttpResponseMessage)?.RequestMessage );
+        public void OnFailedRequest(object? sender, EventArgs e) => Debug.WriteLine("HANDLED "  + (sender as HttpResponseMessage)?.RequestMessage );
 
 
         [TestMethod]
@@ -154,58 +162,35 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void Presence()
         {
-            userPresence[] x =  Get_LastOnlinesAsync([1,16,156]).Result;
+           
             userPresence[] y = Get_PresencesAsync([1,16,156]).Result;
 
            
+            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_PresencesAsync([]));  
+            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_PresencesAsync([0]));
 
-            Assert.AreEqual(x[0].userId, y[0].userId);
+            Assert.AreEqual(y[0].userId, (ulong) 1);
+            Assert.AreEqual(y[1].userId, (ulong) 16);
+            Assert.AreEqual(y[2].userId, (ulong) 156);
         }
 
         [TestMethod]
-        public void PreviousUsernames()
+        public void Username_History()
         {
 
             //7733466 is an admin
-            Page<User> x = Get_PreviousUsernamesAsync(1).Result;
-            Page<User> y = Get_PreviousUsernamesAsync(7733466).Result;
+            Page<User> x = Get_UsernameHistoryAsync(1).Result;
+            Page<User> y = Get_UsernameHistoryAsync(7733466).Result;
 
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_PreviousUsernamesAsync(0)); //doesnt exist
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_PreviousUsernamesAsync(5)); //terminated user
+            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_UsernameHistoryAsync(0)); //doesnt exist
+            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_UsernameHistoryAsync(5)); //terminated user
             
             Assert.AreEqual(x.data.Length,0);
             Assert.AreNotEqual(y.data.Length, 0);
             Assert.IsTrue(x.previousPageCursor == null);
         }
 
-        [TestMethod]
-        public void IUserOperatorTests()
-        {
-
-            // x > y > z
-            User x = new(1); //roblox
-            
-            
-            
-            User y = new(16); //erik.cassel
-            User z = new(156); //builderman
-            User X = new(1); //roblox
-            
-            Assert.AreNotEqual(x, y);
-
-            Assert.IsTrue(x > y);
-            Assert.IsTrue(y > z); 
-            Assert.IsTrue(x > z);
-
-            Assert.IsTrue(z < x);
-            Assert.IsTrue(z < x);
-            Assert.IsTrue(y < x);
-
-            Assert.IsFalse(x.Equals(y));
-            Assert.IsTrue(x.Equals(X));
-           
-        }
-
+       
 
         //These tests need extensive testing and take longer
         [TestClass]
@@ -347,5 +332,42 @@ namespace Roblox_SharpTests
             }
 
         }
+
+        [TestClass]
+        /// <summary>
+        /// tests functionality of objects
+        /// </summary>
+        public class Object_Functionality
+        {
+            [TestMethod]
+            public void IUser_OperatorTests()
+            {
+                // x > y > z
+                User x = new(1); //roblox
+
+
+
+                User y = new(16); //erik.cassel
+                User z = new(156); //builderman
+                User X = new(1); //roblox
+
+                Assert.AreNotEqual(x, y);
+
+                Assert.IsTrue(x > y);
+                Assert.IsTrue(y > z);
+                Assert.IsTrue(x > z);
+
+                Assert.IsTrue(z < x);
+                Assert.IsTrue(z < x);
+                Assert.IsTrue(y < x);
+
+                Assert.IsFalse(x.Equals(y));
+                Assert.IsTrue(x.Equals(X));
+
+            }
+
+        }
+
+
     }
 }

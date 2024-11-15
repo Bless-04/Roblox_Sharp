@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace Roblox_Sharp.Exceptions
 {
     /// <summary>

@@ -1,5 +1,7 @@
 ﻿﻿using System.Text.Json.Serialization;
 using Roblox_Sharp.Templates;
+using System;
+
 namespace Roblox_Sharp.JSON
 {
 
@@ -74,12 +76,7 @@ namespace Roblox_Sharp.JSON
        [JsonPropertyName("userPresences")]
        public userPresence[]? userPresences { get; init; }
 
-       /// <summary>
-       /// array of last online timestamps for each user
-       /// </summary>
-       [JsonPropertyName("lastOnlineTimestamps")]
-       required public userPresence[] lastOnlineTimestamps { get; init; }
-
+       
 
        
    }

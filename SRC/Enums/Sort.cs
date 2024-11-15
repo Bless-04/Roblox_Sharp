@@ -7,8 +7,5 @@ namespace Roblox_Sharp.Enums
 
         Desc,
         Descending = Desc,
-
-        
-        
     }
 }

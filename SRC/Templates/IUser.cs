@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System;
 
 namespace Roblox_Sharp.Templates
 {
