@@ -9,7 +9,7 @@ namespace Roblox_Sharp.Endpoints
 {
     /// <summary>
     /// Endpoints for all Friends, followers, and contacts management
-    /// <b><see href="https://friends.roblox.com/docs//index.html">Friends Documentation v1</see></b>
+    /// <b><see href="https://friends.roblox.com/docs//index.html">Friends Documentation</see></b>
     /// </summary>
     public static class Friends_v1
     {
