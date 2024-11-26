@@ -1,12 +1,11 @@
-﻿using Newtonsoft.Json;
-using Roblox_Sharp.Exceptions;
+﻿using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON;
 using System.Text;
 using System.Net;
-
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Roblox_Sharp
 {
