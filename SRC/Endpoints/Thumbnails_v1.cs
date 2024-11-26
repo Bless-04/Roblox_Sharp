@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿
+using System;
+using System.Threading.Tasks;
+using System.Text.Json;
+
+using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.Enums.Thumbnail;
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.JSON;
-using System.Threading.Tasks;
-using System;
-using static Roblox_Sharp.WebAPI;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -44,7 +46,7 @@ namespace Roblox_Sharp.Endpoints
                 $"&isCircular={isCircular}"
             );
 
-            return JsonConvert.DeserializeObject<Page<Avatar>>(content)!.data;
+            return JsonSerializer.Deserialize<Page<Avatar>>(content)!.data;
         }
 
         /// <summary>
@@ -77,7 +79,7 @@ namespace Roblox_Sharp.Endpoints
                 $"&format={FORMAT}" +
                 $"&isCircular={isCircular}"
             );
-            return JsonConvert.DeserializeObject<Page<Avatar>>(content)!.data;
+            return JsonSerializer.Deserialize<Page<Avatar>>(content)!.data;
         }
 
         /// <summary>
@@ -101,7 +103,7 @@ namespace Roblox_Sharp.Endpoints
                 $"&isCircular={isCircular}"
             );
 
-            return JsonConvert.DeserializeObject<Page<Avatar>>(content)!.data;
+            return JsonSerializer.Deserialize<Page<Avatar>>(content)!.data;
         }
 
     }

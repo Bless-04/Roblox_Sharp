@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.JSON
 {
@@ -15,7 +15,7 @@ namespace Roblox_Sharp.JSON
         /// <summary>
         /// the count
         /// </summary>
-        [JsonProperty("count")]
+        [JsonPropertyName("count")]
         public ulong count { get; init; }
     }
 }

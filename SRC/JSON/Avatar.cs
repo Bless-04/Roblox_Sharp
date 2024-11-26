@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.JSON
 {
@@ -22,19 +22,19 @@ namespace Roblox_Sharp.JSON
     public record Avatar
     {
 
-        [JsonProperty("targetId")]
+        [JsonPropertyName("targetId")]
         public ulong targetId { get; init; }
 
-        [JsonProperty("state")]
+        [JsonPropertyName("state")]
         required public string state { get; init; }
 
         /// <summary>
         /// image url of avatar based request
         /// </summary>
-        [JsonProperty("imageUrl")] 
+        [JsonPropertyName("imageUrl")] 
         required public string imageUrl {  get; init; }
 
-        [JsonProperty("version")] 
+        [JsonPropertyName("version")] 
         required public string version { get; init; }
     }
 }

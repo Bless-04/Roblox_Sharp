@@ -17,7 +17,7 @@ namespace Roblox_Sharp.Templates
         /// </summary>
         public string? nextPageCursor { get; init; }
 
-        required public T[] data { get; init; }
+        public T[]? data { get; init; }
 
         public IPage() { }
 
@@ -27,8 +27,6 @@ namespace Roblox_Sharp.Templates
             this.nextPageCursor = nextPageCursor;
             this.data = data;
         }
-
-        
     }
 
    

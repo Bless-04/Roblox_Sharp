@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 using Roblox_Sharp.Templates;
 using System;
@@ -56,53 +55,53 @@ namespace Roblox_Sharp.JSON
 
         public User(ulong id,string name,string? displayName = null) { this.id = id; this.name = name; this.displayName = displayName; }
 
-        [Newtonsoft.Json.JsonConstructor]
+        [JsonConstructor]
         public User() { }
 
         //id had to be overrided because there are cases in which the id is not in the json
         /// <summary>
         /// unique user id for the user
         /// </summary>
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         override public ulong id { get; init; }
         
         /// <summary>
         /// unique username for the user
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string name { get; init; }
 
         /// <summary>
         /// display name for the user
         /// </summary>
-        [JsonProperty("displayName")]
+        [JsonPropertyName("displayName")]
         public string? displayName { get; init; }
         
         /// <summary>
         /// description for the user
         /// </summary>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? description { get; init; }
 
         /// <summary>
         /// creation date and time of user
         /// </summary>
-        [JsonProperty("created")]
+        [JsonPropertyName("created")]
         public DateTime created { get; init; }
 
         /// <summary>
         /// <b>true</b> if user is banned, <b>false</b> otherwise
         /// </summary>
-        [JsonProperty("isBanned")]
+        [JsonPropertyName("isBanned")]
         public bool isBanned { get; init; }
 
-        [JsonProperty("externalAppDisplayName")]
+        [JsonPropertyName("externalAppDisplayName")]
         public string? externalAppDisplayName { get; init; }
 
-        [JsonProperty("hasVerifiedBadge")]
+        [JsonPropertyName("hasVerifiedBadge")]
         public bool hasVerifiedBadge { get; init; }
 
-        [JsonProperty("requestedUsername")]
+        [JsonPropertyName("requestedUsername")]
         public string? requestedUsername { get; init; }
         
         [JsonPropertyName("presenceType")]

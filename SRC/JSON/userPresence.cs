@@ -1,11 +1,14 @@
-﻿﻿using System.Text.Json.Serialization;
+﻿using System;﻿
+using System.Text.Json.Serialization;
+
 using Roblox_Sharp.Templates;
-using System;
+using Roblox_Sharp.Enums;
 
 namespace Roblox_Sharp.JSON
 {
 
-    /**example return 
+    /**
+     * example return 
     * {
  "userPresences": [
    {
@@ -24,10 +27,10 @@ namespace Roblox_Sharp.JSON
    public class userPresence
    {
        /// <summary>
-       /// <see cref="Enums.Presence"/> type of user
+       /// <see cref="Presence"/> type of user
        /// </summary>
        [JsonPropertyName("userPresenceType")]
-       public Enums.Presence userPresenceType { get; init; }
+       public Presence userPresenceType { get; init; }
 
        [JsonPropertyName("lastLocation")]
        public string? lastLocation { get; init; }
@@ -74,7 +77,7 @@ namespace Roblox_Sharp.JSON
    {
        
        [JsonPropertyName("userPresences")]
-       public userPresence[]? userPresences { get; init; }
+       required public userPresence[] userPresences { get; init; }
        
    }
 

@@ -1,9 +1,9 @@
 ﻿
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Roblox_Sharp.JSON;
 using Roblox_Sharp.Enums;
 using static Roblox_Sharp.WebAPI;
+using System.Text.Json;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -26,7 +26,7 @@ namespace Roblox_Sharp.Endpoints
 
             string content = await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/friends");
 
-            return JsonConvert.DeserializeObject<Page<User>>(content)!.data!;
+            return JsonSerializer.Deserialize<Page<User>>(content)!.data!;
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Roblox_Sharp.Endpoints
             string content = await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/followers?limit=50&sortOrder={sortOrder}&cursor={page?.nextPageCursor}");
 
 
-            return JsonConvert.DeserializeObject<Page<User>>(content)!;
+            return JsonSerializer.Deserialize<Page<User>>(content)!;
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox_Sharp.Endpoints
         {
             string content = await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/friends/count");
 
-            return (byte)JsonConvert.DeserializeObject<A_Count>(content).count;
+            return (byte)JsonSerializer.Deserialize<A_Count>(content).count;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Roblox_Sharp.Endpoints
         public static async Task<ulong> Get_FollowersCountAsync(ulong userId)
         {
             string content = await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/followings/count");
-            return JsonConvert.DeserializeObject<A_Count>(content).count;
+            return JsonSerializer.Deserialize<A_Count>(content).count;
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Roblox_Sharp.Endpoints
         {
             string content = await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/followings/count");
 
-            return JsonConvert.DeserializeObject<A_Count>(content).count;
+            return JsonSerializer.Deserialize<A_Count>(content).count;
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace Roblox_Sharp.Endpoints
                 $"&sortOrder={sortOrder}" +
                 $"&cursor={cursor}");
 
-            return JsonConvert.DeserializeObject<Page<User>>(content)!;
+            return JsonSerializer.Deserialize<Page<User>>(content)!;
         }
 
     }

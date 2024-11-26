@@ -5,7 +5,7 @@ using System.Net;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace Roblox_Sharp
 {
@@ -91,7 +91,7 @@ namespace Roblox_Sharp
         /// <exception cref="InvalidUserIdException"></exception>
         internal static async Task<string> Post_RequestAsync(string url, object postreq)
         {
-            string json = JsonConvert.SerializeObject(postreq);
+            string json = JsonSerializer.Serialize(postreq);
 
             using HttpResponseMessage response = await client.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json"));
             {

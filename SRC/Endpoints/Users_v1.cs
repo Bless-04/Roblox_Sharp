@@ -1,10 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Threading.Tasks;
+using System.Text.Json;
+
+using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON;
-using System;
-using System.Threading.Tasks;
-using static Roblox_Sharp.WebAPI;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -32,7 +33,7 @@ namespace Roblox_Sharp.Endpoints
                 $"&cursor={page?.nextPageCursor}"
             );
 
-            return JsonConvert.DeserializeObject<Page<User>>(content)!;
+            return JsonSerializer.Deserialize<Page<User>>(content)!;
         }
 
         /// <summary>
@@ -48,7 +49,7 @@ namespace Roblox_Sharp.Endpoints
         {
             string content = await Get_RequestAsync($"https://users.roblox.com/v1/users/{userId}");
 
-            User? user = JsonConvert.DeserializeObject<User>(content);
+            User? user = JsonSerializer.Deserialize<User>(content);
             if (user == null) throw new NotImplementedException($"Unhandled Error User was null: {content}");
             return user;
         }
@@ -70,7 +71,7 @@ namespace Roblox_Sharp.Endpoints
             //url example https://users.roblox.com/v1/users
             string content = await Post_RequestAsync("https://users.roblox.com/v1/users", new UserPOST(userIds, excludeBannedUsers));
 
-            User[] users = JsonConvert.DeserializeObject<Page<User>>(content)!.data;
+            User[] users = JsonSerializer.Deserialize<Page<User>>(content)!.data;
             if (users.Length == 0) throw new InvalidUserIdException($"No valid user ids\n[{string.Join(',', userIds)}]");
 
             return users;
@@ -94,7 +95,7 @@ namespace Roblox_Sharp.Endpoints
             //StringContent(json, Encoding.UTF8, "application/json");
             string content = await Post_RequestAsync("https://users.roblox.com/v1/usernames/users", new UserPOST(usernames, excludeBannedUsers));
 
-            User[] users = JsonConvert.DeserializeObject<Page<User>>(content)!.data;
+            User[] users = JsonSerializer.Deserialize<Page<User>>(content)!.data;
             if (users.Length == 0) throw new InvalidUsernameException($"No valid usernames\n[{string.Join(',', usernames)}]");
 
             return users;
@@ -117,7 +118,7 @@ namespace Roblox_Sharp.Endpoints
             ///url example 'https://users.roblox.com/v1/users/416181091/username-history?limit=100&sortOrder=Asc
 
             string content = await Get_RequestAsync($"https://users.roblox.com/v1/users/{userId}/username-history?limit={EnumExtensions.ToString(LIMIT)}&cursor={page?.nextPageCursor}&sortOrder={SORT}");
-            return JsonConvert.DeserializeObject<Page<User>>(content)!;
+            return JsonSerializer.Deserialize<Page<User>>(content)!;
         }
 
     }

@@ -23,7 +23,7 @@ namespace Roblox_Sharp.Endpoints
             // url example https://presence.roblox.com/v1/presence/users
             string content = await Post_RequestAsync($"https://presence.roblox.com/v1/presence/users", new UserPOST(userIds));
 
-            return JsonSerializer.Deserialize<PresencePage>(content)!.userPresences;
+            return JsonSerializer.Deserialize<Page<userPresence>>(content)!.data;
         }
 
         

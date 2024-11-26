@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using Roblox_Sharp.JSON;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System;
+using Roblox_Sharp.JSON;
 using static Roblox_Sharp.WebAPI;
+using System.Text.Json;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -28,7 +28,7 @@ namespace Roblox_Sharp.Endpoints
             string content = await Get_RequestAsync(
                 $"https://badges.roblox.com/v1/users/{userId}/badges/awarded-dates?badgeIds={string.Join(',', badgeIds)}"
             );
-            return JsonConvert.DeserializeObject<Page<BadgeAward>>(content)!.data;
+            return JsonSerializer.Deserialize<Page<BadgeAward>>(content)!.data;
         }
 
     }
