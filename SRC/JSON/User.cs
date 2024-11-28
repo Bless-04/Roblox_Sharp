@@ -46,7 +46,7 @@ namespace Roblox_Sharp.JSON
     public class User : IUser
     {
         
-        public User(ulong id) => this.id = id;
+        public User(ulong userId) => this.id = id;
         public User(string name,string? displayName = null)
         {
             this.name = name;
@@ -55,7 +55,7 @@ namespace Roblox_Sharp.JSON
 
         public User(ulong id,string name,string? displayName = null) { this.id = id; this.name = name; this.displayName = displayName; }
 
-        [JsonConstructor]
+       
         public User() { }
 
         //id had to be overrided because there are cases in which the id is not in the json
@@ -64,7 +64,15 @@ namespace Roblox_Sharp.JSON
         /// </summary>
         [JsonPropertyName("id")]
         override public ulong id { get; init; }
-        
+
+        /// <summary>
+        /// same as id
+        /// for cases in which the id is not in the json
+        /// </summary>
+        [JsonPropertyName("userId")]
+        public ulong userId => id;
+
+
         /// <summary>
         /// unique username for the user
         /// </summary>
