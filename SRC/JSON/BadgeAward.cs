@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace Roblox_Sharp.JSON
 {
     
-    public record BadgeAward 
+    public class BadgeAward 
     {
         /// <summary>
         /// unique badge id
