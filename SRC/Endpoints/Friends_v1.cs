@@ -61,7 +61,7 @@ namespace Roblox_Sharp.Endpoints
         {
             string content = await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/friends/count");
 
-            return (byte)JsonSerializer.Deserialize<A_Count>(content).count;
+            return (byte)JsonSerializer.Deserialize<dynamic>(content)!.count;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Roblox_Sharp.Endpoints
         public static async Task<ulong> Get_FollowersCountAsync(ulong userId)
         {
             string content = await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/followings/count");
-            return JsonSerializer.Deserialize<A_Count>(content).count;
+            return JsonSerializer.Deserialize<dynamic>(content)!.count;
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Roblox_Sharp.Endpoints
         {
             string content = await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/followings/count");
 
-            return JsonSerializer.Deserialize<A_Count>(content).count;
+            return JsonSerializer.Deserialize<dynamic>(content)!.count;
         }
 
         /// <summary>
