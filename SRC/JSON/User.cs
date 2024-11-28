@@ -45,8 +45,8 @@ namespace Roblox_Sharp.JSON
     /// </summary>
     public class User : IUser
     {
-        
         public User(ulong userId) => this.id = id;
+
         public User(string name,string? displayName = null)
         {
             this.name = name;
@@ -55,22 +55,29 @@ namespace Roblox_Sharp.JSON
 
         public User(ulong id,string name,string? displayName = null) { this.id = id; this.name = name; this.displayName = displayName; }
 
-       
         public User() { }
 
-        //id had to be overrided because there are cases in which the id is not in the json
         /// <summary>
         /// unique user id for the user
         /// </summary>
         [JsonPropertyName("id")]
-        override public ulong id { get; init; }
+        new public ulong id { get; private set; }
+        
 
         /// <summary>
-        /// same as id
-        /// for cases in which the id is not in the json
+        /// ambiguity with id field
         /// </summary>
         [JsonPropertyName("userId")]
-        public ulong userId => id;
+        public ulong userId
+        {
+           private set
+           {
+                if (value != 0 && id == 0) id = value;
+                else throw new Exception("Id field is already set and should not be changed ");
+
+           }
+           get { return id; }
+        }
 
 
         /// <summary>
@@ -132,13 +139,14 @@ namespace Roblox_Sharp.JSON
 
         [JsonPropertyName("friendFrequentRank")]
         public int friendFrequentRank { get; init; }
+       
 
         /// <summary>
         /// string representation of the user <br></br> 
         /// Format: <b> <paramref name="displayName"/> @ <paramref name="name"/> (<paramref name="id"/>) </b>
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"{displayName} @ {name} ({id})";
+        public override string ToString() => $"{displayName} @ {name} ({this.id})";
     }
 
    
