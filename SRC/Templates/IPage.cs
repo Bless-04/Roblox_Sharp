@@ -2,10 +2,9 @@
 namespace Roblox_Sharp.Templates
 {
     /// <summary>
-    /// template for all the page based requests that have a <typeparamref name="data"/> field
+    /// template for all the page based requests that have a previous and next cursor
     /// </summary>
-    /// <typeparam name="T[]"></typeparam> 
-    public abstract class IPage<T>
+    public abstract class IPage
     {
         /// <summary>
         /// previous page cursor of the request . if <b>null</b> there are no previous pages / is the first page
@@ -17,17 +16,29 @@ namespace Roblox_Sharp.Templates
         /// </summary>
         public string? nextPageCursor { get; init; }
 
-        public T[]? data { get; init; }
-
         public IPage() { }
 
-        public IPage(string? previousPageCursor, string? nextPageCursor, T[] data)
+        public IPage(string? previousPageCursor, string? nextPageCursor)
         {
             this.previousPageCursor = previousPageCursor;
             this.nextPageCursor = nextPageCursor;
-            this.data = data;
         }
+
+
     }
 
-   
+    /// <summary>
+    /// template for all the page based requests that have a <typeparamref name="data"/> field
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public abstract class IPage<T> : IPage
+    {
+        /// <summary>
+        /// data of the request
+        /// </summary>
+        required public T[] data { get; init; }
+
+        public IPage( string? previousPageCursor, string? nextPageCursor, T[] data) : base(previousPageCursor, nextPageCursor) => this.data = data;
+        
+    }
 }
