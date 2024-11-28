@@ -1,11 +1,17 @@
-﻿using System.Threading.Tasks;
-using System;
+﻿using System;
+using System.Threading.Tasks;
+using System.Text.Json;
+
 using Roblox_Sharp.JSON;
 using static Roblox_Sharp.WebAPI;
-using System.Text.Json;
+
 
 namespace Roblox_Sharp.Endpoints
 {
+    /// <summary>
+    ///Endpoints for badges and badge awards management <br></br>
+    /// <b><see href="https://badges.roblox.com//docs/index.html?urls.primaryName=Badges%20Api%20v1">Badges Documentation</see></b>
+    /// </summary>
     public static class Badges_v1
     {
         /// <summary>

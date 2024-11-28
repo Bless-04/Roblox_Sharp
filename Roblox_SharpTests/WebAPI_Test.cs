@@ -2,11 +2,13 @@
 using System.Diagnostics;
 
 using Roblox_Sharp;
+
 using Roblox_Sharp.Enums.Thumbnail;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON;
 
 using Roblox_Sharp.Endpoints;
+
 namespace Roblox_SharpTests
 {
     [TestClass]
@@ -24,7 +26,28 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void Viewable_Inventory()
         {
+            //bool x = Inventory_v1.Get_CanViewInventoryAsync(1).Result; 
+        }
+
+        [TestMethod]
+        public void GroupData()
+        {
+            Group group = Groups_v1.Get_GroupAsync(2).Result;
+
+            Assert.AreEqual(group.owner.id, (ulong) 261); //owner is 261
+
+            Assert.AreEqual(group.id, (ulong) 2); //group id is 2
+
+            Assert.IsTrue(group.memberCount > 100000); //over 100k members as of 11/27/24
+
+            Assert.IsInstanceOfType<Group.Shout>(group.shout); //shout type check
             
+
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Groups_v1.Get_GroupAsync(0)); //doesnt exist
+
+            
+            
+
         }
 
         [TestMethod]
@@ -37,8 +60,8 @@ namespace Roblox_SharpTests
 
             
             //error checking
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Users_v1.Get_UserAsync(0)); //doesnt exist
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Users_v1.Get_UserAsync(5)); //terminated user
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UserAsync(0)); //doesnt exist
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UserAsync(5)); //terminated user
 
             
             // value checking
@@ -53,8 +76,8 @@ namespace Roblox_SharpTests
             
             User[] user_list = Users_v1.Get_UsernamesAsync([1,16,156]).Result;//roblox, erik.cassel, builderman
             
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Users_v1.Get_UsernamesAsync([0])); //doesnt exist
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Users_v1.Get_UsernamesAsync([])); //empty
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernamesAsync([0])); //doesnt exist
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernamesAsync([])); //empty
 
             foreach (User u in user_list)
                 Assert.AreEqual(u.name, Users_v1.Get_UserAsync(u.id).Result.name);
@@ -100,9 +123,9 @@ namespace Roblox_SharpTests
             Assert.IsNull(x.previousPageCursor);
 
             //error checking
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Friends_v1.Get_FollowersAsync(0)); //doesnt exist
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Friends_v1.Get_FollowersAsync(5)); //terminated user
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Friends_v1.Get_FollowersAsync(2, page: x)); //cursor doesnt exist for userid 2 therefore the userid is invalid
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersAsync(0)); //doesnt exist
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersAsync(5)); //terminated user
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersAsync(2, page: x)); //cursor doesnt exist for userid 2 therefore the userid is invalid
 
             //new page
             x = Friends_v1.Get_FollowersAsync(1,page: x).Result; //roblox
@@ -124,8 +147,8 @@ namespace Roblox_SharpTests
             Assert.IsTrue(y.data.Length != 0);
 
             //error checking
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Friends_v1.Get_FollowingsAsync(0)); //doesnt exist
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Friends_v1.Get_FollowingsAsync(5)); //terminated user
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsAsync(0)); //doesnt exist
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsAsync(5)); //terminated user
         }
 
         [TestMethod]
@@ -159,8 +182,8 @@ namespace Roblox_SharpTests
             userPresence[] y = Presence_v1.Get_PresencesAsync([1,16,156]).Result;
 
            
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Presence_v1.Get_PresencesAsync([]));  
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Presence_v1.Get_PresencesAsync([0]));
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Presence_v1.Get_PresencesAsync([]));  
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Presence_v1.Get_PresencesAsync([0]));
 
             Assert.AreEqual(y[0].userId, (ulong) 1);
             Assert.AreEqual(y[1].userId, (ulong) 16);
@@ -175,8 +198,8 @@ namespace Roblox_SharpTests
             Page<User> x = Users_v1.Get_UsernameHistoryAsync(1).Result;
             Page<User> y = Users_v1.Get_UsernameHistoryAsync(7733466).Result;
 
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Users_v1.Get_UsernameHistoryAsync(0)); //doesnt exist
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Users_v1.Get_UsernameHistoryAsync(5)); //terminated user
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernameHistoryAsync(0)); //doesnt exist
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernameHistoryAsync(5)); //terminated user
             
             Assert.AreEqual(x.data.Length,0);
             Assert.AreNotEqual(y.data.Length, 0);
@@ -291,16 +314,16 @@ namespace Roblox_SharpTests
                 Assert.AreNotEqual(x, y);
 
                 //error checking
-                Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Friends_v1.Get_FriendsCountAsync(0)); //doesnt exist
-                Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Friends_v1.Get_FriendsCountAsync(5)); //terminated user
+                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FriendsCountAsync(0)); //doesnt exist
+                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FriendsCountAsync(5)); //terminated user
 
             }
 
             [TestMethod]
             public void FollowersCount()
             {
-                Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Friends_v1.Get_FollowersCountAsync(0)); //doesnt exist
-                Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Friends_v1.Get_FollowersCountAsync(5)); //terminated user
+                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersCountAsync(0)); //doesnt exist
+                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersCountAsync(5)); //terminated user
                                                                                                        //roblox vs erik.cassel
                 Assert.AreNotEqual(Friends_v1.Get_FollowersCountAsync(1).Result, Friends_v1.Get_FollowersCountAsync(16).Result);
 
@@ -320,8 +343,8 @@ namespace Roblox_SharpTests
                 Assert.AreNotEqual(y, (ulong)0);
 
                 //error checking
-                Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Friends_v1.Get_FollowingsCountAsync(0)); //doesnt exist
-                Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Friends_v1.Get_FollowingsCountAsync(5)); //terminated user
+                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsCountAsync(0)); //doesnt exist
+                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsCountAsync(5)); //terminated user
             }
 
         }

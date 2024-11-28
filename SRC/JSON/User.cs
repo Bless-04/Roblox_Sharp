@@ -130,7 +130,7 @@ namespace Roblox_Sharp.JSON
         /// Format: <b> <paramref name="displayName"/> @ <paramref name="name"/> (<paramref name="id"/>) </b>
         /// </summary>
         /// <returns></returns>
-        public string ToString() => $"{displayName} @ {name} ({id})";
+        public override string ToString() => $"{displayName} @ {name} ({id})";
     }
 
    

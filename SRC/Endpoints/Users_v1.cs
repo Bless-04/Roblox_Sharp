@@ -43,7 +43,7 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>User</returns>
-        /// <exception cref="InvalidUserIdException"></exception>
+        /// <exception cref="InvalidIdException"></exception>
         /// <exception cref="RateLimitException"></exception> 
         public static async Task<User> Get_UserAsync(ulong userId)
         {
@@ -72,7 +72,7 @@ namespace Roblox_Sharp.Endpoints
             string content = await Post_RequestAsync("https://users.roblox.com/v1/users", new UserPOST(userIds, excludeBannedUsers));
 
             User[] users = JsonSerializer.Deserialize<Page<User>>(content)!.data;
-            if (users.Length == 0) throw new InvalidUserIdException($"No valid user ids\n[{string.Join(',', userIds)}]");
+            if (users.Length == 0) throw new InvalidIdException($"No valid user ids\n[{string.Join(',', userIds)}]");
 
             return users;
         }
