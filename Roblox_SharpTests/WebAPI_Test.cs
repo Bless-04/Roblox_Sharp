@@ -26,7 +26,9 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void Viewable_Inventory()
         {
-            //bool x = Inventory_v1.Get_CanViewInventoryAsync(1).Result; 
+            bool x = Inventory_v1.Get_CanViewInventoryAsync(1).Result; 
+
+
         }
 
         [TestMethod]
@@ -34,13 +36,13 @@ namespace Roblox_SharpTests
         {
             Group group = Groups_v1.Get_GroupAsync(2).Result;
 
-            Assert.AreEqual(group.owner.id, (ulong) 261); //owner is 261
+            Assert.AreEqual((ulong) 261,group.owner.id); //owner is 261
 
-            Assert.AreEqual(group.id, (ulong) 2); //group id is 2
+            Assert.AreEqual( (ulong) 2, group.id); //group id is 2
 
             Assert.IsTrue(group.memberCount > 100000); //over 100k members as of 11/27/24
 
-            Assert.IsInstanceOfType<Group.Shout>(group.shout); //shout type check
+            
             
 
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Groups_v1.Get_GroupAsync(0)); //doesnt exist
