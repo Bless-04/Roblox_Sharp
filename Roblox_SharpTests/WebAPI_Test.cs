@@ -9,11 +9,12 @@ using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON;
 
 using Roblox_Sharp.Endpoints;
+using Roblox_Sharp.Templates;
 
 namespace Roblox_SharpTests
 {
     [TestClass]
-    public class WebAPI_Test
+    public partial class WebAPI_Test
     {
         public WebAPI_Test()
         {
@@ -181,7 +182,7 @@ namespace Roblox_SharpTests
         public void Presence()
         {
            
-            userPresence[] y = Presence_v1.Get_PresencesAsync([1,16,156]).Result;
+            User_Presence[] y = Presence_v1.Get_PresencesAsync([1,16,156]).Result;
 
            
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Presence_v1.Get_PresencesAsync([]));  
@@ -351,41 +352,8 @@ namespace Roblox_SharpTests
 
         }
 
-        [TestClass]
-        /// <summary>
-        /// tests functionality of objects
-        /// </summary>
-        public class Object_Functionality
-        {
-            [TestMethod]
-            public void IUser_OperatorTests()
-            {
-                // x > y > z
-                User x = new(1); //roblox
-
-
-
-                User y = new(16); //erik.cassel
-                User z = new(156); //builderman
-                User X = new(1); //roblox
-
-                Assert.AreNotEqual(x, y);
-
-                Assert.IsTrue(x > y);
-                Assert.IsTrue(y > z);
-                Assert.IsTrue(x > z);
-
-                Assert.IsTrue(z < x);
-                Assert.IsTrue(z < x);
-                Assert.IsTrue(y < x);
-
-                Assert.IsFalse(x.Equals(y));
-                Assert.IsTrue(x.Equals(X));
-
-            }
-
-        }
-
+        
+       
 
     }
 }
