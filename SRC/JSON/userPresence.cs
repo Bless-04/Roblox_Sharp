@@ -22,7 +22,7 @@ namespace Roblox_Sharp.JSON
    }
  ]
 }*/
-   public class userPresence
+   public sealed class userPresence
    {
        /// <summary>
        /// <see cref="Presence"/> type of user
@@ -68,13 +68,5 @@ namespace Roblox_Sharp.JSON
 
    }
 
-   /// <summary>
-   /// used for response of userPresence requests
-   /// </summary>
-   internal class Presence_Response
-   {
-       [JsonPropertyName("userPresences")]
-       required public userPresence[] userPresences { get; init; }
-       
-   }
+   
 }

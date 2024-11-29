@@ -9,13 +9,12 @@ namespace Roblox_Sharp.Templates
     public abstract class IUser : 
             IComparable<IUser>
     {
-        
+
         /// <summary>
         /// the numeric <paramref name="id"/> of the user. Should only be set in initialization
         /// </summary>
-        public ulong id { get; protected set; }
+        abstract public ulong id { get; protected set; }
         
-
         public IUser() { }
 
         public IUser(ulong id) => this.id = id;
