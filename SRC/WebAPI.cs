@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 
 using Roblox_Sharp.Exceptions;
-using Roblox_Sharp.JSON;
+using Roblox_Sharp.JSON.Internal;
 
 namespace Roblox_Sharp
 {
@@ -75,9 +75,7 @@ namespace Roblox_Sharp
                         throw new NotImplementedException($"Unhandled Error: code:{response.StatusCode} \n{response.Content}");
                 }
                 
-            }
-
-          
+            }          
         }
 
         /// <summary>
@@ -88,11 +86,13 @@ namespace Roblox_Sharp
         /// <returns></returns>
         /// <exception cref="InvalidUsernameException"></exception>
         /// <exception cref="InvalidIdException"></exception>
-        internal static async Task<string> Post_RequestAsync(string url, object postreq)
+        internal static async Task<string> Post_RequestAsync(string url, User_POST postreq)
         {
-            string json = JsonSerializer.Serialize(postreq);
-
-            using HttpResponseMessage response = await client.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json"));
+            using HttpResponseMessage response = await client.PostAsync(
+                url, new StringContent(
+                    JsonSerializer.Serialize(postreq), 
+                    Encoding.UTF8, "application/json")
+                );
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -108,8 +108,8 @@ namespace Roblox_Sharp
                         throw new RateLimitException($"Rate Limit Exceeded\n{url}\nStatusCode: {response.StatusCode}");
 
                     case HttpStatusCode.BadRequest:
-                        UserPOST p = (UserPOST)postreq;
-                        if (p.userIds != null)
+                        User_POST post = (User_POST)postreq;
+                        if (post.userIds != null)
                             throw new InvalidUsernameException("Too many ids.");
                         else
                             throw new InvalidIdException("Too many usernames.");

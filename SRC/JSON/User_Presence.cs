@@ -33,7 +33,7 @@ namespace Roblox_Sharp.JSON
        { 
             get => base.presenceType; 
             init => base.presenceType = value; 
-        }
+       }
 
        [JsonPropertyName("lastLocation")]
        public string? lastLocation { get; init; }
