@@ -1,6 +1,8 @@
-using System.Text.Json.Serialization;
-using Roblox_Sharp.Templates;
 using System;
+using System.Text.Json.Serialization;
+
+using Roblox_Sharp.Enums;
+using Roblox_Sharp.Templates;
 
 //for the user based requests
 namespace Roblox_Sharp.JSON
@@ -45,46 +47,52 @@ namespace Roblox_Sharp.JSON
     /// </summary>
     public class User : IUser
     {
-        public User(ulong userId) => this.id = id;
+        public User(ulong userId) => this.id = userId;
 
+       
         public User(string name,string? displayName = null)
         {
             this.name = name;
             this.displayName = displayName;
         }
 
-        public User(ulong id,string name,string? displayName = null) { this.id = id; this.name = name; this.displayName = displayName; }
+        public User(ulong id,string name,string? displayName = null) { 
+            this.id = id; 
+            this.name = name; 
+            this.displayName = displayName; 
+        }
 
+        
         public User() { }
 
         /// <summary>
         /// unique user id for the user
         /// </summary>
         [JsonPropertyName("id")]
-        new public ulong id { get; private set; }
-        
-
-        /// <summary>
-        /// ambiguity with id field
-        /// </summary>
-        [JsonPropertyName("userId")]
-        public ulong userId
-        {
-           private set
-           {
-                if (value != 0 && id == 0) id = value;
-                else throw new Exception("Id field is already set and should not be changed ");
-
-           }
-           get { return id; }
-        }
-
-
+        public override ulong id  { get; protected set; }
+            public ulong userId
+            {
+                set
+                {
+                    if (id == default) this.id = value;
+                    else throw new Exception("User.id has already been set");
+                }
+            }
+           
         /// <summary>
         /// unique username for the user
         /// </summary>
         [JsonPropertyName("name")]
-        public string name { get; init; }
+        public string name { get; private set; }
+            public string username
+            {
+                set
+                {
+                    if (name == default) this.name = value;
+                    else throw new Exception("User.name has already been set");
+                }
+            }
+
 
         /// <summary>
         /// display name for the user
@@ -120,7 +128,7 @@ namespace Roblox_Sharp.JSON
         public string? requestedUsername { get; init; }
         
         [JsonPropertyName("presenceType")]
-        public Enums.Presence presenceType { get; init; }
+        public Presence presenceType { get; init; }
 
         [JsonPropertyName("previousUsernames")]
         public string[]? previousUsernames { get; init; }
@@ -139,8 +147,7 @@ namespace Roblox_Sharp.JSON
 
         [JsonPropertyName("friendFrequentRank")]
         public int friendFrequentRank { get; init; }
-       
-
+      
         /// <summary>
         /// string representation of the user <br></br> 
         /// Format: <b> <paramref name="displayName"/> @ <paramref name="name"/> (<paramref name="id"/>) </b>
@@ -149,11 +156,10 @@ namespace Roblox_Sharp.JSON
         public override string ToString() => $"{displayName} @ {name} ({this.id})";
     }
 
-   
     /// <summary>
     /// class used to serialize User POST based requests
     /// </summary>
-    public class UserPOST
+    public sealed class UserPOST
     {
         /// <summary>
         /// exclude banned users
