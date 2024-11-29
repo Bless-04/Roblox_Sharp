@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using Roblox_Sharp.JSON.Internal;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 using static Roblox_Sharp.WebAPI;
@@ -12,10 +13,11 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="userId">The users id </param>
         /// <returns>true if the inventory can be viewed</returns>
-        public static async Task<bool> Get_CanViewInventoryAsync(ulong userId)
-        {
+        public static async Task<bool> Get_CanViewInventoryAsync(ulong userId) =>
             //url https://inventory.roblox.com/v1/users/1/can-view-inventory
-            return JsonSerializer.Deserialize<dynamic>(await Get_RequestAsync($"https://inventory.roblox.com/v1/users/{userId}/can-view-inventory"))!.canView;
-        }
+            JsonSerializer.Deserialize<Inventory_Response>(
+                await Get_RequestAsync($"https://inventory.roblox.com/v1/users/{userId}/can-view-inventory")
+            ).canView;
+        
     }
 }

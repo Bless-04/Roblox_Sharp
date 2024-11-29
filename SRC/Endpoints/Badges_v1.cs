@@ -5,7 +5,6 @@ using System.Text.Json;
 using Roblox_Sharp.JSON;
 using static Roblox_Sharp.WebAPI;
 
-
 namespace Roblox_Sharp.Endpoints
 {
     /// <summary>

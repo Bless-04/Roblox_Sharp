@@ -11,9 +11,9 @@ namespace Roblox_Sharp.Templates
     {
 
         /// <summary>
-        /// the numeric <paramref name="id"/> of the user. Should only be set in initialization
+        /// the Unique numeric <paramref name="id"/> of the user. Should only be set in initialization
         /// </summary>
-        abstract public ulong id { get; protected set; }
+        public ulong id { get; init; }
         
         public IUser() { }
 

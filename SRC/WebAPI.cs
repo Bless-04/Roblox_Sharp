@@ -120,8 +120,6 @@ namespace Roblox_Sharp
                     default:
                         throw new NotImplementedException($"Unhandled Error: {response.StatusCode}\n{url}\n{response.Content}");
                 };
-
-                
             }
 
             

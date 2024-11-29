@@ -47,53 +47,36 @@ namespace Roblox_Sharp.JSON
     /// </summary>
     public class User : IUser
     {
-        public User(ulong userId) => this.id = userId;
+        public User(ulong userId) : base(userId) { }
 
-       
         public User(string name,string? displayName = null)
         {
             this.name = name;
             this.displayName = displayName;
         }
 
-        public User(ulong id,string name,string? displayName = null) { 
-            this.id = id; 
+        public User(ulong id,string name,string? displayName = null) : base(id) { 
             this.name = name; 
             this.displayName = displayName; 
         }
 
-        
         public User() { }
 
-        /// <summary>
-        /// unique user id for the user
-        /// </summary>
-        [JsonPropertyName("id")]
-        public override ulong id  { get; protected set; }
-            public ulong userId
-            {
-                set
-                {
-                    if (id == default) this.id = value;
-                    else throw new Exception("User.id has already been set");
-                }
-            }
-           
+        
+       
+        [JsonPropertyName("userId")]
+        [JsonInclude]
+        private ulong _userId { init => base.id = value; } //unique to group request
+   
         /// <summary>
         /// unique username for the user
         /// </summary>
         [JsonPropertyName("name")]
-        public string name { get; private set; }
-            public string username
-            {
-                set
-                {
-                    if (name == default) this.name = value;
-                    else throw new Exception("User.name has already been set");
-                }
-            }
-
-
+        public string name { get; init; }
+        [JsonPropertyName("username")]
+        [JsonInclude]
+        private string _username { init => name = value; } // unique to group request
+        
         /// <summary>
         /// display name for the user
         /// </summary>
@@ -153,7 +136,7 @@ namespace Roblox_Sharp.JSON
         /// Format: <b> <paramref name="displayName"/> @ <paramref name="name"/> (<paramref name="id"/>) </b>
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"{displayName} @ {name} ({this.id})";
+        public override string ToString() => $"{displayName} @ {name} ({base.id})";
     }
 
     /// <summary>
@@ -186,8 +169,7 @@ namespace Roblox_Sharp.JSON
         {
             this.usernames = usernames;
             this.excludeBannedUsers = excludeBannedUsers;
-        }
-       
+        } 
     }
 
 }

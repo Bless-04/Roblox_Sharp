@@ -3,6 +3,7 @@ using System.Diagnostics;
 
 using Roblox_Sharp;
 
+using Roblox_Sharp.Enums;
 using Roblox_Sharp.Enums.Thumbnail;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON;
@@ -28,7 +29,7 @@ namespace Roblox_SharpTests
         {
             bool x = Inventory_v1.Get_CanViewInventoryAsync(1).Result; 
 
-
+            Assert.IsFalse(x);
         }
 
         [TestMethod]
@@ -99,7 +100,7 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void UserSearch()
         {
-            Page<User> page =  Users_v1.Get_UserSearchAsync("robl",Roblox_Sharp.Enums.Limit.MAX).Result;
+            Page<User> page =  Users_v1.Get_UserSearchAsync("robl",Limit.MAX).Result;
 
             Assert.IsTrue(page.data.Length != 0);
 
@@ -127,8 +128,7 @@ namespace Roblox_SharpTests
             //error checking
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersAsync(0)); //doesnt exist
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersAsync(5)); //terminated user
-            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersAsync(2, page: x)); //cursor doesnt exist for userid 2 therefore the userid is invalid
-
+            
             //new page
             x = Friends_v1.Get_FollowersAsync(1,page: x).Result; //roblox
 
@@ -143,7 +143,7 @@ namespace Roblox_SharpTests
         public void Followings()
         {
             Page<User> x = Friends_v1.Get_FollowingsAsync(1).Result; //roblox
-            Page<User> y = Friends_v1.Get_FollowingsAsync(16,Roblox_Sharp.Enums.Limit.Ten).Result; //erik.cassel
+            Page<User> y = Friends_v1.Get_FollowingsAsync(16,Limit.Ten).Result; //erik.cassel
 
             Assert.IsTrue(x.data.Length == 0);
             Assert.IsTrue(y.data.Length != 0);

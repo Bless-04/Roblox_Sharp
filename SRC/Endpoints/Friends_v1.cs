@@ -40,7 +40,10 @@ namespace Roblox_Sharp.Endpoints
         /// <returns>Page</returns>
         public static async Task<Page<User>> Get_FollowersAsync(ulong userId, Limit limit = Limit.Minimum, Sort sortOrder = Sort.Asc, Page<User>? page = null) =>
             JsonSerializer.Deserialize<Page<User>>(
-                await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/followers?limit=50&sortOrder={sortOrder}&cursor={page?.nextPageCursor}")
+                await Get_RequestAsync(
+                    $"https://friends.roblox.com/v1/users/{userId}" +
+                    $"/followers?limit=50&sortOrder={sortOrder}" +
+                    $"&cursor={page?.nextPageCursor}")
             )!;
         
         /// <summary>

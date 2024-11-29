@@ -19,11 +19,7 @@ namespace Roblox_Sharp.Endpoints
         public static async Task<Group> Get_GroupAsync(ulong groupId) =>
             // url https://groups.roblox.com/v1/groups/29793
             JsonSerializer.Deserialize<Group>(
-                await Get_RequestAsync($"https://groups.roblox.com/v1/groups/{groupId}"),
-                _ = new JsonSerializerOptions
-                {
-                    IncludeFields = true
-                }
+                await Get_RequestAsync($"https://groups.roblox.com/v1/groups/{groupId}")
             )!;
         
         
