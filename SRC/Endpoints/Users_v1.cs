@@ -5,6 +5,7 @@ using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON;
+using Roblox_Sharp.JSON.Internal;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -63,7 +64,7 @@ namespace Roblox_Sharp.Endpoints
             //url example https://users.roblox.com/v1/users
 
             User[] users = JsonSerializer.Deserialize<Page<User>>(
-                await Post_RequestAsync("https://users.roblox.com/v1/users", new UserPOST(userIds, excludeBannedUsers))
+                await Post_RequestAsync("https://users.roblox.com/v1/users", new User_POST(userIds, excludeBannedUsers))
             )!.data;
 
             if (users.Length == 0) throw new InvalidIdException($"No valid user ids\n[{string.Join(',', userIds)}]");
@@ -88,7 +89,7 @@ namespace Roblox_Sharp.Endpoints
 
             //StringContent(json, Encoding.UTF8, "application/json");
             User[] users = JsonSerializer.Deserialize<Page<User>>(
-                await Post_RequestAsync("https://users.roblox.com/v1/usernames/users", new UserPOST(usernames, excludeBannedUsers))
+                await Post_RequestAsync("https://users.roblox.com/v1/usernames/users", new User_POST(usernames, excludeBannedUsers))
             )!.data;
 
             if (users.Length == 0) throw new InvalidUsernameException($"No valid usernames\n[{string.Join(',', usernames)}]");

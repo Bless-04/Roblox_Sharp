@@ -4,7 +4,7 @@ using Roblox_Sharp.Enums;
 
 namespace Roblox_Sharp.JSON
 {
-
+    //Presence is an Instance of User
     /**
      * example return 
     * {
@@ -22,13 +22,18 @@ namespace Roblox_Sharp.JSON
    }
  ]
 }*/
-   public sealed class userPresence
+   
+   public sealed class User_Presence : User
    {
        /// <summary>
-       /// <see cref="Presence"/> type of user
+       /// <see cref="Presence_Type"/> type of user
        /// </summary>
        [JsonPropertyName("userPresenceType")]
-       public Presence userPresenceType { get; init; }
+       public Presence_Type userPresenceType
+       { 
+            get => base.presenceType; 
+            init => base.presenceType = value; 
+        }
 
        [JsonPropertyName("lastLocation")]
        public string? lastLocation { get; init; }
@@ -55,7 +60,12 @@ namespace Roblox_Sharp.JSON
        /// unique user id
        /// </summary>
        [JsonPropertyName("userId")]
-       public ulong? userId { get; init; }
+       [JsonIgnore]
+       private ulong _userId 
+       {
+           get => base.userId;
+           init => base.userId = value;
+       }
 
        /// <summary>
        /// exact date and time user was last online
@@ -65,8 +75,5 @@ namespace Roblox_Sharp.JSON
 
        [JsonPropertyName("invisibleModeExpiry")]
        public DateTime? invisibleModeExpiry { get; init; }
-
-   }
-
-   
+   }  
 }

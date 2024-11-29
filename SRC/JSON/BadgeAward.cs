@@ -3,7 +3,6 @@ using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.JSON
 {
-    
     public class BadgeAward 
     {
         /// <summary>

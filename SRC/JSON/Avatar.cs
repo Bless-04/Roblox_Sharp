@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using Roblox_Sharp.Templates;
 
 namespace Roblox_Sharp.JSON
 {
@@ -19,11 +20,15 @@ namespace Roblox_Sharp.JSON
     /// class used to serialize Avatar based requests
     /// </summary>
 
-    public sealed class Avatar
+    public sealed class Avatar : IUser
     {
 
         [JsonPropertyName("targetId")]
-        public ulong targetId { get; init; }
+        public ulong targetId 
+        { 
+            get => base.id; 
+            init => base.id = targetId; 
+        }
 
         [JsonPropertyName("state")]
         required public string state { get; init; }

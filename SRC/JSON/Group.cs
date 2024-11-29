@@ -1,14 +1,11 @@
-﻿using System;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.JSON
 {
-
-    
     /// <summary>
     /// class used to serialize Group based requests
     /// </summary>
-    public sealed class Group
+    public sealed partial class Group
     {
         /// <summary>
         /// group id
@@ -63,53 +60,5 @@ namespace Roblox_Sharp.JSON
         /// </summary>
         [JsonPropertyName("hasVerifiedBadge")]
         public bool hasVerifiedBadge { get; init; }
-
-        /// <summary>
-        /// Group Shout Serializer
-        /// </summary>
-        public class Shout
-        {
-            /// <summary>
-            /// group shoutouts message body
-            /// </summary>
-            [JsonPropertyName("body")]
-            required public string body { get; init; }
-
-            /// <summary>
-            /// group shoutouts user of Poster
-            /// </summary>
-            [JsonPropertyName("poster")]
-            required public User poster { get; init; }
-
-            /// <summary>
-            /// group creation date 
-            /// </summary>
-            [JsonPropertyName("created")]
-            public DateTime created { get; init; }
-
-            /// <summary>
-            /// The date of the last Group Shout 
-            /// </summary>
-            [JsonPropertyName("updated")]
-            public DateTime updated { get; init; }
-        }
-    }
-
-   
-
-
-    /// <summary>
-    /// Group Role Serializer Class
-    /// </summary>
-    public class Role
-    {
-        [JsonPropertyName("id")]
-        public ulong id { get; init;  }
-
-        [JsonPropertyName("name")]
-        required public string name { get; init; }
-
-        [JsonPropertyName("rank")]
-        public byte rank { get; init; }
-    }
+       }    
 }

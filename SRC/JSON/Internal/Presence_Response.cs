@@ -9,7 +9,6 @@ namespace Roblox_Sharp.JSON.Internal
     internal sealed class Presence_Response
     {
         [JsonPropertyName("userPresences")]
-        required public userPresence[] userPresences { get; init; }
-
+        required public User_Presence[] userPresences { get; init; }
     }
 }

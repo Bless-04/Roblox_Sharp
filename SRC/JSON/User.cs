@@ -45,7 +45,7 @@ namespace Roblox_Sharp.JSON
     /// <summary>
     /// class used to serialize User based requests
     /// </summary>
-    public class User : IUser
+    public class User : IUser 
     {
         public User(ulong userId) : base(userId) { }
 
@@ -65,8 +65,7 @@ namespace Roblox_Sharp.JSON
         
        
         [JsonPropertyName("userId")]
-        [JsonInclude]
-        private ulong _userId { init => base.id = value; } //unique to group request
+        public ulong userId { get => base.id; init => base.id = value; } //unique to group request
    
         /// <summary>
         /// unique username for the user
@@ -74,8 +73,8 @@ namespace Roblox_Sharp.JSON
         [JsonPropertyName("name")]
         public string name { get; init; }
         [JsonPropertyName("username")]
-        [JsonInclude]
-        private string _username { init => name = value; } // unique to group request
+        
+        public string username { get => name; init => name = value; } // unique to group request
         
         /// <summary>
         /// display name for the user
@@ -111,7 +110,7 @@ namespace Roblox_Sharp.JSON
         public string? requestedUsername { get; init; }
         
         [JsonPropertyName("presenceType")]
-        public Presence presenceType { get; init; }
+        public Presence_Type presenceType { get; init; }
 
         [JsonPropertyName("previousUsernames")]
         public string[]? previousUsernames { get; init; }
@@ -138,39 +137,5 @@ namespace Roblox_Sharp.JSON
         /// <returns></returns>
         public override string ToString() => $"{displayName} @ {name} ({base.id})";
     }
-
-    /// <summary>
-    /// class used to serialize User POST based requests
-    /// </summary>
-    public sealed class UserPOST
-    {
-        /// <summary>
-        /// exclude banned users
-        /// </summary>
-        public bool excludeBannedUsers { get; init; }
-
-        /// <summary>
-        /// array of user ids
-        /// </summary>
-        public ulong[]? userIds { get; init; }
-
-        /// <summary>
-        /// array of username
-        /// </summary>
-        public string[]? usernames { get; init; }
-
-        public UserPOST(ulong[] userIds, bool excludeBannedUsers=false)
-        {
-            this.userIds = userIds;
-            this.excludeBannedUsers = excludeBannedUsers;
-        }
-
-        public UserPOST(string[] usernames, bool excludeBannedUsers=false)
-        {
-            this.usernames = usernames;
-            this.excludeBannedUsers = excludeBannedUsers;
-        } 
-    }
-
 }
 

@@ -11,7 +11,7 @@ namespace Roblox_Sharp.Enums
     /// <br></br> 
     /// Invisible = 4 
     /// </summary>
-    public enum Presence : byte
+    public enum Presence_Type : byte
     {
         Offline = 0,
         Online = 1,
