@@ -8,7 +8,7 @@ namespace Roblox_Sharp.JSON
     /// <summary>
     /// class used to serialize Group based requests
     /// </summary>
-    public class Group
+    public sealed class Group
     {
         /// <summary>
         /// group id
