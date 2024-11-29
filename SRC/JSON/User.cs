@@ -1,6 +1,8 @@
-using System.Text.Json.Serialization;
-using Roblox_Sharp.Templates;
 using System;
+using System.Text.Json.Serialization;
+
+using Roblox_Sharp.Enums;
+using Roblox_Sharp.Templates;
 
 //for the user based requests
 namespace Roblox_Sharp.JSON
@@ -45,32 +47,36 @@ namespace Roblox_Sharp.JSON
     /// </summary>
     public class User : IUser
     {
-        
-        public User(ulong id) => this.id = id;
+        public User(ulong userId) : base(userId) { }
+
         public User(string name,string? displayName = null)
         {
             this.name = name;
             this.displayName = displayName;
         }
 
-        public User(ulong id,string name,string? displayName = null) { this.id = id; this.name = name; this.displayName = displayName; }
+        public User(ulong id,string name,string? displayName = null) : base(id) { 
+            this.name = name; 
+            this.displayName = displayName; 
+        }
 
-        [JsonConstructor]
         public User() { }
 
-        //id had to be overrided because there are cases in which the id is not in the json
-        /// <summary>
-        /// unique user id for the user
-        /// </summary>
-        [JsonPropertyName("id")]
-        override public ulong id { get; init; }
         
+       
+        [JsonPropertyName("userId")]
+        [JsonInclude]
+        private ulong _userId { init => base.id = value; } //unique to group request
+   
         /// <summary>
         /// unique username for the user
         /// </summary>
         [JsonPropertyName("name")]
         public string name { get; init; }
-
+        [JsonPropertyName("username")]
+        [JsonInclude]
+        private string _username { init => name = value; } // unique to group request
+        
         /// <summary>
         /// display name for the user
         /// </summary>
@@ -105,7 +111,7 @@ namespace Roblox_Sharp.JSON
         public string? requestedUsername { get; init; }
         
         [JsonPropertyName("presenceType")]
-        public Enums.Presence presenceType { get; init; }
+        public Presence presenceType { get; init; }
 
         [JsonPropertyName("previousUsernames")]
         public string[]? previousUsernames { get; init; }
@@ -124,20 +130,19 @@ namespace Roblox_Sharp.JSON
 
         [JsonPropertyName("friendFrequentRank")]
         public int friendFrequentRank { get; init; }
-
+      
         /// <summary>
         /// string representation of the user <br></br> 
         /// Format: <b> <paramref name="displayName"/> @ <paramref name="name"/> (<paramref name="id"/>) </b>
         /// </summary>
         /// <returns></returns>
-        public string ToString() => $"{displayName} @ {name} ({id})";
+        public override string ToString() => $"{displayName} @ {name} ({base.id})";
     }
 
-   
     /// <summary>
     /// class used to serialize User POST based requests
     /// </summary>
-    public class UserPOST
+    public sealed class UserPOST
     {
         /// <summary>
         /// exclude banned users
@@ -164,8 +169,7 @@ namespace Roblox_Sharp.JSON
         {
             this.usernames = usernames;
             this.excludeBannedUsers = excludeBannedUsers;
-        }
-       
+        } 
     }
 
 }

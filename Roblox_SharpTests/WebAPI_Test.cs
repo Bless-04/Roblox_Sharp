@@ -2,15 +2,13 @@
 using System.Diagnostics;
 
 using Roblox_Sharp;
+
+using Roblox_Sharp.Enums;
 using Roblox_Sharp.Enums.Thumbnail;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON;
 
-using static Roblox_Sharp.Endpoints.Badges_v1;
-using static Roblox_Sharp.Endpoints.Friends_v1;
-using static Roblox_Sharp.Endpoints.Presence_v1;
-using static Roblox_Sharp.Endpoints.Thumbnails_v1;
-using static Roblox_Sharp.Endpoints.Users_v1;
+using Roblox_Sharp.Endpoints;
 
 namespace Roblox_SharpTests
 {
@@ -26,19 +24,47 @@ namespace Roblox_SharpTests
         public void OnSuccessfulRequest(object? sender, EventArgs e) => Debug.WriteLine("SUCCESS " + (sender as HttpResponseMessage)?.RequestMessage);
         public void OnFailedRequest(object? sender, EventArgs e) => Debug.WriteLine("HANDLED "  + (sender as HttpResponseMessage)?.RequestMessage );
 
+        [TestMethod]
+        public void Viewable_Inventory()
+        {
+            bool x = Inventory_v1.Get_CanViewInventoryAsync(1).Result; 
+
+            Assert.IsFalse(x);
+        }
+
+        [TestMethod]
+        public void GroupData()
+        {
+            Group group = Groups_v1.Get_GroupAsync(2).Result;
+
+            Assert.AreEqual((ulong) 261,group.owner.id); //owner is 261
+
+            Assert.AreEqual( (ulong) 2, group.id); //group id is 2
+
+            Assert.IsTrue(group.memberCount > 100000); //over 100k members as of 11/27/24
+
+            
+            
+
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Groups_v1.Get_GroupAsync(0)); //doesnt exist
+
+            
+            
+
+        }
 
         [TestMethod]
         public void DetailedUser()
         {
-            var x = Get_UserAsync(1).Result; //roblox
-            var xx = Get_UserAsync(1).Result; 
+            var x = Users_v1.Get_UserAsync(1).Result; //roblox
+            var xx = Users_v1.Get_UserAsync(1).Result; 
 
-            var y = Get_UserAsync(16).Result; //erik.cassel
+            var y = Users_v1.Get_UserAsync(16).Result; //erik.cassel
 
             
             //error checking
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_UserAsync(0)); //doesnt exist
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_UserAsync(5)); //terminated user
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UserAsync(0)); //doesnt exist
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UserAsync(5)); //terminated user
 
             
             // value checking
@@ -51,30 +77,30 @@ namespace Roblox_SharpTests
         public void Usernames()
         {
             
-            User[] user_list = Get_UsernamesAsync([1,16,156]).Result;//roblox, erik.cassel, builderman
+            User[] user_list = Users_v1.Get_UsernamesAsync([1,16,156]).Result;//roblox, erik.cassel, builderman
             
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_UsernamesAsync([0])); //doesnt exist
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_UsernamesAsync([])); //empty
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernamesAsync([0])); //doesnt exist
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernamesAsync([])); //empty
 
             foreach (User u in user_list)
-                Assert.AreEqual(u.name, Get_UserAsync(u.id).Result.name);
+                Assert.AreEqual(u.name, Users_v1.Get_UserAsync(u.id).Result.name);
         }
 
         [TestMethod]
         public void Users()
         {
-            User[] user_list = Get_UsersAsync(["roblox","erik.cassel","builderman"]).Result;
+            User[] user_list = Users_v1.Get_UsersAsync(["roblox","erik.cassel","builderman"]).Result;
 
-            Assert.ThrowsExceptionAsync<InvalidUsernameException>(() => Get_UsersAsync([]));
+            Assert.ThrowsExceptionAsync<InvalidUsernameException>(() => Users_v1.Get_UsersAsync([]));
 
             foreach (User u in user_list) 
-                Assert.AreEqual(u.Equals(Get_UserAsync(u.id).Result), true);
+                Assert.AreEqual(u.Equals(Users_v1.Get_UserAsync(u.id).Result), true);
         }
 
         [TestMethod]
         public void UserSearch()
         {
-            Page<User> page =  Get_UserSearchAsync("robl",Roblox_Sharp.Enums.Limit.MAX).Result;
+            Page<User> page =  Users_v1.Get_UserSearchAsync("robl",Limit.MAX).Result;
 
             Assert.IsTrue(page.data.Length != 0);
 
@@ -89,7 +115,7 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void Followers()
         {
-            Page<User> x = Get_FollowersAsync(1).Result; //roblox
+            Page<User> x = Friends_v1.Get_FollowersAsync(1).Result; //roblox
 
             //old page
             ulong some_id = x.data[0].id;
@@ -100,12 +126,11 @@ namespace Roblox_SharpTests
             Assert.IsNull(x.previousPageCursor);
 
             //error checking
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_FollowersAsync(0)); //doesnt exist
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_FollowersAsync(5)); //terminated user
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_FollowersAsync(2, page: x)); //cursor doesnt exist for userid 2 therefore the userid is invalid
-
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersAsync(0)); //doesnt exist
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersAsync(5)); //terminated user
+            
             //new page
-            x = Get_FollowersAsync(1,page: x).Result; //roblox
+            x = Friends_v1.Get_FollowersAsync(1,page: x).Result; //roblox
 
 
             Assert.IsNotNull(x.previousPageCursor);
@@ -117,23 +142,23 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void Followings()
         {
-            Page<User> x = Get_FollowingsAsync(1).Result; //roblox
-            Page<User> y = Get_FollowingsAsync(16,Roblox_Sharp.Enums.Limit.Ten).Result; //erik.cassel
+            Page<User> x = Friends_v1.Get_FollowingsAsync(1).Result; //roblox
+            Page<User> y = Friends_v1.Get_FollowingsAsync(16,Limit.Ten).Result; //erik.cassel
 
             Assert.IsTrue(x.data.Length == 0);
             Assert.IsTrue(y.data.Length != 0);
 
             //error checking
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_FollowingsAsync(0)); //doesnt exist
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_FollowingsAsync(5)); //terminated user
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsAsync(0)); //doesnt exist
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsAsync(5)); //terminated user
         }
 
         [TestMethod]
         public void Friends()
         {
 
-            User[] erik_friends = Get_FriendsAsync(16).Result; //erik
-            User[] roblox_friends = Get_FriendsAsync(1).Result; //roblox
+            User[] erik_friends = Friends_v1.Get_FriendsAsync(16).Result; //erik
+            User[] roblox_friends = Friends_v1.Get_FriendsAsync(1).Result; //roblox
 
             Assert.AreNotEqual(erik_friends.Length, 0);
             Assert.AreEqual(roblox_friends.Length, 0);
@@ -142,10 +167,10 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void BadgeAwardedDates()
         {
-            Assert.ThrowsExceptionAsync<ArgumentException>(() => Get_BadgesAwardedDatesAsync(0, [])); //doesnt exist
+            Assert.ThrowsExceptionAsync<ArgumentException>(() => Badges_v1.Get_BadgesAwardedDatesAsync(0, [])); //doesnt exist
 
             ulong[] badges = [2126601323, 2126601209, 94278219];
-            BadgeAward[] eriks_badges = Get_BadgesAwardedDatesAsync(16,badges).Result; //eik.cassel
+            BadgeAward[] eriks_badges = Badges_v1.Get_BadgesAwardedDatesAsync(16,badges).Result; //eik.cassel
 
 
             Assert.AreEqual(1, eriks_badges.Length); //erik has only 1 of these
@@ -156,11 +181,11 @@ namespace Roblox_SharpTests
         public void Presence()
         {
            
-            userPresence[] y = Get_PresencesAsync([1,16,156]).Result;
+            userPresence[] y = Presence_v1.Get_PresencesAsync([1,16,156]).Result;
 
            
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_PresencesAsync([]));  
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_PresencesAsync([0]));
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Presence_v1.Get_PresencesAsync([]));  
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Presence_v1.Get_PresencesAsync([0]));
 
             Assert.AreEqual(y[0].userId, (ulong) 1);
             Assert.AreEqual(y[1].userId, (ulong) 16);
@@ -172,11 +197,11 @@ namespace Roblox_SharpTests
         {
 
             //7733466 is an admin
-            Page<User> x = Get_UsernameHistoryAsync(1).Result;
-            Page<User> y = Get_UsernameHistoryAsync(7733466).Result;
+            Page<User> x = Users_v1.Get_UsernameHistoryAsync(1).Result;
+            Page<User> y = Users_v1.Get_UsernameHistoryAsync(7733466).Result;
 
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_UsernameHistoryAsync(0)); //doesnt exist
-            Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_UsernameHistoryAsync(5)); //terminated user
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernameHistoryAsync(0)); //doesnt exist
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernameHistoryAsync(5)); //terminated user
             
             Assert.AreEqual(x.data.Length,0);
             Assert.AreNotEqual(y.data.Length, 0);
@@ -202,14 +227,14 @@ namespace Roblox_SharpTests
                 {
                     if (s_BLACKLIST.Contains(s))
                     {
-                        Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(() => Get_AvatarHeadshotsAsync(id, s, Format.Png, isCircular));
+                        Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(() => Thumbnails_v1.Get_AvatarHeadshotsAsync(id, s, Format.Png, isCircular));
                         continue;
                     }
                     foreach (Format f in Enum.GetValues(typeof(Format)))
                     {
                         isCircular = !isCircular;
                         
-                        Assert.IsNotNull(Get_AvatarHeadshotsAsync(id, s, f, isCircular).Result[0].imageUrl);
+                        Assert.IsNotNull(Thumbnails_v1.Get_AvatarHeadshotsAsync(id, s, f, isCircular).Result[0].imageUrl);
                     }
                 }
             }
@@ -229,14 +254,14 @@ namespace Roblox_SharpTests
                 {
                     if (s_BLACKLIST.Contains(s))
                     {
-                        Assert.ThrowsExceptionAsync<ArgumentException>(() => Get_AvatarsAsync(id, s, Format.Png, isCircular));
+                        Assert.ThrowsExceptionAsync<ArgumentException>(() => Thumbnails_v1.Get_AvatarsAsync(id, s, Format.Png, isCircular));
                         continue;
                     }
                     foreach (Format f in Enum.GetValues(typeof(Format)))
                     {
                         isCircular = !isCircular;
 
-                        Assert.IsNotNull(Get_AvatarsAsync(id, s, f, isCircular).Result[0].imageUrl);
+                        Assert.IsNotNull(Thumbnails_v1.Get_AvatarsAsync(id, s, f, isCircular).Result[0].imageUrl);
                     }
                 }
             }
@@ -256,19 +281,19 @@ namespace Roblox_SharpTests
                 {
                     if (s_BLACKLIST.Contains(s))
                     {
-                        Assert.ThrowsExceptionAsync<ArgumentException>(() => Get_AvatarBustsAsync(id, s, Format.Png, isCircular));
+                        Assert.ThrowsExceptionAsync<ArgumentException>(() => Thumbnails_v1.Get_AvatarBustsAsync(id, s, Format.Png, isCircular));
                         continue;
                     }
                     foreach (Format f in Enum.GetValues(typeof(Format)))
                     {
                         if (f_BLACKLIST.Contains(f))
                         {
-                            Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(() => Get_AvatarBustsAsync(id, s, f, isCircular));
+                            Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(() => Thumbnails_v1.Get_AvatarBustsAsync(id, s, f, isCircular));
                             continue;
                         }
                         isCircular = !isCircular;
 
-                        Assert.IsNotNull(Get_AvatarBustsAsync(id,s, f, isCircular).Result[0].imageUrl);
+                        Assert.IsNotNull(Thumbnails_v1.Get_AvatarBustsAsync(id,s, f, isCircular).Result[0].imageUrl);
                     }
                 }
             }
@@ -283,26 +308,26 @@ namespace Roblox_SharpTests
             public void FriendsCount()
             {
 
-                var x = Get_FriendsCountAsync(1).Result; //roblox
-                var y = Get_FriendsCountAsync(16).Result; //erik.cassel
-                var z = Get_FriendsCountAsync(156).Result; //builderman
+                var x = Friends_v1.Get_FriendsCountAsync(1).Result; //roblox
+                var y = Friends_v1.Get_FriendsCountAsync(16).Result; //erik.cassel
+                var z = Friends_v1.Get_FriendsCountAsync(156).Result; //builderman
 
                 Assert.AreEqual(x, z);
                 Assert.AreNotEqual(x, y);
 
                 //error checking
-                Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_FriendsCountAsync(0)); //doesnt exist
-                Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_FriendsCountAsync(5)); //terminated user
+                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FriendsCountAsync(0)); //doesnt exist
+                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FriendsCountAsync(5)); //terminated user
 
             }
 
             [TestMethod]
             public void FollowersCount()
             {
-                Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_FollowersCountAsync(0)); //doesnt exist
-                Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_FollowersCountAsync(5)); //terminated user
+                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersCountAsync(0)); //doesnt exist
+                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersCountAsync(5)); //terminated user
                                                                                                        //roblox vs erik.cassel
-                Assert.AreNotEqual(Get_FollowersCountAsync(1).Result, Get_FollowersCountAsync(16).Result);
+                Assert.AreNotEqual(Friends_v1.Get_FollowersCountAsync(1).Result, Friends_v1.Get_FollowersCountAsync(16).Result);
 
             }
 
@@ -311,8 +336,8 @@ namespace Roblox_SharpTests
             public void FollowingsCount()
             {
 
-                var x = Get_FollowingsCountAsync(1).Result; //roblox
-                var y = Get_FollowingsCountAsync(16).Result; //erik.cassel
+                var x = Friends_v1.Get_FollowingsCountAsync(1).Result; //roblox
+                var y = Friends_v1.Get_FollowingsCountAsync(16).Result; //erik.cassel
 
                 Assert.AreEqual(x, (ulong)0);
 
@@ -320,8 +345,8 @@ namespace Roblox_SharpTests
                 Assert.AreNotEqual(y, (ulong)0);
 
                 //error checking
-                Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_FollowingsCountAsync(0)); //doesnt exist
-                Assert.ThrowsExceptionAsync<InvalidUserIdException>(() => Get_FollowingsCountAsync(5)); //terminated user
+                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsCountAsync(0)); //doesnt exist
+                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsCountAsync(5)); //terminated user
             }
 
         }

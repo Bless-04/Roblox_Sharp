@@ -19,7 +19,7 @@ namespace Roblox_Sharp.JSON
     /// class used to serialize Avatar based requests
     /// </summary>
 
-    public record Avatar
+    public sealed class Avatar
     {
 
         [JsonPropertyName("targetId")]

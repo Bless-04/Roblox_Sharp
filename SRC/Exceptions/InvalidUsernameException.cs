@@ -5,7 +5,7 @@ namespace Roblox_Sharp.Exceptions
     /// <summary>
     /// Exception thrown when a username argument is invalid/does not exist/banned/terminated
     /// </summary>
-    public class InvalidUsernameException : Exception
+    public sealed class InvalidUsernameException : Exception
     {
         public InvalidUsernameException() { }
         

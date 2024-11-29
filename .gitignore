@@ -6,3 +6,4 @@ SRC/TestResults/
 Roblox_SharpTests/.vs/
 Roblox_SharpTests/bin/
 Roblox_SharpTests/obj/
+*.TMP

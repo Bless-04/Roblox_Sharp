@@ -1,11 +1,16 @@
-﻿using System.Threading.Tasks;
-using System;
+﻿using System;
+using System.Threading.Tasks;
+using System.Text.Json;
+
 using Roblox_Sharp.JSON;
 using static Roblox_Sharp.WebAPI;
-using System.Text.Json;
 
 namespace Roblox_Sharp.Endpoints
 {
+    /// <summary>
+    ///Endpoints for badges and badge awards management <br></br>
+    /// <b><see href="https://badges.roblox.com//docs/index.html?urls.primaryName=Badges%20Api%20v1">Badges Documentation</see></b>
+    /// </summary>
     public static class Badges_v1
     {
         /// <summary>
@@ -21,15 +26,11 @@ namespace Roblox_Sharp.Endpoints
         public static async Task<BadgeAward[]> Get_BadgesAwardedDatesAsync(ulong userId, ulong[] badgeIds)
         {
             if (badgeIds.Length == 0) throw new ArgumentException("atleast one badge id is required");
-
-
             //URL example https://badges.roblox.com/v1/users/63225213/badges/awarded-dates?badgeIds=2126601323,2126601209,94278219,-1
-
-            string content = await Get_RequestAsync(
-                $"https://badges.roblox.com/v1/users/{userId}/badges/awarded-dates?badgeIds={string.Join(',', badgeIds)}"
-            );
-            return JsonSerializer.Deserialize<Page<BadgeAward>>(content)!.data;
+            return 
+                JsonSerializer.Deserialize<Page<BadgeAward>>(
+                    await Get_RequestAsync($"https://badges.roblox.com/v1/users/{userId}/badges/awarded-dates?badgeIds={string.Join(',', badgeIds)}")
+                )!.data;
         }
-
     }
 }

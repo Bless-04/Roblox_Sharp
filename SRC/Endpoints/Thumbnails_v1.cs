@@ -38,15 +38,14 @@ namespace Roblox_Sharp.Endpoints
             if (EnumExtensions.IsBlackListed(SIZE, [Size.x30])) throw new ArgumentOutOfRangeException($"{SIZE} is not supported for this request.");
             /// example https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=1&size=48x48&format=Png&isCircular=false
 
-            
-            string content = await Get_RequestAsync(
-                $"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={string.Join(",", userIds)}" +
-                $"&size={EnumExtensions.ToString(SIZE)}" +
-                $"&format={FORMAT}" +
-                $"&isCircular={isCircular}"
-            );
-
-            return JsonSerializer.Deserialize<Page<Avatar>>(content)!.data;
+            return 
+                JsonSerializer.Deserialize<Page<Avatar>>(
+                    await Get_RequestAsync(
+                        $"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={string.Join(",", userIds)}" +
+                        $"&size={EnumExtensions.ToString(SIZE)}" +
+                        $"&format={FORMAT}" +
+                        $"&isCircular={isCircular}")
+            )!.data;
         }
 
         /// <summary>
@@ -73,13 +72,14 @@ namespace Roblox_Sharp.Endpoints
             // url example https://thumbnails.roblox.com/v1/users/avatar-bust?userIds=1,156,256,2,16&size=48x48&format=Png&isCircular=false
             if (FORMAT == Format.Jpeg) throw new ArgumentException($"{FORMAT} is not supported for this request");
 
-            string content = await Get_RequestAsync(
-                $"https://thumbnails.roblox.com/v1/users/avatar-bust?userIds={string.Join(",", userIds)}" +
-                $"&size={EnumExtensions.ToString(SIZE)}" +
-                $"&format={FORMAT}" +
-                $"&isCircular={isCircular}"
-            );
-            return JsonSerializer.Deserialize<Page<Avatar>>(content)!.data;
+            return 
+                JsonSerializer.Deserialize<Page<Avatar>>(
+                    await Get_RequestAsync(
+                        $"https://thumbnails.roblox.com/v1/users/avatar-bust?userIds={string.Join(",", userIds)}" +
+                        $"&size={EnumExtensions.ToString(SIZE)}" +
+                        $"&format={FORMAT}" +
+                        $"&isCircular={isCircular}")
+                )!.data;
         }
 
         /// <summary>
@@ -96,14 +96,14 @@ namespace Roblox_Sharp.Endpoints
             if (SIZE == Size.x50) throw new ArgumentOutOfRangeException($"{SIZE} is not supported for this request.");
             //url example https://thumbnails.roblox.com/v1/users/avatar?userIds=1,156&size=30x30&format=Png&isCircular=false
 
-            string content = await Get_RequestAsync(
-                $"https://thumbnails.roblox.com/v1/users/avatar?userIds={string.Join(",", userIds)}" +
-                $"&size={EnumExtensions.ToString(SIZE)}" +
-                $"&format={FORMAT.ToString()}" +
-                $"&isCircular={isCircular}"
-            );
-
-            return JsonSerializer.Deserialize<Page<Avatar>>(content)!.data;
+            return 
+                JsonSerializer.Deserialize<Page<Avatar>>(
+                    await Get_RequestAsync(
+                        $"https://thumbnails.roblox.com/v1/users/avatar?userIds={string.Join(",", userIds)}" +
+                        $"&size={EnumExtensions.ToString(SIZE)}" +
+                        $"&format={FORMAT.ToString()}" +
+                        $"&isCircular={isCircular}")
+                )!.data;
         }
 
     }

@@ -1,7 +1,5 @@
 ﻿using System;﻿
 using System.Text.Json.Serialization;
-
-using Roblox_Sharp.Templates;
 using Roblox_Sharp.Enums;
 
 namespace Roblox_Sharp.JSON
@@ -24,7 +22,7 @@ namespace Roblox_Sharp.JSON
    }
  ]
 }*/
-   public class userPresence
+   public sealed class userPresence
    {
        /// <summary>
        /// <see cref="Presence"/> type of user
@@ -70,18 +68,5 @@ namespace Roblox_Sharp.JSON
 
    }
 
-   /// <summary>
-   /// used for page based userPresence requests
-   /// </summary>
-   public class PresencePage : IPage<userPresence>
-   {
-       
-       [JsonPropertyName("userPresences")]
-       required public userPresence[] userPresences { get; init; }
-       
-   }
-
-  
    
-
 }

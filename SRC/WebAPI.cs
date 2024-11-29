@@ -1,11 +1,12 @@
-﻿using Roblox_Sharp.Exceptions;
-using Roblox_Sharp.JSON;
+﻿using System;
 using System.Text;
 using System.Net;
-using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text.Json;
+
+using Roblox_Sharp.Exceptions;
+using Roblox_Sharp.JSON;
 
 namespace Roblox_Sharp
 {
@@ -29,15 +30,13 @@ namespace Roblox_Sharp
         /// an instance of the http client. Used for all web requests
         /// </summary>
         internal static readonly HttpClient client = new(); 
-        
-        //public static HttpStatusCode statusCode { get; private set; }
-        
+
         /// <summary>
         /// helper function for get requests for roblox api
         /// </summary>
         /// <param name="url"></param>
         /// <returns>content string</returns>
-        /// <exception cref="InvalidUserIdException"></exception>
+        /// <exception cref="InvalidIdException"></exception>
         internal static async Task<string> Get_RequestAsync(string url, bool RateLimitRetry = false,int MS_Delay = 59000)
         {
             using HttpResponseMessage response = await client.GetAsync(url);
@@ -65,9 +64,9 @@ namespace Roblox_Sharp
                     }
 
                     case HttpStatusCode.BadRequest:
-                        throw new InvalidUserIdException($"User either doesnt exist or is terminated/banned \nStatusCode: {response.StatusCode}\n{url}");
+                        throw new InvalidIdException($"User either doesnt exist or is terminated/banned \nStatusCode: {response.StatusCode}\n{url}");
                     case HttpStatusCode.NotFound:
-                        throw new InvalidUserIdException($"Invalid User Id\nStatusCode: {response.StatusCode}\n{url}");
+                        throw new InvalidIdException($"Invalid User Id\nStatusCode: {response.StatusCode}\n{url}");
 
                     case (HttpStatusCode)443:
                         throw new HttpRequestException("There is an Internet Connection Issue\nPlease Connect to the Internet");
@@ -88,7 +87,7 @@ namespace Roblox_Sharp
         /// <param name="postreq"></param>
         /// <returns></returns>
         /// <exception cref="InvalidUsernameException"></exception>
-        /// <exception cref="InvalidUserIdException"></exception>
+        /// <exception cref="InvalidIdException"></exception>
         internal static async Task<string> Post_RequestAsync(string url, object postreq)
         {
             string json = JsonSerializer.Serialize(postreq);
@@ -113,7 +112,7 @@ namespace Roblox_Sharp
                         if (p.userIds != null)
                             throw new InvalidUsernameException("Too many ids.");
                         else
-                            throw new InvalidUserIdException("Too many usernames.");
+                            throw new InvalidIdException("Too many usernames.");
 
                     case (HttpStatusCode)443:
                         throw new HttpRequestException("There is an Internet Connection Issue\nPlease Connect to the Internet");
@@ -121,13 +120,9 @@ namespace Roblox_Sharp
                     default:
                         throw new NotImplementedException($"Unhandled Error: {response.StatusCode}\n{url}\n{response.Content}");
                 };
-
-                
             }
 
             
         }
-
-       
     }
 }
