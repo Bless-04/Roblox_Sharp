@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Text.Json;
 
 using static Roblox_Sharp.WebAPI;
@@ -24,18 +23,16 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="LIMIT"></param>
         /// <param name="page"></param>
         /// <returns>A <paramref name="Page"/> of Users</returns>
-        public static async Task<Page<User>> Get_UserSearchAsync(string keyword, Limit LIMIT = Limit.Minimum, Page<User>? page = null)
-        {
+        public static async Task<Page<User>> Get_UserSearchAsync(string keyword, Limit LIMIT = Limit.Minimum, Page<User>? page = null) =>
             /* example url https://users.roblox.com/v1/users/search?keyword=robl&sessionId=l&limit=10 */
-            string content = await Get_RequestAsync($"https://users.roblox.com/v1/users/search?" +
-                $"keyword={keyword}" +
-                $"&limit={EnumExtensions.ToString(LIMIT)}" +
-                $"&cursor={page?.nextPageCursor}"
-            );
-
-            return JsonSerializer.Deserialize<Page<User>>(content)!;
-        }
-
+            JsonSerializer.Deserialize<Page<User>>(
+                await Get_RequestAsync(
+                    $"https://users.roblox.com/v1/users/search?" +
+                    $"keyword={keyword}" +
+                    $"&limit={EnumExtensions.ToString(LIMIT)}" +
+                    $"&cursor={page?.nextPageCursor}")
+            )!;
+        
         /// <summary>
         /// Get detailed user information for the given <paramref name="userId"/> asynchronously
         /// <br></br>
@@ -44,16 +41,11 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="userId"></param>
         /// <returns>User</returns>
         /// <exception cref="InvalidIdException"></exception>
-        /// <exception cref="RateLimitException"></exception> 
-        public static async Task<User> Get_UserAsync(ulong userId)
-        {
-            string content = await Get_RequestAsync($"https://users.roblox.com/v1/users/{userId}");
-
-            User? user = JsonSerializer.Deserialize<User>(content);
-            if (user == null) throw new NotImplementedException($"Unhandled Error User was null: {content}");
-            return user;
-        }
-
+        /// <exception cref="RateLimitException">If the request is rate limited</exception>
+        public static async Task<User> Get_UserAsync(ulong userId) =>
+            JsonSerializer.Deserialize<User>(
+                await Get_RequestAsync($"https://users.roblox.com/v1/users/{userId}")
+            ) ?? throw new InvalidIdException($"User id is invalid {userId}");
 
         /// <summary>
         /// get usernames using the given array of <paramref name="userIds"/> asynchronousoly 
@@ -69,9 +61,11 @@ namespace Roblox_Sharp.Endpoints
         public static async Task<User[]> Get_UsernamesAsync(ulong[] userIds, bool excludeBannedUsers = false)
         {
             //url example https://users.roblox.com/v1/users
-            string content = await Post_RequestAsync("https://users.roblox.com/v1/users", new UserPOST(userIds, excludeBannedUsers));
 
-            User[] users = JsonSerializer.Deserialize<Page<User>>(content)!.data;
+            User[] users = JsonSerializer.Deserialize<Page<User>>(
+                await Post_RequestAsync("https://users.roblox.com/v1/users", new UserPOST(userIds, excludeBannedUsers))
+            )!.data;
+
             if (users.Length == 0) throw new InvalidIdException($"No valid user ids\n[{string.Join(',', userIds)}]");
 
             return users;
@@ -93,15 +87,14 @@ namespace Roblox_Sharp.Endpoints
             //url example https://users.roblox.com/v1/usernames/users
 
             //StringContent(json, Encoding.UTF8, "application/json");
-            string content = await Post_RequestAsync("https://users.roblox.com/v1/usernames/users", new UserPOST(usernames, excludeBannedUsers));
+            User[] users = JsonSerializer.Deserialize<Page<User>>(
+                await Post_RequestAsync("https://users.roblox.com/v1/usernames/users", new UserPOST(usernames, excludeBannedUsers))
+            )!.data;
 
-            User[] users = JsonSerializer.Deserialize<Page<User>>(content)!.data;
             if (users.Length == 0) throw new InvalidUsernameException($"No valid usernames\n[{string.Join(',', usernames)}]");
 
             return users;
-
         }
-
 
         /// <summary>
         /// Retrieves the username history for a given <paramref name="userId"/>.
@@ -113,13 +106,15 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="SORT"></param>
         /// <param name="page"></param>
         /// <returns></returns>
-        public static async Task<Page<User>> Get_UsernameHistoryAsync(ulong userId, Limit LIMIT = Limit.Minimum, Sort SORT = Sort.Asc, Page<User>? page = null)
-        {
+        public static async Task<Page<User>> Get_UsernameHistoryAsync(ulong userId, Limit LIMIT = Limit.Minimum, Sort SORT = Sort.Asc, Page<User>? page = null) =>
             ///url example 'https://users.roblox.com/v1/users/416181091/username-history?limit=100&sortOrder=Asc
-
-            string content = await Get_RequestAsync($"https://users.roblox.com/v1/users/{userId}/username-history?limit={EnumExtensions.ToString(LIMIT)}&cursor={page?.nextPageCursor}&sortOrder={SORT}");
-            return JsonSerializer.Deserialize<Page<User>>(content)!;
-        }
+            JsonSerializer.Deserialize<Page<User>>(
+                await Get_RequestAsync(
+                    $"https://users.roblox.com/v1/users/{userId}" +
+                    $"/username-history?limit={EnumExtensions.ToString(LIMIT)}" +
+                    $"&cursor={page?.nextPageCursor}" +
+                    $"&sortOrder={SORT}")
+            )!;
 
     }
 }

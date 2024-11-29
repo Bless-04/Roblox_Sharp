@@ -3,13 +3,14 @@ using System.Threading.Tasks;
 
 using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.JSON;
+using Roblox_Sharp.JSON.Internal;
 
 namespace Roblox_Sharp.Endpoints
 {
     /// <summary>
     /// all Endpoints for managing presence 
     /// <br></br> 
-    /// <b><see href="https://presence.roblox.com//docs/index.html">Presence API Documentation v1</see></b>
+    /// <b><see href="https://presence.roblox.com//docs/index.html">Presence API Documentation</see></b>
     /// </summary>
     public static class Presence_v1
     {
@@ -20,14 +21,10 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="userIds"></param>
         /// <returns>userPresence[]</returns>
-        public static async Task<userPresence[]> Get_PresencesAsync(ulong[] userIds)
-        {
+        public static async Task<userPresence[]> Get_PresencesAsync(ulong[] userIds) =>
             // url example https://presence.roblox.com/v1/presence/users
-            string content = await Post_RequestAsync($"https://presence.roblox.com/v1/presence/users", new UserPOST(userIds));
-
-            return JsonSerializer.Deserialize<Presence_Response>(content)!.userPresences;
-        }
-
-        
+            JsonSerializer.Deserialize<Presence_Response>(
+                await Post_RequestAsync($"https://presence.roblox.com/v1/presence/users", new UserPOST(userIds))
+            )!.userPresences;
     }
 }

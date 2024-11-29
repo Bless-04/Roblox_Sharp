@@ -27,15 +27,11 @@ namespace Roblox_Sharp.Endpoints
         public static async Task<BadgeAward[]> Get_BadgesAwardedDatesAsync(ulong userId, ulong[] badgeIds)
         {
             if (badgeIds.Length == 0) throw new ArgumentException("atleast one badge id is required");
-
-
             //URL example https://badges.roblox.com/v1/users/63225213/badges/awarded-dates?badgeIds=2126601323,2126601209,94278219,-1
-
-            string content = await Get_RequestAsync(
-                $"https://badges.roblox.com/v1/users/{userId}/badges/awarded-dates?badgeIds={string.Join(',', badgeIds)}"
-            );
-            return JsonSerializer.Deserialize<Page<BadgeAward>>(content)!.data;
+            return 
+                JsonSerializer.Deserialize<Page<BadgeAward>>(
+                    await Get_RequestAsync($"https://badges.roblox.com/v1/users/{userId}/badges/awarded-dates?badgeIds={string.Join(',', badgeIds)}")
+                )!.data;
         }
-
     }
 }

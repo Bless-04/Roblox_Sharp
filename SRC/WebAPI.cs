@@ -30,7 +30,7 @@ namespace Roblox_Sharp
         /// an instance of the http client. Used for all web requests
         /// </summary>
         internal static readonly HttpClient client = new(); 
-        
+
         /// <summary>
         /// helper function for get requests for roblox api
         /// </summary>

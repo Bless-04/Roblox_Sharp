@@ -10,13 +10,12 @@ namespace Roblox_Sharp.Endpoints
         /// <summary>
         /// Gets whether the specified user's inventory can be viewed.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="userId">The users id </param>
+        /// <returns>true if the inventory can be viewed</returns>
         public static async Task<bool> Get_CanViewInventoryAsync(ulong userId)
         {
             //url https://inventory.roblox.com/v1/users/1/can-view-inventory
-
-            string content = await Get_RequestAsync($"https://inventory.roblox.com/v1/users/{userId}/can-view-inventory");
-            return JsonSerializer.Deserialize<dynamic>(content)!.canView;
+            return JsonSerializer.Deserialize<dynamic>(await Get_RequestAsync($"https://inventory.roblox.com/v1/users/{userId}/can-view-inventory"))!.canView;
         }
     }
 }
