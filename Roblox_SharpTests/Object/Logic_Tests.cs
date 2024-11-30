@@ -1,5 +1,5 @@
-﻿using Roblox_Sharp.JSON.Users;
-using Roblox_Sharp.JSON;
+﻿using Roblox_Sharp.JSON_Models.Users;
+using Roblox_Sharp.JSON_Models;
 
 namespace Roblox_SharpTests.Object
 {

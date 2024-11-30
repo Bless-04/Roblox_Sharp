@@ -5,12 +5,11 @@ using Roblox_Sharp;
 
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
-using Roblox_Sharp.JSON.Badges;
-using Roblox_Sharp.JSON;
+using Roblox_Sharp.JSON_Models.Badges;
+using Roblox_Sharp.JSON_Models;
 
 using Roblox_Sharp.Endpoints;
-using Roblox_Sharp.JSON.Users;
-using System.Collections.Generic;
+using Roblox_Sharp.JSON_Models.Users;
 
 namespace Roblox_SharpTests
 {

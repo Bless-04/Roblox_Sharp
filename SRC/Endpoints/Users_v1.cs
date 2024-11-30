@@ -4,9 +4,9 @@ using System.Text.Json;
 using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
-using Roblox_Sharp.JSON;
-using Roblox_Sharp.JSON.Internal;
-using Roblox_Sharp.JSON.Users;
+using Roblox_Sharp.JSON_Models;
+using Roblox_Sharp.JSON_Models.Internal;
+using Roblox_Sharp.JSON_Models.Users;
 using System.Collections.Generic;
 using Roblox_Sharp.Templates;
 

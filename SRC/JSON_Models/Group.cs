@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace Roblox_Sharp.JSON
+namespace Roblox_Sharp.JSON_Models
 {
     /// <summary>
     /// class used to serialize Group based requests

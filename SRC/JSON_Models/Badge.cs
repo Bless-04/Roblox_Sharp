@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using System;
 
-namespace Roblox_Sharp.JSON;
+namespace Roblox_Sharp.JSON_Models;
 
 public class Badge
 {

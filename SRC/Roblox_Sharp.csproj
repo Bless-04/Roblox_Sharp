@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="JSON\Group.Shout.cs" />
+    <None Include="JSON_Models\Group.Shout.cs" />
   </ItemGroup>
 
 </Project>
