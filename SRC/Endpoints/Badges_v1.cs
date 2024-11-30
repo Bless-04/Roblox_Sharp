@@ -24,10 +24,10 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="id"></param>
         /// <param name="badgeIds"></param>
-        /// <returns>Badge_Award[]</returns>
+        /// <returns>List of Badge_Award</returns>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="InvalidUserIdException"></exception>
-        public static async Task<Badge_Award[]> Get_BadgesAwardedDatesAsync(ulong userId, ulong[] badgeIds)
+        public static async Task<IReadOnlyList<Badge_Award>> Get_BadgesAwardedDatesAsync(ulong userId, ulong[] badgeIds)
         {
             if (badgeIds.Length == 0) throw new ArgumentException("atleast one badge id is required");
             //URL example https://badges.roblox.com/v1/users/63225213/badges/awarded-dates?badgeIds=2126601323,2126601209,94278219,-1

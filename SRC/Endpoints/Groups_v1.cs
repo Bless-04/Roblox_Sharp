@@ -3,6 +3,7 @@ using System.Text.Json;
 
 using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.JSON;
+using System.Collections.Generic;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -28,7 +29,7 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="groupId">The group id</param>
         /// <returns>Group.Role</returns>
-        public static async Task<Group.Role[]> Get_GroupRolesAsync(ulong groupId) =>
+        public static async Task<IReadOnlyList<Group.Role>> Get_GroupRolesAsync(ulong groupId) =>
             //url example https://groups.roblox.com/v1/groups/2/roles
             JsonSerializer.Deserialize<Group>(
                 await Get_RequestAsync($"https://groups.roblox.com/v1/groups/{groupId}/roles")

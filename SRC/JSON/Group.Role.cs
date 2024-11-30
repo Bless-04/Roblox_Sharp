@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using System.Collections.Generic;
 namespace Roblox_Sharp.JSON;
 
 public partial class Group
@@ -7,7 +8,8 @@ public partial class Group
     /// unique to role requests
     /// </summary>
     [JsonPropertyName("roles")]
-    public Role[] roles { get; init; }
+    public IReadOnlyList<Role>? roles { get; init; }
+
     /// <summary>
     /// Group Role Serializer Class
     /// </summary>

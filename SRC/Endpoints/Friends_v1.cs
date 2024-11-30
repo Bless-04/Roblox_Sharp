@@ -6,6 +6,7 @@ using Roblox_Sharp.Enums;
 using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.JSON.Internal;
 using Roblox_Sharp.JSON.Users;
+using System.Collections.Generic;
 
 
 namespace Roblox_Sharp.Endpoints
@@ -23,7 +24,7 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>User[]</returns>
-        public static async Task<User[]> Get_FriendsAsync(ulong userId) =>
+        public static async Task<IReadOnlyList<User>> Get_FriendsAsync(ulong userId) =>
             //url example 'https://friends.roblox.com/v1/users/16/friends?userSort=0
             JsonSerializer.Deserialize<Page<User>>(
                 await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/friends")

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Text.Json.Serialization;
-using System.Xml;
-
 namespace Roblox_Sharp.JSON;
 public partial class Group
 {

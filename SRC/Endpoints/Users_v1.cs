@@ -7,6 +7,8 @@ using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON;
 using Roblox_Sharp.JSON.Internal;
 using Roblox_Sharp.JSON.Users;
+using System.Collections.Generic;
+using Roblox_Sharp.Templates;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -59,16 +61,16 @@ namespace Roblox_Sharp.Endpoints
         /// 
         /// <param name="userIds"></param>
         /// <param name="excludeBannedUsers"></param>
-        /// <returns>User[]</returns>
-        public static async Task<User[]> Get_UsernamesAsync(ulong[] userIds, bool excludeBannedUsers = false)
+        /// <returns>List of Users</returns>
+        public static async Task<IReadOnlyList<User>> Get_UsernamesAsync(ulong[] userIds, bool excludeBannedUsers = false)
         {
             //url example https://users.roblox.com/v1/users
 
-            User[] users = JsonSerializer.Deserialize<Page<User>>(
+            IReadOnlyList<User> users = JsonSerializer.Deserialize<Page<User>>(
                 await Post_RequestAsync("https://users.roblox.com/v1/users", new User_POST(userIds, excludeBannedUsers))
             )!.data;
 
-            if (users.Length == 0) throw new InvalidIdException($"No valid user ids\n[{string.Join(',', userIds)}]");
+            if (users.Count == 0) throw new InvalidIdException($"No valid user ids\n[{string.Join(',', userIds)}]");
 
             return users;
         }
@@ -84,16 +86,16 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="usernames"></param>
         /// <param name="excludeBannedUsers"></param>
         /// <returns>User[]</returns>
-        public static async Task<User[]> Get_UsersAsync(string[] usernames, bool excludeBannedUsers = false)
+        public static async Task<IReadOnlyList<User>> Get_UsersAsync(string[] usernames, bool excludeBannedUsers = false)
         {
             //url example https://users.roblox.com/v1/usernames/users
 
             //StringContent(json, Encoding.UTF8, "application/json");
-            User[] users = JsonSerializer.Deserialize<Page<User>>(
+            IReadOnlyList<User> users = JsonSerializer.Deserialize<Page<User>>(
                 await Post_RequestAsync("https://users.roblox.com/v1/usernames/users", new User_POST(usernames, excludeBannedUsers))
             )!.data;
 
-            if (users.Length == 0) throw new InvalidUsernameException($"No valid usernames\n[{string.Join(',', usernames)}]");
+            if (users.Count == 0) throw new InvalidUsernameException($"No valid usernames\n[{string.Join(',', usernames)}]");
 
             return users;
         }

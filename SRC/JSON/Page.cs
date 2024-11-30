@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Roblox_Sharp.Templates;
 
@@ -9,13 +10,11 @@ namespace Roblox_Sharp.JSON
     /// </summary>
     /// <typeparam name="T[]"></typeparam> 
     public class Page<T> : IPage<T>
-    {
-        
+    {   
         public Page() : base(null,null,Array.Empty<T>()) { }
 
         [JsonConstructor]
-        public Page(string? previousPageCursor, string? nextPageCursor, T[] data) 
+        public Page(string? previousPageCursor, string? nextPageCursor, IReadOnlyList<T> data) 
             : base (previousPageCursor, nextPageCursor, data) { }
-
     }
 }

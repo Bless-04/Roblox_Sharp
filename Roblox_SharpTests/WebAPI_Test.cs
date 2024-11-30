@@ -10,6 +10,7 @@ using Roblox_Sharp.JSON;
 
 using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.JSON.Users;
+using System.Collections.Generic;
 
 namespace Roblox_SharpTests
 {
@@ -49,9 +50,9 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void GroupsData()
         {
-            Group[] groups = Groups_v2.Get_GroupsAsync([1,2,3]).Result;
+            IReadOnlyList<Group> groups = Groups_v2.Get_GroupsAsync([1,2,3]).Result;
 
-            Assert.IsTrue(groups.Length == 3);
+            Assert.IsTrue(groups.Count == 3);
 
             Group group1 = groups[0];
             Group group2 = groups[1];
@@ -67,9 +68,9 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void GroupRoles()
         {
-            Group.Role[] roles = Groups_v1.Get_GroupRolesAsync(9).Result;
+            IReadOnlyList<Group.Role> roles = Groups_v1.Get_GroupRolesAsync(9).Result;
 
-            Assert.IsTrue(roles.Length > 1);
+            Assert.IsTrue(roles.Count > 1);
 
             Assert.IsTrue(roles[1].memberCount > 400000); //more than 400k as of 11/30
 
@@ -97,8 +98,8 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void Usernames()
         {
-            
-            User[] user_list = Users_v1.Get_UsernamesAsync([1,16,156]).Result;//roblox, erik.cassel, builderman
+
+            IReadOnlyList<User> user_list = Users_v1.Get_UsernamesAsync([1,16,156]).Result;//roblox, erik.cassel, builderman
             
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernamesAsync([0])); //doesnt exist
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernamesAsync([])); //empty
@@ -110,7 +111,7 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void Users()
         {
-            User[] user_list = Users_v1.Get_UsersAsync(["roblox","erik.cassel","builderman"]).Result;
+            IReadOnlyList<User> user_list = Users_v1.Get_UsersAsync(["roblox","erik.cassel","builderman"]).Result;
 
             Assert.ThrowsExceptionAsync<InvalidUsernameException>(() => Users_v1.Get_UsersAsync([]));
 
@@ -123,7 +124,7 @@ namespace Roblox_SharpTests
         {
             Page<User> page =  Users_v1.Get_UserSearchAsync("robl",Limit.MAX).Result;
 
-            Assert.IsTrue(page.data.Length != 0);
+            Assert.IsTrue(page.data.Count != 0);
 
             Assert.IsNull(page.previousPageCursor);
 
@@ -163,8 +164,8 @@ namespace Roblox_SharpTests
             Page<User> x = Friends_v1.Get_FollowingsAsync(1).Result; //roblox
             Page<User> y = Friends_v1.Get_FollowingsAsync(16,Limit.Ten).Result; //erik.cassel
 
-            Assert.IsTrue(x.data.Length == 0);
-            Assert.IsTrue(y.data.Length != 0);
+            Assert.IsTrue(x.data.Count == 0);
+            Assert.IsTrue(y.data.Count != 0);
 
             //error checking
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsAsync(0)); //doesnt exist
@@ -175,11 +176,11 @@ namespace Roblox_SharpTests
         public void Friends()
         {
 
-            User[] erik_friends = Friends_v1.Get_FriendsAsync(16).Result; //erik
-            User[] roblox_friends = Friends_v1.Get_FriendsAsync(1).Result; //roblox
+            IReadOnlyList<User> erik_friends = Friends_v1.Get_FriendsAsync(16).Result; //erik
+            IReadOnlyList<User> roblox_friends = Friends_v1.Get_FriendsAsync(1).Result; //roblox
 
-            Assert.AreNotEqual(erik_friends.Length, 0);
-            Assert.AreEqual(roblox_friends.Length, 0);
+            Assert.AreNotEqual(erik_friends.Count, 0);
+            Assert.AreEqual(roblox_friends.Count, 0);
         }
 
         [TestMethod]
@@ -224,9 +225,9 @@ namespace Roblox_SharpTests
             Assert.ThrowsExceptionAsync<ArgumentException>(() => Badges_v1.Get_BadgesAwardedDatesAsync(0, [])); //doesnt exist
 
             ulong[] badges = [2126601323, 2126601209, 94278219];
-            Badge_Award[] eriks_badges = Badges_v1.Get_BadgesAwardedDatesAsync(16,badges).Result; //eik.cassel
+            IReadOnlyList<Badge_Award> eriks_badges = Badges_v1.Get_BadgesAwardedDatesAsync(16,badges).Result; //eik.cassel
 
-            Assert.AreEqual(1, eriks_badges.Length); //erik has only 1 of these
+            Assert.AreEqual(1, eriks_badges.Count); //erik has only 1 of these
         }
 
         [TestMethod]
@@ -257,8 +258,8 @@ namespace Roblox_SharpTests
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernameHistoryAsync(0)); //doesnt exist
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernameHistoryAsync(5)); //terminated user
             
-            Assert.AreEqual(x.data.Length,0);
-            Assert.AreNotEqual(y.data.Length, 0);
+            Assert.AreEqual(x.data.Count,0);
+            Assert.AreNotEqual(y.data.Count, 0);
             Assert.IsTrue(x.previousPageCursor == null);
         }
     }

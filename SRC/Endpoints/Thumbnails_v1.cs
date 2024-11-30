@@ -9,6 +9,7 @@ using Roblox_Sharp.Enums;
 
 using Roblox_Sharp.JSON;
 using Roblox_Sharp.JSON.Users;
+using System.Collections.Generic;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -33,9 +34,9 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="SIZE"></param>
         /// <param name="FORMAT"></param>
         /// <param name="isCircular"></param>
-        /// <returns>Avatar[]</returns>
+        /// <returns>List of Avatar</returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static async Task<Avatar[]> Get_AvatarHeadshotsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
+        public static async Task<IReadOnlyList<Avatar>> Get_AvatarHeadshotsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
         {
             if (EnumExtensions.IsBlackListed(SIZE, [Size.x30])) throw new ArgumentOutOfRangeException($"{SIZE} is not supported for this request.");
             /// example https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=1&size=48x48&format=Png&isCircular=false
@@ -68,7 +69,7 @@ namespace Roblox_Sharp.Endpoints
         /// <returns>Avatar[]</returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public static async Task<Avatar[]> Get_AvatarBustsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
+        public static async Task<IReadOnlyList<Avatar>> Get_AvatarBustsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
         {
             if (EnumExtensions.IsBlackListed(SIZE, [Size.x30, Size.x110, Size.x720])) throw new ArgumentOutOfRangeException($"{SIZE} is not in range for this request");
             // url example https://thumbnails.roblox.com/v1/users/avatar-bust?userIds=1,156,256,2,16&size=48x48&format=Png&isCircular=false
@@ -93,7 +94,7 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="FORMAT"></param>
         /// <param name="isCircular"></param>
         /// <returns>Avatar[]</returns>
-        public static async Task<Avatar[]> Get_AvatarsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
+        public static async Task<IReadOnlyList<Avatar>> Get_AvatarsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
         {
             if (SIZE == Size.x50) throw new ArgumentOutOfRangeException($"{SIZE} is not supported for this request.");
             //url example https://thumbnails.roblox.com/v1/users/avatar?userIds=1,156&size=30x30&format=Png&isCircular=false

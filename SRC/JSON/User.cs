@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Templates;
@@ -119,7 +120,7 @@ namespace Roblox_Sharp.JSON
         public Presence_Type presenceType { get; init; }
 
         [JsonPropertyName("previousUsernames")]
-        public string[]? previousUsernames { get; init; }
+        public IReadOnlyList<string>? previousUsernames { get; init; }
 
         /// <summary>
         /// <b>true</b> if user is currently online, <b>false</b> otherwise
