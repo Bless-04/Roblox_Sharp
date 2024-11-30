@@ -49,7 +49,7 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void GroupsData()
         {
-            Group[] groups = Groups_v2.Get_GroupsAsync(1,2,3).Result;
+            Group[] groups = Groups_v2.Get_GroupsAsync([1,2,3]).Result;
 
             Assert.IsTrue(groups.Length == 3);
 
@@ -232,17 +232,18 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void User_Presence()
         {
-           
-            User_Presence[] y = Presence_v1.Get_PresencesAsync([1,16,156]).Result;
 
-            Array.Sort(y); //youngest to oldest
+            IReadOnlyList<User_Presence> presences = Presence_v1.Get_PresencesAsync([156, 16, 1]) //youngst to oldest sorting
+                .Result
+                .OrderBy(p => p)
+                .ToList();
 
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Presence_v1.Get_PresencesAsync([]));  
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Presence_v1.Get_PresencesAsync([0]));
 
-            Assert.AreEqual(y[2].userId, (ulong) 1);
-            Assert.AreEqual(y[1].userId, (ulong) 16);
-            Assert.AreEqual(y[0].userId, (ulong) 156);
+            Assert.AreEqual(presences[2].userId, (ulong) 1);
+            Assert.AreEqual(presences[1].userId, (ulong) 16);
+            Assert.AreEqual(presences[0].userId, (ulong) 156);
         }
 
         [TestMethod]

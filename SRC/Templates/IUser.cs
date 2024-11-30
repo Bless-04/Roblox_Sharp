@@ -7,7 +7,7 @@ namespace Roblox_Sharp.Templates
     /// Defines a generalized template for any roblox <paramref name="User"></paramref> based object
     /// </summary>
     public abstract class IUser : 
-            IComparable<IUser>
+        IComparable<IUser>
     {
 
         /// <summary>

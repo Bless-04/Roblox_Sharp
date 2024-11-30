@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.JSON.Internal;
 using Roblox_Sharp.JSON.Users;
+using System.Collections.Generic;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -21,7 +22,7 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="userIds"></param>
         /// <returns>userPresence[]</returns>
-        public static async Task<User_Presence[]> Get_PresencesAsync(ulong[] userIds) =>
+        public static async Task<IReadOnlyList<User_Presence>> Get_PresencesAsync(ulong[] userIds) =>
             // url example https://presence.roblox.com/v1/presence/users
             JsonSerializer.Deserialize<Presence_Response>(
                 await Post_RequestAsync($"https://presence.roblox.com/v1/presence/users", new User_POST(userIds))

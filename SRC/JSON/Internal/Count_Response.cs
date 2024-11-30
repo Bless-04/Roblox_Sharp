@@ -9,6 +9,6 @@ namespace Roblox_Sharp.JSON.Internal
     internal readonly struct Count_Response
     {
         [JsonPropertyName("count")]
-        public ulong count { get; init; }
+        required public ulong count { get; init; }
     }
 }

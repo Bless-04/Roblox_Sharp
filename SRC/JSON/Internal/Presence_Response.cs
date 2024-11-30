@@ -1,4 +1,5 @@
 ﻿using Roblox_Sharp.JSON.Users;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.JSON.Internal
@@ -10,6 +11,6 @@ namespace Roblox_Sharp.JSON.Internal
     sealed internal class Presence_Response
     {
         [JsonPropertyName("userPresences")]
-        required public User_Presence[] userPresences { get; init; }
+        required public IReadOnlyList<User_Presence> userPresences { get; init; }
     }
 }
