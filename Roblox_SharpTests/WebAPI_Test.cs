@@ -5,6 +5,7 @@ using Roblox_Sharp;
 
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
+using Roblox_Sharp.JSON.Badges;
 using Roblox_Sharp.JSON;
 
 using Roblox_Sharp.Endpoints;
@@ -153,14 +154,30 @@ namespace Roblox_SharpTests
             Assert.AreNotEqual(erik_friends.Length, 0);
             Assert.AreEqual(roblox_friends.Length, 0);
         }
-      
+
+
+
+        [TestMethod]
+        public void Badge()
+        {
+            Badge badge = Badges_v1.Get_BadgeAsync(14417332).Result; //john loved of muses 
+
+            Assert.IsNotNull(badge);
+
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Badges_v1.Get_BadgeAsync(0)); //doesnt exist
+            
+            Assert.AreEqual((ulong) 14417332, badge.id);
+
+            Assert.IsTrue(badge.created.Year == 2009);
+        }
+
         [TestMethod]
         public void BadgeAwardedDates()
         {
             Assert.ThrowsExceptionAsync<ArgumentException>(() => Badges_v1.Get_BadgesAwardedDatesAsync(0, [])); //doesnt exist
 
             ulong[] badges = [2126601323, 2126601209, 94278219];
-            Badge.Award[] eriks_badges = Badges_v1.Get_BadgesAwardedDatesAsync(16,badges).Result; //eik.cassel
+            Badge_Award[] eriks_badges = Badges_v1.Get_BadgesAwardedDatesAsync(16,badges).Result; //eik.cassel
 
             Assert.AreEqual(1, eriks_badges.Length); //erik has only 1 of these
         }

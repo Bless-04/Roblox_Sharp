@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace Roblox_Sharp.JSON
+namespace Roblox_Sharp.JSON.Badges
 {
-    public class BadgeAward 
+    sealed public class Badge_Award : Badge
     {
         /// <summary>
         /// unique badge id
         /// </summary>
         [JsonPropertyName("badgeId")]
-        public ulong badgeId { get; init; }
+        public ulong badgeId
+        {
+            get => id;
+            init => id = value;
+        }
 
         /// <summary>
         /// date badge was awarded

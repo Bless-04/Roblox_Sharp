@@ -2,6 +2,7 @@
 
 using Roblox_Sharp.JSON;
 using Roblox_Sharp.JSON.Users;
+using Roblox_Sharp.JSON.Badges; 
 
 namespace Roblox_SharpTests
 {
@@ -9,11 +10,14 @@ namespace Roblox_SharpTests
     public partial class Type_Tests
     {
         [TestMethod]
-        public void User_Presence() => Assert.IsInstanceOfType<IUser>(new User_Presence());
+        public void User() => Assert.IsInstanceOfType<IUser>(new User());
+
+        [TestMethod]
+        public void User_Presence() => Assert.IsInstanceOfType<User>(new User_Presence());
 
         [TestMethod]
         public void Avatar() => 
-            Assert.IsInstanceOfType<User>(new Avatar(1) 
+            Assert.IsInstanceOfType<User>(new Avatar(default) 
             {
                 imageUrl = "",
                 version = "",
@@ -28,6 +32,14 @@ namespace Roblox_SharpTests
                 nextPageCursor = "",
                 data = Array.Empty<bool>()
             });
-
+        
+        [TestMethod]
+        public void Badge_Award() => Assert.IsInstanceOfType<Badge>(new Badge_Award()
+        {
+            name = "",
+            description = "",
+            id = 0
+        });
+        
     }
 }
