@@ -62,18 +62,15 @@ namespace Roblox_SharpTests.Object
                 new(1),
                 new(1),
                 new(2)
-            }.AsReadOnly();
-
+            };
+            
             Page<User> page = new(){data = data};
 
             User? dummy = page.data[0];
 
             Assert.AreEqual(dummy, page.data[0]);
 
-            //makes sure its not a shallow copy of the object
-            
-
-         
+            //makes sure its not a shallow copy of the object         
             dummy = null;
 
             Assert.IsNotNull(page.data[0]);
