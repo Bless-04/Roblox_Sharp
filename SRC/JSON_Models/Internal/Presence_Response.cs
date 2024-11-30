@@ -1,8 +1,8 @@
-﻿using Roblox_Sharp.JSON.Users;
+﻿using Roblox_Sharp.JSON_Models.Users;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Roblox_Sharp.JSON.Internal
+namespace Roblox_Sharp.JSON_Models.Internal
 {
     /// <summary>
     /// used for response of userPresence requests

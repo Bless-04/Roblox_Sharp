@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using Roblox_Sharp.Enums;
 
-namespace Roblox_Sharp.JSON.Users
+namespace Roblox_Sharp.JSON_Models.Users
 {
     //Presence is an Instance of User
     /**

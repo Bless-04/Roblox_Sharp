@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
-namespace Roblox_Sharp.JSON;
+namespace Roblox_Sharp.JSON_Models;
 public partial class Group
 {
     //Unique to this request

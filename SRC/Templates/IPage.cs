@@ -1,7 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System.Collections.Generic;
 
 namespace Roblox_Sharp.Templates
 {
@@ -40,6 +37,7 @@ namespace Roblox_Sharp.Templates
         /// </summary>
         required public IReadOnlyList<T> data { get; init; }
 
-        public IPage( string? previousPageCursor, string? nextPageCursor, IReadOnlyList<T> data) : base(previousPageCursor, nextPageCursor) => this.data = data;   
+        public IPage( string? previousPageCursor, string? nextPageCursor, IReadOnlyList<T> data) : base(previousPageCursor, nextPageCursor) => 
+            this.data = data;   
     }
 }

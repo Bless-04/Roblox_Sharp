@@ -1,4 +1,4 @@
-﻿namespace Roblox_Sharp.JSON.Internal
+﻿namespace Roblox_Sharp.JSON_Models.Internal
 {
     /// <summary>
     /// class used to serialize User POST based requests

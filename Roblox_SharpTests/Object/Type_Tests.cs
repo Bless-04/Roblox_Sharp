@@ -1,8 +1,8 @@
 ﻿using Roblox_Sharp.Templates;
 
-using Roblox_Sharp.JSON;
-using Roblox_Sharp.JSON.Users;
-using Roblox_Sharp.JSON.Badges; 
+using Roblox_Sharp.JSON_Models;
+using Roblox_Sharp.JSON_Models.Users;
+using Roblox_Sharp.JSON_Models.Badges; 
 
 namespace Roblox_SharpTests
 {

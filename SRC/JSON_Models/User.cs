@@ -5,7 +5,7 @@ using Roblox_Sharp.Enums;
 using Roblox_Sharp.Templates;
 
 //for the user based requests
-namespace Roblox_Sharp.JSON
+namespace Roblox_Sharp.JSON_Models
 {
     /** userid 
      * post request

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Roblox_Sharp.JSON.Internal
+namespace Roblox_Sharp.JSON_Models.Internal
 {
     internal readonly struct Inventory_Response
     {
