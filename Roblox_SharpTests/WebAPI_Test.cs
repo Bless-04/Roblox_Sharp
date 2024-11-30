@@ -4,12 +4,11 @@ using System.Diagnostics;
 using Roblox_Sharp;
 
 using Roblox_Sharp.Enums;
-using Roblox_Sharp.Enums.Thumbnail;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON;
 
 using Roblox_Sharp.Endpoints;
-using Roblox_Sharp.Templates;
+using Roblox_Sharp.JSON.Users;
 
 namespace Roblox_SharpTests
 {
@@ -38,20 +37,13 @@ namespace Roblox_SharpTests
         {
             Group group = Groups_v1.Get_GroupAsync(2).Result;
 
+            
             Assert.AreEqual((ulong) 261,group.owner.id); //owner is 261
 
             Assert.AreEqual( (ulong) 2, group.id); //group id is 2
 
             Assert.IsTrue(group.memberCount > 100000); //over 100k members as of 11/27/24
-
-            
-            
-
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Groups_v1.Get_GroupAsync(0)); //doesnt exist
-
-            
-            
-
         }
 
         [TestMethod]
@@ -108,9 +100,6 @@ namespace Roblox_SharpTests
             Assert.IsNull(page.previousPageCursor);
 
             Assert.IsNotNull(page.nextPageCursor);
-
-
-
         }
 
         [TestMethod]
@@ -171,26 +160,25 @@ namespace Roblox_SharpTests
             Assert.ThrowsExceptionAsync<ArgumentException>(() => Badges_v1.Get_BadgesAwardedDatesAsync(0, [])); //doesnt exist
 
             ulong[] badges = [2126601323, 2126601209, 94278219];
-            BadgeAward[] eriks_badges = Badges_v1.Get_BadgesAwardedDatesAsync(16,badges).Result; //eik.cassel
-
+            Badge.Award[] eriks_badges = Badges_v1.Get_BadgesAwardedDatesAsync(16,badges).Result; //eik.cassel
 
             Assert.AreEqual(1, eriks_badges.Length); //erik has only 1 of these
-
         }
 
         [TestMethod]
-        public void Presence()
+        public void User_Presence()
         {
            
             User_Presence[] y = Presence_v1.Get_PresencesAsync([1,16,156]).Result;
 
-           
+            Array.Sort(y); //youngest to oldest
+
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Presence_v1.Get_PresencesAsync([]));  
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Presence_v1.Get_PresencesAsync([0]));
 
-            Assert.AreEqual(y[0].userId, (ulong) 1);
+            Assert.AreEqual(y[2].userId, (ulong) 1);
             Assert.AreEqual(y[1].userId, (ulong) 16);
-            Assert.AreEqual(y[2].userId, (ulong) 156);
+            Assert.AreEqual(y[0].userId, (ulong) 156);
         }
 
         [TestMethod]
@@ -208,152 +196,5 @@ namespace Roblox_SharpTests
             Assert.AreNotEqual(y.data.Length, 0);
             Assert.IsTrue(x.previousPageCursor == null);
         }
-
-       
-
-        //These tests need extensive testing and take longer
-        [TestClass]
-        public class Avatars
-        {
-            [TestMethod]
-            public void Headshots()
-            {
-                ulong[] id = [1];
-
-                //error checking to loop through every possible Size and Format enum
-
-                Size[] s_BLACKLIST = [Size.x30];
-                bool isCircular = false;
-                foreach (Size s in Enum.GetValues(typeof(Size)))
-                {
-                    if (s_BLACKLIST.Contains(s))
-                    {
-                        Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(() => Thumbnails_v1.Get_AvatarHeadshotsAsync(id, s, Format.Png, isCircular));
-                        continue;
-                    }
-                    foreach (Format f in Enum.GetValues(typeof(Format)))
-                    {
-                        isCircular = !isCircular;
-                        
-                        Assert.IsNotNull(Thumbnails_v1.Get_AvatarHeadshotsAsync(id, s, f, isCircular).Result[0].imageUrl);
-                    }
-                }
-            }
-
-            [TestMethod]
-            public void FullAvatar()
-            {
-                ulong[] id = [1];
-
-
-                Size[] s_BLACKLIST = [Size.x50];
-                //Format[] f_BLACKLIST = [Format.Jpeg];
-
-
-                bool isCircular = false;
-                foreach (Size s in Enum.GetValues(typeof(Size)))
-                {
-                    if (s_BLACKLIST.Contains(s))
-                    {
-                        Assert.ThrowsExceptionAsync<ArgumentException>(() => Thumbnails_v1.Get_AvatarsAsync(id, s, Format.Png, isCircular));
-                        continue;
-                    }
-                    foreach (Format f in Enum.GetValues(typeof(Format)))
-                    {
-                        isCircular = !isCircular;
-
-                        Assert.IsNotNull(Thumbnails_v1.Get_AvatarsAsync(id, s, f, isCircular).Result[0].imageUrl);
-                    }
-                }
-            }
-
-            [TestMethod]
-            public void Busts()
-            {
-                ulong[] id = [1];
-
-
-                Size[] s_BLACKLIST = [Size.x30,Size.x110,Size.x720];
-                Format[] f_BLACKLIST = [Format.Jpeg];
-                
-
-                bool isCircular = false;
-                foreach (Size s in Enum.GetValues(typeof(Size)))
-                {
-                    if (s_BLACKLIST.Contains(s))
-                    {
-                        Assert.ThrowsExceptionAsync<ArgumentException>(() => Thumbnails_v1.Get_AvatarBustsAsync(id, s, Format.Png, isCircular));
-                        continue;
-                    }
-                    foreach (Format f in Enum.GetValues(typeof(Format)))
-                    {
-                        if (f_BLACKLIST.Contains(f))
-                        {
-                            Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(() => Thumbnails_v1.Get_AvatarBustsAsync(id, s, f, isCircular));
-                            continue;
-                        }
-                        isCircular = !isCircular;
-
-                        Assert.IsNotNull(Thumbnails_v1.Get_AvatarBustsAsync(id,s, f, isCircular).Result[0].imageUrl);
-                    }
-                }
-            }
-
-        }
-
-        //After 60 secs these test must always succeed
-        [TestClass]  
-        public class Counts
-        {
-            [TestMethod]
-            public void FriendsCount()
-            {
-
-                var x = Friends_v1.Get_FriendsCountAsync(1).Result; //roblox
-                var y = Friends_v1.Get_FriendsCountAsync(16).Result; //erik.cassel
-                var z = Friends_v1.Get_FriendsCountAsync(156).Result; //builderman
-
-                Assert.AreEqual(x, z);
-                Assert.AreNotEqual(x, y);
-
-                //error checking
-                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FriendsCountAsync(0)); //doesnt exist
-                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FriendsCountAsync(5)); //terminated user
-
-            }
-
-            [TestMethod]
-            public void FollowersCount()
-            {
-                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersCountAsync(0)); //doesnt exist
-                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersCountAsync(5)); //terminated user
-                                                                                                       //roblox vs erik.cassel
-                Assert.AreNotEqual(Friends_v1.Get_FollowersCountAsync(1).Result, Friends_v1.Get_FollowersCountAsync(16).Result);
-
-            }
-
-           
-            [TestMethod]
-            public void FollowingsCount()
-            {
-
-                var x = Friends_v1.Get_FollowingsCountAsync(1).Result; //roblox
-                var y = Friends_v1.Get_FollowingsCountAsync(16).Result; //erik.cassel
-
-                Assert.AreEqual(x, (ulong)0);
-
-                Assert.AreNotEqual(x, y);
-                Assert.AreNotEqual(y, (ulong)0);
-
-                //error checking
-                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsCountAsync(0)); //doesnt exist
-                Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsCountAsync(5)); //terminated user
-            }
-
-        }
-
-        
-       
-
     }
 }

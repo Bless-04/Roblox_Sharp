@@ -1,5 +1,5 @@
-﻿using Roblox_Sharp.JSON;
-using Roblox_Sharp.Templates;
+﻿using Roblox_Sharp.JSON.Users;
+using Roblox_Sharp.JSON;
 using System.Diagnostics;
 
 namespace Roblox_SharpTests.Object
@@ -36,7 +36,22 @@ namespace Roblox_SharpTests.Object
             Assert.IsTrue(x.Equals(X));
         }
 
+        [TestMethod]
+        public void IUser_Equals()
+        {
+            User user = new(1); //main
+            User_Presence presence = new() { id = user.id };
 
+            Avatar avatar = new(1)
+            {
+                imageUrl = "",
+                version = "",
+                state = ""
+            };
+
+            Assert.AreEqual(presence, user);
+            Assert.AreEqual<User>(presence, avatar);
+        }
     }
 
 }
