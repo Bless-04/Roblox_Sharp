@@ -56,7 +56,7 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="limit">The number of results per request</param>
         /// <param name="sortOrder">the order the results are stored in</param>
         /// <param name="page">used for the paging cursor</param>
-        /// <returns></returns>
+        /// <returns>Page of Badges</returns>
         public static async Task<Page<Badge>> Get_BadgesAsync(ulong userId,Limit limit = Limit.Minimum,Sort sortOrder = Sort.Asc,Page<Badge>? page = null) =>
             //url example 'https://badges.roblox.com/v1/users/2/badges?limit=50&sortOrder=Asc' 
             JsonSerializer.Deserialize<Page<Badge>>(

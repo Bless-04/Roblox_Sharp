@@ -155,8 +155,28 @@ namespace Roblox_SharpTests
             Assert.AreEqual(roblox_friends.Length, 0);
         }
 
+        [TestMethod]
+        public void Users_Badges()
+        {
+            Page<Badge> page = Badges_v1.Get_BadgesAsync(16,Limit.Ten).Result; //erik.cassel
 
+            Badge erik_badge1 = page.data[0];
 
+            Assert.IsNotNull(page.nextPageCursor);
+            Assert.IsNull(page.previousPageCursor);
+
+            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Badges_v1.Get_BadgesAsync(0)); //doesnt exist
+
+            Assert.IsNotNull(erik_badge1.creator);
+            Assert.IsNotNull(erik_badge1.awarder);
+            Assert.IsNotNull(erik_badge1.statistics);
+
+            Assert.AreEqual((ulong)2925703, erik_badge1.creator.id);
+            Assert.AreEqual(2009, erik_badge1.created.Year);
+            Assert.AreEqual((ulong)10277240,erik_badge1.awarder.id); //game id 
+
+            Assert.IsTrue(erik_badge1.statistics.awardedCount > 1000000); ///over 1000000 as of 11/29/24
+        }
         [TestMethod]
         public void Badge()
         {

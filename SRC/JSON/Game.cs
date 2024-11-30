@@ -15,7 +15,7 @@ namespace Roblox_Sharp.JSON
         /// the universe  name
         /// </summary>
         [JsonPropertyName("name")]
-        required public string name { get; init; }
+        public string? name { get; init; }
 
         /// <summary>
         /// The description of the universe.

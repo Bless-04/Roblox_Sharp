@@ -15,25 +15,25 @@ public class Badge
     /// the name of the badge 
     /// </summary>
     [JsonPropertyName("name")]
-    public string name { get; init; }
+    public string? name { get; init; }
 
     /// <summary>
     /// the badge description 
     /// </summary>
     [JsonPropertyName("description")]
-    public string description { get; init; }
+    public string? description { get; init; }
 
     /// <summary>
     /// the localized name of the badge 
     /// </summary>
     [JsonPropertyName("displayName")]
-    public string displayName { get; init; }
+    public string? displayName { get; init; }
 
     /// <summary>
     /// the localized description of the badge
     /// </summary>
     [JsonPropertyName("displayDescription")]
-    public object displayDescription { get; init; }
+    public string? displayDescription { get; init; }
 
     /// <summary>
     /// whether or not the badge is enabled
@@ -68,8 +68,27 @@ public class Badge
     [JsonPropertyName("statistics")]
     public Statistics statistics { get; init; }
 
+    /// <summary>
+    /// the place that awarded the badge
+    /// </summary>
     [JsonPropertyName("awardingUniverse")]
-    public Game awardingUniverse { get; init; }
+    public Game? awardingUniverse { get; init; }
+
+    /// <summary>
+    /// the place that awarded the badge
+    /// </summary>
+    [JsonPropertyName("awarder")]
+    public Game? awarder 
+    { 
+        get => awardingUniverse; 
+        init => awardingUniverse = value; 
+    }
+
+    /// <summary>
+    /// the user that created the badge
+    /// </summary>
+    [JsonPropertyName("creator")]
+    public User? creator { get; init; }
 
     public readonly struct Statistics
     {
