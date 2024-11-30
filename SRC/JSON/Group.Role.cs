@@ -4,6 +4,11 @@ namespace Roblox_Sharp.JSON;
 public partial class Group
 {
     /// <summary>
+    /// unique to role requests
+    /// </summary>
+    [JsonPropertyName("roles")]
+    public Role[] roles { get; init; }
+    /// <summary>
     /// Group Role Serializer Class
     /// </summary>
     public class Role
@@ -25,5 +30,11 @@ public partial class Group
         /// </summary>
         [JsonPropertyName("rank")]
         public byte rank { get; init; }
+
+        /// <summary>
+        /// Number of members in the role
+        /// </summary>
+        [JsonPropertyName("memberCount")]
+        public ulong memberCount { get; init; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.JSON
 {
@@ -17,26 +18,27 @@ namespace Roblox_Sharp.JSON
         /// group name
         /// </summary>
         [JsonPropertyName("name")]
-        required public string name { get; init; }
+        public string? name { get; init; }
 
         /// <summary>
         /// group description
         /// </summary>
         [JsonPropertyName("description")]
-        required public string description { get; init; }
+        public string? description { get; init; }
 
         /// <summary>
         /// group owner
         /// </summary>
         [JsonPropertyName("owner")]
-        required public User owner { get; init; }
+        public User owner { get; init; }
 
         /// <summary>
         /// most recent group shout
         /// </summary>
         [JsonPropertyName("shout")]
-        required public Shout shout { get; init; }
+        public Shout shout { get; init; }
 
+        
         /// <summary>
         /// group member count
         /// </summary>
@@ -60,5 +62,6 @@ namespace Roblox_Sharp.JSON
         /// </summary>
         [JsonPropertyName("hasVerifiedBadge")]
         public bool hasVerifiedBadge { get; init; }
+
        }    
 }

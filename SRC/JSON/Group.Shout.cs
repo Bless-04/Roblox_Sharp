@@ -1,9 +1,18 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using System.Xml;
 
 namespace Roblox_Sharp.JSON;
 public partial class Group
 {
+    //Unique to this request
+
+    /// <summary>
+    /// The date the Group Shout was created. 
+    /// </summary>
+    [JsonPropertyName("created")]
+    public DateTime created { get; init; }
+
     /// <summary>
     /// Group Shout Serializer
     /// </summary>
@@ -22,7 +31,7 @@ public partial class Group
         required public User poster { get; init; }
 
         /// <summary>
-        /// group creation date 
+        /// The shouts created date 
         /// </summary>
         [JsonPropertyName("created")]
         public DateTime created { get; init; }

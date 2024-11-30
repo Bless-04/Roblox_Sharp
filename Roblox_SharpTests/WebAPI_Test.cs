@@ -46,7 +46,34 @@ namespace Roblox_SharpTests
             Assert.IsTrue(group.memberCount > 100000); //over 100k members as of 11/27/24
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Groups_v1.Get_GroupAsync(0)); //doesnt exist
         }
+        [TestMethod]
+        public void GroupsData()
+        {
+            Group[] groups = Groups_v2.Get_GroupsAsync(1,2,3).Result;
 
+            Assert.IsTrue(groups.Length == 3);
+
+            Group group1 = groups[0];
+            Group group2 = groups[1];
+            Group group3 = groups[2];
+
+            Assert.AreEqual((ulong) 1179762, group1.owner.id); //owner is 1179762
+            Assert.AreEqual((ulong) 261, group2.owner.id); //owner is 261
+            Assert.AreEqual((ulong) 24941, group3.owner.id);  //owner is 24941
+
+            Assert.IsTrue(group1.created.Year == group2.created.Year && group3.created.Year == group2.created.Year); // all created in 2009
+        }
+
+        [TestMethod]
+        public void GroupRoles()
+        {
+            Group.Role[] roles = Groups_v1.Get_GroupRolesAsync(9).Result;
+
+            Assert.IsTrue(roles.Length > 1);
+
+            Assert.IsTrue(roles[1].memberCount > 400000); //more than 400k as of 11/30
+
+        }
         [TestMethod]
         public void DetailedUser()
         {
