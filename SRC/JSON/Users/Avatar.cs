@@ -1,7 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-using Roblox_Sharp.Templates;
 
-namespace Roblox_Sharp.JSON
+namespace Roblox_Sharp.JSON.Users
 {
 
     /** example return 
@@ -19,15 +18,14 @@ namespace Roblox_Sharp.JSON
     /// <summary>
     /// class used to serialize Avatar based requests
     /// </summary>
-
-    public sealed class Avatar : IUser
+    public class Avatar : User
     {
 
         [JsonPropertyName("targetId")]
-        public ulong targetId 
-        { 
-            get => base.id; 
-            init => base.id = targetId; 
+        public ulong targetId
+        {
+            get => base.id;
+            init => base.id = targetId;
         }
 
         [JsonPropertyName("state")]
@@ -36,10 +34,12 @@ namespace Roblox_Sharp.JSON
         /// <summary>
         /// image url of avatar based request
         /// </summary>
-        [JsonPropertyName("imageUrl")] 
-        required public string imageUrl {  get; init; }
+        [JsonPropertyName("imageUrl")]
+        required public string imageUrl { get; init; }
 
-        [JsonPropertyName("version")] 
+        [JsonPropertyName("version")]
         required public string version { get; init; }
+
+        public Avatar(ulong targetId) : base(targetId) { }
     }
 }

@@ -2,7 +2,6 @@
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.JSON;
-
 public partial class Group
 {
     /// <summary>
@@ -17,7 +16,7 @@ public partial class Group
         required public string body { get; init; }
 
         /// <summary>
-        /// group shoutouts user of Poster
+        /// user information of the Group Shouts poster
         /// </summary>
         [JsonPropertyName("poster")]
         required public User poster { get; init; }

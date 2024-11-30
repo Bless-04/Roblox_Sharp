@@ -5,6 +5,7 @@ using Roblox_Sharp.JSON;
 using Roblox_Sharp.Enums;
 using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.JSON.Internal;
+using Roblox_Sharp.JSON.Users;
 
 
 namespace Roblox_Sharp.Endpoints

@@ -24,7 +24,7 @@ namespace Roblox_Sharp.Templates
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public override bool Equals([NotNullWhen(true)] object? obj)
+        public override bool Equals([NotNullWhen(true)] object? obj) 
         {
             if (obj is IUser user)
                 return this.id == user.id;

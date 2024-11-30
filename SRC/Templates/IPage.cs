@@ -1,10 +1,12 @@
 ﻿
+using System;
+
 namespace Roblox_Sharp.Templates
 {
     /// <summary>
     /// template for all the page based requests that have a previous and next cursor
     /// </summary>
-    public abstract class IPage
+    public abstract class IPage 
     {
         /// <summary>
         /// previous page cursor of the request . if <b>null</b> there are no previous pages / is the first page
@@ -23,8 +25,6 @@ namespace Roblox_Sharp.Templates
             this.previousPageCursor = previousPageCursor;
             this.nextPageCursor = nextPageCursor;
         }
-
-
     }
 
     /// <summary>
@@ -38,7 +38,6 @@ namespace Roblox_Sharp.Templates
         /// </summary>
         required public T[] data { get; init; }
 
-        public IPage( string? previousPageCursor, string? nextPageCursor, T[] data) : base(previousPageCursor, nextPageCursor) => this.data = data;
-        
+        public IPage( string? previousPageCursor, string? nextPageCursor, T[] data) : base(previousPageCursor, nextPageCursor) => this.data = data;   
     }
 }

@@ -3,7 +3,7 @@
     /// <summary>
     /// class used to serialize User POST based requests
     /// </summary>
-    internal sealed class User_POST
+    sealed internal class User_POST
     {
         /// <summary>
         /// exclude banned users

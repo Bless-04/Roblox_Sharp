@@ -1,6 +1,5 @@
 using System;
 using System.Text.Json.Serialization;
-
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Templates;
 
@@ -45,43 +44,50 @@ namespace Roblox_Sharp.JSON
     /// <summary>
     /// class used to serialize User based requests
     /// </summary>
-    public class User : IUser 
+    public class User : IUser
     {
         public User(ulong userId) : base(userId) { }
 
-        public User(string name,string? displayName = null)
+        public User(string name, string? displayName = null)
         {
             this.name = name;
             this.displayName = displayName;
         }
 
-        public User(ulong id,string name,string? displayName = null) : base(id) { 
-            this.name = name; 
-            this.displayName = displayName; 
+        public User(ulong id, string name, string? displayName = null) : base(id)
+        {
+            this.name = name;
+            this.displayName = displayName;
         }
 
         public User() { }
 
-        
-       
         [JsonPropertyName("userId")]
-        public ulong userId { get => base.id; init => base.id = value; } //unique to group request
-   
+        public ulong userId 
+        { 
+            get => id; 
+            init => id = value; 
+        } //unique to group request
+
         /// <summary>
         /// unique username for the user
         /// </summary>
         [JsonPropertyName("name")]
         public string name { get; init; }
         [JsonPropertyName("username")]
-        
-        public string username { get => name; init => name = value; } // unique to group request
-        
+
+        public string username
+        {
+            get => name;
+            init => name = value;
+        } // unique to group request
+
         /// <summary>
         /// display name for the user
         /// </summary>
         [JsonPropertyName("displayName")]
         public string? displayName { get; init; }
-        
+
         /// <summary>
         /// description for the user
         /// </summary>
@@ -108,7 +114,7 @@ namespace Roblox_Sharp.JSON
 
         [JsonPropertyName("requestedUsername")]
         public string? requestedUsername { get; init; }
-        
+
         [JsonPropertyName("presenceType")]
         public Presence_Type presenceType { get; init; }
 
@@ -129,13 +135,16 @@ namespace Roblox_Sharp.JSON
 
         [JsonPropertyName("friendFrequentRank")]
         public int friendFrequentRank { get; init; }
-      
+
         /// <summary>
         /// string representation of the user <br></br> 
         /// Format: <b> <paramref name="displayName"/> @ <paramref name="name"/> (<paramref name="id"/>) </b>
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"{displayName} @ {name} ({base.id})";
+        public override string ToString() =>
+            (name != null)
+            ? $"{displayName} @ {name} ({id})"
+            : $"User Id: {id}";
     }
 }
 

@@ -6,6 +6,7 @@ using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON;
 using Roblox_Sharp.JSON.Internal;
+using Roblox_Sharp.JSON.Users;
 
 namespace Roblox_Sharp.Endpoints
 {

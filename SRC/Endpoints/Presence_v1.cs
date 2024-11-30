@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 
 using static Roblox_Sharp.WebAPI;
-using Roblox_Sharp.JSON;
 using Roblox_Sharp.JSON.Internal;
+using Roblox_Sharp.JSON.Users;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -17,7 +17,7 @@ namespace Roblox_Sharp.Endpoints
         /// <summary>
         /// Get Presence for the given array of <paramref name="userIds"/> 
         /// <br></br>
-        /// <b><see href="https://presence.roblox.com//docs/index.html">Presence API Documentation v1</see></b>
+        /// <b><see href="https://presence.roblox.com//docs/index.html">Presence API Documentation</see></b>
         /// </summary>
         /// <param name="userIds"></param>
         /// <returns>userPresence[]</returns>

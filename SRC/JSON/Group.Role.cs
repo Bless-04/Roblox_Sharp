@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-
 namespace Roblox_Sharp.JSON;
 
 public partial class Group
