@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "Profile 1": {
-      "commandName": "Executable",
-      "executablePath": "C:\\Users\\babum\\OneDrive - Towson University\\Programs\\C#\\Roblox_Sharp\\Roblox_SharpTests\\bin\\Debug\\net8.0\\testhost.exe"
-    }
-  }
-}
