@@ -5,6 +5,9 @@ using System.Text.Json;
 using Roblox_Sharp.JSON.Badges;
 using Roblox_Sharp.JSON;
 using static Roblox_Sharp.WebAPI;
+using Roblox_Sharp.Enums;
+using Roblox_Sharp.Templates;
+using System.Collections.Generic;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -45,5 +48,23 @@ namespace Roblox_Sharp.Endpoints
             JsonSerializer.Deserialize<Badge>(
                 await Get_RequestAsync($"https://badges.roblox.com/v1/badges/{badgeId}")
             )!;
+
+        /// <summary>
+        /// Gets a list of badges a user has been awarded.
+        /// </summary>
+        /// <param name="userId">The user id </param>
+        /// <param name="limit">The number of results per request</param>
+        /// <param name="sortOrder">the order the results are stored in</param>
+        /// <param name="page">used for the paging cursor</param>
+        /// <returns></returns>
+        public static async Task<Page<Badge>> Get_BadgesAsync(ulong userId,Limit limit = Limit.Minimum,Sort sortOrder = Sort.Asc,Page<Badge>? page = null) =>
+            //url example 'https://badges.roblox.com/v1/users/2/badges?limit=50&sortOrder=Asc' 
+            JsonSerializer.Deserialize<Page<Badge>>(
+                await Get_RequestAsync(
+                    $"https://badges.roblox.com/v1/users/{userId}/badges?limit={EnumExtensions.ToString(limit)}" +
+                    $"&sortOrder={sortOrder}" +
+                    $"&cursor={page?.nextPageCursor}")
+            )!;
+
     }
 }
