@@ -8,3 +8,4 @@ Roblox_SharpTests/bin/
 Roblox_SharpTests/obj/
 *.TMP
 /.vs
+/SRC/Properties
