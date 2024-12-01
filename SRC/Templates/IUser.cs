@@ -24,13 +24,11 @@ namespace Roblox_Sharp.Templates
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public override bool Equals([NotNullWhen(true)] object? obj) 
-        {
-            if (obj is IUser user)
-                return this.id == user.id;
-
-            return false;
-        }
+        public override bool Equals([NotNullWhen(true)] object? obj) =>
+            (obj is IUser user) 
+                ? this.id == user.id //equal if ids are the same 
+                : false;
+        
         public override int GetHashCode() => id.GetHashCode();
 
         /** might not be a good idea*/

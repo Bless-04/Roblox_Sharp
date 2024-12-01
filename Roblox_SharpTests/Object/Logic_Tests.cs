@@ -60,18 +60,17 @@ namespace Roblox_SharpTests.Object
             IReadOnlyList<User> data = new List<User>()
             {
                 new(1),
-                new(1),
                 new(2)
             };
             
             Page<User> page = new(){data = data};
 
-            User? dummy = page.data[0];
+            User dummy = page.data[0];
 
             Assert.AreEqual(dummy, page.data[0]);
 
             //makes sure its not a shallow copy of the object         
-            dummy = null;
+            dummy = page.data[1];
 
             Assert.IsNotNull(page.data[0]);
             Assert.AreNotEqual(dummy, page.data[0]);

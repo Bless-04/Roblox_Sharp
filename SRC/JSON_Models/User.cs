@@ -62,13 +62,13 @@ namespace Roblox_Sharp.JSON_Models
         }
 
         public User() { }
-
+        
         [JsonPropertyName("userId")]
         public ulong userId 
         { 
-            get => id; 
-            init => id = value; 
-        } //unique to group request
+            get => base.id; 
+            init => base.id = value; 
+        } 
 
         /// <summary>
         /// unique username for the user
@@ -76,7 +76,6 @@ namespace Roblox_Sharp.JSON_Models
         [JsonPropertyName("name")]
         public string name { get; init; }
         [JsonPropertyName("username")]
-
         public string username
         {
             get => name;
@@ -139,13 +138,13 @@ namespace Roblox_Sharp.JSON_Models
 
         /// <summary>
         /// string representation of the user <br></br> 
-        /// Format: <b> <paramref name="displayName"/> @ <paramref name="name"/> (<paramref name="id"/>) </b>
+        /// Format: <b> <paramref name="displayName"/> @ <paramref name="username"/> (<paramref name="id"/>) </b>
         /// </summary>
         /// <returns></returns>
         public override string ToString() =>
             (name != null)
             ? $"{displayName} @ {name} ({id})"
-            : $"User Id: {id}";
+            : $"({id})";
     }
 }
 
