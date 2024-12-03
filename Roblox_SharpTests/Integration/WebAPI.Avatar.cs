@@ -1,7 +1,7 @@
 ﻿using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Enums.Thumbnail;
 
-namespace Roblox_SharpTests;
+namespace Roblox_SharpTests.Integration;
 
 public partial class WebAPI_Test
 {
