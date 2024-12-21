@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System;
 
-namespace Roblox_Sharp.Templates
+namespace Roblox_Sharp.Framework
 {
     /// <summary>
     /// Defines a generalized template for any roblox <paramref name="User"></paramref> based object

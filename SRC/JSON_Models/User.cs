@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Roblox_Sharp.Enums;
-using Roblox_Sharp.Templates;
+using Roblox_Sharp.Framework;
 
 //for the user based requests
 namespace Roblox_Sharp.JSON_Models
@@ -62,7 +62,7 @@ namespace Roblox_Sharp.JSON_Models
         }
 
         public User() { }
-        
+
         [JsonPropertyName("userId")]
         public ulong userId 
         { 
