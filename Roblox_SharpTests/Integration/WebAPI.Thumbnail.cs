@@ -8,7 +8,7 @@ public partial class WebAPI_Test
     //These tests need extensive testing and take longer
     [TestClass]
     [TestCategory("Avatar Requests")]
-    public class Avatars
+    public class Thumbnail
     {
         [ClassInitialize]
         [TestMethod]

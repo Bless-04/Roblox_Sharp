@@ -23,7 +23,7 @@ namespace Roblox_Sharp.JSON_Models.Users
  ]
 }*/
 
-    sealed public class User_Presence : User
+    public class User_Presence : User
     {
         /// <summary>
         /// <see cref="Presence_Type"/> type of user

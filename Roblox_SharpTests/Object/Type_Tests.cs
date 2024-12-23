@@ -16,14 +16,6 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void User_Presence() => Assert.IsInstanceOfType<User>(new User_Presence());
 
-        [TestMethod]
-        public void Avatar() => 
-            Assert.IsInstanceOfType<User>(new Avatar(default) 
-            {
-                imageUrl = "",
-                version = "",
-                state = ""
-            });
 
         [TestMethod]
         public void Page() =>

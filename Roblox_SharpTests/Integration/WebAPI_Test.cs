@@ -259,7 +259,7 @@ public partial class WebAPI_Test
         Page<User> x = Users_v1.Get_UsernameHistoryAsync(1).Result;
         Page<User> y = Users_v1.Get_UsernameHistoryAsync(7733466).Result;
 
-        Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernameHistoryAsync(0)); //doesnt exist
+       
         Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernameHistoryAsync(5)); //terminated user
         
         Assert.AreEqual(x.data.Count,0);

@@ -4,7 +4,7 @@ using Roblox_Sharp.JSON_Models;
 namespace Roblox_SharpTests.Deserialization
 {
     /// <summary>
-    /// Tests Serialization for Users_v1 endpoint
+    /// Tests Serialization for <paramref name="User"/>
     /// </summary>
     [TestCategory("Deserialization Tests")]
     [TestClass]
@@ -37,7 +37,45 @@ namespace Roblox_SharpTests.Deserialization
             Assert.AreEqual<ulong>(0, user.id);
             Assert.AreEqual("string", user.name);
             Assert.AreEqual("string", user.displayName);
-        } 
+        }
 
+        [TestMethod]
+        public void Get_UsernameHistory()
+        {
+            const string json_response = @"
+            {
+              ""previousPageCursor"": ""string"",
+              ""nextPageCursor"": ""string"",
+              ""data"": [
+                {
+                  ""previousUsernames"": [
+                    ""string""
+                  ],
+                  ""hasVerifiedBadge"": true,
+                  ""id"": 0,
+                  ""name"": ""string"",
+                  ""displayName"": ""string""
+                }
+              ]
+            }";
+
+            Page<User> page = JsonSerializer.Deserialize<Page<User>>(json_response)
+                ?? throw new AssertFailedException("Page object should not be null here"); 
+            
+            Assert.AreEqual("string", page.previousPageCursor);
+            Assert.AreEqual("string", page.nextPageCursor);
+
+            User user = page.data[0];
+
+
+            Assert.IsNotNull(user.previousUsernames);
+            Assert.AreEqual(1,user.previousUsernames.Count);
+
+            Assert.AreEqual(true, user.hasVerifiedBadge);
+            Assert.AreEqual<ulong>(0, user.id);
+            Assert.AreEqual("string", user.name);
+            Assert.AreEqual("string", user.displayName);
+
+        }
     }
 }
