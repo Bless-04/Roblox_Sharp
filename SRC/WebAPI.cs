@@ -19,10 +19,10 @@ namespace Roblox_Sharp
         /// <summary>
         /// an event that is raised when the web request is successful/statuscode 200
         /// </summary>
-        public static event EventHandler? OnSuccessfulRequest;
+        public static EventHandler? OnSuccessfulRequest;
 
         /// <summary>
-        /// an event that is raised when the web request fails
+        /// an event that is raised when the web request fails / statuscode is not 200
         /// </summary>
         public static event EventHandler? OnFailedRequest;
 

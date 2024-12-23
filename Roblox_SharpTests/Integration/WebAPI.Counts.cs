@@ -7,8 +7,12 @@ public partial class WebAPI_Test
 {
     //After 60 secs these test must always succeed
     [TestClass]
+    [TestCategory("Count Requests")]
     public class Counts
     {
+        [ClassInitialize]
+        public static async Task Initialize(TestContext testContext) => await WebAPI_Test.Initialize(testContext);
+
         [TestMethod]
         public void FriendsCount()
         {

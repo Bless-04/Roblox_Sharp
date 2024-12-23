@@ -7,8 +7,13 @@ public partial class WebAPI_Test
 {
     //These tests need extensive testing and take longer
     [TestClass]
+    [TestCategory("Avatar Requests")]
     public class Avatars
     {
+        [ClassInitialize]
+        [TestMethod]
+        public static async Task Initialize(TestContext testContext) => await WebAPI_Test.Initialize(testContext);
+
         [TestMethod]
         public void Headshots()
         {

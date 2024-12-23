@@ -4,6 +4,7 @@ using System.Text.Json;
 using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.JSON_Models;
 using System.Collections.Generic;
+using System;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -33,7 +34,7 @@ namespace Roblox_Sharp.Endpoints
             //url example https://groups.roblox.com/v1/groups/2/roles
             JsonSerializer.Deserialize<Group>(
                 await Get_RequestAsync($"https://groups.roblox.com/v1/groups/{groupId}/roles")
-            )!.roles ;
+            )!.roles ?? Array.Empty<Group.Role>();
 
     }
 }

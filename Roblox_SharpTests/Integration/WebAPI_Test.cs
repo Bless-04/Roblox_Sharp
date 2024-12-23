@@ -14,14 +14,18 @@ using Roblox_Sharp.JSON_Models.Users;
 namespace Roblox_SharpTests.Integration;
 
 [TestClass]
+[TestCategory("Integration Tests")]
 public partial class WebAPI_Test
 {
     
     public WebAPI_Test()
     {
-       WebAPI.OnSuccessfulRequest += OnSuccessfulRequest;
-       WebAPI.OnFailedRequest += OnFailedRequest;  
+        WebAPI.OnSuccessfulRequest += OnSuccessfulRequest;
+        WebAPI.OnFailedRequest += OnFailedRequest;
     }
+
+    [ClassInitialize]
+    public static async Task Initialize(TestContext testContext) => await Task.Delay(60001);
 
     public void OnSuccessfulRequest(object? sender, EventArgs e) => Debug.WriteLine("SUCCESS " + (sender as HttpResponseMessage)?.RequestMessage);
     public void OnFailedRequest(object? sender, EventArgs e) => Debug.WriteLine("HANDLED "  + (sender as HttpResponseMessage)?.RequestMessage );

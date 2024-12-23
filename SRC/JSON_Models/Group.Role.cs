@@ -38,5 +38,8 @@ public partial class Group
         /// </summary>
         [JsonPropertyName("memberCount")]
         public ulong memberCount { get; init; }
+
+        [JsonPropertyName("description")]
+        public string? description { get; init; }
     }
 }

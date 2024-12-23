@@ -57,6 +57,9 @@ namespace Roblox_Sharp.JSON_Models
         [JsonPropertyName("publicEntryAllowed")]
         public bool publicEntryAllowed { get; init; }
 
+        [JsonPropertyName("isLocked")]
+        public bool isLocked { get; init; }
+
         /// <summary>
         /// true if group has a verified badge, false otherwise
         /// </summary>

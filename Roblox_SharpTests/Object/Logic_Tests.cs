@@ -3,6 +3,7 @@ using Roblox_Sharp.JSON_Models;
 
 namespace Roblox_SharpTests.Object
 {
+    [TestCategory("Object Usage Tests")]
     [TestClass]
     /// <summary>
     /// tests functionality of objects

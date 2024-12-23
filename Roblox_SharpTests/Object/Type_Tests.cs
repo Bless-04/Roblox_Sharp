@@ -6,6 +6,7 @@ using Roblox_Sharp.JSON_Models.Badges;
 
 namespace Roblox_SharpTests
 {
+    [TestCategory("Object Usage Tests")]
     [TestClass]
     public partial class Type_Tests
     {
