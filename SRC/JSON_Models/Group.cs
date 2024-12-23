@@ -1,18 +1,26 @@
-﻿using System;
+﻿
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.JSON_Models
 {
+    [JsonSerializable(typeof(Group))]
     /// <summary>
     /// class used to serialize Group based requests
     /// </summary>
     sealed public partial class Group
     {
+       
         /// <summary>
-        /// group id
+        /// the groups id
         /// </summary>
-        [JsonPropertyName("id")]
-        public ulong id { get; init; }
+        public ulong groupId { get; init; }
+
+
+        /// <summary>
+        /// ambiguous with groupId
+        /// </summary>
+        [JsonInclude]
+        private ulong id { init => groupId = value; }
 
         /// <summary>
         /// group name

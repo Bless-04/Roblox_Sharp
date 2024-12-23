@@ -48,7 +48,7 @@ namespace Roblox_SharpTests.Deserialization
             Group group = JsonSerializer.Deserialize<Group>(json_response) 
                 ?? throw new AssertFailedException("Group object should not be null here");
 
-            Assert.AreEqual<ulong>(0, group.id);
+            Assert.AreEqual<ulong>(0, group.groupId);
             Assert.AreEqual("string", group.name);
 
             Assert.AreEqual("string", group.description);
@@ -94,12 +94,12 @@ namespace Roblox_SharpTests.Deserialization
             Group group = JsonSerializer.Deserialize<Group>(json_reponse) 
                 ?? throw new AssertFailedException("Group object should not be null here");
             
-            Assert.AreEqual<ulong>(0, group.id);
+            Assert.AreEqual<ulong>(0, group.groupId);
 
             Group.Role role = group.roles![0];
            
                 
-            Assert.AreEqual<ulong>(0, role.id);
+            Assert.AreEqual<ulong>(0, role.roleId);
             Assert.AreEqual("string", role.name);
             Assert.AreEqual("string", role.description);
             Assert.AreEqual<ulong>(0, role.rank);

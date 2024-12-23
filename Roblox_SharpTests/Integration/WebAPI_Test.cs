@@ -44,9 +44,9 @@ public partial class WebAPI_Test
         Group group = Groups_v1.Get_GroupAsync(2).Result;
 
         
-        Assert.AreEqual((ulong) 261,group.owner.id); //owner is 261
+        Assert.AreEqual((ulong) 261,group.owner.userId); //owner is 261
 
-        Assert.AreEqual( (ulong) 2, group.id); //group id is 2
+        Assert.AreEqual( (ulong) 2, group.groupId); //group id is 2
 
         Assert.IsTrue(group.memberCount > 100000); //over 100k members as of 11/27/24
         Assert.ThrowsExceptionAsync<InvalidIdException>(() => Groups_v1.Get_GroupAsync(0)); //doesnt exist
@@ -62,9 +62,9 @@ public partial class WebAPI_Test
         Group group2 = groups[1];
         Group group3 = groups[2];
 
-        Assert.AreEqual((ulong) 1179762, group1.owner.id); //owner is 1179762
-        Assert.AreEqual((ulong) 261, group2.owner.id); //owner is 261
-        Assert.AreEqual((ulong) 24941, group3.owner.id);  //owner is 24941
+        Assert.AreEqual((ulong) 1179762, group1.owner.userId); //owner is 1179762
+        Assert.AreEqual((ulong) 261, group2.owner.userId); //owner is 261
+        Assert.AreEqual((ulong) 24941, group3.owner.userId);  //owner is 24941
 
         Assert.IsTrue(group1.created.Year == group2.created.Year && group3.created.Year == group2.created.Year); // all created in 2009
     }
@@ -94,7 +94,7 @@ public partial class WebAPI_Test
 
         
         // value checking
-        Assert.AreEqual(x.id,(ulong) 1);
+        Assert.AreEqual(x.userId,(ulong) 1);
         Assert.AreEqual(x, xx);
         Assert.AreNotEqual(x, y);
     }
@@ -109,7 +109,7 @@ public partial class WebAPI_Test
         Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernamesAsync([])); //empty
 
         foreach (User u in user_list)
-            Assert.AreEqual(u.name, Users_v1.Get_UserAsync(u.id).Result.name);
+            Assert.AreEqual(u.username, Users_v1.Get_UserAsync(u.userId).Result.username);
     }
 
     [TestMethod]
@@ -120,7 +120,7 @@ public partial class WebAPI_Test
         Assert.ThrowsExceptionAsync<InvalidUsernameException>(() => Users_v1.Get_UsersAsync([]));
 
         foreach (User u in user_list) 
-            Assert.AreEqual(u.Equals(Users_v1.Get_UserAsync(u.id).Result), true);
+            Assert.AreEqual(u.Equals(Users_v1.Get_UserAsync(u.userId).Result), true);
     }
 
     [TestMethod]
@@ -141,7 +141,7 @@ public partial class WebAPI_Test
         Page<User> x = Friends_v1.Get_FollowersAsync(1).Result; //roblox
 
         //old page
-        ulong some_id = x.data[0].id;
+        ulong some_id = x.data[0].userId;
 
         Assert.IsNotNull(some_id);
 
@@ -158,7 +158,7 @@ public partial class WebAPI_Test
 
         Assert.IsNotNull(x.previousPageCursor);
 
-        Assert.AreNotEqual(x.data[0].id, some_id);
+        Assert.AreNotEqual(x.data[0].userId, some_id);
 
     }
 
@@ -200,12 +200,12 @@ public partial class WebAPI_Test
         Assert.ThrowsExceptionAsync<InvalidIdException>(() => Badges_v1.Get_BadgesAsync(0)); //doesnt exist
 
         Assert.IsNotNull(erik_badge1.creator);
-        Assert.IsNotNull(erik_badge1.awarder);
+        Assert.IsNotNull(erik_badge1.awardingUniverse);
         Assert.IsNotNull(erik_badge1.statistics);
 
-        Assert.AreEqual((ulong)2925703, erik_badge1.creator.id);
+        Assert.AreEqual((ulong)2925703, erik_badge1.creator.userId);
         Assert.AreEqual(2009, erik_badge1.created.Year);
-        Assert.AreEqual((ulong)10277240,erik_badge1.awarder.id); //game id 
+        Assert.AreEqual((ulong)10277240,erik_badge1.awardingUniverse.universeId); //game id 
 
         Assert.IsTrue(erik_badge1.statistics.awardedCount > 1000000); ///over 1000000 as of 11/29/24
     }
@@ -218,7 +218,7 @@ public partial class WebAPI_Test
 
         Assert.ThrowsExceptionAsync<InvalidIdException>(() => Badges_v1.Get_BadgeAsync(0)); //doesnt exist
         
-        Assert.AreEqual((ulong) 14417332, badge.id);
+        Assert.AreEqual((ulong) 14417332, badge.badgeId);
 
         Assert.IsTrue(badge.created.Year == 2009);
     }

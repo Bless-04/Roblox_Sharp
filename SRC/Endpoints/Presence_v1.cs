@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 
 using static Roblox_Sharp.WebAPI;
+
+using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON_Models.Internal;
 using Roblox_Sharp.JSON_Models.Users;
 using System.Collections.Generic;
@@ -26,6 +28,7 @@ namespace Roblox_Sharp.Endpoints
             // url example https://presence.roblox.com/v1/presence/users
             JsonSerializer.Deserialize<Presence_Response>(
                 await Post_RequestAsync($"https://presence.roblox.com/v1/presence/users", new User_POST(userIds))
-            )!.userPresences;
+            )!.userPresences 
+                ?? throw new InvalidIdException($"No valid user ids\n[{string.Join(',', userIds)}]");
     }
 }

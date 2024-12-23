@@ -5,6 +5,7 @@ using Roblox_Sharp.Framework;
 
 namespace Roblox_Sharp.JSON_Models
 {
+    [JsonSerializable(typeof(Page<>))]
     /// <summary>
     /// used for all the page based requests ; requests that can return multiple pages or have a data[] field
     /// </summary>

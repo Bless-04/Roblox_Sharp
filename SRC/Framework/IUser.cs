@@ -9,15 +9,15 @@ namespace Roblox_Sharp.Framework
     public abstract class IUser : 
         IComparable<IUser>
     {
-
         /// <summary>
-        /// the Unique numeric <paramref name="id"/> of the user. Should only be set in initialization
+        /// the Unique numeric <paramref name="userId"/> of the user. Should only be set in initialization
         /// </summary>
-        public ulong id { get; init; }
+        public ulong userId { get; init; }
+
         
         public IUser() { }
 
-        public IUser(ulong id) => this.id = id;
+        public IUser(ulong userId) => this.userId = userId;
 
         /// <summary>
         /// equal if and only if the ids are the same
@@ -26,18 +26,18 @@ namespace Roblox_Sharp.Framework
         /// <returns></returns>
         public override bool Equals([NotNullWhen(true)] object? obj) =>
             (obj is IUser user) 
-                ? this.id == user.id //equal if ids are the same 
+                ? this.userId == user.userId //equal if ids are the same 
                 : false;
         
-        public override int GetHashCode() => id.GetHashCode();
+        public override int GetHashCode() => userId.GetHashCode();
 
-        /** might not be a good idea*/
+        [Obsolete("this conversion loses information; call userid instead")]
         /// <summary>
-        /// explicit conversion from <see cref="IUser"/> to <see cref="ulong"/> <br></br>
+        /// lossy conversion from <see cref="IUser"/> to <see cref="ulong"/> <br></br>
         /// simply returns the users id
         /// </summary>
         /// <param name="user"></param>
-        public static explicit operator ulong(IUser user) => user.id;
+        public static explicit operator ulong(IUser user) => user.userId;
 
         /// <summary>
         /// a user is <b> less than </b> another if it is younger. Younger users have larger ids than older ones
@@ -45,7 +45,7 @@ namespace Roblox_Sharp.Framework
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns>bool</returns>
-        public static bool operator <(IUser left, IUser right) => left.id > right.id;
+        public static bool operator <(IUser left, IUser right) => left.userId > right.userId;
 
        
         /// <summary>
@@ -54,7 +54,7 @@ namespace Roblox_Sharp.Framework
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns>bool</returns>
-        public static bool operator >(IUser left, IUser right) => left.id < right.id;
+        public static bool operator >(IUser left, IUser right) => left.userId < right.userId;
         
         
         /// <summary>
@@ -69,10 +69,10 @@ namespace Roblox_Sharp.Framework
             if (other is null) return 1;
 
             //if this is older than other
-            if (this.id < other.id) return 1;
+            if (this.userId < other.userId) return 1;
 
             //if this is younger than other
-            if (this.id > other.id) return -1;
+            if (this.userId > other.userId) return -1;
 
             return 0;
         }

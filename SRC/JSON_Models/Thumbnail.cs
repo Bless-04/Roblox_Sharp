@@ -15,31 +15,22 @@ namespace Roblox_Sharp.JSON_Models.Users
             }
         ]
     }*/
+
+    [JsonSerializable(typeof(Thumbnail))]
     /// <summary>
-    /// class used to serialize Avatar based requests
+    /// class used to serialize Thumbnail based requests
     /// </summary>
-    public class Avatar : User
+    public class Thumbnail
     {
+        public ulong targetId { get; init; }
 
-        [JsonPropertyName("targetId")]
-        public ulong targetId
-        {
-            get => base.id;
-            init => base.id = targetId;
-        }
-
-        [JsonPropertyName("state")]
         required public string state { get; init; }
 
         /// <summary>
-        /// image url of avatar based request
+        /// image url of thumbnail 
         /// </summary>
-        [JsonPropertyName("imageUrl")]
         required public string imageUrl { get; init; }
 
-        [JsonPropertyName("version")]
         required public string version { get; init; }
-
-        public Avatar(ulong targetId) : base(targetId) { }
     }
 }

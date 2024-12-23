@@ -31,7 +31,7 @@ namespace Roblox_SharpTests
         {
             name = "",
             description = "",
-            id = 0
+            badgeId = 0
         });
         
     }

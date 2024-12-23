@@ -3,24 +3,25 @@
 namespace Roblox_Sharp.JSON_Models
 {
     //TODO: finish
+    [JsonSerializable(typeof(Game))]
     sealed public partial class Game
     {
+        [JsonInclude]
+        private ulong id { init => universeId = value; }
+        
         /// <summary>
         /// the universe id 
         /// </summary>
-        [JsonPropertyName("id")]
-        public ulong id { get; init; }
+        public ulong universeId { get; init; }
         
         /// <summary>
         /// the universe  name
         /// </summary>
-        [JsonPropertyName("name")]
         public string? name { get; init; }
 
         /// <summary>
         /// The description of the universe.
         /// </summary>
-        [JsonPropertyName("rootPlaceId")]
         public ulong rootPlaceId { get; init; }
     }
 }
