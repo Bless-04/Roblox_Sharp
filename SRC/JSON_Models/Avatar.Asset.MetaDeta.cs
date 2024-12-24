@@ -11,7 +11,7 @@ public partial class Avatar
         /// <summary>
         /// metadata of the asset
         /// </summary>
-        public class Metadata
+        public readonly struct Metadata
         {
             /// <summary>
             /// layered clothing order

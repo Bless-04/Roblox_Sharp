@@ -7,7 +7,7 @@ namespace Roblox_Sharp.JSON_Models
     sealed public partial class Game
     {
         [JsonInclude]
-        private ulong id { init => universeId = value; }
+        protected ulong id { init => universeId = value; }
         
         /// <summary>
         /// the universe id 

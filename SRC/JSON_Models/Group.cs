@@ -7,7 +7,7 @@ namespace Roblox_Sharp.JSON_Models
     /// <summary>
     /// class used to serialize Group based requests
     /// </summary>
-    sealed public partial class Group
+    public partial class Group
     {
        
         /// <summary>
@@ -20,7 +20,7 @@ namespace Roblox_Sharp.JSON_Models
         /// ambiguous with groupId
         /// </summary>
         [JsonInclude]
-        private ulong id { init => groupId = value; }
+        protected ulong id { init => groupId = value; }
 
         /// <summary>
         /// group name

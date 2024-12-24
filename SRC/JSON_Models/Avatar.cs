@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Numerics;
+﻿using System.Collections.Generic;
+
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+
 using Roblox_Sharp.Enums;
-using Roblox_Sharp.JSON_Models.Internal;
 
 namespace Roblox_Sharp.JSON_Models
 {
@@ -82,13 +78,14 @@ namespace Roblox_Sharp.JSON_Models
         /// <summary>
         /// the brickcolor ids for each bodypart
         /// </summary>
-        public BodyColors bodyColors { get; init; }
+        public BodyColors bodyColors { get; init; } //unique to v1
+
+        public BodyColor3s bodyColor3s { get; init; } //unique to v2
 
         /// <summary>
         /// the assets worn on the avatar
         /// </summary>
-        public IReadOnlyList<Asset>? assets { get; init; }
-
+        public IReadOnlyList<Asset>? assets { get; init; } 
         /// <summary>
         /// true if the default shirt is applied to this avatar
         /// </summary>

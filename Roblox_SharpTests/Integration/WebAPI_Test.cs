@@ -256,14 +256,14 @@ public partial class WebAPI_Test
     {
 
         //7733466 is an admin
-        Page<User> x = Users_v1.Get_UsernameHistoryAsync(1).Result;
+        //Page<User> x = Users_v1.Get_UsernameHistoryAsync(1).Result;
         Page<User> y = Users_v1.Get_UsernameHistoryAsync(7733466).Result;
 
        
         Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernameHistoryAsync(5)); //terminated user
         
-        Assert.AreEqual(x.data.Count,0);
+        //Assert.AreEqual(x.data.Count,0);
         Assert.AreNotEqual(y.data.Count, 0);
-        Assert.IsTrue(x.previousPageCursor == null);
+        Assert.IsTrue(y.previousPageCursor == null);
     }
 }

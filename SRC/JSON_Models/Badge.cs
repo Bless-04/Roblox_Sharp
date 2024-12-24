@@ -15,7 +15,7 @@ namespace Roblox_Sharp.JSON_Models
         /// ambiguous with badge id
         /// </summary>
         [JsonInclude]
-        private ulong id { init => badgeId = value; }
+        protected ulong id { init => badgeId = value; }
 
         /// <summary>
         /// the name of the badge 

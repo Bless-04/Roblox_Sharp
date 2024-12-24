@@ -19,7 +19,7 @@ public partial class Group
         /// ambiguous with roleId
         /// </summary>
         [JsonInclude]
-        private ulong id { init => roleId = value; }
+        protected ulong id { init => roleId = value; }
 
         /// <summary>
         /// Group Role ID
