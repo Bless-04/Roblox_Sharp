@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 
 using Roblox_Sharp.Exceptions;
-using Roblox_Sharp.JSON_Models.Internal;
+using Roblox_Sharp.JSON_Models.Internal.POST;
 
 namespace Roblox_Sharp
 {

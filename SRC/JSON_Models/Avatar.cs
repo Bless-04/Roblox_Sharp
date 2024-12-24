@@ -3,7 +3,7 @@
 using System.Text.Json.Serialization;
 
 using Roblox_Sharp.Enums;
-using Roblox_Sharp.JSON_Models.Internal;
+using Roblox_Sharp.JSON_Models.Internal.JsonConverter;
 
 namespace Roblox_Sharp.JSON_Models
 {
@@ -67,7 +67,7 @@ namespace Roblox_Sharp.JSON_Models
     }
   ]
 }*/
-    
+
     /// <summary>
     /// used to serialize avatar based requests
     /// </summary>
