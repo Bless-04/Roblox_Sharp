@@ -7,7 +7,7 @@ namespace Roblox_SharpTests.Deserialization
     /// <summary>
     /// Tests Serialization for all Group endpoints
     /// </summary>
-    [TestCategory("Deserialization Tests")]
+    [TestCategory("Deserialization Tests (Group)")]
     [TestClass]
     public class Group_Object
     {

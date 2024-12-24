@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Roblox_Sharp.JSON_Models.Users
+namespace Roblox_Sharp.JSON_Models
 {
 
     /** example return 

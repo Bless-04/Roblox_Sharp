@@ -8,7 +8,7 @@ namespace Roblox_SharpTests
 {
     [TestCategory("Object Usage Tests")]
     [TestClass]
-    public partial class Type_Tests
+    public partial class Instance_Test
     {
         [TestMethod]
         public void User() => Assert.IsInstanceOfType<IUser>(new User());
@@ -33,6 +33,8 @@ namespace Roblox_SharpTests
             description = "",
             badgeId = 0
         });
-        
+
+        [TestMethod]
+        public void Emote() => Assert.IsInstanceOfType<Avatar.Asset>(new Avatar.Emote());    
     }
 }

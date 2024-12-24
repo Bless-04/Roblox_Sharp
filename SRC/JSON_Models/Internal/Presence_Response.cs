@@ -9,7 +9,7 @@ namespace Roblox_Sharp.JSON_Models.Internal
     /// used for response of userPresence requests
     /// </summary>
     /// since arrays are a reference type, its not worth making this a struct
-    sealed internal class Presence_Response
+    internal class Presence_Response
     {
         required public IReadOnlyList<User_Presence> userPresences { get; init; }
     }

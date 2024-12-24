@@ -14,7 +14,6 @@ namespace Roblox_Sharp.JSON_Models
     {   
         public Page() : base(null,null,Array.Empty<T>()) { }
 
-        [JsonConstructor]
         public Page(string? previousPageCursor, string? nextPageCursor, IReadOnlyList<T> data) 
             : base (previousPageCursor, nextPageCursor, data) { }
     }
