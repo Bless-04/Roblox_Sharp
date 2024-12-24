@@ -1,18 +1,26 @@
-﻿using System;
+﻿
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.JSON_Models
 {
+    [JsonSerializable(typeof(Group))]
     /// <summary>
     /// class used to serialize Group based requests
     /// </summary>
-    sealed public partial class Group
+    public partial class Group
     {
+       
         /// <summary>
-        /// group id
+        /// the groups id
         /// </summary>
-        [JsonPropertyName("id")]
-        public ulong id { get; init; }
+        public ulong groupId { get; init; }
+
+
+        /// <summary>
+        /// ambiguous with groupId
+        /// </summary>
+        [JsonInclude]
+        protected ulong id { init => groupId = value; }
 
         /// <summary>
         /// group name
@@ -56,6 +64,9 @@ namespace Roblox_Sharp.JSON_Models
         /// </summary>
         [JsonPropertyName("publicEntryAllowed")]
         public bool publicEntryAllowed { get; init; }
+
+        [JsonPropertyName("isLocked")]
+        public bool isLocked { get; init; }
 
         /// <summary>
         /// true if group has a verified badge, false otherwise

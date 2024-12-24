@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Roblox_Sharp.Templates
+namespace Roblox_Sharp.Framework
 {
     /// <summary>
     /// template for all the page based requests that have a previous and next cursor

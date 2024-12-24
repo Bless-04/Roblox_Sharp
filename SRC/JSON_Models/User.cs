@@ -1,8 +1,8 @@
-using System;
+ using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Roblox_Sharp.Enums;
-using Roblox_Sharp.Templates;
+using Roblox_Sharp.Framework;
 
 //for the user based requests
 namespace Roblox_Sharp.JSON_Models
@@ -42,6 +42,7 @@ namespace Roblox_Sharp.JSON_Models
         }
 */
 
+    [JsonSerializable(typeof(User))]
     /// <summary>
     /// class used to serialize User based requests
     /// </summary>
@@ -49,103 +50,87 @@ namespace Roblox_Sharp.JSON_Models
     {
         public User(ulong userId) : base(userId) { }
 
-        public User(string name, string? displayName = null)
+        public User(string username, string? displayName = null)
         {
-            this.name = name;
+            this.username = username;
             this.displayName = displayName;
         }
 
-        public User(ulong id, string name, string? displayName = null) : base(id)
+        public User(ulong userId, string username, string? displayName = null) : base(userId)
         {
-            this.name = name;
+            this.username = username;
             this.displayName = displayName;
         }
 
         public User() { }
 
-        [JsonPropertyName("userId")]
-        public ulong userId 
-        { 
-            get => id; 
-            init => id = value; 
-        } //unique to group request
+        [JsonInclude]
+        /// <summary>
+        /// ambiguous with userId
+        /// </summary>
+        protected ulong id { init => base.userId = value; }
 
         /// <summary>
         /// unique username for the user
         /// </summary>
-        [JsonPropertyName("name")]
-        public string name { get; init; }
-        [JsonPropertyName("username")]
+        public string username { get; init; }
 
-        public string username
-        {
-            get => name;
-            init => name = value;
-        } // unique to group request
+        [JsonInclude]
+        /// <summary>
+        /// ambiguous with username
+        /// </summary>
+        protected string name { init => this.username = value; }
 
         /// <summary>
         /// display name for the user
         /// </summary>
-        [JsonPropertyName("displayName")]
         public string? displayName { get; init; }
 
         /// <summary>
         /// description for the user
         /// </summary>
-        [JsonPropertyName("description")]
         public string? description { get; init; }
 
         /// <summary>
         /// creation date and time of user
         /// </summary>
-        [JsonPropertyName("created")]
         public DateTime created { get; init; }
 
         /// <summary>
         /// <b>true</b> if user is banned, <b>false</b> otherwise
         /// </summary>
-        [JsonPropertyName("isBanned")]
         public bool isBanned { get; init; }
-
-        [JsonPropertyName("externalAppDisplayName")]
+        
         public string? externalAppDisplayName { get; init; }
 
-        [JsonPropertyName("hasVerifiedBadge")]
         public bool hasVerifiedBadge { get; init; }
 
-        [JsonPropertyName("requestedUsername")]
         public string? requestedUsername { get; init; }
 
-        [JsonPropertyName("presenceType")]
         public Presence_Type presenceType { get; init; }
 
-        [JsonPropertyName("previousUsernames")]
         public IReadOnlyList<string>? previousUsernames { get; init; }
 
         /// <summary>
         /// <b>true</b> if user is currently online, <b>false</b> otherwise
         /// </summary>
-        [JsonPropertyName("isOnline")]
         public bool isOnline { get; init; }
 
-        [JsonPropertyName("isDeleted")]
         public bool isDeleted { get; init; }
 
-        [JsonPropertyName("friendFrequentScore")]
         public int friendFrequentScore { get; init; }
 
-        [JsonPropertyName("friendFrequentRank")]
         public int friendFrequentRank { get; init; }
 
         /// <summary>
         /// string representation of the user <br></br> 
-        /// Format: <b> <paramref name="displayName"/> @ <paramref name="name"/> (<paramref name="id"/>) </b>
+        /// Format: <b> <paramref name="displayName"/> @ <paramref name="username"/> (<paramref name="id"/>) </b>
         /// </summary>
         /// <returns></returns>
         public override string ToString() =>
-            (name != null)
-            ? $"{displayName} @ {name} ({id})"
-            : $"User Id: {id}";
+            (username != null)
+            ? $"{displayName} @ {username} ({userId})"
+            : $"({userId})";
     }
 }
 

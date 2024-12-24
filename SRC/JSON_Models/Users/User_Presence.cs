@@ -22,58 +22,36 @@ namespace Roblox_Sharp.JSON_Models.Users
    }
  ]
 }*/
-
-    sealed public class User_Presence : User
+    [JsonSerializable(typeof(User_Presence))]
+    public class User_Presence : User
     {
+        [JsonInclude]
         /// <summary>
         /// <see cref="Presence_Type"/> type of user
         /// </summary>
-        [JsonPropertyName("userPresenceType")]
-        public Presence_Type userPresenceType
-        {
-            get => presenceType;
-            init => presenceType = value;
-        }
+        private Presence_Type userPresenceType {init => presenceType = value;}
 
-        [JsonPropertyName("lastLocation")]
         public string? lastLocation { get; init; }
 
         /// <summary>
         /// unique place id
         /// </summary>
-        [JsonPropertyName("placeId")]
         public ulong? placeId { get; init; }
 
-        [JsonPropertyName("rootPlaceId")]
         public ulong? rootPlaceId { get; init; }
 
         /// <summary>
         /// unique game id
         /// </summary>
-        [JsonPropertyName("gameId")]
         public string? gameId { get; init; }
 
-        [JsonPropertyName("universeId")]
         public ulong? universeId { get; init; }
-
-        /// <summary>
-        /// unique user id
-        /// </summary>
-        [JsonPropertyName("userId")]
-        [JsonIgnore]
-        private ulong _userId
-        {
-            get => userId;
-            init => userId = value;
-        }
 
         /// <summary>
         /// exact date and time user was last online
         /// </summary>
-        [JsonPropertyName("lastOnline")]
-        public DateTime? lastOnline { get; init; }
+        public DateTime lastOnline { get; init; }
 
-        [JsonPropertyName("invisibleModeExpiry")]
-        public DateTime? invisibleModeExpiry { get; init; }
+        public DateTime invisibleModeExpiry { get; init; }
     }
 }

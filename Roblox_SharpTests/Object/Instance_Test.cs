@@ -1,4 +1,4 @@
-﻿using Roblox_Sharp.Templates;
+﻿using Roblox_Sharp.Framework;
 
 using Roblox_Sharp.JSON_Models;
 using Roblox_Sharp.JSON_Models.Users;
@@ -6,8 +6,9 @@ using Roblox_Sharp.JSON_Models.Badges;
 
 namespace Roblox_SharpTests
 {
+    [TestCategory("Object Usage Tests")]
     [TestClass]
-    public partial class Type_Tests
+    public partial class Instance_Test
     {
         [TestMethod]
         public void User() => Assert.IsInstanceOfType<IUser>(new User());
@@ -15,14 +16,6 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void User_Presence() => Assert.IsInstanceOfType<User>(new User_Presence());
 
-        [TestMethod]
-        public void Avatar() => 
-            Assert.IsInstanceOfType<User>(new Avatar(default) 
-            {
-                imageUrl = "",
-                version = "",
-                state = ""
-            });
 
         [TestMethod]
         public void Page() =>
@@ -38,8 +31,10 @@ namespace Roblox_SharpTests
         {
             name = "",
             description = "",
-            id = 0
+            badgeId = 0
         });
-        
+
+        [TestMethod]
+        public void Emote() => Assert.IsInstanceOfType<Avatar.Asset>(new Avatar.Emote());    
     }
 }

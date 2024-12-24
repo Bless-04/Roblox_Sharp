@@ -1,14 +1,19 @@
 ﻿using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Enums.Thumbnail;
 
-namespace Roblox_SharpTests;
+namespace Roblox_SharpTests.Integration;
 
 public partial class WebAPI_Test
 {
     //These tests need extensive testing and take longer
     [TestClass]
-    public class Avatars
+    [TestCategory("Avatar Requests")]
+    public class Thumbnail
     {
+        [ClassInitialize]
+        [TestMethod]
+        public static async Task Initialize(TestContext testContext) => await WebAPI_Test.Initialize(testContext);
+
         [TestMethod]
         public void Headshots()
         {

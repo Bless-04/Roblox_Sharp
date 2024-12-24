@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 namespace Roblox_Sharp.JSON_Models;
 
+[JsonSerializable(typeof(Group.Role))]
 public partial class Group
 {
     /// <summary>
     /// unique to role requests
     /// </summary>
-    [JsonPropertyName("roles")]
     public IReadOnlyList<Role>? roles { get; init; }
 
     /// <summary>
@@ -16,27 +16,32 @@ public partial class Group
     public class Role
     {
         /// <summary>
+        /// ambiguous with roleId
+        /// </summary>
+        [JsonInclude]
+        protected ulong id { init => roleId = value; }
+
+        /// <summary>
         /// Group Role ID
         /// </summary>
-        [JsonPropertyName("id")]
-        public ulong id { get; init; }
+        public ulong roleId { get; init; }
+
 
         /// <summary>
         /// Group Role Name
         /// </summary>
-        [JsonPropertyName("name")]
         required public string name { get; init; }
 
         /// <summary>
         /// Group role rank (255 is the owner)
         /// </summary>
-        [JsonPropertyName("rank")]
         public byte rank { get; init; }
 
         /// <summary>
         /// Number of members in the role
         /// </summary>
-        [JsonPropertyName("memberCount")]
         public ulong memberCount { get; init; }
+
+        public string? description { get; init; }
     }
 }

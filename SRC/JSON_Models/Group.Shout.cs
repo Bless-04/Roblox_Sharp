@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+
 namespace Roblox_Sharp.JSON_Models;
+
+[JsonSerializable(typeof(Group.Shout))]
 public partial class Group
 {
     //Unique to this request
@@ -8,7 +11,6 @@ public partial class Group
     /// <summary>
     /// The date the Group Shout was created. 
     /// </summary>
-    [JsonPropertyName("created")]
     public DateTime created { get; init; }
 
     /// <summary>
@@ -19,25 +21,21 @@ public partial class Group
         /// <summary>
         /// group shoutouts message body
         /// </summary>
-        [JsonPropertyName("body")]
         required public string body { get; init; }
 
         /// <summary>
         /// user information of the Group Shouts poster
         /// </summary>
-        [JsonPropertyName("poster")]
         required public User poster { get; init; }
 
         /// <summary>
         /// The shouts created date 
         /// </summary>
-        [JsonPropertyName("created")]
         public DateTime created { get; init; }
 
         /// <summary>
         /// The date of the last Group Shout 
         /// </summary>
-        [JsonPropertyName("updated")]
         public DateTime updated { get; init; }
     }
 

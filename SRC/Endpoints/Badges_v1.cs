@@ -6,7 +6,7 @@ using Roblox_Sharp.JSON_Models.Badges;
 using Roblox_Sharp.JSON_Models;
 using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.Enums;
-using Roblox_Sharp.Templates;
+using Roblox_Sharp.Framework;
 using System.Collections.Generic;
 
 namespace Roblox_Sharp.Endpoints

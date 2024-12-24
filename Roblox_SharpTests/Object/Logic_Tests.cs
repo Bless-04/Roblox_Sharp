@@ -3,6 +3,7 @@ using Roblox_Sharp.JSON_Models;
 
 namespace Roblox_SharpTests.Object
 {
+    [TestCategory("Object Usage Tests")]
     [TestClass]
     /// <summary>
     /// tests functionality of objects
@@ -35,23 +36,6 @@ namespace Roblox_SharpTests.Object
             Assert.IsTrue(x.Equals(X));
         }
 
-        [TestMethod]
-        public void IUser_Equals()
-        {
-            User user = new(1); //main
-            User_Presence presence = new() { id = user.id };
-
-            Avatar avatar = new(1)
-            {
-                imageUrl = "",
-                version = "",
-                state = ""
-            };
-
-            Assert.AreEqual(presence, user);
-            Assert.AreEqual<User>(presence, avatar);
-        }
-
 
         [TestMethod]
         public void ImmutableTest()
@@ -60,18 +44,17 @@ namespace Roblox_SharpTests.Object
             IReadOnlyList<User> data = new List<User>()
             {
                 new(1),
-                new(1),
                 new(2)
             };
             
             Page<User> page = new(){data = data};
 
-            User? dummy = page.data[0];
+            User dummy = page.data[0];
 
             Assert.AreEqual(dummy, page.data[0]);
 
             //makes sure its not a shallow copy of the object         
-            dummy = null;
+            dummy = page.data[1];
 
             Assert.IsNotNull(page.data[0]);
             Assert.AreNotEqual(dummy, page.data[0]);
