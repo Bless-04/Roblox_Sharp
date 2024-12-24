@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 
 namespace Roblox_Sharp.Enums
 {
@@ -38,5 +39,32 @@ namespace Roblox_Sharp.Enums
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
+
+        /// <summary>
+        /// converts a string to an avatar type if possible
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException">When the avatar type is not programmed in</exception>
+        public static Avatar_Type ToAvatar_Type(string text)
+        {
+            try
+            {
+                return (Avatar_Type)byte.Parse(text);
+            }
+            catch (FormatException)
+            {
+                switch (text)
+                {
+                    case string R6 when (text.Equals(Avatar_Type.R6.ToString(), StringComparison.OrdinalIgnoreCase)):
+                        return Avatar_Type.R6;
+                    case string R15 when (text.Equals(Avatar_Type.R15.ToString(), StringComparison.OrdinalIgnoreCase)):
+                        return Avatar_Type.R15;
+                }
+                throw new NotImplementedException($"{text} Avatar_Type is not supported");
+            }
+        }
+
+       
     }
 }

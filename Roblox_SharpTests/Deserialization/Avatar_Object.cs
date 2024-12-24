@@ -24,7 +24,7 @@ namespace Roblox_SharpTests.Deserialization
                 ""proportion"": 0,
                 ""bodyType"": 0
               },
-              ""playerAvatarType"": 1,
+              ""playerAvatarType"": 3,
               ""bodyColors"": {
                 ""headColorId"": 0,
                 ""torsoColorId"": 0,
@@ -80,7 +80,7 @@ namespace Roblox_SharpTests.Deserialization
 
             Assert.AreEqual(true, avatar.defaultShirtApplied);
             Assert.AreEqual(true, avatar.defaultPantsApplied);
-            Assert.AreEqual( 1, (byte) avatar.playerAvatarType);
+            Assert.AreEqual(Avatar_Type.R15, avatar.playerAvatarType);
 
             Avatar.Emote emotes = avatar.emotes![0];
                 Assert.AreEqual<ulong>(0, emotes.assetId);
@@ -136,14 +136,14 @@ namespace Roblox_SharpTests.Deserialization
                 ""proportion"": 0,
                 ""bodyType"": 0
               },
-              ""playerAvatarType"": 1,
+              ""playerAvatarType"": ""R6"",
               ""bodyColor3s"": {
-                ""headColor3"": ""#f54257"",
-                ""torsoColor3"": ""#f54257"",
-                ""rightArmColor3"": ""#f54257"",
-                ""leftArmColor3"": ""#f54257"",
-                ""rightLegColor3"": ""#f54257"",
-                ""leftLegColor3"": ""#f54257""
+                ""headColor3"": ""A3A2A5"",
+                ""torsoColor3"": ""#A3A2A5"",
+                ""rightArmColor3"": ""A3A2A5"",
+                ""leftArmColor3"": ""A3A2A5"",
+                ""rightLegColor3"": ""A3A2A5"",
+                ""leftLegColor3"": ""A3A2A5""
               },
               ""assets"": [
                 {
@@ -192,7 +192,7 @@ namespace Roblox_SharpTests.Deserialization
 
             Assert.AreEqual(true, avatar.defaultShirtApplied);
             Assert.AreEqual(true, avatar.defaultPantsApplied);
-            Assert.AreEqual( 1, (byte) avatar.playerAvatarType);
+            Assert.AreEqual(Avatar_Type.R6, avatar.playerAvatarType);
 
             Avatar.Emote emotes = avatar.emotes![0];
                 Assert.AreEqual<ulong>(0, emotes.assetId);
@@ -228,7 +228,7 @@ namespace Roblox_SharpTests.Deserialization
 
             
 
-            Color expected_color = ColorTranslator.FromHtml("#f54257");
+            Color expected_color = ColorTranslator.FromHtml("#A3A2A5");
             Avatar.BodyColor3s bodyColor3s = JsonSerializer.Deserialize<Avatar>(json_response)!.bodyColor3s;
             
            
@@ -240,6 +240,29 @@ namespace Roblox_SharpTests.Deserialization
             Assert.AreEqual(expected_color, bodyColor3s.leftLegColor3);
         }
 
-        
+        [TestMethod]
+        public void Get_Avatar_Type()
+        {
+            const string R6 = "1";
+
+            const string r6 = "R6";
+
+            const string R15 = "3";
+            const string r15 = "r15";
+
+            const string bad1 = "Rddoesntexist";
+
+            Assert.AreEqual(Avatar_Type.R6, EnumExtensions.ToAvatar_Type(R6));
+            Assert.AreEqual(Avatar_Type.R6, EnumExtensions.ToAvatar_Type(r6));
+
+            Assert.AreEqual(Avatar_Type.R15, EnumExtensions.ToAvatar_Type(R15));
+            Assert.AreEqual(Avatar_Type.R15, EnumExtensions.ToAvatar_Type(r15));
+
+            Assert.ThrowsException<NotImplementedException>(() => EnumExtensions.ToAvatar_Type(bad1));
+            
+           
+            
+
+        }
     }
 }

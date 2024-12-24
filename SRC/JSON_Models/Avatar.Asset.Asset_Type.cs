@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Text.Json.Serialization;
 namespace Roblox_Sharp.JSON_Models;
 
@@ -20,7 +20,7 @@ public partial class Avatar
             /// <summary>
             /// The name of the Asset_Type
             /// </summary>
-            public string name { get; init; }
+            required public string name { get; init; }
 
         }
     }

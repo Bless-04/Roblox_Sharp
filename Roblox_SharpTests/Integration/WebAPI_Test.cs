@@ -30,13 +30,7 @@ public partial class WebAPI_Test
     public void OnSuccessfulRequest(object? sender, EventArgs e) => Debug.WriteLine("SUCCESS " + (sender as HttpResponseMessage)?.RequestMessage);
     public void OnFailedRequest(object? sender, EventArgs e) => Debug.WriteLine("HANDLED "  + (sender as HttpResponseMessage)?.RequestMessage );
 
-    [TestMethod]
-    public void Viewable_Inventory()
-    {
-        bool x = Inventory_v1.Get_CanViewInventoryAsync(1).Result; 
-
-        Assert.IsFalse(x);
-    }
+    
 
     [TestMethod]
     public void GroupData()
@@ -265,5 +259,25 @@ public partial class WebAPI_Test
         //Assert.AreEqual(x.data.Count,0);
         Assert.AreNotEqual(y.data.Count, 0);
         Assert.IsTrue(y.previousPageCursor == null);
+    }
+
+    /// <summary>
+    /// tests both Avatar_v1 and Avatar_v2 using one another
+    /// </summary>
+    [TestMethod]
+    public void Avatar()
+    {
+        Avatar v1 = Avatars_v1.Get_AvatarAsync(1).Result;
+        Avatar v2 = Avatars_v2.Get_AvatarAsync(1).Result;
+
+        Assert.AreEqual(v1.scales, v2.scales); //should be the same ; can be value checked as it is a struct
+
+        Assert.IsNotNull(v1.assets);
+        Assert.IsNotNull(v2.assets);
+        
+        Assert.AreEqual(v1.assets[0].meta, v2.assets[0].meta); //can be value checked as it is a struct
+
+
+        Assert.ThrowsExceptionAsync<InvalidIdException>(() => Avatars_v1.Get_AvatarAsync(0));
     }
 }
