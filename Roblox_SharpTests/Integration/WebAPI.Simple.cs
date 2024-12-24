@@ -5,13 +5,33 @@ namespace Roblox_SharpTests.Integration;
 
 public partial class WebAPI_Test
 {
-    //After 60 secs these test must always succeed
+    /// <summary>
+    /// tests that use endpoints that return types that are built into C#
+    /// </summary>
+    [TestCategory("Integration (Simple)")]
     [TestClass]
-    [TestCategory("Count Requests")]
-    public class Counts
+    public class Simple
     {
         [ClassInitialize]
         public static async Task Initialize(TestContext testContext) => await WebAPI_Test.Initialize(testContext);
+
+        [TestMethod]
+        public void Currently_Wearing()
+        {
+            IReadOnlyList<ulong> assets = Avatars_v1.Get_CurrentlyWearingAsync(1).Result;
+
+            Assert.IsNotNull(assets);
+            Assert.IsTrue(assets.Count > 0);
+        }
+
+        [TestMethod]
+        public void Viewable_Inventory()
+        {
+            bool x = Inventory_v1.Get_CanViewInventoryAsync(1).Result;
+
+            Assert.IsFalse(x);
+        }
+
 
         [TestMethod]
         public void FriendsCount()
@@ -57,6 +77,7 @@ public partial class WebAPI_Test
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsCountAsync(0)); //doesnt exist
             Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsCountAsync(5)); //terminated user
         }
+
 
     }
 }

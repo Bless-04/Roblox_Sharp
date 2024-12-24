@@ -99,9 +99,6 @@ namespace Roblox_SharpTests.Deserialization
             
             User_Presence presence  = JsonSerializer.Deserialize<User_Presence>(json_response)
                 ?? throw new AssertFailedException("User_Presence should not be null here");
-
-            
-
         }
 
         public void Get_UserPresence()

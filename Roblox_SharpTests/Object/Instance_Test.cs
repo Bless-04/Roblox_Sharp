@@ -16,7 +16,6 @@ namespace Roblox_SharpTests
         [TestMethod]
         public void User_Presence() => Assert.IsInstanceOfType<User>(new User_Presence());
 
-
         [TestMethod]
         public void Page() =>
             Assert.IsInstanceOfType<IPage>(new Page<bool>()

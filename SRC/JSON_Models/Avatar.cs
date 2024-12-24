@@ -3,6 +3,7 @@
 using System.Text.Json.Serialization;
 
 using Roblox_Sharp.Enums;
+using Roblox_Sharp.JSON_Models.Internal;
 
 namespace Roblox_Sharp.JSON_Models
 {
@@ -74,12 +75,17 @@ namespace Roblox_Sharp.JSON_Models
     public partial class Avatar
     {
         public Scales scales { get; init; }
+
+        [JsonConverter(typeof(Avatar_Type_JsonConverter))]
         public Avatar_Type playerAvatarType { get; init; }
         /// <summary>
         /// the brickcolor ids for each bodypart
         /// </summary>
         public BodyColors bodyColors { get; init; } //unique to v1
 
+        /// <summary>
+        /// the rgb hex colors for each bodypart
+        /// </summary>
         public BodyColor3s bodyColor3s { get; init; } //unique to v2
 
         /// <summary>
