@@ -4,7 +4,7 @@ using System.Text.Json;
 
 using System;
 
-namespace Roblox_Sharp.JSON_Models.Internal
+namespace Roblox_Sharp.JSON_Models.Internal.JsonConverter
 {
     /// <summary>
     /// used to convert the color to and from RGB hex
@@ -13,7 +13,7 @@ namespace Roblox_Sharp.JSON_Models.Internal
     {
         public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
            ColorTranslator.FromHtml(
-              (reader.GetString()[0] != '#') //if for some reason it doesnt start with a #
+              reader.GetString()[0] != '#' //if for some reason it doesnt start with a #
                    ? $"#{reader.GetString()}"
                    : reader.GetString() ?? throw new JsonException("Error when converting color")
            );

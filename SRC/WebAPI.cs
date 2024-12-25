@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 using System.Text.Json;
 
 using Roblox_Sharp.Exceptions;
-<<<<<<< Updated upstream
-using Roblox_Sharp.JSON_Models.Internal;
-=======
+
 using Roblox_Sharp.JSON_Models.Internal.POST;
 using static Roblox_Sharp.Framework.WebHelper;
->>>>>>> Stashed changes
+
+
 
 namespace Roblox_Sharp
 {
