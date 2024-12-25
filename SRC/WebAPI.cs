@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 using System.Text.Json;
 
 using Roblox_Sharp.Exceptions;
+<<<<<<< Updated upstream
 using Roblox_Sharp.JSON_Models.Internal;
+=======
+using Roblox_Sharp.JSON_Models.Internal.POST;
+using static Roblox_Sharp.Framework.WebHelper;
+>>>>>>> Stashed changes
 
 namespace Roblox_Sharp
 {
+  
     /// <summary>
-    /// static class that defines the logic used for making web requests to Roblox API <br></br>
+    /// class that defines the logic used for making web requests to Roblox API <br></br>
     /// <b><see href="https://github.com/matthewdean/roblox-web-apis?tab=readme-ov-file">Endpoints Documentation</see></b>
     /// </summary>
     public static class WebAPI
@@ -19,26 +25,22 @@ namespace Roblox_Sharp
         /// <summary>
         /// an event that is raised when the web request is successful/statuscode 200
         /// </summary>
-        public static EventHandler? OnSuccessfulRequest;
+        public static event EventHandler? OnSuccessfulRequest;
 
         /// <summary>
         /// an event that is raised when the web request fails / statuscode is not 200
         /// </summary>
         public static event EventHandler? OnFailedRequest;
-
-        /// <summary>
-        /// an instance of the http client. Used for all web requests
-        /// </summary>
-        internal static readonly HttpClient client = new(); 
-
+        
         /// <summary>
         /// helper function for get requests for roblox api
         /// </summary>
         /// <param name="url"></param>
         /// <returns>content string</returns>
         /// <exception cref="InvalidIdException"></exception>
-        internal static async Task<string> Get_RequestAsync(string url, bool RateLimitRetry = false,int MS_Delay = 59000)
+        internal static async Task<string> Get_RequestAsync(string url, bool RateLimitRetry = false,int MS_Delay = 60009)
         {
+            
             using HttpResponseMessage response = await client.GetAsync(url);
             {
                 if (response.IsSuccessStatusCode)
@@ -56,7 +58,7 @@ namespace Roblox_Sharp
                     {
                         if (RateLimitRetry)
                         {
-                            await Task.Delay(MS_Delay); //default is 59 secs
+                            await Task.Delay(MS_Delay); //default is 60 secs
                             return await Get_RequestAsync(url, false); //retries once
                         }
                         else
@@ -124,5 +126,7 @@ namespace Roblox_Sharp
 
             
         }
+
+       
     }
 }
