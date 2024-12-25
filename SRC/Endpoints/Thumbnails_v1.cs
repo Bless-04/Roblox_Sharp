@@ -8,7 +8,6 @@ using Roblox_Sharp.Enums.Thumbnail;
 using Roblox_Sharp.Enums;
 
 using Roblox_Sharp.JSON_Models;
-using Roblox_Sharp.JSON_Models.Users;
 using System.Collections.Generic;
 
 namespace Roblox_Sharp.Endpoints

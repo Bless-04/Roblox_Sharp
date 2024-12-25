@@ -29,7 +29,7 @@ namespace Roblox_Sharp.JSON_Models.Users
         /// <summary>
         /// <see cref="Presence_Type"/> type of user
         /// </summary>
-        private Presence_Type userPresenceType {init => presenceType = value;}
+        protected Presence_Type userPresenceType {init => presenceType = value;}
 
         public string? lastLocation { get; init; }
 
