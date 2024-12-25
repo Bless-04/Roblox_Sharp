@@ -28,5 +28,5 @@ jobs:
     - name: Build
       run: dotnet build ./Roblox_Sharp/SRC/Roblox_Sharp.sln
     - name: Test
-      run: dotnet test ./Roblox_Sharp/Roblox_SharpTests/bin/Debug/net9.0/Roblox_SharpTests
+      run: dotnet test ./Roblox_Sharp/SRC/Roblox_SharpTests/Roblox_SharpTests.csproj
       
