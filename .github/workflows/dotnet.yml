@@ -26,7 +26,7 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-    - name: Build Project?
+    - name: Build Project
       run: dotnet build ./SRC/Roblox_Sharp.csproj
     - name: Build Solution
       run: dotnet build  ./SRC/Roblox_Sharp.sln
