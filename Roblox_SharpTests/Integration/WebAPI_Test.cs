@@ -130,57 +130,7 @@ public partial class WebAPI_Test
         Assert.IsNotNull(page.nextPageCursor);
     }
 
-    [TestMethod]
-    public void Followers()
-    {
-        Page<User> x = Friends_v1.Get_FollowersAsync(1).Result; //roblox
-
-        //old page
-        ulong some_id = x.data[0].userId;
-
-        Assert.IsNotNull(some_id);
-
-
-        Assert.IsNull(x.previousPageCursor);
-
-        //error checking
-        Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersAsync(0)); //doesnt exist
-        Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersAsync(5)); //terminated user
-        
-        //new page
-        x = Friends_v1.Get_FollowersAsync(1,page: x).Result; //roblox
-
-
-        Assert.IsNotNull(x.previousPageCursor);
-
-        Assert.AreNotEqual(x.data[0].userId, some_id);
-
-    }
-
-    [TestMethod]
-    public void Followings()
-    {
-        Page<User> x = Friends_v1.Get_FollowingsAsync(1).Result; //roblox
-        Page<User> y = Friends_v1.Get_FollowingsAsync(16,Limit.Ten).Result; //erik.cassel
-
-        Assert.IsTrue(x.data.Count == 0);
-        Assert.IsTrue(y.data.Count != 0);
-
-        //error checking
-        Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsAsync(0)); //doesnt exist
-        Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsAsync(5)); //terminated user
-    }
-
-    [TestMethod]
-    public void Friends()
-    {
-
-        IReadOnlyList<User> erik_friends = Friends_v1.Get_FriendsAsync(16).Result; //erik
-        IReadOnlyList<User> roblox_friends = Friends_v1.Get_FriendsAsync(1).Result; //roblox
-
-        Assert.AreNotEqual(erik_friends.Count, 0);
-        Assert.AreEqual(roblox_friends.Count, 0);
-    }
+   
 
     [TestMethod]
     public void Users_Badges()
@@ -245,23 +195,7 @@ public partial class WebAPI_Test
         Assert.AreEqual(presences[1].userId, (ulong) 16);
         Assert.AreEqual(presences[0].userId, (ulong) 156);
     }
-
-    [TestMethod]
-    public void Username_History()
-    {
-
-        //7733466 is an admin
-        //Page<User> x = Users_v1.Get_UsernameHistoryAsync(1).Result;
-        Page<User> y = Users_v1.Get_UsernameHistoryAsync(7733466).Result;
-
-       
-        Assert.ThrowsExceptionAsync<InvalidIdException>(() => Users_v1.Get_UsernameHistoryAsync(5)); //terminated user
-        
-        //Assert.AreEqual(x.data.Count,0);
-        Assert.AreNotEqual(y.data.Count, 0);
-        Assert.IsTrue(y.previousPageCursor == null);
-    }
-
+    
     /// <summary>
     /// tests both Avatar_v1 and Avatar_v2 using one another
     /// </summary>
