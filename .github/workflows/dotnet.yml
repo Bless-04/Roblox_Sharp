@@ -1,32 +1,32 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: Roblox_Sharp Tests
+name: .NET
 
 on:
   push:
     branches: 
-      - main 
+      - main
       - stable
-    paths:
-    - '**.cs'
-    - '**.csproj'
-
-env:
-  DOTNET_VERSION: '9.0.x'
-  
+    paths: 
+      - '**.cs'
+      - '**.csproj'
+    
 jobs:
   build:
+
     runs-on: windows-latest
+
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: "{DOTNET_VERSION}"
-    
+        dotnet-version: 9.0.x
+    - name: Restore dependencies
+      run: dotnet restore ./Roblox_Sharp/SRC/Roblox_Sharp.sln
+    - name: Build
+      run: dotnet build ./Roblox_Sharp/SRC/Roblox_Sharp.sln
     - name: Test
-      run: dotnet test Roblox_SharpTests.dll
-      shell: bash
-      working-directory: ./Roblox_SharpTests/bin/Debug/net9.0
+      run: dotnet test ./Roblox_Sharp/SRC/Roblox_SharpTests/Roblox_SharpTests.csproj
       
