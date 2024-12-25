@@ -16,8 +16,7 @@ on:
       
     
 jobs:
-  build:
-
+  Build_and_Test:
     runs-on: windows-latest
 
     steps:
@@ -26,10 +25,12 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
+
     - name: Build Project
       run: dotnet build ./SRC/Roblox_Sharp.csproj
     - name: Build Solution
       run: dotnet build  ./SRC/Roblox_Sharp.sln
+
     - name: Test
       run: dotnet test ./SRC/Roblox_Sharp.sln
       
