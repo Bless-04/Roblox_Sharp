@@ -11,10 +11,6 @@ on:
     paths:
     - '**.cs'
     - '**.csproj'
-  pull_request:
-    branches: 
-      - main
-      - stable
 
 env:
   DOTNET_VERSION: '9.0.x'
@@ -31,6 +27,6 @@ jobs:
     
     - name: Test
       run: dotnet test Roblox_SharpTests.dll
-      shell: cmd.exe
+      shell: bash
       working-directory: ./Roblox_SharpTests/bin/Debug/net9.0
       
