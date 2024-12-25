@@ -27,7 +27,7 @@ jobs:
       with:
         dotnet-version: 9.0.x
     - name: Build 
-      run: dotnet build ./SRC/Roblox_Sharp.sln
+      run: dotnet msbuild ./SRC/Roblox_Sharp.sln
     - name: Test
       run: dotnet test ./SRC/Roblox_Sharp.sln
       
