@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using Newtonsoft.Json.Linq;
-using Roblox_Sharp.Endpoints;
+﻿using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON_Models;
@@ -16,12 +14,8 @@ public partial class WebAPI_Test
     [TestClass]
     public class Exhaustive
     {
-
         [TestInitialize]
         public void Initialize() => Task.Delay(60000).Wait();
-        
-
-
 
         [TestMethod]
         public void Currently_Wearing()

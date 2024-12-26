@@ -11,7 +11,6 @@ public partial class WebAPI_Test
     public class Thumbnail
     {
         [ClassInitialize]
-        [TestMethod]
         public static async Task Initialize(TestContext testContext) => await WebAPI_Test.Initialize(testContext);
 
         [TestMethod]
