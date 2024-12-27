@@ -5,10 +5,16 @@ name: Tests
 
 on:
   workflow_dispatch:
+  pull_request:
+    branches: 
+      - stable
+      - main
+    paths: 
+    - '**.cs'
+    - '**.csproj'
   push:
     branches: 
-      - main
-      - stable
+      - unstable
     paths: 
       - '**.cs'
       - '**.csproj'
