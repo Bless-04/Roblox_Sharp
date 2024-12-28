@@ -6,7 +6,7 @@ using Roblox_Sharp.JSON_Models;
 using System.Collections.Generic;
 
 
-namespace Tests.Endpoint
+namespace xUnitTests.Endpoint
 {
     /// <summary>
     /// Test <see cref="Roblox_Sharp.Endpoints.Friends_v1"/> Endpoint

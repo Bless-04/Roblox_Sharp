@@ -5,7 +5,7 @@ using System;
 
 using Roblox_Sharp.Exceptions;
 
-namespace Tests
+namespace xUnitTests
 {
     /// <summary>
     /// abstract class for all endpoints that may be prone to being rate limited <br></br>

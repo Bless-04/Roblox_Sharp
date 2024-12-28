@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using Roblox_Sharp.JSON_Models;
 
-namespace Tests.Deserialization
+namespace xUnitTests.Deserialization
 { 
     public class Miscellaneous
     {

@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace Tests.Object_Functionality
+namespace xUnitTests.Object_Functionality
 {
     /// <summary>
     /// tests explicit logic of objects

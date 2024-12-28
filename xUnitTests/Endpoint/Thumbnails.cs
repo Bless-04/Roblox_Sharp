@@ -1,13 +1,12 @@
 ﻿using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Enums.Thumbnail;
 using System;
-using System.Linq;
+
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Roblox_Sharp.JSON_Models;
-using System.Security;
 
-namespace Tests.Endpoint
+namespace xUnitTests.Endpoint
 {
     /// <summary>
     /// Tests <see cref="Roblox_Sharp.Endpoints.Thumbnails_v1"/> endpoint

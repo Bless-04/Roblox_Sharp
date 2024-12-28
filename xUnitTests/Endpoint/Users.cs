@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 using System.Linq;
 
-namespace Tests.Endpoint
+namespace xUnitTests.Endpoint
 {
     /// <summary>
     /// Tests <see cref="Roblox_Sharp.Endpoints.Users_v1"/> endpoint

@@ -4,7 +4,7 @@ using Roblox_Sharp.Exceptions;
 using System.Collections.Generic;
 
 using System.Threading.Tasks;
-namespace Tests.Endpoint
+namespace xUnitTests.Endpoint
 {
     /// <summary>
     /// Tests <see cref="Roblox_Sharp.Endpoints.Groups_v1"/> and <see cref="Roblox_Sharp.Endpoints.Groups_v2"/> endpoints

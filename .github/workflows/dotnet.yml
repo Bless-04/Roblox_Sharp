@@ -29,12 +29,18 @@ jobs:
         with:
           dotnet-version: "9.0.x"
 
-      - name: Build Project
-        run:  dotnet build -c Debug Roblox_Sharp.csproj
-
-      - name: Build Solution
+      - name: Build Roblox_Sharp Solution
         run:  dotnet build -c Debug Roblox_Sharp.sln
 
-      - name: Test
-        run: dotnet test -c Debug Roblox_Sharp.sln
+      - name: JSON Deserialization Tests
+        run: dotnet test -c Debug --no-build --filter DisplayName~xUnitTests.Deserialization
+
+      - name: Object Functionality Tests
+        run: dotnet test -c Debug --no-build --filter DisplayName~xUnitTests.Object_Functionality
+
+      - name: Endpoint Integration Tests
+        run: dotnet test -c Debug --no-build --filter DisplayName~xUnitTests.Endpoint
+
+
+        
       

@@ -1,6 +1,8 @@
 ﻿using Roblox_Sharp.Endpoints;
+using System.ComponentModel;
+using System.Reflection;
 
-namespace Tests.Endpoint
+namespace xUnitTests.Endpoint
 {
     /// <summary>
     /// Tests <see cref="Roblox_Sharp.Endpoints.Inventory_v1"/> Endpoint
@@ -15,7 +17,7 @@ namespace Tests.Endpoint
 
             Assert.True(x, "Get_CanViewInventory() is failing");
             
-        });
+        }, "Get_CanViewInventory()");
 
     }
 }
