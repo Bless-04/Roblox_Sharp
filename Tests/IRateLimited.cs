@@ -4,6 +4,7 @@ using System.Net.Http;
 using System;
 
 using Roblox_Sharp.Exceptions;
+
 namespace Tests
 {
     /// <summary>

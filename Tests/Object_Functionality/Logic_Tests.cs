@@ -1,16 +1,15 @@
-﻿using Roblox_Sharp.JSON_Models.Users;
-using Roblox_Sharp.JSON_Models;
+﻿using Roblox_Sharp.JSON_Models;
 
-namespace Roblox_SharpTests.Object
+using System.Collections.Generic;
+
+namespace Tests.Object_Functionality
 {
-    [TestCategory("Object Usage Tests")]
-    [TestClass]
     /// <summary>
-    /// tests functionality of objects
+    /// tests explicit logic of objects
     /// </summary>
     public class Logic_Test
     {
-        [TestMethod]
+        [Fact]
         public void IUser_OperatorTests()
         {
             // x > y > z
@@ -22,22 +21,22 @@ namespace Roblox_SharpTests.Object
             User z = new(156); //builderman
             User X = new(1); //roblox
 
-            Assert.AreNotEqual(x, y);
+            Assert.False(x.Equals(y));
 
-            Assert.IsTrue(x > y);
-            Assert.IsTrue(y > z);
-            Assert.IsTrue(x > z);
+            Assert.True(x > y);
+            Assert.True(y > z);
+            Assert.True(x > z);
 
-            Assert.IsTrue(z < x);
-            Assert.IsTrue(z < x);
-            Assert.IsTrue(y < x);
+            Assert.True(z < x);
+            Assert.True(z < x);
+            Assert.True(y < x);
 
-            Assert.IsFalse(x.Equals(y));
-            Assert.IsTrue(x.Equals(X));
+            Assert.False(x.Equals(y));
+            Assert.True(x.Equals(X));
         }
 
 
-        [TestMethod]
+        [Fact]
         public void ImmutableTest()
         {
 
@@ -51,13 +50,13 @@ namespace Roblox_SharpTests.Object
 
             User dummy = page.data[0];
 
-            Assert.AreEqual(dummy, page.data[0]);
+            Assert.Equal(dummy, page.data[0]);
 
             //makes sure its not a shallow copy of the object         
             dummy = page.data[1];
 
-            Assert.IsNotNull(page.data[0]);
-            Assert.AreNotEqual(dummy, page.data[0]);
+            Assert.NotNull(page.data[0]);
+            Assert.NotStrictEqual(dummy, page.data[0]);
 
             
         }
