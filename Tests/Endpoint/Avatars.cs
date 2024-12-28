@@ -1,17 +1,27 @@
 ﻿using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON_Models;
-
 using System.Threading.Tasks;
 
+using System.Collections.Generic;
 namespace Tests.Endpoint
 {
     /// <summary>
     /// Tests <see cref="Roblox_Sharp.Endpoints.Avatars_v1"/> and <see cref="Roblox_Sharp.Endpoints.Avatars_v2"/> Endpoints
     /// </summary>
     [Collection("Endpoints")]
-    public class Avatars
+    public class Avatars : IRateLimited
     {
+        [RateLimited]
+        public void Currently_Wearing() => Test(async () =>
+        {
+            IReadOnlyList<ulong> assets = await Avatars_v1.Get_CurrentlyWearingAsync(1);
+
+            Assert.NotNull(assets);
+            Assert.True(assets.Count > 0, "Assets.Count is failing");
+
+        }, "Currently_Wearing()");
+
         /// <summary>
         /// tests both Avatar_v1 and Avatar_v2 using one another
         /// </summary>
@@ -33,5 +43,7 @@ namespace Tests.Endpoint
 
             await Assert.ThrowsAsync<InvalidIdException>(() => Avatars_v2.Get_AvatarAsync(5)); //the terminated user 
         }
+
+
     }
 }
