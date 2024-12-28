@@ -12,12 +12,6 @@ on:
     paths: 
     - '**.cs'
     - '**.csproj'
-  push:
-    branches: 
-      - unstable
-    paths: 
-      - '**.cs'
-      - '**.csproj'
     
 defaults:
   run:
