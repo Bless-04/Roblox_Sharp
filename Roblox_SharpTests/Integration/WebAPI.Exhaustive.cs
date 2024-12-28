@@ -17,14 +17,7 @@ public partial class WebAPI_Test
         [TestInitialize]
         public void Initialize() => Task.Delay(60000).Wait();
 
-        [TestMethod]
-        public void Currently_Wearing()
-        {
-            IReadOnlyList<ulong> assets = Avatars_v1.Get_CurrentlyWearingAsync(1).Result;
-
-            Assert.IsNotNull(assets);
-            Assert.IsTrue(assets.Count > 0);
-        }
+       
 
         [TestMethod]
         public void Viewable_Inventory()
@@ -33,35 +26,6 @@ public partial class WebAPI_Test
 
             Assert.IsFalse(x);
         }
-
-
-        [TestMethod]
-        public void FriendsCount()
-        {
-
-            var x = Friends_v1.Get_FriendsCountAsync(1).Result; //roblox
-            var y = Friends_v1.Get_FriendsCountAsync(16).Result; //erik.cassel
-            var z = Friends_v1.Get_FriendsCountAsync(156).Result; //builderman
-
-            Assert.AreEqual(x, z);
-            Assert.AreNotEqual(x, y);
-
-            //error checking
-            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FriendsCountAsync(0)); //doesnt exist
-            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FriendsCountAsync(5)); //terminated user
-
-        }
-
-        [TestMethod]
-        public void FollowersCount()
-        {
-            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersCountAsync(0)); //doesnt exist
-            Assert.ThrowsExceptionAsync<InvalidIdException>(() => Friends_v1.Get_FollowersCountAsync(5)); //terminated user
-                                                                                                          //roblox vs erik.cassel
-            Assert.AreNotEqual(Friends_v1.Get_FollowersCountAsync(1).Result, Friends_v1.Get_FollowersCountAsync(16).Result);
-
-        }
-
         
         [TestMethod]
         public void FollowingsCount()
@@ -84,6 +48,7 @@ public partial class WebAPI_Test
         [TestMethod]
         public void Followings()
         {
+            
             Page<User> x = Friends_v1.Get_FollowingsAsync(1).Result; //roblox
             Page<User> y = Friends_v1.Get_FollowingsAsync(16, Limit.Ten).Result; //erik.cassel
 

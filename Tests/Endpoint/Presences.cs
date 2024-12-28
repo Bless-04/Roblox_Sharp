@@ -16,7 +16,7 @@ namespace Tests.Endpoint
     public class Presences
     {
         [Fact]
-        public async Task User_Presence()
+        public async Task Get_Presences()
         {
             IReadOnlyList<User_Presence> presences = await Presence_v1.Get_PresencesAsync([156, 16, 1]); //youngst to oldest sorting
 
