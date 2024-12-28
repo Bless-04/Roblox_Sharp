@@ -1,13 +1,12 @@
 ﻿using Roblox_Sharp.Exceptions;
-using System.Threading.Tasks;
 
 namespace Tests
 {
     /// <summary>
     /// Skips a test if it throws a <see cref="RateLimitException"/>
     /// </summary>
-    public class RateLimitedAttribute : SkippableFactAttribute
+    public class RateLimitedFactAttribute : SkippableFactAttribute
     {
-        public RateLimitedAttribute() : base(typeof(RateLimitException)) {  }
+        public RateLimitedFactAttribute() : base(typeof(RateLimitException)) {  }
     }
 }

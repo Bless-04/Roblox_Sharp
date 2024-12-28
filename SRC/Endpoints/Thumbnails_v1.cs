@@ -93,9 +93,10 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="FORMAT"></param>
         /// <param name="isCircular"></param>
         /// <returns>Avatar[]</returns>
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="SIZE"/> is x50 or x48</exception>
         public static async Task<IReadOnlyList<Thumbnail>> Get_AvatarsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
         {
-            if (SIZE == Size.x50) throw new ArgumentOutOfRangeException($"{SIZE} is not supported for this request.");
+            if (SIZE == Size.x50) throw new ArgumentException($"{SIZE} is not supported for this request.");
             //url example https://thumbnails.roblox.com/v1/users/avatar?userIds=1,156&size=30x30&format=Png&isCircular=false
 
             return 

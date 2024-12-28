@@ -3,7 +3,6 @@ using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.JSON_Models.Badges;
 using Roblox_Sharp.JSON_Models;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

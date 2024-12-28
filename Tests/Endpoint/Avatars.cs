@@ -12,7 +12,7 @@ namespace Tests.Endpoint
     [Collection("Endpoints")]
     public class Avatars : IRateLimited
     {
-        [RateLimited]
+        [RateLimitedFact]
         public void Get_CurrentlyWearing() => Test(async () =>
         {
             IReadOnlyList<ulong> assets = await Avatars_v1.Get_CurrentlyWearingAsync(1);

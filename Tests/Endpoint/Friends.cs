@@ -8,10 +8,13 @@ using System.Collections.Generic;
 
 namespace Tests.Endpoint
 {
+    /// <summary>
+    /// Test <see cref="Roblox_Sharp.Endpoints.Friends_v1"/> Endpoint
+    /// </summary>
     [Collection("Endpoints")]
     public class Friends : IRateLimited
     {
-        [RateLimited]
+        [Fact]
         public void Get_FriendsCount() => Test(async () =>
         {
 
@@ -30,7 +33,7 @@ namespace Tests.Endpoint
         }, "Get_FriendsCount()") ;
 
 
-        [RateLimited]
+        [Fact]
         public void Get_FollowersCount() => Test(async () => {
             
             await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FollowersCountAsync(0)); //doesnt exist
@@ -43,7 +46,7 @@ namespace Tests.Endpoint
 
         }, "Get_FollowersCount()") ;
 
-        [RateLimited]
+        [Fact]
         public void Get_FollowingsCount() => Test(async () =>
         {
 
@@ -58,7 +61,7 @@ namespace Tests.Endpoint
         }, "Get_Following");
 
 
-        [RateLimited]
+        [RateLimitedFact]
         public void Get_Followings() => Test(async () =>
         {
 
@@ -72,7 +75,7 @@ namespace Tests.Endpoint
             await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsAsync(5)); //terminated user
         });
 
-        [RateLimited]
+        [RateLimitedFact]
         public void Get_Friends() => Test(async () =>
         {
 
@@ -86,7 +89,7 @@ namespace Tests.Endpoint
             await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FriendsAsync(5)); //terminated user
         });
 
-        [RateLimited]
+        [RateLimitedFact]
         public void Get_Followers() => Test(async () =>
         {
             Page<User> page = await Friends_v1.Get_FollowersAsync(1); //roblox
