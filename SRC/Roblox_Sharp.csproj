@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     <ImplicitUsings>disable</ImplicitUsings>
-    <Description>Web Wrapper for C# api
+    <Description>Roblox Web Wrapper for C# api
 </Description>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
   </PropertyGroup>
