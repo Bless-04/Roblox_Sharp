@@ -4,7 +4,7 @@ using Roblox_Sharp.JSON_Models;
 using Roblox_Sharp.JSON_Models.Users;
 using Xunit.Sdk;
 
-namespace Tests.Deserialization
+namespace xUnitTests.Deserialization
 {
     /// <summary>
     /// Tests Serialization for <paramref name="User"/>
@@ -27,16 +27,16 @@ namespace Tests.Deserialization
             }";
 
 
-            User user = JsonSerializer.Deserialize<User>(json_response);
+            User? user = JsonSerializer.Deserialize<User>(json_response);
 
 
             Assert.NotNull(user);
 
             Assert.Equal("string", user.description);
             Assert.Equal(2024, user.created.Year);
-            Assert.Equal(true, user.isBanned);
+            Assert.True(user.isBanned);
             Assert.Equal("string", user.externalAppDisplayName);
-            Assert.Equal(true, user.hasVerifiedBadge);
+            Assert.True(user.hasVerifiedBadge);
             Assert.Equal<ulong>(0, user.userId);
             Assert.Equal("string", user.username);
             Assert.Equal("string", user.displayName);

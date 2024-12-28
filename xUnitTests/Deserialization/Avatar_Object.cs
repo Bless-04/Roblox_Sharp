@@ -5,7 +5,7 @@ using Roblox_Sharp.JSON_Models;
 using Roblox_Sharp.Enums;
 
 
-namespace Tests.Deserialization
+namespace xUnitTests.Deserialization
 { 
     public class Avatar_Object
     {

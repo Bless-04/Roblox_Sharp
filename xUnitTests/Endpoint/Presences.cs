@@ -7,7 +7,7 @@ using System.Linq;
 
 using System.Threading.Tasks;
 
-namespace Tests.Endpoint
+namespace xUnitTests.Endpoint
 {
     /// <summary>
     /// Tests <see cref="Roblox_Sharp.Endpoints.Presence_v1"/> endpoint

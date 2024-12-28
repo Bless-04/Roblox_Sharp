@@ -1,6 +1,6 @@
 ﻿using Roblox_Sharp.Exceptions;
 
-namespace Tests
+namespace xUnitTests
 {
     /// <summary>
     /// Skips a test if it throws a <see cref="RateLimitException"/>

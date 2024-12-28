@@ -5,7 +5,7 @@ using Roblox_Sharp.JSON_Models.Users;
 using Roblox_Sharp.JSON_Models.Badges;
 using System;
 
-namespace Tests.Object_Functionality
+namespace xUnitTests.Object_Functionality
 {
     /// <summary>
     /// Tests if objects are derived from the correct types

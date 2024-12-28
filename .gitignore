@@ -1,9 +1,8 @@
 
 /.vs
-/Roblox_SharpTests
 /SRC/.vs
 /SRC/bin
 /SRC/obj
-/Tests/.vs
-/Tests/bin
-/Tests/obj
+/xUnitTests/.vs
+/xUnitTests/bin
+/xUnitTests/obj

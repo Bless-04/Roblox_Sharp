@@ -4,7 +4,7 @@ using Roblox_Sharp.JSON_Models;
 using System.Threading.Tasks;
 
 using System.Collections.Generic;
-namespace Tests.Endpoint
+namespace xUnitTests.Endpoint
 {
     /// <summary>
     /// Tests <see cref="Roblox_Sharp.Endpoints.Avatars_v1"/> and <see cref="Roblox_Sharp.Endpoints.Avatars_v2"/> Endpoints

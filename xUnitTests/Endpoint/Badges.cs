@@ -6,7 +6,7 @@ using Roblox_Sharp.JSON_Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Tests.Endpoint
+namespace xUnitTests.Endpoint
 {
     /// <summary>
     /// Tests <see cref="Roblox_Sharp.Endpoints.Badges_v1"/> Endpoint

@@ -2,7 +2,7 @@
 
 using Roblox_Sharp.JSON_Models;
 
-namespace Tests.Deserialization
+namespace xUnitTests.Deserialization
 {
     /// <summary>
     /// Tests Serialization for all Group endpoints
