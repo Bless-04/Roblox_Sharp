@@ -35,7 +35,7 @@ namespace Tests.Endpoint
             );
         }
 
-        [RateLimited]
+        [RateLimitedFact]
         public void Get_Usernames() => Test(async () =>
         {
             IReadOnlyList<User> user_list = await Users_v1.Get_UsernamesAsync([1, 16]);//roblox, erik.cassel
@@ -66,7 +66,7 @@ namespace Tests.Endpoint
             );
         }
 
-        [RateLimited]
+        [RateLimitedFact]
         public void Get_UserSearch() => Test(async () =>
         {
             Page<User> page = await Users_v1.Get_UserSearchAsync("robl", Limit.MAX);
@@ -76,7 +76,7 @@ namespace Tests.Endpoint
             Assert.True(page.nextPageCursor != null, "nextpagecursor should not be null");
         }, "Get_UserSearch()" , 0) ;
 
-        [RateLimited]
+        [RateLimitedFact]
         public void Get_UsernameHistory() => Test(async () =>
         {
             //7733466 is an admin
