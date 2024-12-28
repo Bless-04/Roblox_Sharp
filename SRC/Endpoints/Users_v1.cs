@@ -61,7 +61,7 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="userIds"></param>
         /// <param name="excludeBannedUsers"></param>
         /// <returns>List of Users</returns>
-        public static async Task<IReadOnlyList<User>> Get_UsernamesAsync(ulong[] userIds, bool excludeBannedUsers = false)
+        public static async Task<IReadOnlyList<User>> Get_UsernamesAsync(List<ulong> userIds, bool excludeBannedUsers = false)
         {
             //url example https://users.roblox.com/v1/users
 
@@ -85,7 +85,7 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="usernames"></param>
         /// <param name="excludeBannedUsers"></param>
         /// <returns>User[]</returns>
-        public static async Task<IReadOnlyList<User>> Get_UsersAsync(string[] usernames, bool excludeBannedUsers = false)
+        public static async Task<IReadOnlyList<User>> Get_UsersAsync(List<string> usernames, bool excludeBannedUsers = false)
         {
             //url example https://users.roblox.com/v1/usernames/users
 

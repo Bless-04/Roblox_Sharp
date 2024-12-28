@@ -26,7 +26,7 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="userIds"></param>
         /// <returns>userPresence[]</returns>
-        public static async Task<IReadOnlyList<User_Presence>> Get_PresencesAsync(ulong[] userIds) =>
+        public static async Task<IReadOnlyList<User_Presence>> Get_PresencesAsync(List<ulong> userIds) =>
             // url example https://presence.roblox.com/v1/presence/users
             JsonSerializer.Deserialize<Presence_Response>(
                 await Post_RequestAsync($"https://presence.roblox.com/v1/presence/users", new User_POST(userIds))

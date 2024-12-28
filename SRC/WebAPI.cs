@@ -39,7 +39,6 @@ namespace Roblox_Sharp
         /// <exception cref="InvalidIdException"></exception>
         internal static async Task<string> Get_RequestAsync(string url, bool RateLimitRetry = false,int MS_Delay = 60009)
         {
-            
             using HttpResponseMessage response = await client.GetAsync(url);
             {
                 if (response.IsSuccessStatusCode)
@@ -63,7 +62,7 @@ namespace Roblox_Sharp
                         else
                             throw new RateLimitException($"Rate Limit Exceeded\n{url}\nStatusCode: {response.StatusCode}"); 
                     }
-
+                   
                     case HttpStatusCode.BadRequest:
                         throw new InvalidIdException($"User either doesnt exist or is terminated/banned \nStatusCode: {response.StatusCode}\n{url}");
                     case HttpStatusCode.NotFound:
@@ -72,10 +71,11 @@ namespace Roblox_Sharp
                     case (HttpStatusCode)443:
                         throw new HttpRequestException("There is an Internet Connection Issue\nPlease Connect to the Internet");
 
-                    default:
-                        throw new NotImplementedException($"Unhandled Error: code:{response.StatusCode} \n{response.Content}");
+                    case HttpStatusCode.InternalServerError:
+                        throw new HttpRequestException($"There may be a problem with the Roblox Servers.\nStatusCode: {response.StatusCode}\n{url}");
                 }
-                
+
+                throw new NotImplementedException($"Unhandled Error\nStatusCode: {response.StatusCode} \n{response.Content}");
             }          
         }
 
@@ -109,11 +109,11 @@ namespace Roblox_Sharp
                         throw new RateLimitException($"Rate Limit Exceeded\n{url}\nStatusCode: {response.StatusCode}");
 
                     case HttpStatusCode.BadRequest:
-                        User_POST post = (User_POST)postreq;
+                        User_POST post = postreq;
                         if (post.userIds != null)
-                            throw new InvalidUsernameException("Too many ids.");
+                            throw new InvalidIdException("A userId may not exist,or there is to many");
                         else
-                            throw new InvalidIdException("Too many usernames.");
+                            throw new InvalidUsernameException("Too many usernames.");
 
                     case (HttpStatusCode)443:
                         throw new HttpRequestException("There is an Internet Connection Issue\nPlease Connect to the Internet");

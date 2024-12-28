@@ -7,6 +7,7 @@ using Roblox_Sharp.JSON_Models;
 using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.Enums;
 using System.Collections.Generic;
+using Roblox_Sharp.Exceptions;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -25,10 +26,10 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="badgeIds"></param>
         /// <returns>List of Badge_Award</returns>
         /// <exception cref="ArgumentException"></exception>
-        /// <exception cref="InvalidUserIdException"></exception>
-        public static async Task<IReadOnlyList<Badge_Award>> Get_BadgesAwardedDatesAsync(ulong userId, ulong[] badgeIds)
+        /// <exception cref="InvalidIdException"></exception>
+        public static async Task<IReadOnlyList<Badge_Award>> Get_BadgesAwardedDatesAsync(ulong userId,List<ulong> badgeIds)
         {
-            if (badgeIds.Length == 0) throw new ArgumentException("atleast one badge id is required");
+            if (badgeIds.Count == 0) throw new InvalidIdException("atleast one badge id is required");
             //URL example https://badges.roblox.com/v1/users/63225213/badges/awarded-dates?badgeIds=2126601323,2126601209,94278219,-1
             return 
                 JsonSerializer.Deserialize<Page<Badge_Award>>(

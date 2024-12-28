@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roblox_Sharp", "Roblox_Sharp.csproj", "{B5FC79D9-64BE-47B9-8327-6D1A8357F4D2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roblox_SharpTests", "..\Roblox_SharpTests\Roblox_SharpTests.csproj", "{5B41A2FE-5002-4360-9D04-C9D981019EB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "..\Tests\Tests.csproj", "{5B41A2FE-5002-4360-9D04-C9D981019EB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
