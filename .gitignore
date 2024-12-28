@@ -1,11 +1,9 @@
-SRC/.vs/
-SRC/bin/
-SRC/obj/
-SRC/TestResults/
 
-Roblox_SharpTests/.vs/
-Roblox_SharpTests/bin/
-Roblox_SharpTests/obj/
-*.TMP
 /.vs
-/SRC/Properties
+/Roblox_SharpTests
+/SRC/.vs
+/SRC/bin
+/SRC/obj
+/Tests/.vs
+/Tests/bin
+/Tests/obj

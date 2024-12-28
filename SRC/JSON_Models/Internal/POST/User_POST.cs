@@ -1,4 +1,8 @@
-﻿namespace Roblox_Sharp.JSON_Models.Internal.POST
+﻿using System;
+using System.Collections.Generic;
+using Roblox_Sharp.Exceptions;
+
+namespace Roblox_Sharp.JSON_Models.Internal.POST
 {
     /// <summary>
     /// class used to serialize User POST based requests
@@ -13,22 +17,35 @@
         /// <summary>
         /// array of user ids
         /// </summary>
-        public ulong[]? userIds { get; init; }
+        public IReadOnlyList<ulong>? userIds { get; init; }
 
         /// <summary>
         /// array of username
         /// </summary>
-        public string[]? usernames { get; init; }
+        public IReadOnlyList<string>? usernames { get; init; }
 
-        public User_POST(ulong[] userIds, bool excludeBannedUsers = false)
+        /// <summary>
+        /// limits the length of an array
+        /// </summary>
+        /// <param name="limit"></param>
+        /// <returns>true if the array is less than the limit</returns>
+        internal bool ArrayLengthCheck<T>(List<T> list, int limit = 100) => list.Count < limit;
+        
+        
+        public User_POST(List<ulong> userIds, bool excludeBannedUsers = false)
         {
+            if (!ArrayLengthCheck(userIds) ) throw new InvalidIdException ("Too many userIds");
+
             this.userIds = userIds;
+            
             this.excludeBannedUsers = excludeBannedUsers;
         }
 
-        public User_POST(string[] usernames, bool excludeBannedUsers = false)
+        public User_POST(List<string>usernames, bool excludeBannedUsers = false)
         {
+            if (!ArrayLengthCheck(usernames) ) throw new InvalidUsernameException ("Too many usernames");
             this.usernames = usernames;
+            
             this.excludeBannedUsers = excludeBannedUsers;
         }
     }

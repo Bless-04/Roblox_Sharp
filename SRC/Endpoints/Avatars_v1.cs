@@ -16,7 +16,8 @@ namespace Roblox_Sharp.Endpoints
     public static class Avatars_v1
     {
         /// <summary>
-        /// Returns details about a avatar using specified with<paramref name="userId"/>
+        /// Returns details about a avatar using specified with<paramref name="userId"/> <br></br>
+        /// Allows requesting terminated users
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>Avatar</returns>
