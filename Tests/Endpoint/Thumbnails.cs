@@ -14,7 +14,6 @@ namespace Tests.Endpoint
     [Collection("Endpoints")]
     public class Thumbnails
     {
-
         private bool Test(Func<IReadOnlyList<Thumbnail>> method)
         {
             IReadOnlyList<Thumbnail> thumbnails = method();
@@ -58,8 +57,6 @@ namespace Tests.Endpoint
                 Test(() => Thumbnails_v1.Get_AvatarsAsync(id, size, format, isCircular).Result) , 
                 "nothing should be null here"
             );
-
-
         }
 
         [Theory]
