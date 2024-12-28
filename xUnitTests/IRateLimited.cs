@@ -47,7 +47,7 @@ namespace xUnitTests
 
 
                 testCode();
-                Skip.If(false);
+                return;
             }
             catch (RateLimitException)
             {
