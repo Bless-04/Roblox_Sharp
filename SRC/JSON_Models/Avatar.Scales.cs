@@ -1,8 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿namespace Roblox_Sharp.JSON_Models;
 
-namespace Roblox_Sharp.JSON_Models;
-
-[JsonSerializable(typeof(Avatar.Scales))]
 public partial class Avatar
 {
     public readonly struct Scales

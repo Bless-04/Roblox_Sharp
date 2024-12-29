@@ -79,7 +79,6 @@ namespace Roblox_Sharp.JSON_Models
         /// </summary>
         public User? creator { get; init; }
 
-    
         public readonly struct Statistics
         {
             public ulong pastDayAwardedCount { get; init; }

@@ -71,7 +71,6 @@ namespace Roblox_Sharp.JSON_Models
     /// <summary>
     /// used to serialize avatar based requests
     /// </summary>
-    [JsonSerializable(typeof(Avatar))]
     public partial class Avatar
     {
         public Scales scales { get; init; }

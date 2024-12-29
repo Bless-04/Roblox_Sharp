@@ -1,5 +1,4 @@
-﻿
-using System.Drawing;
+﻿using System.Drawing;
 using System.Text.Json.Serialization;
 using Roblox_Sharp.JSON_Models.Internal.JsonConverter;
 namespace Roblox_Sharp.JSON_Models;

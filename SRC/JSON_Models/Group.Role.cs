@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 namespace Roblox_Sharp.JSON_Models;
 
-[JsonSerializable(typeof(Group.Role))]
 public partial class Group
 {
     /// <summary>
