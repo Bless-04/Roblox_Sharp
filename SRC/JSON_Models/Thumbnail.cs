@@ -16,7 +16,6 @@ namespace Roblox_Sharp.JSON_Models
         ]
     }*/
 
-    [JsonSerializable(typeof(Thumbnail))]
     /// <summary>
     /// class used to serialize Thumbnail based requests
     /// </summary>

@@ -22,7 +22,6 @@ namespace Roblox_Sharp.JSON_Models.Users
    }
  ]
 }*/
-    [JsonSerializable(typeof(User_Presence))]
     public class User_Presence : User
     {
         [JsonInclude]

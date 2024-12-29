@@ -10,6 +10,7 @@ namespace xUnitTests.Endpoint
     /// Tests <see cref="Roblox_Sharp.Endpoints.Avatars_v1"/> and <see cref="Roblox_Sharp.Endpoints.Avatars_v2"/> Endpoints
     /// </summary>
     [Collection("Endpoints")]
+   // [Trait("xUnitTests", "Endpoints")] no
     public class Avatars : IRateLimited
     {
         [RateLimitedFact]

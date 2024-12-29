@@ -45,8 +45,11 @@ namespace xUnitTests.Object_Functionality
                 new(1),
                 new(2)
             };
-            
-            Page<User> page = new(){data = data};
+
+            Page<User> page = new()
+            {
+                data = data
+            };
 
             User dummy = page.data[0];
 

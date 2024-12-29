@@ -3,7 +3,6 @@ using System;
 
 namespace Roblox_Sharp.JSON_Models 
 { 
-    [JsonSerializable(typeof(Badge))]
     public class Badge
     {
         /// <summary>

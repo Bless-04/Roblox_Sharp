@@ -20,12 +20,14 @@ namespace xUnitTests.Object_Functionality
 
         [Fact]
         public void Page() =>
-            Assert.IsAssignableFrom<IPage>(new Page<bool>()
-            {
-                previousPageCursor = "",
-                nextPageCursor = "",
-                data = Array.Empty<bool>()
-            });
+            Assert.IsAssignableFrom<IPage>(
+                new Page<bool>()
+                {
+                    previousPageCursor = null,
+                    nextPageCursor = null,
+                    data = Array.Empty<bool>()
+                }
+            );
         
         [Fact]
         public void Badge_Award() => Assert.IsAssignableFrom<Badge>(new Badge_Award()
