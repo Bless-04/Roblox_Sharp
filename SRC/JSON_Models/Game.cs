@@ -3,8 +3,7 @@
 namespace Roblox_Sharp.JSON_Models
 {
     //TODO: finish
-    [JsonSerializable(typeof(Game))]
-    sealed public partial class Game
+    public partial class Game
     {
         [JsonInclude]
         protected ulong id { init => universeId = value; }

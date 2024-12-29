@@ -1,8 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿namespace Roblox_Sharp.JSON_Models;
 
-namespace Roblox_Sharp.JSON_Models;
-
-[JsonSerializable(typeof(Avatar.Emote))]
 public partial class Avatar
 {
     public class Emote : Avatar.Asset

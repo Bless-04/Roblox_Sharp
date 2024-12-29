@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.JSON_Models.Badges
 {
-    [JsonSerializable(typeof(Badge_Award))]
     public class Badge_Award : Badge
     {
         /// <summary>

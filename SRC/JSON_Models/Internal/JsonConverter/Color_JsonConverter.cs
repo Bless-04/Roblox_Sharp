@@ -13,7 +13,7 @@ namespace Roblox_Sharp.JSON_Models.Internal.JsonConverter
     {
         public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
            ColorTranslator.FromHtml(
-              reader.GetString()[0] != '#' //if for some reason it doesnt start with a #
+              reader.GetString()![0] != '#' //if for some reason it doesnt start with a #
                    ? $"#{reader.GetString()}"
                    : reader.GetString() ?? throw new JsonException("Error when converting color")
            );

@@ -1,4 +1,4 @@
- using System;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Roblox_Sharp.Enums;
@@ -42,12 +42,13 @@ namespace Roblox_Sharp.JSON_Models
         }
 */
 
-    [JsonSerializable(typeof(User))]
     /// <summary>
     /// class used to serialize User based requests
     /// </summary>
     public class User : IUser
     {
+        public User() { }
+
         public User(ulong userId) : base(userId) { }
 
         public User(string username, string? displayName = null)
@@ -62,7 +63,7 @@ namespace Roblox_Sharp.JSON_Models
             this.displayName = displayName;
         }
 
-        public User() { }
+        
 
         [JsonInclude]
         /// <summary>

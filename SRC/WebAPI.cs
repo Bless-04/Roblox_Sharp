@@ -46,8 +46,7 @@ namespace Roblox_Sharp
                     OnSuccessfulRequest?.Invoke(response, EventArgs.Empty);
                     return await response.Content.ReadAsStringAsync();
                 }
-                else 
-                    OnFailedRequest?.Invoke(response, EventArgs.Empty);
+                else OnFailedRequest?.Invoke(response, EventArgs.Empty);
 
                 //errors
                 switch (response.StatusCode)
@@ -74,7 +73,6 @@ namespace Roblox_Sharp
                     case HttpStatusCode.InternalServerError:
                         throw new HttpRequestException($"There may be a problem with the Roblox Servers.\nStatusCode: {response.StatusCode}\n{url}");
                 }
-
                 throw new NotImplementedException($"Unhandled Error\nStatusCode: {response.StatusCode} \n{response.Content}");
             }          
         }
@@ -121,11 +119,7 @@ namespace Roblox_Sharp
                     default:
                         throw new NotImplementedException($"Unhandled Error: {response.StatusCode}\n{url}\n{response.Content}");
                 };
-            }
-
-            
+            } 
         }
-
-       
     }
 }

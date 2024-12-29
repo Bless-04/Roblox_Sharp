@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Roblox_Sharp.Framework
+﻿namespace Roblox_Sharp.Framework
 {
     /// <summary>
     /// template for all the page based requests that have a previous and next cursor
@@ -24,20 +22,5 @@ namespace Roblox_Sharp.Framework
             this.previousPageCursor = previousPageCursor;
             this.nextPageCursor = nextPageCursor;
         }
-    }
-
-    /// <summary>
-    /// template for all the page based requests that have a <typeparamref name="data"/> field
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public abstract class IPage<T> : IPage
-    {
-        /// <summary>
-        /// data of the request
-        /// </summary>
-        required public IReadOnlyList<T> data { get; init; }
-
-        public IPage( string? previousPageCursor, string? nextPageCursor, IReadOnlyList<T> data) : base(previousPageCursor, nextPageCursor) => 
-            this.data = data;   
-    }
+    }   
 }
