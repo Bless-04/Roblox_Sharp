@@ -1,8 +1,5 @@
-﻿
-using System.Text.Json.Serialization;
-namespace Roblox_Sharp.JSON_Models;
+﻿namespace Roblox_Sharp.JSON_Models;
 
-[JsonSerializable(typeof(Avatar.Asset.Asset_Type))]
 public partial class Avatar
 {
     public partial class Asset

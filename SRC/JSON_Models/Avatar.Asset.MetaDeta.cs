@@ -1,9 +1,7 @@
 ﻿using System.Numerics;
-using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.JSON_Models;
 
-[JsonSerializable(typeof(Avatar.Asset.Metadata))]
 public partial class Avatar
 {
     public partial class Asset

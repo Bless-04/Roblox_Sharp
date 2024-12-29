@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.JSON_Models;
 
-[JsonSerializable(typeof(Group.Shout))]
 public partial class Group
 {
     //Unique to this request
