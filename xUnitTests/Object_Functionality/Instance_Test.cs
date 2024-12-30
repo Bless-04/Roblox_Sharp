@@ -1,8 +1,8 @@
 ﻿using Roblox_Sharp.Framework;
 
-using Roblox_Sharp.JSON_Models;
-using Roblox_Sharp.JSON_Models.Users;
-using Roblox_Sharp.JSON_Models.Badges;
+using Roblox_Sharp.Models;
+using Roblox_Sharp.Models.Users;
+using Roblox_Sharp.Models.Badges;
 using System;
 
 namespace xUnitTests.Object_Functionality
@@ -13,7 +13,10 @@ namespace xUnitTests.Object_Functionality
     public class Instance
     {
         [Fact]
-        public void User() => Assert.IsAssignableFrom<IUser>(new User()); //IUser>
+        public void User() => Assert.IsAssignableFrom<IUser>(new User(0)); //IUser>
+
+        [Fact]
+        public void Profile() => Assert.IsAssignableFrom<IUser>(new Profile());
 
         [Fact]
         public void User_Presence() => Assert.IsAssignableFrom<User>(new User_Presence());

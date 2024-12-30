@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using Roblox_Sharp.Enums;
-using Roblox_Sharp.JSON_Models;
-using Roblox_Sharp.JSON_Models.Users;
+using Roblox_Sharp.Models;
+using Roblox_Sharp.Models.Users;
 using Xunit.Sdk;
 
 namespace xUnitTests.Deserialization

@@ -7,7 +7,7 @@ using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.Enums.Thumbnail;
 using Roblox_Sharp.Enums;
 
-using Roblox_Sharp.JSON_Models;
+using Roblox_Sharp.Models;
 using System.Collections.Generic;
 
 namespace Roblox_Sharp.Endpoints

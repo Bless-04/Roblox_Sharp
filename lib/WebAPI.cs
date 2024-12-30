@@ -7,10 +7,8 @@ using System.Text.Json;
 
 using Roblox_Sharp.Exceptions;
 
-using Roblox_Sharp.JSON_Models.Internal.POST;
-using static Roblox_Sharp.Framework.WebHelper;
-
-
+using Roblox_Sharp.Models.Internal.POST;
+using static Roblox_Sharp.Framework.WebHost;
 
 namespace Roblox_Sharp
 {

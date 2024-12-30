@@ -2,7 +2,7 @@
 using System.Text.Json;
 
 using static Roblox_Sharp.WebAPI;
-using Roblox_Sharp.JSON_Models;
+using Roblox_Sharp.Models;
 using System.Collections.Generic;
 
 namespace Roblox_Sharp.Endpoints

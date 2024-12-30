@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using System.Text.Json;
 
-using Roblox_Sharp.JSON_Models.Badges;
-using Roblox_Sharp.JSON_Models;
+using Roblox_Sharp.Models.Badges;
+using Roblox_Sharp.Models;
 using static Roblox_Sharp.WebAPI;
 using Roblox_Sharp.Enums;
 using System.Collections.Generic;

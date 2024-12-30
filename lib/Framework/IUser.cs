@@ -5,20 +5,36 @@ namespace Roblox_Sharp.Framework
 {
     /// <summary>
     /// Defines a generalized template for any roblox <paramref name="User"></paramref> based object
+    /// all users inherit have the fields <paramref name="userId"/>, <paramref name="username"/>, and <paramref name="displayName"/>
     /// </summary>
     public abstract class IUser : 
         IComparable<IUser>
     {
         /// <summary>
-        /// the Unique numeric <paramref name="userId"/> of the user. Should only be set in initialization
+        /// the Unique numeric <paramref name="userId"/> of the user.
         /// </summary>
         public ulong userId { get; init; }
 
-        
+        /// <summary>
+        /// unique username for the user
+        /// </summary>
+        public string username { get; init; }
+
+        /// <summary>
+        /// display name for the user
+        /// </summary>
+        public string? displayName { get; init; }
+
         public IUser() { }
 
         public IUser(ulong userId) => this.userId = userId;
 
+        public IUser(ulong userId, string username, string? displayName = null)
+        {
+            this.userId = userId;
+            this.username = username;
+            this.displayName = displayName;
+        }
         /// <summary>
         /// equal if and only if the ids are the same
         /// </summary>
@@ -31,7 +47,7 @@ namespace Roblox_Sharp.Framework
         
         public override int GetHashCode() => userId.GetHashCode();
 
-        [Obsolete("this conversion loses information; call userid instead")]
+        [Obsolete("this conversion loses information; just call userId instead")]
         /// <summary>
         /// lossy conversion from <see cref="IUser"/> to <see cref="ulong"/> <br></br>
         /// simply returns the users id
@@ -46,7 +62,6 @@ namespace Roblox_Sharp.Framework
         /// <param name="right"></param>
         /// <returns>bool</returns>
         public static bool operator <(IUser left, IUser right) => left.userId > right.userId;
-
        
         /// <summary>
         /// a user is <b>greater than</b> another if it is older. Older users have smaller ids than newer users.
@@ -55,7 +70,6 @@ namespace Roblox_Sharp.Framework
         /// <param name="right"></param>
         /// <returns>bool</returns>
         public static bool operator >(IUser left, IUser right) => left.userId < right.userId;
-        
         
         /// <summary>
         /// a user is greater than another if it is older. Older users have smaller ids than newer users.
@@ -76,5 +90,19 @@ namespace Roblox_Sharp.Framework
 
             return 0;
         }
+
+        /// <summary>
+        /// string representation of the user <br></br> 
+        /// Format: <b> <paramref name="displayName"/> @ <paramref name="username"/> (<paramref name="id"/>) </b>
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => 
+            ToString(userId, username, displayName);
+            
+
+        protected string ToString(ulong userId, string username, string? displayName = null) =>
+            (username != null)
+            ? $"{displayName}@{username} (ID {userId})"
+            : $"(ID {userId})";
     }
 }

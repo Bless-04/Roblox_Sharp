@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using Roblox_Sharp.JSON_Models;
+using Roblox_Sharp.Models;
 
 namespace xUnitTests.Deserialization
 { 

@@ -1,4 +1,4 @@
-﻿using Roblox_Sharp.JSON_Models.Internal;
+﻿using Roblox_Sharp.Models.Internal;
 using System.Text.Json;
 using System.Threading.Tasks;
 

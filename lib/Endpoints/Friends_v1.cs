@@ -1,11 +1,11 @@
 ﻿using System.Text.Json;
 using System.Threading.Tasks;
 
-using Roblox_Sharp.JSON_Models;
+using Roblox_Sharp.Models;
 using Roblox_Sharp.Enums;
 using static Roblox_Sharp.WebAPI;
-using Roblox_Sharp.JSON_Models.Internal;
-using Roblox_Sharp.JSON_Models.Users;
+using Roblox_Sharp.Models.Internal;
+using Roblox_Sharp.Models.Users;
 using System.Collections.Generic;
 
 
