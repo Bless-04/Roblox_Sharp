@@ -17,7 +17,7 @@ on:
     
 defaults:
   run:
-    working-directory: "SRC"
+    working-directory: "lib"
 
 jobs:
   Build-and-Test:
