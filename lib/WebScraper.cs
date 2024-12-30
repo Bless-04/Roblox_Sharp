@@ -8,7 +8,11 @@ using static Roblox_Sharp.Framework.WebHelper;
 
 namespace Roblox_Sharp
 {
+    /// <summary>
+    /// static class that 
+    /// </summary>
     public static class WebScraper
     {
+
     }
 }

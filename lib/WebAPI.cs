@@ -16,7 +16,7 @@ namespace Roblox_Sharp
 {
   
     /// <summary>
-    /// class that defines the logic used for making web requests to Roblox API <br></br>
+    /// static class that holds the functions and logic used for making web requests to Roblox API <br></br>
     /// <b><see href="https://github.com/matthewdean/roblox-web-apis?tab=readme-ov-file">Endpoints Documentation</see></b>
     /// </summary>
     public static class WebAPI
