@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Drawing;
 using System.Text.Json;
-using Roblox_Sharp.JSON_Models;
+using Roblox_Sharp.Models;
 using Roblox_Sharp.Enums;
 
 
 namespace xUnitTests.Deserialization
-{ 
+{
+    [Trait("Tests", "Deserialization")]
     public class Avatar_Object
     {
         [Fact]

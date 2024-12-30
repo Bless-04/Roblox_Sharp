@@ -1,8 +1,8 @@
 
 /.vs
-/SRC/.vs
-/SRC/bin
-/SRC/obj
+/lib/.vs
+/lib/bin
+/lib/obj
 /xUnitTests/.vs
 /xUnitTests/bin
 /xUnitTests/obj

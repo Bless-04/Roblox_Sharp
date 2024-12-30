@@ -1,14 +1,14 @@
 ﻿using System.Text.Json;
 using Roblox_Sharp.Enums;
-using Roblox_Sharp.JSON_Models;
-using Roblox_Sharp.JSON_Models.Users;
-using Xunit.Sdk;
+using Roblox_Sharp.Models;
+using Roblox_Sharp.Models.Users;
 
 namespace xUnitTests.Deserialization
 {
     /// <summary>
     /// Tests Serialization for <paramref name="User"/>
     /// </summary>
+    [Trait("Tests", "Deserialization")]
     public class User_Object
     {
         [Fact]

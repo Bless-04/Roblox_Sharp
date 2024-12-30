@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <RootNamespace>Tests</RootNamespace>
+    <RootNamespace>xUnitTests</RootNamespace>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <Reference Include="Roblox_Sharp">
-      <HintPath>..\SRC\bin\Debug\net9.0\Roblox_Sharp.dll</HintPath>
+      <HintPath>..\lib\bin\Debug\net9.0\Roblox_Sharp.dll</HintPath>
     </Reference>
   </ItemGroup>
 

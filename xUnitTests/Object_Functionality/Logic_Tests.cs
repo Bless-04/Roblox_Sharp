@@ -1,4 +1,4 @@
-﻿using Roblox_Sharp.JSON_Models;
+﻿using Roblox_Sharp.Models;
 
 using System.Collections.Generic;
 
@@ -7,16 +7,15 @@ namespace xUnitTests.Object_Functionality
     /// <summary>
     /// tests explicit logic of objects
     /// </summary>
+    [Trait("Tests", "Object")]
     public class Logic_Test
     {
         [Fact]
-        public void IUser_OperatorTests()
+
+        public void IUser_Operator()
         {
             // x > y > z
             User x = new(1); //roblox
-
-
-
             User y = new(16); //erik.cassel
             User z = new(156); //builderman
             User X = new(1); //roblox
@@ -37,14 +36,14 @@ namespace xUnitTests.Object_Functionality
 
 
         [Fact]
-        public void ImmutableTest()
+        public void Immutable()
         {
 
-            IReadOnlyList<User> data = new List<User>()
-            {
+            IReadOnlyList<User> data =
+            [
                 new(1),
                 new(2)
-            };
+            ];
 
             Page<User> page = new()
             {

@@ -34,14 +34,15 @@ jobs:
       - name: Build Roblox_Sharp Solution
         run:  dotnet build -c Debug Roblox_Sharp.sln
 
-      - name: JSON Deserialization Tests
-        run: dotnet test -c Debug --no-build --filter DisplayName~xUnitTests.Deserialization
-
+        
       - name: Object Functionality Tests
-        run: dotnet test -c Debug --no-build --filter DisplayName~xUnitTests.Object_Functionality
+        run: dotnet test -c Debug --no-build --filter Tests=Object
 
-      - name: Endpoint Integration Tests
-        run: dotnet test -c Debug --no-build --filter DisplayName~xUnitTests.Endpoint
+      - name: JSON Deserialization Tests
+        run: dotnet test -c Debug --no-build --filter Tests=Deserialization
+      
+      - name: Web-based Integration Tests
+        run: dotnet test -c Debug --no-build --filter Tests=Integration
 
 
         

@@ -1,12 +1,13 @@
 ﻿using System.Text.Json;
 
-using Roblox_Sharp.JSON_Models;
+using Roblox_Sharp.Models;
 
 namespace xUnitTests.Deserialization
 {
     /// <summary>
     /// Tests Serialization for all Group endpoints
     /// </summary>
+    [Trait("Tests", "Deserialization")]
     public class Group_Object
     {
         [Fact]
