@@ -10,6 +10,7 @@ namespace xUnitTests.HTTP
     /// Tests <see cref="Groups_v1"/> and <see cref="Groups_v2"/> endpoints
     /// </summary>
     [Collection("Endpoints")]
+    [Trait("Tests", "Integration")]
     public class Groups
     {
         [Fact]

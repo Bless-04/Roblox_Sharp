@@ -12,6 +12,7 @@ namespace xUnitTests.HTTP
     /// Tests <see cref="Badges_v1"/> Endpoint
     /// </summary>
     [Collection("Endpoints")]
+    [Trait("Tests", "Integration")]
     public class Badges
     {
         [Fact]

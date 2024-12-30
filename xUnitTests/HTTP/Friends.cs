@@ -12,6 +12,7 @@ namespace xUnitTests.HTTP
     /// Test <see cref="Friends_v1"/> Endpoint
     /// </summary>
     [Collection("Endpoints")]
+    [Trait("Tests", "Integration")]
     public class Friends : IRateLimited
     {
         [Fact]

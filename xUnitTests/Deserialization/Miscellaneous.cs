@@ -2,7 +2,8 @@
 using Roblox_Sharp.Models;
 
 namespace xUnitTests.Deserialization
-{ 
+{
+    [Trait("Tests", "Deserialization")]
     public class Miscellaneous
     {
         [Fact]

@@ -1,6 +1,4 @@
 ﻿using Roblox_Sharp.Endpoints;
-using System.ComponentModel;
-using System.Reflection;
 
 namespace xUnitTests.HTTP
 {
@@ -8,6 +6,7 @@ namespace xUnitTests.HTTP
     /// Tests <see cref="Inventory_v1"/> Endpoint
     /// </summary>
     [Collection("Endpoints")]
+    [Trait("Tests", "Integration")]
     public class Inventorys : IRateLimited
     {
         [RateLimitedFact]

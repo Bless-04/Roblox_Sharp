@@ -7,9 +7,11 @@ namespace xUnitTests.Object_Functionality
     /// <summary>
     /// tests explicit logic of objects
     /// </summary>
+    [Trait("Tests", "Object")]
     public class Logic_Test
     {
         [Fact]
+
         public void IUser_Operator()
         {
             // x > y > z

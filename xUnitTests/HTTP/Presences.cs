@@ -13,6 +13,7 @@ namespace xUnitTests.HTTP
     /// Tests <see cref="Presence_v1"/> endpoint
     /// </summary>
     [Collection("Endpoints")]
+    [Trait("Tests", "Integration")]
     public class Presences
     {
         [Fact]

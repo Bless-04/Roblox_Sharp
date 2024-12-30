@@ -10,6 +10,7 @@ namespace xUnitTests.Object_Functionality
     /// <summary>
     /// Tests if objects are derived from the correct types
     /// </summary>
+    [Trait("Tests", "Object")]
     public class Instance
     {
         [Fact]

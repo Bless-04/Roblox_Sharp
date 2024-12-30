@@ -5,6 +5,6 @@
     /// </summary>
     internal readonly struct Count_Response
     {
-        required public ulong count { get; init; }
+        required internal ulong count { get; init; }
     }
 }

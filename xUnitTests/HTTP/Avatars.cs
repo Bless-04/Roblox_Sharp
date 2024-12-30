@@ -10,7 +10,7 @@ namespace xUnitTests.HTTP
     /// Tests <see cref="Avatars_v1"/> and <see cref="Avatars_v2"/> Endpoints
     /// </summary>
     [Collection("Endpoints")]
-    // [Trait("xUnitTests", "HTTP")] no
+    [Trait("Tests", "Integration")]
     public class Avatars : IRateLimited
     {
         [RateLimitedFact]

@@ -2,13 +2,13 @@
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Models;
 using Roblox_Sharp.Models.Users;
-using Xunit.Sdk;
 
 namespace xUnitTests.Deserialization
 {
     /// <summary>
     /// Tests Serialization for <paramref name="User"/>
     /// </summary>
+    [Trait("Tests", "Deserialization")]
     public class User_Object
     {
         [Fact]

@@ -6,7 +6,8 @@ using Roblox_Sharp.Enums;
 
 
 namespace xUnitTests.Deserialization
-{ 
+{
+    [Trait("Tests", "Deserialization")]
     public class Avatar_Object
     {
         [Fact]
