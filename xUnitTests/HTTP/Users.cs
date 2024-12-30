@@ -23,8 +23,8 @@ namespace xUnitTests.HTTP
         public async Task Get_User()
         {
             //error checking
-            await Assert.ThrowsAsync<InvalidIdException>(() => Users_v1.Get_UserAsync(0));
-            await Assert.ThrowsAsync<InvalidIdException>(() => Users_v1.Get_UserAsync(5)); //terminated user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UserAsync(0));
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UserAsync(5)); //terminated user
 
             User roblox = await Users_v1.Get_UserAsync(1);
 
@@ -41,8 +41,8 @@ namespace xUnitTests.HTTP
         {
             IReadOnlyList<User> user_list = await Users_v1.Get_UsernamesAsync([1, 16]);//roblox, erik.cassel
 
-            await Assert.ThrowsAsync<InvalidIdException>(() => Users_v1.Get_UsernamesAsync([0])); //doesnt exist
-            await Assert.ThrowsAsync<InvalidIdException>(() => Users_v1.Get_UsernamesAsync([])); //empty
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([0])); //doesnt exist
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([])); //empty
 
             Assert.True(user_list[0].username == "Roblox", "User.username is failing");
 
@@ -57,7 +57,7 @@ namespace xUnitTests.HTTP
                 .OrderBy(u => u)
                 .ToList();
 
-            await Assert.ThrowsAsync<InvalidUsernameException>(() => Users_v1.Get_UsersAsync([]));
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsersAsync([]));
 
             Assert.True(
                    user_list[2].userId == 1 &&
@@ -84,7 +84,7 @@ namespace xUnitTests.HTTP
             //Page<User> x = Users_v1.Get_UsernameHistoryAsync(1).Result;
             Page<User> y = await Users_v1.Get_UsernameHistoryAsync(7733466, Limit.MAX);
 
-            await Assert.ThrowsAsync<InvalidIdException>(() => Users_v1.Get_UsernameHistoryAsync(5)); //terminated user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernameHistoryAsync(5)); //terminated user
 
             Assert.False(y.data.Count == 0, "Page.data should not be empty");
         }, "Get_UsernameHistory()", 0);

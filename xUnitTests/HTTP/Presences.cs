@@ -19,15 +19,14 @@ namespace xUnitTests.HTTP
         [Fact]
         public async Task Get_Presences()
         {
-            IReadOnlyList<User_Presence> presences = await Presence_v1.Get_PresencesAsync([156, 16, 1]); //youngst to oldest sorting
+            await Assert.ThrowsAsync<InvalidUserException>(() => Presence_v1.Get_PresencesAsync([0]));
 
-            presences = presences
-                .OrderBy(p => p)
-                .ToList();
+            IReadOnlyList<User_Presence> presences = await Presence_v1.Get_PresencesAsync([156,16,1]); //oldest to newest
 
-            //await Assert.ThrowsAsync<InvalidIdException>(() => Presence_v1.Get_PresencesAsync([])); doesnt throw anything
-            await Assert.ThrowsAsync<InvalidIdException>(() => Presence_v1.Get_PresencesAsync([0]));
+            presences = [.. presences.OrderBy(p => p.userId)];
 
+            //await Assert.ThrowsAsync<InvalidUserException>(() => Presence_v1.Get_PresencesAsync([])); doesnt throw anything
+            
             Assert.True(
                 presences[2].userId == 1 &&
                 presences[1].userId == 16 &&

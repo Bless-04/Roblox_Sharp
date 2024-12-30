@@ -28,12 +28,11 @@ namespace Roblox_Sharp.Models.Internal.POST
         /// </summary>
         /// <param name="limit"></param>
         /// <returns>true if the array is less than the limit</returns>
-        internal bool ArrayLengthCheck<T>(List<T> list, int limit = 100) => list.Count < limit;
-        
-        
+        public bool ArrayLengthCheck<T>(List<T> list, int limit = 100) => list.Count < limit;
+         
         public User_POST(List<ulong> userIds, bool excludeBannedUsers = false)
         {
-            if (!ArrayLengthCheck(userIds) ) throw new InvalidIdException ("Too many userIds");
+            if (!ArrayLengthCheck(userIds) ) throw new InvalidUserException ("Too many userIds");
 
             this.userIds = userIds;
             
@@ -42,7 +41,7 @@ namespace Roblox_Sharp.Models.Internal.POST
 
         public User_POST(List<string>usernames, bool excludeBannedUsers = false)
         {
-            if (!ArrayLengthCheck(usernames) ) throw new InvalidUsernameException ("Too many usernames");
+            if (!ArrayLengthCheck(usernames) ) throw new InvalidUserException ("Too many usernames");
             this.usernames = usernames;
             
             this.excludeBannedUsers = excludeBannedUsers;

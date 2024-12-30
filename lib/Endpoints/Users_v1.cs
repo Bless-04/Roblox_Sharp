@@ -43,12 +43,12 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>User</returns>
-        /// <exception cref="InvalidIdException"></exception>
+        /// <exception cref="InvalidUserException">if userid is invalid</exception>
         /// <exception cref="RateLimitException">If the request is rate limited</exception>
         public static async Task<User> Get_UserAsync(ulong userId) =>
             JsonSerializer.Deserialize<User>(
                 await Get_RequestAsync($"https://users.roblox.com/v1/users/{userId}")
-            ) ?? throw new InvalidIdException($"User id is invalid {userId}");
+            ) ?? throw new InvalidUserException($"User id is invalid {userId}");
 
         /// <summary>
         /// get usernames using the given array of <paramref name="userIds"/> asynchronousoly 
@@ -69,7 +69,7 @@ namespace Roblox_Sharp.Endpoints
                 await Post_RequestAsync("https://users.roblox.com/v1/users", new User_POST(userIds, excludeBannedUsers))
             )!.data;
 
-            if (users.Count == 0) throw new InvalidIdException($"No valid user ids\n[{string.Join(',', userIds)}]");
+            if (users.Count == 0) throw new InvalidUserException($"No valid user ids\n[{string.Join(',', userIds)}]");
 
             return users;
         }
@@ -94,7 +94,7 @@ namespace Roblox_Sharp.Endpoints
                 await Post_RequestAsync("https://users.roblox.com/v1/usernames/users", new User_POST(usernames, excludeBannedUsers))
             )!.data;
 
-            if (users.Count == 0) throw new InvalidUsernameException($"No valid usernames\n[{string.Join(',', usernames)}]");
+            if (users.Count == 0) throw new InvalidUserException($"No valid usernames\n[{string.Join(',', usernames)}]");
 
             return users;
         }

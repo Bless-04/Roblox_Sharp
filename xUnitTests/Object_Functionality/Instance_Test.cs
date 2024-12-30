@@ -17,9 +17,6 @@ namespace xUnitTests.Object_Functionality
         public void User() => Assert.IsAssignableFrom<IUser>(new User(0)); //IUser>
 
         [Fact]
-        public void Profile() => Assert.IsAssignableFrom<IUser>(new Profile());
-
-        [Fact]
         public void User_Presence() => Assert.IsAssignableFrom<User>(new User_Presence());
 
         [Fact]
