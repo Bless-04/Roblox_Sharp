@@ -8,7 +8,6 @@ using System.Text.Json;
 using Roblox_Sharp.Exceptions;
 
 using Roblox_Sharp.Models.Internal.POST;
-using static Roblox_Sharp.Framework.WebHost;
 
 namespace Roblox_Sharp
 {
@@ -19,6 +18,25 @@ namespace Roblox_Sharp
     /// </summary>
     public static class WebAPI
     {
+        private static HttpClient _client = new();
+
+        /// <summary>
+        /// <paramref name="HttpClient"/> used for all web requests
+        /// </summary>
+        public static HttpClient client { get => _client; }
+
+        /// <summary>
+        /// sets the <paramref name="HttpClient"/>
+        /// useful for configuring httpclient
+        /// sets to default if null
+        /// </summary>
+        /// <param name="new_client"></param>
+        public static void Set_HttpClient(HttpClient? new_client)
+        {
+            _client.Dispose();
+
+            _client = new_client ?? new HttpClient();
+        }
         /// <summary>
         /// an event that is raised when the web request is successful/statuscode 200
         /// </summary>
@@ -29,6 +47,20 @@ namespace Roblox_Sharp
         /// </summary>
         public static event EventHandler? OnFailedRequest;
         
+
+        internal static bool SuccessfulRequest(HttpResponseMessage response,EventArgs e)
+        {
+            if (response.IsSuccessStatusCode)
+            {
+                OnSuccessfulRequest?.Invoke(response, EventArgs.Empty);
+                return true;
+            }
+            else
+            {
+                OnFailedRequest?.Invoke(response, EventArgs.Empty);
+                return false;
+            }
+        }
         /// <summary>
         /// helper function for get requests for roblox api
         /// </summary>
@@ -39,12 +71,8 @@ namespace Roblox_Sharp
         {
             using HttpResponseMessage response = await client.GetAsync(url);
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    OnSuccessfulRequest?.Invoke(response, EventArgs.Empty);
+                if (SuccessfulRequest(response, EventArgs.Empty))
                     return await response.Content.ReadAsStringAsync();
-                }
-                else OnFailedRequest?.Invoke(response, EventArgs.Empty);
 
                 //errors
                 switch (response.StatusCode)
@@ -59,7 +87,6 @@ namespace Roblox_Sharp
                         else
                             throw new RateLimitException($"Rate Limit Exceeded\n{url}\nStatusCode: {response.StatusCode}"); 
                     }
-                   
                     case HttpStatusCode.BadRequest:
                         throw new InvalidUserException($"User either doesnt exist or is terminated/banned \nStatusCode: {response.StatusCode}\n{url}");
                     case HttpStatusCode.NotFound:
@@ -86,18 +113,13 @@ namespace Roblox_Sharp
         internal static async Task<string> Post_RequestAsync(string url, User_POST postreq)
         {
             using HttpResponseMessage response = await client.PostAsync(
-                url, new StringContent(
+                    url, new StringContent(
                     JsonSerializer.Serialize(postreq), 
                     Encoding.UTF8, "application/json")
                 );
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    OnSuccessfulRequest?.Invoke(response, EventArgs.Empty);
+                if (SuccessfulRequest(response, EventArgs.Empty))
                     return await response.Content.ReadAsStringAsync();
-                }
-                else
-                    OnFailedRequest?.Invoke(response, EventArgs.Empty);
                 //errors
                 switch (response.StatusCode)
                 {
@@ -116,5 +138,8 @@ namespace Roblox_Sharp
                 };
             } 
         }
+
+
+
     }
 }
