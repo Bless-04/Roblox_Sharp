@@ -42,7 +42,7 @@ namespace xUnitTests.HTTP
 
             //v1 allows banned users
 
-            await Assert.ThrowsAsync<InvalidIdException>(() => Avatars_v2.Get_AvatarAsync(5)); //the terminated user 
+            await Assert.ThrowsAsync<InvalidUserException>(() => Avatars_v2.Get_AvatarAsync(5)); //the terminated user 
         }
 
 

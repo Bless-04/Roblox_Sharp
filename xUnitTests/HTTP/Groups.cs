@@ -22,7 +22,7 @@ namespace xUnitTests.HTTP
             Assert.True(2 == group.groupId, "Group.groupId is failing"); //group id is 2
             Assert.True(group.memberCount > 100000, "Group.memberCount is failing"); //over 100k members as of 11/27/24
 
-            await Assert.ThrowsAsync<InvalidIdException>(() => Groups_v1.Get_GroupAsync(0)); //doesnt exist
+            await Assert.ThrowsAsync<InvalidUserException>(() => Groups_v1.Get_GroupAsync(0)); //doesnt exist
         }
 
         [Fact]

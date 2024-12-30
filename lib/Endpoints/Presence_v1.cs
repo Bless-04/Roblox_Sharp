@@ -31,6 +31,6 @@ namespace Roblox_Sharp.Endpoints
             JsonSerializer.Deserialize<Presence_Response>(
                 await Post_RequestAsync($"https://presence.roblox.com/v1/presence/users", new User_POST(userIds))
             )!.userPresences 
-                ?? throw new InvalidIdException($"No valid user ids\n[{string.Join(',', userIds)}]");
+                ?? throw new InvalidUserException($"No valid user ids\n[{string.Join(',', userIds)}]");
     }
 }

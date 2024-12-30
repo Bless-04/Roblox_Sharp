@@ -16,7 +16,7 @@ public partial class Avatar
         /// The RGB hex color for head color, e.g. #FFFFFF
         /// </summary>
         [JsonConverter(typeof(Color_JsonConverter))]
-        public Color headColor3 { get; init ; }
+        public Color headColor3 { get; init; }
 
         /// <summary>
         /// The RGB hex color for torso color

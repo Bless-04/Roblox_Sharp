@@ -29,8 +29,8 @@ namespace xUnitTests.HTTP
             );
 
             //error checking
-            await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FriendsCountAsync(0)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FriendsCountAsync(5)); //terminated user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsCountAsync(0)); //doesnt exist
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsCountAsync(5)); //terminated user
         }, "Get_FriendsCount()");
 
 
@@ -38,8 +38,8 @@ namespace xUnitTests.HTTP
         public void Get_FollowersCount() => Test(async () =>
         {
 
-            await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FollowersCountAsync(0)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FollowersCountAsync(5)); //terminated user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(0)); //doesnt exist
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(5)); //terminated user
 
             ulong roblox = await Friends_v1.Get_FollowersCountAsync(1);
             ulong erik = await Friends_v1.Get_FollowersCountAsync(16);
@@ -58,8 +58,8 @@ namespace xUnitTests.HTTP
             Assert.True(roblox == 0 && erik > 0, "Get_FollowingsCount() is failing");
 
             //error checking
-            await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsCountAsync(0)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsCountAsync(5)); //terminated user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(0)); //doesnt exist
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(5)); //terminated user
         }, "Get_Following");
 
 
@@ -73,8 +73,8 @@ namespace xUnitTests.HTTP
             Assert.True(roblox.data.Count == 0 && erik.data.Count != 0, "Get_Followings() is failing");
 
             //error checking
-            await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsAsync(0)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FollowingsAsync(5)); //terminated user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsAsync(0)); //doesnt exist
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsAsync(5)); //terminated user
         });
 
         [RateLimitedFact]
@@ -87,8 +87,8 @@ namespace xUnitTests.HTTP
             Assert.True(erik_friends.Count != 0 && roblox_friends.Count == 0, "Get_Friends() is failing");
 
             //error checking
-            await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FriendsAsync(0)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FriendsAsync(5)); //terminated user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsAsync(0)); //doesnt exist
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsAsync(5)); //terminated user
         });
 
         [RateLimitedFact]
@@ -102,8 +102,8 @@ namespace xUnitTests.HTTP
             Assert.Null(page.previousPageCursor);
 
             //error checking
-            await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FollowersAsync(0)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidIdException>(() => Friends_v1.Get_FollowersAsync(5)); //terminated user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersAsync(0)); //doesnt exist
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersAsync(5)); //terminated user
 
             //new page
             page = Friends_v1.Get_FollowersAsync(1, page: page).Result; //roblox
