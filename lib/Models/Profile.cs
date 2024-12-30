@@ -10,8 +10,15 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used for Scraped User Profile
     /// </summary>
-    public class Profile : IUser
+    public class Profile : IUser 
     {
+        /// <summary>
+        /// ambiguity with username
+        /// </summary>
+        internal string profileusername => base.username;
+
+        public IReadOnlyList<string>? previousUsernames { get; init; }
+
         public byte friends_count { get; init; }
         public ulong followers_count { get; init; }
 

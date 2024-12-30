@@ -11,12 +11,13 @@ using static Roblox_Sharp.WebScraper;
 
 namespace xUnitTests.HTTP
 {
+    [Trait("Tests", "Integration")]
     public class WebScraper
     {
         [Fact]
         public async Task Get_Profile()
         {
-            Scrape_ProfileAsync(1);
+           await Scrape_ProfileAsync(1);
         }
     }
 }
