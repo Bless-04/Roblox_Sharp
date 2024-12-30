@@ -1,5 +1,6 @@
 ﻿using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Exceptions;
+using Roblox_Sharp.Framework;
 using Roblox_Sharp.Models.Users;
 
 using System.Collections.Generic;
@@ -21,9 +22,9 @@ namespace xUnitTests.HTTP
         {
             await Assert.ThrowsAsync<InvalidUserException>(() => Presence_v1.Get_PresencesAsync([0]));
 
-            IReadOnlyList<User_Presence> presences = await Presence_v1.Get_PresencesAsync([156,16,1]); //oldest to newest
+            IReadOnlyList<User_Presence> presences = await Presence_v1.Get_PresencesAsync([156,16,1]); //youngest to newest 
 
-            presences = [.. presences.OrderBy(p => p.userId)];
+            presences = [.. presences.OrderByDescending(user => user.userId)];
 
             //await Assert.ThrowsAsync<InvalidUserException>(() => Presence_v1.Get_PresencesAsync([])); doesnt throw anything
             
