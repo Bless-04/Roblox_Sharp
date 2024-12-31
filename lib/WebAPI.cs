@@ -34,7 +34,6 @@ namespace Roblox_Sharp
         public static void Set_HttpClient(HttpClient? new_client)
         {
             _client.Dispose();
-
             _client = new_client ?? new HttpClient();
         }
         /// <summary>
@@ -138,8 +137,5 @@ namespace Roblox_Sharp
                 };
             } 
         }
-
-
-
     }
 }
