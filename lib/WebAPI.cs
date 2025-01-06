@@ -1,17 +1,15 @@
-﻿using System;
-using System.Text;
+﻿using Roblox_Sharp.Exceptions;
+using Roblox_Sharp.Models.Internal.POST;
+using System;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
+using System.Text;
 using System.Text.Json;
-
-using Roblox_Sharp.Exceptions;
-
-using Roblox_Sharp.Models.Internal.POST;
+using System.Threading.Tasks;
 
 namespace Roblox_Sharp
 {
-  
+
     /// <summary>
     /// static class that holds the functions and logic used for making web requests to Roblox API <br></br>
     /// <b><see href="https://github.com/matthewdean/roblox-web-apis?tab=readme-ov-file">Endpoints Documentation</see></b>
@@ -34,7 +32,6 @@ namespace Roblox_Sharp
         public static void Set_HttpClient(HttpClient? new_client)
         {
             _client.Dispose();
-
             _client = new_client ?? new HttpClient();
         }
         /// <summary>
@@ -46,9 +43,9 @@ namespace Roblox_Sharp
         /// an event that is raised when the web request fails / statuscode is not 200
         /// </summary>
         public static event EventHandler? OnFailedRequest;
-        
 
-        internal static bool SuccessfulRequest(HttpResponseMessage response,EventArgs e)
+
+        internal static bool SuccessfulRequest(HttpResponseMessage response, EventArgs e)
         {
             if (response.IsSuccessStatusCode)
             {
@@ -67,7 +64,7 @@ namespace Roblox_Sharp
         /// <param name="url"></param>
         /// <returns>content string</returns>
         /// <exception cref="InvalidUserException"></exception>
-        internal static async Task<string> Get_RequestAsync(string url, bool RateLimitRetry = false,int MS_Delay = 60009)
+        internal static async Task<string> Get_RequestAsync(string url, bool RateLimitRetry = false, int MS_Delay = 60009)
         {
             using HttpResponseMessage response = await client.GetAsync(url);
             {
@@ -78,15 +75,15 @@ namespace Roblox_Sharp
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.TooManyRequests:
-                    {
-                        if (RateLimitRetry)
                         {
-                            await Task.Delay(MS_Delay); //default is 60 secs
-                            return await Get_RequestAsync(url, false); //retries once
+                            if (RateLimitRetry)
+                            {
+                                await Task.Delay(MS_Delay); //default is 60 secs
+                                return await Get_RequestAsync(url, false); //retries once
+                            }
+                            else
+                                throw new RateLimitException($"Rate Limit Exceeded\n{url}\nStatusCode: {response.StatusCode}");
                         }
-                        else
-                            throw new RateLimitException($"Rate Limit Exceeded\n{url}\nStatusCode: {response.StatusCode}"); 
-                    }
                     case HttpStatusCode.BadRequest:
                         throw new InvalidUserException($"User either doesnt exist or is terminated/banned \nStatusCode: {response.StatusCode}\n{url}");
                     case HttpStatusCode.NotFound:
@@ -99,7 +96,7 @@ namespace Roblox_Sharp
                         throw new HttpRequestException($"There may be a problem with the Roblox Servers.\nStatusCode: {response.StatusCode}\n{url}");
                 }
                 throw new NotImplementedException($"Unhandled Error\nStatusCode: {response.StatusCode} \n{response.Content}");
-            }          
+            }
         }
 
         /// <summary>
@@ -114,7 +111,7 @@ namespace Roblox_Sharp
         {
             using HttpResponseMessage response = await client.PostAsync(
                     url, new StringContent(
-                    JsonSerializer.Serialize(postreq), 
+                    JsonSerializer.Serialize(postreq),
                     Encoding.UTF8, "application/json")
                 );
             {
@@ -136,10 +133,7 @@ namespace Roblox_Sharp
                     default:
                         throw new NotImplementedException($"Unhandled Error: {response.StatusCode}\n{url}\n{response.Content}");
                 };
-            } 
+            }
         }
-
-
-
     }
 }

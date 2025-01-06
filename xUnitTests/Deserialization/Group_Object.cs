@@ -1,6 +1,5 @@
-﻿using System.Text.Json;
-
-using Roblox_Sharp.Models;
+﻿using Roblox_Sharp.Models;
+using System.Text.Json;
 
 namespace xUnitTests.Deserialization
 {
@@ -32,7 +31,7 @@ namespace xUnitTests.Deserialization
                     ""hasVerifiedBadge"": true,
                     ""userId"": 0,
                     ""username"": ""string"",
-                    ""displayName"": ""string""
+                    ""displayName"": ""poster""
                 },
                 ""created"": ""2024-12-23T06:22:04.576Z"",
                 ""updated"": ""2024-12-23T06:22:04.576Z""
@@ -43,36 +42,36 @@ namespace xUnitTests.Deserialization
                 ""isLocked"": true,
                 ""hasVerifiedBadge"": true
             } ";
-            
+
             Group? group = JsonSerializer.Deserialize<Group>(json_response);
 
             Assert.NotNull(group);
-               
+
 
             Assert.Equal<ulong>(0, group.groupId);
             Assert.Equal("string", group.name);
 
             Assert.Equal("string", group.description);
-            
+
             Assert.True(group.owner.hasVerifiedBadge);
             Assert.Equal<ulong>(0, group.owner.userId);
             Assert.Equal("string", group.owner.username);
-            Assert.Equal("string", group.owner.displayName);
+            Assert.Null(group.owner.displayName);
 
             Assert.Equal("string", group.shout.body);
             Assert.True(group.shout.poster.hasVerifiedBadge);
             Assert.Equal<ulong>(0, group.shout.poster.userId);
             Assert.Equal("string", group.shout.poster.username);
-            Assert.Equal("string", group.shout.poster.displayName);
-            
+            Assert.Equal("poster", group.shout.poster.displayName);
+
             Assert.Equal(2024, group.shout.created.Year);
             Assert.Equal(2024, group.shout.updated.Year);
-            
+
             Assert.Equal<ulong>(0, group.memberCount);
             Assert.True(group.isBuildersClubOnly);
             Assert.True(group.publicEntryAllowed);
             Assert.True(group.isLocked);
-            Assert.True(group.hasVerifiedBadge); 
+            Assert.True(group.hasVerifiedBadge);
         }
 
         [Fact]
@@ -93,13 +92,13 @@ namespace xUnitTests.Deserialization
             }";
 
             Group? group = JsonSerializer.Deserialize<Group>(json_reponse);
-               
+
             Assert.NotNull(group);
             Assert.Equal<ulong>(0, group.groupId);
 
             Group.Role role = group.roles![0];
-           
-                
+
+
             Assert.Equal<ulong>(0, role.roleId);
             Assert.Equal("string", role.name);
             Assert.Equal("string", role.description);

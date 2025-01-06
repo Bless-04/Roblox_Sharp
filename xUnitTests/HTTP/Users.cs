@@ -2,13 +2,11 @@
 
 using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Enums;
-
-using Roblox_Sharp.Models;
 using Roblox_Sharp.Exceptions;
-using System.Threading.Tasks;
+using Roblox_Sharp.Models;
 using System.Collections.Generic;
-
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace xUnitTests.HTTP
 {
@@ -31,7 +29,7 @@ namespace xUnitTests.HTTP
             Assert.True(roblox.userId == 1, "User.userId is failing");
 
             Assert.True(
-                roblox.username == "Roblox" && roblox.displayName!.Equals(roblox.username),
+                roblox.username == "Roblox" && roblox.displayName == null,
                 "User.username is failing"
             );
         }

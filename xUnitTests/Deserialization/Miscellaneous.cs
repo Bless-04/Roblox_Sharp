@@ -1,5 +1,5 @@
-﻿using System.Text.Json;
-using Roblox_Sharp.Models;
+﻿using Roblox_Sharp.Models;
+using System.Text.Json;
 
 namespace xUnitTests.Deserialization
 {
@@ -27,7 +27,7 @@ namespace xUnitTests.Deserialization
             Assert.Equal("string", page.previousPageCursor);
             Assert.Equal("string", page.nextPageCursor);
 
-            Assert.True(1 == page.data.Count , "Page should have 1 item");
+            Assert.True(1 == page.data.Count, "Page should have 1 item");
 
             Assert.Equal("string", page.data[0].username);
 
@@ -46,13 +46,13 @@ namespace xUnitTests.Deserialization
             }";
 
             Thumbnail? thumbnail = JsonSerializer.Deserialize<Thumbnail>(json_response);
-                
+
             Assert.NotNull(thumbnail);
             //Assert.Equal<ulong>(0, thumbnail.targetId);
             Assert.Equal("Error", thumbnail.state);
             Assert.Equal("string", thumbnail.imageUrl);
             Assert.Equal("string", thumbnail.version);
-            
+
         }
     }
 }

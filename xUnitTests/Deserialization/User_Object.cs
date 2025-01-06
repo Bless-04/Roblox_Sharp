@@ -1,7 +1,6 @@
-﻿using System.Text.Json;
-using Roblox_Sharp.Enums;
+﻿using Roblox_Sharp.Enums;
 using Roblox_Sharp.Models;
-using Roblox_Sharp.Models.Users;
+using System.Text.Json;
 
 namespace xUnitTests.Deserialization
 {
@@ -39,7 +38,7 @@ namespace xUnitTests.Deserialization
             Assert.True(user.hasVerifiedBadge);
             Assert.Equal<ulong>(0, user.userId);
             Assert.Equal("string", user.username);
-            Assert.Equal("string", user.displayName);
+            Assert.Null(user.displayName);
         }
 
         [Fact]
@@ -57,14 +56,14 @@ namespace xUnitTests.Deserialization
                   ""hasVerifiedBadge"": true,
                   ""id"": 0,
                   ""name"": ""string"",
-                  ""displayName"": ""string""
+                  ""displayName"": ""displayName""
                 }
               ]
             }";
 
             Page<User>? page = JsonSerializer.Deserialize<Page<User>>(json_response);
-                Assert.NotNull(page);
-            
+            Assert.NotNull(page);
+
             Assert.Equal("string", page.previousPageCursor);
             Assert.Equal("string", page.nextPageCursor);
 
@@ -76,7 +75,7 @@ namespace xUnitTests.Deserialization
             Assert.True(user.hasVerifiedBadge);
             Assert.Equal<ulong>(0, user.userId);
             Assert.Equal("string", user.username);
-            Assert.Equal("string", user.displayName);
+            Assert.Equal("displayName", user.displayName);
 
         }
 
@@ -93,16 +92,16 @@ namespace xUnitTests.Deserialization
             }";
 
             User? user = JsonSerializer.Deserialize<User>(json_response);
-                Assert.NotNull(user);
-            
+            Assert.NotNull(user);
+
             User_Presence? presence = JsonSerializer.Deserialize<User_Presence>(json_response);
-                Assert.NotNull(presence);
+            Assert.NotNull(presence);
 
 
             Assert.True(
-                presence.userId == user.userId , 
+                presence.userId == user.userId,
                 "The id in the User_Presence object should be the same as the id in the User object");
-           
+
         }
 
         [Fact]
@@ -122,8 +121,8 @@ namespace xUnitTests.Deserialization
             }";
 
             User_Presence? userPresence = JsonSerializer.Deserialize<User_Presence>(json_response);
-              
-              
+
+
             Assert.NotNull(userPresence);
 
             Assert.Equal<Presence_Type>(0, userPresence.presenceType);
@@ -136,6 +135,6 @@ namespace xUnitTests.Deserialization
             Assert.Equal(2024, userPresence.lastOnline.Year);
             Assert.Equal(2024, userPresence.invisibleModeExpiry.Year);
         }
-        
+
     }
 }

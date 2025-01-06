@@ -1,4 +1,6 @@
-﻿namespace Roblox_Sharp.Models;
+﻿using Roblox_Sharp.Framework;
+
+namespace Roblox_Sharp.Models;
 
 public partial class Avatar
 {
@@ -7,7 +9,7 @@ public partial class Avatar
         /// <summary>
         /// the type of the asset
         /// </summary>
-        public class Asset_Type
+        public class Asset_Type 
         {
             /// <summary>
             /// the id of the Asset_Type
@@ -18,7 +20,6 @@ public partial class Avatar
             /// The name of the Asset_Type
             /// </summary>
             required public string name { get; init; }
-
         }
     }
 }

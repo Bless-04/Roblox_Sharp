@@ -1,13 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Text.Json;
-
-using Roblox_Sharp.Models.Badges;
-using Roblox_Sharp.Models;
-using static Roblox_Sharp.WebAPI;
-using Roblox_Sharp.Enums;
-using System.Collections.Generic;
+﻿using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
+using Roblox_Sharp.Models;
+using Roblox_Sharp.Models.Badges;
+using System;
+using System.Collections.Generic;
+using System.Text.Json;
+using System.Threading.Tasks;
+using static Roblox_Sharp.WebAPI;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -27,11 +26,11 @@ namespace Roblox_Sharp.Endpoints
         /// <returns>List of Badge_Award</returns>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="InvalidUserException"></exception>
-        public static async Task<IReadOnlyList<Badge_Award>> Get_BadgesAwardedDatesAsync(ulong userId,List<ulong> badgeIds)
+        public static async Task<IReadOnlyList<Badge_Award>> Get_BadgesAwardedDatesAsync(ulong userId, List<ulong> badgeIds)
         {
             if (badgeIds.Count == 0) throw new InvalidUserException("atleast one badge id is required");
             //URL example https://badges.roblox.com/v1/users/63225213/badges/awarded-dates?badgeIds=2126601323,2126601209,94278219,-1
-            return 
+            return
                 JsonSerializer.Deserialize<Page<Badge_Award>>(
                     await Get_RequestAsync(
                         $"https://badges.roblox.com/v1/users/{userId}" +
@@ -57,7 +56,7 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="sortOrder">the order the results are stored in</param>
         /// <param name="page">used for the paging cursor</param>
         /// <returns>Page of Badges</returns>
-        public static async Task<Page<Badge>> Get_BadgesAsync(ulong userId,Limit limit = Limit.Minimum,Sort sortOrder = Sort.Asc,Page<Badge>? page = null) =>
+        public static async Task<Page<Badge>> Get_BadgesAsync(ulong userId, Limit limit = Limit.Minimum, Sort sortOrder = Sort.Asc, Page<Badge>? page = null) =>
             //url example 'https://badges.roblox.com/v1/users/2/badges?limit=50&sortOrder=Asc' 
             JsonSerializer.Deserialize<Page<Badge>>(
                 await Get_RequestAsync(

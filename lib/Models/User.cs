@@ -1,8 +1,8 @@
+using Roblox_Sharp.Enums;
+using Roblox_Sharp.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using Roblox_Sharp.Enums;
-using Roblox_Sharp.Framework;
 
 //for the user based requests
 namespace Roblox_Sharp.Models
@@ -46,15 +46,7 @@ namespace Roblox_Sharp.Models
     /// class used to serialize User based requests
     /// </summary>
     public class User : IUser
-    {   
-        public User(ulong userId) : base(userId) { }
-
-        [JsonInclude]
-        /// <summary>
-        /// ambiguous with userId
-        /// </summary>
-        protected ulong id { init => base.userId = value; }
-
+    {
         [JsonInclude]
         /// <summary>
         /// ambiguous with username
@@ -75,7 +67,7 @@ namespace Roblox_Sharp.Models
         /// <b>true</b> if user is banned, <b>false</b> otherwise
         /// </summary>
         public bool isBanned { get; init; }
-        
+
         public string? externalAppDisplayName { get; init; }
 
         public bool hasVerifiedBadge { get; init; }
@@ -96,6 +88,42 @@ namespace Roblox_Sharp.Models
         public int friendFrequentScore { get; init; }
 
         public int friendFrequentRank { get; init; }
+
+        public User() { }
+
+        public User(ulong userId, string username, string? displayName = null) : base(userId, username, displayName) { }
+
+        public override User Clone()
+        {
+            List<string>? previousUsernamesCopy = null;
+
+            if (previousUsernames != null)
+            {
+                previousUsernamesCopy = new List<string>(previousUsernames.Count);
+
+                foreach (string username in previousUsernames)
+                    previousUsernamesCopy.Add(username);
+            }
+
+            return new User()
+            {
+                id = base.id,
+                username = base.username,
+                displayName = base.displayName,
+                description = description,
+                created = created,
+                isBanned = isBanned,
+                externalAppDisplayName = externalAppDisplayName,
+                hasVerifiedBadge = hasVerifiedBadge,
+                requestedUsername = requestedUsername,
+                presenceType = presenceType,
+                previousUsernames = previousUsernamesCopy,
+                isOnline = isOnline,
+                isDeleted = isDeleted,
+                friendFrequentScore = friendFrequentScore,
+                friendFrequentRank = friendFrequentRank
+            };
+        }
     }
 }
 

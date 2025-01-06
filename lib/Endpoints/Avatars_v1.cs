@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Roblox_Sharp.Models;
+using Roblox_Sharp.Models.Internal;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
-
-using Roblox_Sharp.Models;
-using Roblox_Sharp.Models.Internal;
 using static Roblox_Sharp.WebAPI;
 
 namespace Roblox_Sharp.Endpoints
@@ -36,6 +34,6 @@ namespace Roblox_Sharp.Endpoints
             JsonSerializer.Deserialize<assetIds_Response>(
                 await Get_RequestAsync($"https://avatar.roblox.com/v1/users/{userId}/currently-wearing")
             )!.assetIds;
-        
+
     }
 }

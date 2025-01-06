@@ -1,12 +1,11 @@
-﻿using System.Threading.Tasks;
-using System.Text.Json;
-
-using static Roblox_Sharp.WebAPI;
-using Roblox_Sharp.Enums;
+﻿using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
 using Roblox_Sharp.Models.Internal.POST;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Threading.Tasks;
+using static Roblox_Sharp.WebAPI;
 
 
 namespace Roblox_Sharp.Endpoints
@@ -35,7 +34,7 @@ namespace Roblox_Sharp.Endpoints
                     $"&limit={EnumExtensions.ToString(LIMIT)}" +
                     $"&cursor={page?.nextPageCursor}")
             )!;
-        
+
         /// <summary>
         /// Get detailed user information for the given <paramref name="userId"/> asynchronously
         /// <br></br>

@@ -1,9 +1,8 @@
 ﻿using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
-using System.Threading.Tasks;
-
 using System.Collections.Generic;
+using System.Threading.Tasks;
 namespace xUnitTests.HTTP
 {
     /// <summary>

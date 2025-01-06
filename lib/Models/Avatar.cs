@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-
-using System.Text.Json.Serialization;
-
-using Roblox_Sharp.Enums;
+﻿using Roblox_Sharp.Enums;
 using Roblox_Sharp.Models.Internal.JsonConverter;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models
 {
@@ -90,7 +88,7 @@ namespace Roblox_Sharp.Models
         /// <summary>
         /// the assets worn on the avatar
         /// </summary>
-        public IReadOnlyList<Asset>? assets { get; init; } 
+        public IReadOnlyList<Asset>? assets { get; init; }
         /// <summary>
         /// true if the default shirt is applied to this avatar
         /// </summary>

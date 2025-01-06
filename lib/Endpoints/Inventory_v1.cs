@@ -18,6 +18,6 @@ namespace Roblox_Sharp.Endpoints
             JsonSerializer.Deserialize<Inventory_Response>(
                 await Get_RequestAsync($"https://inventory.roblox.com/v1/users/{userId}/can-view-inventory")
             ).canView;
-        
+
     }
 }
