@@ -1,7 +1,6 @@
 ﻿using Roblox_Sharp.Framework;
 
 using Roblox_Sharp.Models;
-using Roblox_Sharp.Models.Users;
 using Roblox_Sharp.Models.Badges;
 using System;
 
@@ -14,10 +13,10 @@ namespace xUnitTests.Object_Functionality
     public class Instance
     {
         [Fact]
-        public void User() => Assert.IsAssignableFrom<IUser>(new User(0)); //IUser>
+        public void User() => Assert.IsAssignableFrom<IUser>(new User() { }); //IUser>
 
         [Fact]
-        public void User_Presence() => Assert.IsAssignableFrom<User>(new User_Presence());
+        public void User_Presence() => Assert.IsAssignableFrom<IUser>(new User_Presence());
 
         [Fact]
         public void Page() =>
@@ -29,7 +28,7 @@ namespace xUnitTests.Object_Functionality
                     data = Array.Empty<bool>()
                 }
             );
-        
+
         [Fact]
         public void Badge_Award() => Assert.IsAssignableFrom<Badge>(new Badge_Award()
         {
@@ -39,6 +38,6 @@ namespace xUnitTests.Object_Functionality
         });
 
         [Fact]
-        public void Emote() => Assert.IsAssignableFrom<Avatar.Asset>(new Avatar.Emote());    
+        public void Emote() => Assert.IsAssignableFrom<Avatar.Asset>(new Avatar.Emote());
     }
 }

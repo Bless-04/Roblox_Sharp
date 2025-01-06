@@ -3,7 +3,7 @@
     /// <summary>
     /// template for all the page based requests that have a previous and next cursor
     /// </summary>
-    public abstract class IPage 
+    public abstract class IPage
     {
         /// <summary>
         /// previous page cursor of the request . if <b>null</b> there are no previous pages / is the first page
@@ -22,5 +22,5 @@
             this.previousPageCursor = previousPageCursor;
             this.nextPageCursor = nextPageCursor;
         }
-    }   
+    }
 }

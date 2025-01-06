@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Roblox_Sharp.Exceptions;
+﻿using Roblox_Sharp.Exceptions;
+using System.Collections.Generic;
 
 namespace Roblox_Sharp.Models.Internal.POST
 {
@@ -29,21 +29,21 @@ namespace Roblox_Sharp.Models.Internal.POST
         /// <param name="limit"></param>
         /// <returns>true if the array is less than the limit</returns>
         public bool ArrayLengthCheck<T>(List<T> list, int limit = 100) => list.Count < limit;
-         
+
         public User_POST(List<ulong> userIds, bool excludeBannedUsers = false)
         {
-            if (!ArrayLengthCheck(userIds) ) throw new InvalidUserException ("Too many userIds");
+            if (!ArrayLengthCheck(userIds)) throw new InvalidUserException("Too many userIds");
 
             this.userIds = userIds;
-            
+
             this.excludeBannedUsers = excludeBannedUsers;
         }
 
-        public User_POST(List<string>usernames, bool excludeBannedUsers = false)
+        public User_POST(List<string> usernames, bool excludeBannedUsers = false)
         {
-            if (!ArrayLengthCheck(usernames) ) throw new InvalidUserException ("Too many usernames");
+            if (!ArrayLengthCheck(usernames)) throw new InvalidUserException("Too many usernames");
             this.usernames = usernames;
-            
+
             this.excludeBannedUsers = excludeBannedUsers;
         }
     }

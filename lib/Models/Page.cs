@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Roblox_Sharp.Framework;
+﻿using Roblox_Sharp.Framework;
+using System.Collections.Generic;
 
 namespace Roblox_Sharp.Models
 {

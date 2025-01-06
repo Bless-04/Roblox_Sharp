@@ -1,18 +1,19 @@
-﻿using System.Text.Json.Serialization;
+﻿using Roblox_Sharp.Framework;
 
 namespace Roblox_Sharp.Models
 {
     //TODO: finish
-    public partial class Game
+    public partial class Game : ICreation
     {
-        [JsonInclude]
-        protected ulong id { init => universeId = value; }
-        
         /// <summary>
         /// the universe id 
         /// </summary>
-        public ulong universeId { get; init; }
-        
+        public ulong universeId
+        {
+            get => base.id;
+            init => base.id = value;
+        }
+
         /// <summary>
         /// the universe  name
         /// </summary>

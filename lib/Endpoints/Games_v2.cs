@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Roblox_Sharp.Endpoints
+﻿namespace Roblox_Sharp.Endpoints
 {
     /// <summary>
     /// All endpoints for game discovery, and details
@@ -13,8 +7,8 @@ namespace Roblox_Sharp.Endpoints
     public static class Games_v2
     {
 
-        
+
     }
 
-    
+
 }

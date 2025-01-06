@@ -1,23 +1,21 @@
-﻿using System.Text.Json.Serialization;
+﻿using Roblox_Sharp.Framework;
 
 namespace Roblox_Sharp.Models
 {
     /// <summary>
     /// class used to serialize Group based requests
     /// </summary>
-    public partial class Group
+    public partial class Group : ICreation
     {
-       
+
         /// <summary>
         /// the groups id
         /// </summary>
-        public ulong groupId { get; init; }
-
-        /// <summary>
-        /// ambiguous with groupId
-        /// </summary>
-        [JsonInclude]
-        protected ulong id { init => groupId = value; }
+        public ulong groupId
+        {
+            get => base.id;
+            init => base.id = value;
+        }
 
         /// <summary>
         /// group name
@@ -61,5 +59,5 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public bool hasVerifiedBadge { get; init; }
 
-       }    
+    }
 }

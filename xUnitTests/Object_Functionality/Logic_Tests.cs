@@ -15,10 +15,10 @@ namespace xUnitTests.Object_Functionality
         public void IUser_Operator()
         {
             // x > y > z
-            User x = new(1); //roblox
-            User y = new(16); //erik.cassel
-            User z = new(156); //builderman
-            User X = new(1); //roblox
+            User x = new() { userId = 1 }; //roblox
+            User y = new() { userId = 16 }; //erik.cassel
+            User z = new() { userId = 156 }; //builderman
+            User X = new() { userId = 1 }; //roblox
 
             Assert.False(x.Equals(y));
 
@@ -41,8 +41,8 @@ namespace xUnitTests.Object_Functionality
 
             IReadOnlyList<User> data =
             [
-                new(1),
-                new(2)
+                new(){ userId = 1},
+                new(){ userId = 2}
             ];
 
             Page<User> page = new()
@@ -60,7 +60,7 @@ namespace xUnitTests.Object_Functionality
             Assert.NotNull(page.data[0]);
             Assert.NotStrictEqual(dummy, page.data[0]);
 
-            
+
         }
     }
 

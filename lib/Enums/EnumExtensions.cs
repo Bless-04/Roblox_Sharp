@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection.PortableExecutable;
 
 namespace Roblox_Sharp.Enums
 {
@@ -10,7 +9,7 @@ namespace Roblox_Sharp.Enums
     /// and also contains helpful functions
     /// </summary>
     public static class EnumExtensions
-    { 
+    {
         /// <summary>
         /// gives a string representation of a thumbnail size
         /// </summary>
@@ -18,15 +17,15 @@ namespace Roblox_Sharp.Enums
         /// <returns></returns>
         public static string ToString(Thumbnail.Size SIZE) => $"{(ushort)SIZE}x{(ushort)SIZE}";
 
-       
+
         /// <summary>
         /// used to check if an enum is blacklisted
         /// </summary>
         /// <param name="value"></param>
         /// <param name="blacklist"></param>
         /// <returns></returns>
-        public static bool IsBlackListed(Enum value,Enum[] blacklist) => blacklist.Contains(value);
-        
+        public static bool IsBlackListed(Enum value, Enum[] blacklist) => blacklist.Contains(value);
+
 
         public static string ToString(Limit? LIMIT)
         {
@@ -65,6 +64,6 @@ namespace Roblox_Sharp.Enums
             }
         }
 
-       
+
     }
 }

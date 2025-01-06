@@ -1,10 +1,9 @@
 ﻿using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Enums.Thumbnail;
+using Roblox_Sharp.Models;
 using System;
-
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Roblox_Sharp.Models;
 
 namespace xUnitTests.HTTP
 {

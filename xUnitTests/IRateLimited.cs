@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using Roblox_Sharp.Exceptions;
+using System;
 using System.Diagnostics;
 using System.Net.Http;
-using System;
-
-using Roblox_Sharp.Exceptions;
+using System.Threading.Tasks;
 
 namespace xUnitTests
 {
@@ -27,7 +26,7 @@ namespace xUnitTests
             Roblox_Sharp.WebAPI.OnSuccessfulRequest += OnSuccessfulRequest;
             Roblox_Sharp.WebAPI.OnFailedRequest += OnFailedRequest;
 
-            this.TestDelay = testdelay;
+            TestDelay = testdelay;
         }
 
         public void OnSuccessfulRequest(object? sender, EventArgs e) => Debug.WriteLine("SUCCESS " + (sender as HttpResponseMessage)?.RequestMessage);
@@ -39,7 +38,7 @@ namespace xUnitTests
         /// <param name="testCode">code to test</param>
         /// <param name="MethodName">Methodname for console</param>
         /// <param name="delay">delay in ms, <br></br>default is 61000</param>
-        public void Test(Func<Task> testCode, string? MethodName = "Test",int? delay = null)
+        public void Test(Func<Task> testCode, string? MethodName = "Test", int? delay = null)
         {
             try
             {
@@ -59,6 +58,6 @@ namespace xUnitTests
             }
         }
 
-       
+
     }
 }

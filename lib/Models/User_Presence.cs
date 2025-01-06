@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text.Json.Serialization;
-using Roblox_Sharp.Enums;
+﻿using Roblox_Sharp.Enums;
+using Roblox_Sharp.Framework;
+using System;
 
-namespace Roblox_Sharp.Models.Users
+namespace Roblox_Sharp.Models
 {
     //Presence is an Instance of User
     /**
@@ -22,14 +22,12 @@ namespace Roblox_Sharp.Models.Users
    }
  ]
 }*/
-    public class User_Presence : User
+    public class User_Presence : IUser
     {
-        public User_Presence() : base(0) { }
-        [JsonInclude]
         /// <summary>
         /// <see cref="Presence_Type"/> type of user
         /// </summary>
-        protected Presence_Type userPresenceType {init => presenceType = value;}
+        public Presence_Type presenceType { get; init; }
 
         public string? lastLocation { get; init; }
 

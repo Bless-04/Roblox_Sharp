@@ -7,6 +7,6 @@ namespace xUnitTests
     /// </summary>
     public class RateLimitedFactAttribute : SkippableFactAttribute
     {
-        public RateLimitedFactAttribute() : base(typeof(RateLimitException)) {  }
+        public RateLimitedFactAttribute() : base(typeof(RateLimitException)) { }
     }
 }

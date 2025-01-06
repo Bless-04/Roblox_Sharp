@@ -1,6 +1,4 @@
 using System;
-
-using Roblox_Sharp.Framework;
 namespace Roblox_Sharp.Exceptions
 {
     /// <summary>
@@ -9,11 +7,11 @@ namespace Roblox_Sharp.Exceptions
     sealed public class InvalidUserException : Exception
     {
         public InvalidUserException() { }
-        
+
         public InvalidUserException(string message) : base(message) { }
 
         public InvalidUserException(string message, Exception inner) : base(message, inner) { }
 
-        
+
     }
 }

@@ -1,5 +1,4 @@
-﻿using Roblox_Sharp.Models.Users;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Roblox_Sharp.Models.Internal
 {

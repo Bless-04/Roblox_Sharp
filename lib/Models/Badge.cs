@@ -1,20 +1,19 @@
-﻿using System.Text.Json.Serialization;
+﻿using Roblox_Sharp.Framework;
 using System;
+using System.Text.Json.Serialization;
 
-namespace Roblox_Sharp.Models 
-{ 
-    public class Badge
+namespace Roblox_Sharp.Models
+{
+    public class Badge : ICreation
     {
         /// <summary>
         /// the badge id 
         /// </summary>
-        public ulong badgeId { get; init; }
-
-        /// <summary>
-        /// ambiguous with badge id
-        /// </summary>
-        [JsonInclude]
-        protected ulong id { init => badgeId = value; }
+        public ulong badgeId
+        {
+            get => base.id;
+            init => base.id = value;
+        }
 
         /// <summary>
         /// the name of the badge 

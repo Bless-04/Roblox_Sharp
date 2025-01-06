@@ -1,6 +1,6 @@
-﻿using System.Drawing;
+﻿using Roblox_Sharp.Models.Internal.JsonConverter;
+using System.Drawing;
 using System.Text.Json.Serialization;
-using Roblox_Sharp.Models.Internal.JsonConverter;
 namespace Roblox_Sharp.Models;
 
 public partial class Avatar
@@ -9,7 +9,7 @@ public partial class Avatar
     /// <summary>
     /// the body color of the avatar using RGB hex
     /// </summary>
-    
+
     public readonly struct BodyColor3s
     {
         /// <summary>
@@ -40,12 +40,12 @@ public partial class Avatar
         /// The RGB hex color for right leg color, e.g. #FFFFFF
         /// </summary>
         [JsonConverter(typeof(Color_JsonConverter))]
-        public Color rightLegColor3 { get; init ; }
+        public Color rightLegColor3 { get; init; }
 
         /// <summary>
         /// The RGB hex color for left leg color, e.g. #FFFFFF
         /// </summary>
         [JsonConverter(typeof(Color_JsonConverter))]
-        public Color leftLegColor3 { get; init ; }
-    }    
+        public Color leftLegColor3 { get; init; }
+    }
 }

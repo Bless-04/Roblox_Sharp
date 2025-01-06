@@ -1,8 +1,8 @@
 ﻿using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
-using Roblox_Sharp.Models.Badges;
 using Roblox_Sharp.Models;
+using Roblox_Sharp.Models.Badges;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
