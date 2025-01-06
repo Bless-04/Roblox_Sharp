@@ -1,55 +1,30 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Framework
 {
     /// <summary>
     /// Defines a generalized template for any roblox user generated <paramref name="Creation"></paramref> based object
     /// </summary>
-    public interface ICreation
-    {
-        /// <summary>
-        /// the unique id of the creation
-        /// </summary>
-        protected ulong id { get; }
-
-        /// <summary>
-        /// a creation is <b> less than </b> another if it is newer. newer creations have larger ids than older ones
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns>bool</returns>
-        static bool operator <(ICreation left, ICreation right) => left.id > right.id;
-
-        /// <summary>
-        /// a creation is <b>greater than</b> another if it is older. Older creations have smaller ids than newer creations.
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns>bool</returns>
-        static bool operator >(ICreation left, ICreation right) => left.id < right.id;
-    }
+    public interface ICreation : ICloneable;
     
     /// <summary>
     /// <inheritdoc cref="ICreation"/>
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Type for specific Id comparisons</typeparam>
     public abstract class ICreation<T>  : 
         ICreation,
-        ICloneable,
         IComparable<ICreation<T>>,
         IEquatable<ICreation<T>>
         where T : ICreation
     {
-       
-        
+
+        [JsonInclude]
         /// <summary>
-        /// <inheritdoc cref="ICreation.id"/>
+        /// The unique id of the creation
         /// </summary>
         protected ulong id { get; init; }
-
-        ulong ICreation.id => this.id;
-
 
         /// <summary>
         /// a creation is <b> less than </b> another if it is newer. newer creations have larger ids than older ones

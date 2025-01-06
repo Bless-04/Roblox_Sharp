@@ -4,7 +4,7 @@
     /// Defines a generalized template for any roblox <paramref name="User"></paramref> based object
     /// all users inherit have the fields <paramref name="userId"/>, <paramref name="username"/>, and <paramref name="displayName"/>
     /// </summary>
-    public abstract class IUser : ICreation
+    public abstract class IUser : ICreation<IUser>
     {
         /// <summary>
         /// the Unique numeric <paramref name="userId"/> of the user.
@@ -24,7 +24,7 @@
         private string? _displayName { get; init; }
         /// <summary>
         /// display name for the user <br></br>
-        /// null if the display name is the same as the username <br></br>
+        /// <b>null</b>if the display name is the same as the username <br></br>
         /// this indicates that the user has never set a display name
         /// </summary>
         public string? displayName

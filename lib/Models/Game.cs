@@ -3,7 +3,7 @@
 namespace Roblox_Sharp.Models
 {
     //TODO: finish
-    public partial class Game : ICreation
+    public partial class Game : ICreation<Game>
     {
         /// <summary>
         /// the universe id 
@@ -23,5 +23,14 @@ namespace Roblox_Sharp.Models
         /// The description of the universe.
         /// </summary>
         public ulong rootPlaceId { get; init; }
+
+        public override Game Clone() =>
+            new Game()
+            {
+                id = base.id,
+                name = name,
+                rootPlaceId = rootPlaceId
+            };
+        
     }
 }

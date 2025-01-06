@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Roblox_Sharp.Framework;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 namespace Roblox_Sharp.Models;
 
@@ -12,7 +13,7 @@ public partial class Group
     /// <summary>
     /// Group Role Serializer Class
     /// </summary>
-    public class Role
+    public class Role 
     {
         /// <summary>
         /// ambiguous with roleId

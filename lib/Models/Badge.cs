@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models
 {
-    public class Badge : ICreation
+    public class Badge : ICreation<Badge>
     {
         /// <summary>
         /// the badge id 
@@ -71,7 +71,11 @@ namespace Roblox_Sharp.Models
         /// ambiguous with awarding universe
         /// </summary>
         [JsonInclude]
-        protected Game? awarder { init => awardingUniverse = value; }
+        protected Game? awarder
+        {
+            get => awardingUniverse;
+            init => awardingUniverse = value;
+        }
 
         /// <summary>
         /// the user that created the badge
@@ -86,5 +90,24 @@ namespace Roblox_Sharp.Models
 
             public double winRatePercentage { get; init; }
         }
+
+        public override Badge Clone() =>
+            new Badge()
+            {
+                badgeId = base.id,
+                name = name,
+                description = description,
+                displayName = displayName,
+                displayDescription = displayDescription,
+                enabled = enabled,
+                iconImageId = iconImageId,
+                displayIconImageId = displayIconImageId,
+                created = created,
+                updated = updated,
+                statistics = statistics,
+                awardingUniverse = (awardingUniverse != null) ? awardingUniverse.Clone() : null,
+                creator = (creator != null) ? creator.Clone() : null
+            };
+        
     }
 }

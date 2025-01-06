@@ -51,5 +51,19 @@ namespace Roblox_Sharp.Models
         public DateTime lastOnline { get; init; }
 
         public DateTime invisibleModeExpiry { get; init; }
+
+        public override User_Presence Clone() =>
+            new User_Presence()
+            {
+                presenceType = presenceType,
+                lastLocation = lastLocation,
+                placeId = placeId,
+                rootPlaceId = rootPlaceId,
+                gameId = gameId,
+                universeId = universeId,
+                lastOnline = lastOnline,
+                invisibleModeExpiry = invisibleModeExpiry
+            };
+     
     }
 }

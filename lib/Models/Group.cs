@@ -5,7 +5,7 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize Group based requests
     /// </summary>
-    public partial class Group : ICreation
+    public partial class Group : ICreation<Group>
     {
 
         /// <summary>
@@ -59,5 +59,20 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public bool hasVerifiedBadge { get; init; }
 
+        public override object Clone() =>
+            new Group()
+            {
+                id = base.id,
+                name = name,
+                description = description,
+                owner = owner,
+                shout = shout,
+                memberCount = memberCount,
+                isBuildersClubOnly = isBuildersClubOnly,
+                publicEntryAllowed = publicEntryAllowed,
+                isLocked = isLocked,
+                hasVerifiedBadge = hasVerifiedBadge
+            };
+        
     }
 }

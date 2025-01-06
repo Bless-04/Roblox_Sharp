@@ -1,11 +1,12 @@
 ﻿using Roblox_Sharp.Framework;
+using System;
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models;
 
 public partial class Avatar
 {
-    public partial class Asset : ICreation
+    public partial class Asset : ICreation<Asset>
     {
         /// <summary>
         /// the unique id of the asset
@@ -33,5 +34,15 @@ public partial class Avatar
         public ulong currentVersionId { get; init; }
 
         public Metadata meta { get; init; }
+
+        public override Avatar.Asset Clone() =>
+            new Asset()
+            {
+                assetId = base.id,
+                assetName = assetName,
+                assetType = assetType,
+                currentVersionId = currentVersionId,
+                meta = meta
+            };       
     }
 }

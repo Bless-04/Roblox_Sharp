@@ -3,6 +3,7 @@
 using Roblox_Sharp.Models;
 using Roblox_Sharp.Models.Badges;
 using System;
+using System.Collections.Generic;
 
 namespace xUnitTests.Object_Functionality
 {
@@ -21,12 +22,7 @@ namespace xUnitTests.Object_Functionality
         [Fact]
         public void Page() =>
             Assert.IsAssignableFrom<IPage>(
-                new Page<bool>()
-                {
-                    previousPageCursor = null,
-                    nextPageCursor = null,
-                    data = Array.Empty<bool>()
-                }
+                new Page<bool>(null,null,Array.Empty<bool>())
             );
 
         [Fact]

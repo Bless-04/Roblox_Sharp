@@ -29,7 +29,7 @@ namespace xUnitTests.HTTP
             Assert.True(roblox.userId == 1, "User.userId is failing");
 
             Assert.True(
-                roblox.username == "Roblox" && roblox.displayName!.Equals(roblox.username),
+                roblox.username == "Roblox" && roblox.displayName == null,
                 "User.username is failing"
             );
         }

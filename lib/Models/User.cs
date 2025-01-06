@@ -91,7 +91,39 @@ namespace Roblox_Sharp.Models
 
         public User() { }
 
-        public User(ulong userId, string username, string? displayName) : base(userId, username, displayName) { }
+        public User(ulong userId, string username, string? displayName = null) : base(userId, username, displayName) { }
+
+        public override User Clone()
+        {
+            List<string>? previousUsernamesCopy = null;
+
+            if (previousUsernames != null)
+            {
+                previousUsernamesCopy = new List<string>(previousUsernames.Count);
+
+                foreach (string username in previousUsernames)
+                    previousUsernamesCopy.Add(username);
+            }
+
+            return new User()
+            {
+                id = base.id,
+                username = base.username,
+                displayName = base.displayName,
+                description = description,
+                created = created,
+                isBanned = isBanned,
+                externalAppDisplayName = externalAppDisplayName,
+                hasVerifiedBadge = hasVerifiedBadge,
+                requestedUsername = requestedUsername,
+                presenceType = presenceType,
+                previousUsernames = previousUsernamesCopy,
+                isOnline = isOnline,
+                isDeleted = isDeleted,
+                friendFrequentScore = friendFrequentScore,
+                friendFrequentRank = friendFrequentRank
+            };
+        }
     }
 }
 
