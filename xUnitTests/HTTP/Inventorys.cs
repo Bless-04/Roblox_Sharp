@@ -1,4 +1,6 @@
 ﻿using Roblox_Sharp.Endpoints;
+using Roblox_Sharp.Exceptions;
+using System.Threading.Tasks;
 
 namespace xUnitTests.HTTP
 {
@@ -7,16 +9,19 @@ namespace xUnitTests.HTTP
     /// </summary>
     [Collection("Endpoints")]
     [Trait("Tests", "Integration")]
-    public class Inventorys : IRateLimited
+    public class Inventorys : IDelayedTest
     {
-        [RateLimitedFact]
-        public void Get_CanViewInventory() => Test(async () =>
+        [Fact]
+        public async Task Get_CanViewInventory()
         {
-            bool x = await Inventory_v1.Get_CanViewInventoryAsync(1);
+            bool test = await Inventory_v1.Get_CanViewInventoryAsync(1);
 
-            Assert.True(x, "Get_CanViewInventory() is failing");
+            Assert.True(test, "Get_CanViewInventory() is failing");
 
-        }, "Get_CanViewInventory()");
+        }
+
+        [Fact]
+        public async Task Get_CanViewInventory_Error() => await Assert.ThrowsAsync<InvalidUserException>(() => Inventory_v1.Get_CanViewInventoryAsync(0));
 
     }
 }

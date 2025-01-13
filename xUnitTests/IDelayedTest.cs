@@ -11,23 +11,23 @@ namespace xUnitTests
     /// abstract class for all endpoints that may be prone to being rate limited <br></br>
     /// Default delay is 61000ms
     /// </summary>
-    public abstract class IRateLimited
+    public abstract class IDelayedTest
     {
         /// <summary>
         /// Delay before each tests runs
         /// </summary>
-        public int DefaultDelay { get; init; } = 0;
+        protected int DefaultDelay { get; init; } = 61000;
 
         /// <summary>
         /// template for all endpoint tests
         /// </summary>
         /// <param name="testdelay">Delay for tests that are rate limited</param>
-        public IRateLimited(int testdelay = 61000)
+        public IDelayedTest(int? testdelay = null)
         {
             Roblox_Sharp.WebAPI.OnSuccessfulRequest += OnSuccessfulRequest;
             Roblox_Sharp.WebAPI.OnFailedRequest += OnFailedRequest;
 
-            DefaultDelay = testdelay;
+            DefaultDelay = testdelay ?? DefaultDelay;
         }
 
         public void OnSuccessfulRequest(object? sender, EventArgs e) => Debug.WriteLine("SUCCESS " + (sender as HttpResponseMessage)?.RequestMessage);
@@ -36,29 +36,31 @@ namespace xUnitTests
 
         
         /// <summary>
-        /// Skip if a test is rate limitted
+        /// Delays tests
+        /// important for test that rate limit easily
         /// </summary>
-        /// <param name="testCode">code to test</param>
-        /// <param name="MethodName">Methodname for console</param>
-        /// <param name="delay">delay in ms, <br></br>default is 61000</param>
-        public void Test(Func<Task> testCode, string? MethodName = "Test", int? delay = null)
-        {
-            Task.Delay(delay ?? DefaultDelay).Wait();
+        /// <param name="testCode"></param>
+        public static void DelayedTest(int customDelay,Func<Task> testCode)
+        {   
+            Task.Delay(customDelay).Wait();
             try
             {
-                testCode.Invoke().Wait();
+                testCode().Wait();
             }
             catch (AggregateException e)
             {
-                if (e.InnerException is not RateLimitException) throw e.InnerException!;
-
-                string message = MethodName + " was rate limited >>skipped";
-
-                Skip.If(true, message);
-
-                Debug.WriteLine(message);
+                throw e.InnerException!;
             }
         }
+
+        /// <summary>
+        /// <inheritdoc cref="DelayedTest(int, Func{Task})"/>
+        /// </summary>
+        /// <param name="testCode"></param>
+        public void DelayedTest(Func<Task> testCode) => DelayedTest(DefaultDelay, testCode);
+        
+
+        
 
 
     }

@@ -3,7 +3,6 @@ using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace xUnitTests.HTTP
@@ -13,8 +12,19 @@ namespace xUnitTests.HTTP
     /// </summary>
     [Collection("Endpoints")]
     [Trait("Tests", "Integration")]
-    public class Users : IRateLimited
+    public class Users : IDelayedTest
     {
+        public const int TERMINATED = 5;
+        public const int DOEST_EXIST = 0;
+
+
+        public static IEnumerable<object[]> Error_Cases()
+        {
+            yield return new object[] { TERMINATED };
+            yield return new object[] { DOEST_EXIST };
+            yield return new object[] { };
+        }
+
         [Fact]
         public async Task Get_User()
         {
@@ -32,62 +42,67 @@ namespace xUnitTests.HTTP
             );
         }
 
-        [RateLimitedFact]
-        public void Get_Usernames() => Test(async () =>
+        [Theory]
+        [InlineData(1,"roblox")]
+        [InlineData(16,"erik.cassel")]
+        public async Task Get_Usernames(ulong id,string username)
         {
-            IReadOnlyList<User> user_list = await Users_v1.Get_UsernamesAsync([1, 16]);//roblox, erik.cassel
 
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([0])); //doesnt exist
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([])); //empty
+            User test = (await Users_v1.Get_UsernamesAsync([id]))[0] ;//
 
-            Assert.True(user_list[0].username == "Roblox", "User.username is failing");
+            Assert.True(
+                test.userId == id && 
+                test.username.Equals(username,System.StringComparison.OrdinalIgnoreCase),
+                "Get_Usernames() is failing"
+            );
 
-        }, "Get_Usernames()", 0);
+        }
 
         [Fact]
-        public async Task Get_Users()
+        public async Task Get_Usernames_Error()
         {
-            IReadOnlyList<User> user_list = await Users_v1.Get_UsersAsync(["roblox", "erik.cassel", "builderman"]);
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([0])); //doesnt exist
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([])); //empty});
+        }
 
-            user_list = user_list
-                .OrderBy(u => u)
-                .ToList();
+        [Theory]
+        [InlineData(1,"roblox")]
+        [InlineData(16,"erik.cassel")]
+        [InlineData(156,"builderman")]
+        public async Task Get_Users(ulong expected_id,string username)
+        {
+            User test = (await Users_v1.Get_UsersAsync([username])) [0];
 
             await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsersAsync([]));
 
-            Assert.True(
-                   user_list[2].userId == 1 &&
-                   user_list[1].userId == 16 &&
-                   user_list[0].userId == 156,
-                   "User.userId is failing"
-            );
+            Assert.True( test.userId == expected_id,"User.userId is failing");
         }
 
-        [RateLimitedFact]
-        public void Get_UserSearch() => Test(async () =>
+        [Fact]
+        public async Task Get_UserSearch()
         {
             Page<User> page = await Users_v1.Get_UserSearchAsync("robl", Limit.MAX);
 
             Assert.True(page.data.Count != 0, "Page.data should not be empty");
             Assert.True(page.previousPageCursor == null, "previouspagecursor should be null");
             Assert.True(page.nextPageCursor != null, "nextpagecursor should not be null");
-        }, "Get_UserSearch()", 0);
+        }
 
-        [RateLimitedFact]
-        public void Get_UsernameHistory() => Test(async () =>
+        [Fact]
+        public async Task Get_UsernameHistory()
         {
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernameHistoryAsync(5)); //terminated user
             //7733466 is an admin
             Page<User> y = await Users_v1.Get_UsernameHistoryAsync(7733466, Limit.MAX);
 
-            
-
-            Assert.False(y.data.Count == 0, "Page.data should not be empty");
-        }, "Get_UsernameHistory()");
+            Assert.False(y.data.Count != 0, "Page.data should not be empty");
+        }
 
 
-
-
+        [Theory]
+        [MemberData(nameof(Error_Cases))]
+        public async Task Get_UsernameHistory_Error(ulong id) =>
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernameHistoryAsync(id)); 
+        
     }
 
 
