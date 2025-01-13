@@ -73,7 +73,7 @@ namespace Roblox_Sharp.Endpoints
         /// <exception cref="InvalidUserIdException"></exception>
         public static async Task<ulong> Get_FollowersCountAsync(ulong userId) =>
             JsonSerializer.Deserialize<Count_Response>(
-                await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/followings/count")
+                await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/followers/count")
             ).count;
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="cursor"></param>
         /// <returns>Page</returns>
         public static async Task<Page<User>> Get_FollowingsAsync(ulong userId, Limit limit = Limit.Minimum, Sort sortOrder = Sort.Asc, string? cursor = null) =>
-            // url example https://friends.roblox.com/v1/users/1/followers?limit=10&sortOrder=Asc
+            // url example https://friends.roblox.com/v1/users/1/followings?limit=10&sortOrder=Asc
             JsonSerializer.Deserialize<Page<User>>(
                 await Get_RequestAsync(
                 $"https://friends.roblox.com/v1/users/{userId}/followings?" +

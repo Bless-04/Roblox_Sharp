@@ -3,6 +3,8 @@ using Roblox_Sharp.Models.Internal.POST;
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -21,19 +23,8 @@ namespace Roblox_Sharp
         /// <summary>
         /// <paramref name="HttpClient"/> used for all web requests
         /// </summary>
-        public static HttpClient client { get => _client; }
+        public static HttpClient client => _client;
 
-        /// <summary>
-        /// sets the <paramref name="HttpClient"/>
-        /// useful for configuring httpclient
-        /// sets to default if null
-        /// </summary>
-        /// <param name="new_client"></param>
-        public static void Set_HttpClient(HttpClient? new_client)
-        {
-            _client.Dispose();
-            _client = new_client ?? new HttpClient();
-        }
         /// <summary>
         /// an event that is raised when the web request is successful/statuscode 200
         /// </summary>
@@ -44,6 +35,35 @@ namespace Roblox_Sharp
         /// </summary>
         public static event EventHandler? OnFailedRequest;
 
+
+        static WebAPI()
+        {
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Set_UserAgent(nameof(Roblox_Sharp));
+            //_client.DefaultRequestHeaders.Authorization needed for auth
+        }
+        /// <summary>
+        /// sets the <paramref name="HttpClient"/>
+        /// useful for configuring httpclient
+        /// sets to default if null
+        /// </summary>
+        /// <param name="new_client"></param>
+        public static void Set_HttpClient(HttpClient new_client)
+        {
+            _client.Dispose();
+            _client = new_client;
+        }
+
+        /// <summary>
+        /// sets the name of the user agent used for all requests
+        /// </summary>
+        /// <param name="name"></param>
+        public static void Set_UserAgent(string name)
+        {
+            _client.DefaultRequestHeaders.UserAgent.Clear();
+            _client.DefaultRequestHeaders.UserAgent.TryParseAdd(name);
+        }
+        
 
         internal static bool SuccessfulRequest(HttpResponseMessage response, EventArgs e)
         {
@@ -71,6 +91,9 @@ namespace Roblox_Sharp
                 if (SuccessfulRequest(response, EventArgs.Empty))
                     return await response.Content.ReadAsStringAsync();
 
+                
+
+                
                 //errors
                 switch (response.StatusCode)
                 {

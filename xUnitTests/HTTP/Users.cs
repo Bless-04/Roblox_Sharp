@@ -1,6 +1,4 @@
-﻿
-
-using Roblox_Sharp.Endpoints;
+﻿using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
@@ -78,14 +76,14 @@ namespace xUnitTests.HTTP
         [RateLimitedFact]
         public void Get_UsernameHistory() => Test(async () =>
         {
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernameHistoryAsync(5)); //terminated user
             //7733466 is an admin
-            //Page<User> x = Users_v1.Get_UsernameHistoryAsync(1).Result;
             Page<User> y = await Users_v1.Get_UsernameHistoryAsync(7733466, Limit.MAX);
 
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernameHistoryAsync(5)); //terminated user
+            
 
             Assert.False(y.data.Count == 0, "Page.data should not be empty");
-        }, "Get_UsernameHistory()", 0);
+        }, "Get_UsernameHistory()");
 
 
 

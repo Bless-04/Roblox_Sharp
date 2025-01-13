@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Xunit.Sdk;
 
 namespace xUnitTests
 {
@@ -15,7 +16,7 @@ namespace xUnitTests
         /// <summary>
         /// Delay before each tests runs
         /// </summary>
-        public int TestDelay { get; init; } = 0;
+        public int DefaultDelay { get; init; } = 0;
 
         /// <summary>
         /// template for all endpoint tests
@@ -26,12 +27,14 @@ namespace xUnitTests
             Roblox_Sharp.WebAPI.OnSuccessfulRequest += OnSuccessfulRequest;
             Roblox_Sharp.WebAPI.OnFailedRequest += OnFailedRequest;
 
-            TestDelay = testdelay;
+            DefaultDelay = testdelay;
         }
 
         public void OnSuccessfulRequest(object? sender, EventArgs e) => Debug.WriteLine("SUCCESS " + (sender as HttpResponseMessage)?.RequestMessage);
         public void OnFailedRequest(object? sender, EventArgs e) => Debug.WriteLine("HANDLED " + (sender as HttpResponseMessage)?.RequestMessage);
 
+
+        
         /// <summary>
         /// Skip if a test is rate limitted
         /// </summary>
@@ -40,16 +43,15 @@ namespace xUnitTests
         /// <param name="delay">delay in ms, <br></br>default is 61000</param>
         public void Test(Func<Task> testCode, string? MethodName = "Test", int? delay = null)
         {
+            Task.Delay(delay ?? DefaultDelay).Wait();
             try
             {
-                Task.Delay(delay ?? TestDelay).Wait();
-
-
-                testCode();
-                return;
+                testCode.Invoke().Wait();
             }
-            catch (RateLimitException)
+            catch (AggregateException e)
             {
+                if (e.InnerException is not RateLimitException) throw e.InnerException!;
+
                 string message = MethodName + " was rate limited >>skipped";
 
                 Skip.If(true, message);

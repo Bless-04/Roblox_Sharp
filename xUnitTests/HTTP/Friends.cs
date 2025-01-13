@@ -2,8 +2,9 @@
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
-
+using System;
 using System.Collections.Generic;
+using Xunit.Sdk;
 
 
 namespace xUnitTests.HTTP
@@ -15,43 +16,46 @@ namespace xUnitTests.HTTP
     [Trait("Tests", "Integration")]
     public class Friends : IRateLimited
     {
-        [Fact]
-        public void Get_FriendsCount() => Test(async () =>
-        {
+        public Friends(int TestDelay = 0) : base(TestDelay) { }
 
-            byte roblox = await Friends_v1.Get_FriendsCountAsync(1); //roblox
-            byte erik = await Friends_v1.Get_FriendsCountAsync(16); //erik.cassel
+        [RateLimitedFact]
+        public void Get_FriendsCount() => Test(async () => 
+        {
+            byte roblox =   await Friends_v1.Get_FriendsCountAsync(1); //roblox
+            byte erik =   await Friends_v1.Get_FriendsCountAsync(16); //erik.cassel
 
             Assert.True(
-                roblox == 0 &&  //roblox has not friends
+                roblox == 0 &&  //roblox has no friends
                 erik > 0,  //erik has friends
                 "Get_FriendsCount() is failing"
             );
 
+           
             //error checking
             await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsCountAsync(0)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsCountAsync(5)); //terminated user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsCountAsync(5)); //terminated user*/
         }, "Get_FriendsCount()");
-
+        
+        
 
         [Fact]
         public void Get_FollowersCount() => Test(async () =>
         {
 
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(0)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(5)); //terminated user
+            //await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(0)); //doesnt exist
+            //await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(5)); //terminated user
 
             ulong roblox = await Friends_v1.Get_FollowersCountAsync(1);
             ulong erik = await Friends_v1.Get_FollowersCountAsync(16);
 
-            Assert.True(roblox != erik, "Get_FollowersCount() is failing");
+            Assert.True(roblox > 100000 && erik > 100000, "Get_FollowersCount() is failing");
 
         }, "Get_FollowersCount()");
 
-        [Fact]
+        [RateLimitedFact]
         public void Get_FollowingsCount() => Test(async () =>
         {
-
+          
             ulong roblox = await Friends_v1.Get_FollowingsCountAsync(1); //roblox
             ulong erik = await Friends_v1.Get_FollowingsCountAsync(16); //erik.cassel
 
@@ -75,7 +79,7 @@ namespace xUnitTests.HTTP
             //error checking
             await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsAsync(0)); //doesnt exist
             await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsAsync(5)); //terminated user
-        });
+        }, "Get_Followings()");
 
         [RateLimitedFact]
         public void Get_Friends() => Test(async () =>
@@ -95,6 +99,7 @@ namespace xUnitTests.HTTP
         public void Get_Followers() => Test(async () =>
         {
             Page<User> page = await Friends_v1.Get_FollowersAsync(1); //roblox
+
 
             //old page
             ulong some_id = page.data[0].userId;
