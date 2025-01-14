@@ -27,7 +27,7 @@ jobs:
           dotnet-version: "9.0.x"
 
       - name: Build Roblox_Sharp
-        run:  dotnet build -c Debug Roblox_Sharp.csproj
+        run:  dotnet build -c Debug Roblox_Sharp.sln
 
       - name: Object Functionality Tests
         run: dotnet test -c Debug --no-build --filter xUnitTests=Object_Functionality
