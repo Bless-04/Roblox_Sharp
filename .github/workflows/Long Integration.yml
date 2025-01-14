@@ -1,0 +1,40 @@
+# Tests the Web requests that get rate limitted easily
+name: Long Web Integration
+
+on:
+  workflow_dispatch:
+
+  pull_request: 
+    types: [opened]
+    branches: 
+      - stable
+      - main
+    paths: 
+    - '**.cs'
+    - '**.csproj'
+    
+defaults:
+  run:
+    working-directory: "lib"
+
+jobs:
+  Build-and-Test:
+    name: Build and Test
+    runs-on: windows-latest
+      
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install .NET 9.0.x
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+
+      - name: Build Roblox_Sharp Solution
+        run:  dotnet build -c Debug Roblox_Sharp.sln
+
+      - name : Long Integration Tests
+        run: dotnet test -c Debug --no-build --filter Tests="Long Integration"
+
+
+        
+      

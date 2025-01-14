@@ -17,7 +17,7 @@ namespace xUnitTests.HTTP
         {
             Group group = await Groups_v1.Get_GroupAsync(2);
 
-            Assert.True(261 == group.owner.userId, "Group.owner.userId is failing"); //owner is 261
+            Assert.True(User_Constants.SHEDLETSKY == group.owner.userId, "Group.owner.userId is failing"); //owner is 261
             Assert.True(2 == group.groupId, "Group.groupId is failing"); //group id is 2
             Assert.True(group.memberCount > 100000, "Group.memberCount is failing"); //over 100k members as of 11/27/24
 
@@ -35,7 +35,8 @@ namespace xUnitTests.HTTP
             Assert.True(roles[1].memberCount > 400000, "Group.Role.memberCount is failing"); //more than 400k as of 11/30
 
         }
-        [IntegrationTrait]
+
+        [IntegrationTrait.Long_Integration]
         [Fact]
         public async Task Get_Groups()
         {

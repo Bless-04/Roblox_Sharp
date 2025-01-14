@@ -32,7 +32,7 @@ namespace xUnitTests.HTTP
 
             //error checking
             await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsCountAsync(DOEST_EXIST));
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsCountAsync(BANNED));
+            //await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsCountAsync(BANNED)); //allows banned users
         }
 
         [IntegrationTrait.Long_Integration]
@@ -41,7 +41,7 @@ namespace xUnitTests.HTTP
         {
 
             await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(DOEST_EXIST)); 
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(BANNED));
+            //await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(BANNED)); it allows banned users
 
             ulong roblox = await Friends_v1.Get_FollowersCountAsync(1);
             ulong erik = await Friends_v1.Get_FollowersCountAsync(16);
@@ -50,7 +50,7 @@ namespace xUnitTests.HTTP
 
         }
 
-        [IntegrationTrait]
+        [IntegrationTrait.Long_Integration]
         [Fact]
         public async Task Get_FollowingsCount()
         {
@@ -62,7 +62,7 @@ namespace xUnitTests.HTTP
 
             //error checking
             await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(0)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(5)); //BANNED user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(BANNED)); //BANNED user
         }
 
         [IntegrationTrait]
@@ -87,10 +87,10 @@ namespace xUnitTests.HTTP
         }
 
        
-        [IntegrationTrait.Long_Integration]
+        [IntegrationTrait]
         [Fact]
         public async Task Get_Followings_Error() => 
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsAsync(BANNED)); //throws nothing for doesnt exist
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsAsync(DOEST_EXIST)); //throws nothing for doesnt exist
 
         [IntegrationTrait]
         [Fact]

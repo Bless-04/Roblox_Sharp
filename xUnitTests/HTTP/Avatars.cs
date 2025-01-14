@@ -11,7 +11,7 @@ namespace xUnitTests.HTTP
     [Collection("Endpoints")]
     public class Avatars
     {
-        [IntegrationTrait]
+        [IntegrationTrait.Long_Integration]
         [Fact]
         public async Task Get_CurrentlyWearing() 
         {
