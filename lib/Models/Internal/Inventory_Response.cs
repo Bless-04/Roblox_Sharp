@@ -2,6 +2,6 @@
 {
     internal readonly struct Inventory_Response
     {
-        required internal bool canView { get; init; }
+        public required bool canView { get; init; }
     }
 }

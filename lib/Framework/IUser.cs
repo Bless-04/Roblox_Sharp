@@ -1,4 +1,6 @@
-﻿namespace Roblox_Sharp.Framework
+﻿using System.Text.Json.Serialization;
+
+namespace Roblox_Sharp.Framework
 {
     /// <summary>
     /// Defines a generalized template for any roblox <paramref name="User"></paramref> based object
@@ -14,7 +16,6 @@
             get => base.id;
             init => base.id = value;
         }
-
 
         /// <summary>
         /// unique username for the user
@@ -37,6 +38,7 @@
             }
         }
 
+        
         public IUser() { }
 
         public IUser(ulong userId, string username, string? displayName = null)
@@ -51,13 +53,11 @@
         /// Format: <b> <paramref name="displayName"/> @ <paramref name="username"/> (<paramref name="id"/>) </b>
         /// </summary>
         /// <returns></returns>
-        public override string ToString() =>
-            ToString(userId, username, displayName);
-
-
-        protected string ToString(ulong userId, string username, string? displayName = null) =>
-            (username != null)
-            ? $"{displayName}@{username} (ID {userId})"
-            : $"(ID {userId})";
+        public override string ToString()
+        {
+            if (username == null) return $"(ID {userId})";
+            if (_displayName == null) return $"{username} (ID {userId})";
+            return $"{_displayName}@{username} (ID {userId})";
+        } 
     }
 }

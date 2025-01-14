@@ -12,9 +12,9 @@ namespace xUnitTests.HTTP
     /// Tests <see cref="Presence_v1"/> endpoint
     /// </summary>
     [Collection("Endpoints")]
-    [Trait("Tests", "Integration")]
     public class Presences
     {
+        [IntegrationTrait]
         [Fact]
         public async Task Get_Presences()
         {

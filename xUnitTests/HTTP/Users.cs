@@ -1,96 +1,110 @@
-﻿
-
+﻿using Microsoft.VisualBasic;
 using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
+using static xUnitTests.User_Constants;
 namespace xUnitTests.HTTP
 {
     /// <summary>
     /// Tests <see cref="Users_v1"/> endpoint
     /// </summary>
     [Collection("Endpoints")]
-    [Trait("Tests", "Integration")]
-    public class Users : IRateLimited
+
+    public class Users 
     {
+        [IntegrationTrait]
         [Fact]
         public async Task Get_User()
         {
             //error checking
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UserAsync(0));
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UserAsync(5)); //terminated user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UserAsync(DOEST_EXIST));
+            //await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UserAsync(BANNED)); //allows banned users
 
-            User roblox = await Users_v1.Get_UserAsync(1);
+            User roblox = await Users_v1.Get_UserAsync(ROBLOX);
 
-            Assert.True(roblox.userId == 1, "User.userId is failing");
+            Assert.True(roblox.userId == ROBLOX, "User.userId is failing");
 
             Assert.True(
-                roblox.username == "Roblox" && roblox.displayName == null,
+                roblox.username.Equals(nameof(ROBLOX), StringComparison.OrdinalIgnoreCase) 
+                && roblox.displayName == null,
                 "User.username is failing"
             );
         }
 
-        [RateLimitedFact]
-        public void Get_Usernames() => Test(async () =>
+        [IntegrationTrait]
+        [Theory]
+        [InlineData(ROBLOX, nameof(ROBLOX))]
+        [InlineData(BUILDERMAN, nameof(BUILDERMAN))]
+        [InlineData(SHEDLETSKY,nameof(SHEDLETSKY))]
+        public async Task Get_Usernames(ulong id,string username)
         {
-            IReadOnlyList<User> user_list = await Users_v1.Get_UsernamesAsync([1, 16]);//roblox, erik.cassel
-
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([0])); //doesnt exist
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([])); //empty
-
-            Assert.True(user_list[0].username == "Roblox", "User.username is failing");
-
-        }, "Get_Usernames()", 0);
-
-        [Fact]
-        public async Task Get_Users()
-        {
-            IReadOnlyList<User> user_list = await Users_v1.Get_UsersAsync(["roblox", "erik.cassel", "builderman"]);
-
-            user_list = user_list
-                .OrderBy(u => u)
-                .ToList();
-
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsersAsync([]));
+            User test = (await Users_v1.Get_UsernamesAsync([id]))[0] ;//
 
             Assert.True(
-                   user_list[2].userId == 1 &&
-                   user_list[1].userId == 16 &&
-                   user_list[0].userId == 156,
-                   "User.userId is failing"
+                test.userId == id && 
+                test.username.Equals(username,System.StringComparison.OrdinalIgnoreCase),
+                "Get_Usernames() is failing"
             );
         }
 
-        [RateLimitedFact]
-        public void Get_UserSearch() => Test(async () =>
+        [IntegrationTrait]
+        [Fact]
+        public async Task Get_Usernames_Error()
+        {
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([DOEST_EXIST])); 
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([])); //empty});
+        }
+
+        [IntegrationTrait]
+        [Theory]
+        [InlineData(ROBLOX, nameof(ROBLOX))]
+        [InlineData(BUILDERMAN, nameof(BUILDERMAN))]
+        [InlineData(SHEDLETSKY, nameof(SHEDLETSKY))]
+        public async Task Get_Users(ulong expected_id,string username)
+        {
+            User test = (await Users_v1.Get_UsersAsync([username])) [0];
+
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsersAsync([]));
+
+            Assert.True( test.userId == expected_id,"User.userId is failing");
+        }
+
+        [IntegrationTrait.Long_Integration]
+        [Fact]
+        public async Task Get_UserSearch()
         {
             Page<User> page = await Users_v1.Get_UserSearchAsync("robl", Limit.MAX);
 
             Assert.True(page.data.Count != 0, "Page.data should not be empty");
             Assert.True(page.previousPageCursor == null, "previouspagecursor should be null");
             Assert.True(page.nextPageCursor != null, "nextpagecursor should not be null");
-        }, "Get_UserSearch()", 0);
+        }
 
-        [RateLimitedFact]
-        public void Get_UsernameHistory() => Test(async () =>
+        [IntegrationTrait.Long_Integration]
+        [Fact]
+        public async Task Get_UsernameHistory()
         {
             //7733466 is an admin
-            //Page<User> x = Users_v1.Get_UsernameHistoryAsync(1).Result;
-            Page<User> y = await Users_v1.Get_UsernameHistoryAsync(7733466, Limit.MAX);
+            Page<User> y = await Users_v1.Get_UsernameHistoryAsync(7733466);
 
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernameHistoryAsync(5)); //terminated user
+            Assert.False(y.data.Count != 0, "Page.data should not be empty");
+        }
 
-            Assert.False(y.data.Count == 0, "Page.data should not be empty");
-        }, "Get_UsernameHistory()", 0);
-
-
-
-
+        [IntegrationTrait.Long_Integration]
+        [Theory]
+        [InlineData(BANNED)]
+        [InlineData(DOEST_EXIST)]
+        public async Task Get_UsernameHistory_Error(ulong id) =>
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernameHistoryAsync(id)); 
+        
     }
+
+    
 
 
 

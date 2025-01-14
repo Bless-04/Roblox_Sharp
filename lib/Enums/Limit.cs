@@ -11,6 +11,7 @@ namespace Roblox_Sharp.Enums
         Minimum = Ten,
 
         TwentyFive = 25,
+
         Fifty = 50,
 
         OneHundred = 100,

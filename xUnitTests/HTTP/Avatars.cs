@@ -9,22 +9,23 @@ namespace xUnitTests.HTTP
     /// Tests <see cref="Avatars_v1"/> and <see cref="Avatars_v2"/> Endpoints
     /// </summary>
     [Collection("Endpoints")]
-    [Trait("Tests", "Integration")]
-    public class Avatars : IRateLimited
+    public class Avatars
     {
-        [RateLimitedFact]
-        public void Get_CurrentlyWearing() => Test(async () =>
+        [IntegrationTrait.Long_Integration]
+        [Fact]
+        public async Task Get_CurrentlyWearing() 
         {
             IReadOnlyList<ulong> assets = await Avatars_v1.Get_CurrentlyWearingAsync(1);
 
             Assert.NotNull(assets);
             Assert.True(assets.Count > 0, "Assets.Count is failing");
 
-        }, "Currently_Wearing()");
+        }
 
         /// <summary>
         /// tests both Avatar_v1 and Avatar_v2 using one another
         /// </summary>
+        [IntegrationTrait]
         [Fact]
         public async Task Get_Avatar()
         {
@@ -37,12 +38,11 @@ namespace xUnitTests.HTTP
             Assert.NotNull(v2.assets);
 
             Assert.Equal(v1.assets[0].meta, v2.assets[0].meta); //can be value checked as it is a struct
-
-
-            //v1 allows banned users
-
-            await Assert.ThrowsAsync<InvalidUserException>(() => Avatars_v2.Get_AvatarAsync(5)); //the terminated user 
         }
+
+        [IntegrationTrait]
+        [Fact]             //v1 allows banned users
+        public async Task Get_Avatar2_Error() => await Assert.ThrowsAsync<InvalidUserException>(() => Avatars_v2.Get_AvatarAsync(5)); //the BANNED user 
 
 
     }

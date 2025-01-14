@@ -12,9 +12,9 @@ namespace xUnitTests.HTTP
     /// Tests <see cref="Badges_v1"/> Endpoint
     /// </summary>
     [Collection("Endpoints")]
-    [Trait("Tests", "Integration")]
     public class Badges
     {
+        [IntegrationTrait]
         [Fact]
         public async Task Get_Badges()
         {
@@ -35,6 +35,8 @@ namespace xUnitTests.HTTP
 
             Assert.True(erik_badge1.statistics.awardedCount > 1000000, "Badge.statistics.awardedCount is failing"); ///over 1000000 as of 11/29/24
         }
+
+        [IntegrationTrait]
         [Fact]
         public async Task Get_Badge()
         {
@@ -49,6 +51,7 @@ namespace xUnitTests.HTTP
             Assert.True(badge.created.Year == 2009, "Badge.created.Year is failing");
         }
 
+        [IntegrationTrait.Long_Integration]
         [Fact]
         public async Task BadgeAwardedDates()
         {

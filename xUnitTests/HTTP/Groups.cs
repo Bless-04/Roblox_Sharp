@@ -9,21 +9,22 @@ namespace xUnitTests.HTTP
     /// Tests <see cref="Groups_v1"/> and <see cref="Groups_v2"/> endpoints
     /// </summary>
     [Collection("Endpoints")]
-    [Trait("Tests", "Integration")]
     public class Groups
     {
+        [IntegrationTrait]
         [Fact]
         public async Task Get_Group()
         {
             Group group = await Groups_v1.Get_GroupAsync(2);
 
-            Assert.True(261 == group.owner.userId, "Group.owner.userId is failing"); //owner is 261
+            Assert.True(User_Constants.SHEDLETSKY == group.owner.userId, "Group.owner.userId is failing"); //owner is 261
             Assert.True(2 == group.groupId, "Group.groupId is failing"); //group id is 2
             Assert.True(group.memberCount > 100000, "Group.memberCount is failing"); //over 100k members as of 11/27/24
 
             await Assert.ThrowsAsync<InvalidUserException>(() => Groups_v1.Get_GroupAsync(0)); //doesnt exist
         }
 
+        [IntegrationTrait]
         [Fact]
         public async Task Get_GroupRoles()
         {
@@ -35,6 +36,7 @@ namespace xUnitTests.HTTP
 
         }
 
+        [IntegrationTrait.Long_Integration]
         [Fact]
         public async Task Get_Groups()
         {
