@@ -24,7 +24,7 @@ public partial class Avatar
         public string assetName { get; init; }
 
         /// <summary>
-        /// ambiguous with assetName
+        /// <inheritdoc cref="assetName"/>
         /// </summary>
         [JsonInclude]
         protected string name { init => assetName = value; }

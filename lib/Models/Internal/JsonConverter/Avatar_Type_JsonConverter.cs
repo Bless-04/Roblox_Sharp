@@ -17,6 +17,6 @@ namespace Roblox_Sharp.Models.Internal.JsonConverter
 
 
         public override void Write(Utf8JsonWriter writer, Avatar_Type value, JsonSerializerOptions options) =>
-            writer.WriteStringValue(value.ToString());
+            writer.WriteNumberValue((byte)value);
     }
 }
