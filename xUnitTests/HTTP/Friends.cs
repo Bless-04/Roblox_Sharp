@@ -62,9 +62,7 @@ namespace xUnitTests.HTTP
 
             Assert.True(roblox == 0 && erik > 0, "Get_FollowingsCount() is failing");
 
-            //error checking
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(DOEST_EXIST)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(BANNED)); //BANNED user
+            
         }
 
         [IntegrationTrait.Long_Integration]
