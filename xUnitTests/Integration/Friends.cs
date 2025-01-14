@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using static xUnitTests.User_Constants;
 
 
-namespace xUnitTests.HTTP
+namespace xUnitTests.Integration
 {
     /// <summary>
     /// Test <see cref="Friends_v1"/> Endpoint
     /// </summary>
-    [Collection("Endpoints")]
+    [Collection("Integration")]
     public class Friends
     {
         [IntegrationTrait.Long_Integration]
@@ -61,8 +61,6 @@ namespace xUnitTests.HTTP
             ulong erik = await Friends_v1.Get_FollowingsCountAsync(16); //erik.cassel
 
             Assert.True(roblox == 0 && erik > 0, "Get_FollowingsCount() is failing");
-
-            
         }
 
         [IntegrationTrait.Long_Integration]

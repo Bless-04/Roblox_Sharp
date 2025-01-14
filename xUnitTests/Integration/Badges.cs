@@ -6,12 +6,12 @@ using Roblox_Sharp.Models.Badges;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace xUnitTests.HTTP
+namespace xUnitTests.Integration
 {
     /// <summary>
     /// Tests <see cref="Badges_v1"/> Endpoint
     /// </summary>
-    [Collection("Endpoints")]
+    [Collection("Integration")]
     public class Badges
     {
         [IntegrationTrait]

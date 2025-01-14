@@ -6,12 +6,12 @@ using System.Linq;
 
 using System.Threading.Tasks;
 
-namespace xUnitTests.HTTP
+namespace xUnitTests.Integration
 {
     /// <summary>
     /// Tests <see cref="Presence_v1"/> endpoint
     /// </summary>
-    [Collection("Endpoints")]
+    [Collection("Integration")]
     public class Presences
     {
         [IntegrationTrait]
