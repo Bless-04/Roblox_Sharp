@@ -33,7 +33,3 @@ jobs:
 
       - name: JSON Deserialization Tests
         run: dotnet test -c Debug --no-build --filter Tests=Deserialization
-
-
-        
-      
