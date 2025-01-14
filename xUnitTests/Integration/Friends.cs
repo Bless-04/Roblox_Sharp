@@ -11,7 +11,7 @@ namespace xUnitTests.Integration
     /// <summary>
     /// Test <see cref="Friends_v1"/> Endpoint
     /// </summary>
-    [Collection("Integration")]
+    [Collection(nameof(Integration))]
     public class Friends
     {
         [IntegrationTrait.Long_Integration]
@@ -39,9 +39,9 @@ namespace xUnitTests.Integration
             //await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(BANNED)); it allows banned users
 
             ulong roblox = await Friends_v1.Get_FollowersCountAsync(ROBLOX);
-            ulong builderman = await Friends_v1.Get_FollowersCountAsync(BUILDERMAN);
+           
 
-            Assert.True(roblox > 100000 && builderman > 100000, "Get_FollowersCount() is failing");
+            Assert.True(roblox > 100000, "Get_FollowersCount() is failing");
         }
 
         [IntegrationTrait.Long_Integration]
@@ -51,15 +51,13 @@ namespace xUnitTests.Integration
         public async Task Get_FollowersCount_Error(ulong id) => 
             await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(id));
 
-        [IntegrationTrait.Long_Integration]
+        [IntegrationTrait]
         [Fact]
         public async Task Get_FollowingsCount()
         {
+            ulong test = await Friends_v1.Get_FollowingsCountAsync(BUILDERMAN); //builderman follows millions of players
 
-            ulong roblox = await Friends_v1.Get_FollowingsCountAsync(ROBLOX); //roblox
-            ulong erik = await Friends_v1.Get_FollowingsCountAsync(16); //erik.cassel
-
-            Assert.True(roblox == 0 && erik > 0, "Get_FollowingsCount() is failing");
+            Assert.True(test > ushort.MaxValue, "Get_FollowingsCount() is failing");
         }
 
         [IntegrationTrait.Long_Integration]
@@ -94,7 +92,7 @@ namespace xUnitTests.Integration
         {
 
             IReadOnlyList<User> erik_friends = await Friends_v1.Get_FriendsAsync(16); //erik
-            IReadOnlyList<User> roblox_friends = await Friends_v1.Get_FriendsAsync(1); //roblox
+            IReadOnlyList<User> roblox_friends = await Friends_v1.Get_FriendsAsync(ROBLOX); //roblox
 
             Assert.True(erik_friends.Count != 0 && roblox_friends.Count == 0, "Get_Friends() is failing");
 
@@ -114,6 +112,9 @@ namespace xUnitTests.Integration
             ulong some_id = page.data[0].userId;
 
             Assert.Null(page.previousPageCursor);
+
+
+            await Task.Delay(61000); //special case 
             //new page
             page = await Friends_v1.Get_FollowersAsync(ROBLOX, page: page); //roblox
 

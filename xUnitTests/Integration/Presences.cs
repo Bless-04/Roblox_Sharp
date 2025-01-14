@@ -11,7 +11,7 @@ namespace xUnitTests.Integration
     /// <summary>
     /// Tests <see cref="Presence_v1"/> endpoint
     /// </summary>
-    [Collection("Integration")]
+    [Collection(nameof(Integration))]
     public class Presences
     {
         [IntegrationTrait]

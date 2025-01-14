@@ -13,7 +13,7 @@ namespace xUnitTests.Integration
     /// <summary>
     /// Tests <see cref="Users_v1"/> endpoint
     /// </summary>
-    [Collection("Integration")]
+    [Collection(nameof(Integration))]
     public class Users 
     {
         [IntegrationTrait]
@@ -89,9 +89,9 @@ namespace xUnitTests.Integration
         public async Task Get_UsernameHistory()
         {
             //7733466 is an admin
-            Page<User> y = await Users_v1.Get_UsernameHistoryAsync(7733466);
+            Page<User> y = await Users_v1.Get_UsernameHistoryAsync(7733466,Limit.Ten);
 
-            Assert.False(y.data.Count != 0, "Page.data should not be empty");
+            Assert.False(y.data.Count == 0, "Page.data should not be empty");
         }
 
         [IntegrationTrait.Long_Integration]
@@ -102,9 +102,4 @@ namespace xUnitTests.Integration
             await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernameHistoryAsync(id)); 
         
     }
-
-    
-
-
-
 }

@@ -10,7 +10,7 @@ namespace xUnitTests.Integration
     /// <summary>
     /// Tests <see cref="Thumbnails_v1"/> endpoint
     /// </summary>
-    [Collection("Integration")]
+    [Collection(nameof(Integration))]
     public class Thumbnails
     {
         private bool Test(Func<IReadOnlyList<Thumbnail>> method)

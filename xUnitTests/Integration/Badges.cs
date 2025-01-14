@@ -11,7 +11,7 @@ namespace xUnitTests.Integration
     /// <summary>
     /// Tests <see cref="Badges_v1"/> Endpoint
     /// </summary>
-    [Collection("Integration")]
+    [Collection(nameof(Integration))]
     public class Badges
     {
         [IntegrationTrait]

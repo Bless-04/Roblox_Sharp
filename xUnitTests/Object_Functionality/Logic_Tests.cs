@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Roblox_Sharp.Framework;
+﻿using System.Collections.Generic;
 using Roblox_Sharp.Models;
 
 namespace xUnitTests.Object_Functionality
@@ -8,7 +6,7 @@ namespace xUnitTests.Object_Functionality
     /// <summary>
     /// tests explicit logic of objects
     /// </summary>
-    [Trait("Tests", "Object")]
+    [Trait(nameof(xUnitTests), nameof(Object_Functionality))]
     public class Logic_Test
     {
         [Fact]

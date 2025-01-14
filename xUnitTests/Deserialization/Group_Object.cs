@@ -6,7 +6,7 @@ namespace xUnitTests.Deserialization
     /// <summary>
     /// Tests Serialization for all Group endpoints
     /// </summary>
-    [Trait("Tests", "Deserialization")]
+    [Trait(nameof(xUnitTests), nameof(Deserialization))]
     public class Group_Object
     {
         [Fact]

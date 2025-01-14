@@ -10,7 +10,7 @@ namespace xUnitTests.Integration
     /// <summary>
     /// Tests <see cref="Avatars_v1"/> and <see cref="Avatars_v2"/> Endpoints
     /// </summary>
-    [Collection("Integration")]
+    [Collection(nameof(Integration))]
     public class Avatars
     {
         [IntegrationTrait.Long_Integration]

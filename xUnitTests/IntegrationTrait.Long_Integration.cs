@@ -17,7 +17,7 @@ public partial class IntegrationTrait
         ITraitAttribute
     {
 
-        public Long_Integration(string name = "Tests", string value = "Long Integration"){}
+        public Long_Integration(string name = nameof(xUnitTests), string value = nameof(Long_Integration)){}
         
 
         public override void Before(MethodInfo methodUnderTest) => Task.Delay(61000).Wait();

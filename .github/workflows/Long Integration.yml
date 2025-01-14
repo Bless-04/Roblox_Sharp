@@ -33,7 +33,7 @@ jobs:
         run:  dotnet build -c Debug Roblox_Sharp.sln
 
       - name : Long Integration Tests
-        run: dotnet test -c Debug --no-build --filter Tests="Long Integration"
+        run: dotnet test -c Debug --no-build --filter xUnitTests=Long_Integration
 
 
         

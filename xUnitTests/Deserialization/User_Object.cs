@@ -7,7 +7,7 @@ namespace xUnitTests.Deserialization
     /// <summary>
     /// Tests Serialization for <paramref name="User"/>
     /// </summary>
-    [Trait("Tests", "Deserialization")]
+    [Trait(nameof(xUnitTests), nameof(Deserialization))]
     public class User_Object
     {
         [Fact]

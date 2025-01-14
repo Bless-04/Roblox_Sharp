@@ -9,14 +9,14 @@ namespace xUnitTests.Integration
     /// <summary>
     /// Tests <see cref="Inventory_v1"/> Endpoint
     /// </summary>
-    [Collection("Integration")]
+    [Collection(nameof(Integration))]
     public class Inventorys 
     {
         [IntegrationTrait.Long_Integration]
         [Fact]
         public async Task Get_CanViewInventory()
         {
-            bool test = await Inventory_v1.Get_CanViewInventoryAsync(ROBLOX);
+            bool test = await Inventory_v1.Get_CanViewInventoryAsync(16); //eriks is set to true
 
             Assert.True(test, "Get_CanViewInventory() is failing");
 

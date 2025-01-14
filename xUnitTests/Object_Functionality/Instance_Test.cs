@@ -3,14 +3,13 @@
 using Roblox_Sharp.Models;
 using Roblox_Sharp.Models.Badges;
 using System;
-using System.Collections.Generic;
 
 namespace xUnitTests.Object_Functionality
 {
     /// <summary>
     /// Tests if objects are derived from the correct types
     /// </summary>
-    [Trait("Tests", "Object")]
+    [Trait(nameof(xUnitTests), nameof(Object_Functionality))]
     public class Instance
     {
         [Fact]

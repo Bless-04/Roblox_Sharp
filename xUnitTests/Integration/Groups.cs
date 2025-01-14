@@ -8,7 +8,7 @@ namespace xUnitTests.Integration
     /// <summary>
     /// Tests <see cref="Groups_v1"/> and <see cref="Groups_v2"/> endpoints
     /// </summary>
-    [Collection("Integration")]
+    [Collection(nameof(Integration))]
     public class Groups
     {
         [IntegrationTrait]

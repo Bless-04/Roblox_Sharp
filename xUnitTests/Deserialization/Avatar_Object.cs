@@ -7,7 +7,7 @@ using System.Text.Json;
 
 namespace xUnitTests.Deserialization
 {
-    [Trait("Tests", "Deserialization")]
+    [Trait(nameof(xUnitTests), nameof(Deserialization))]
     public class Avatar_Object
     {
         [Fact]
