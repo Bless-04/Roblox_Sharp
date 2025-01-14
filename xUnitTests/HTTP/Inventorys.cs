@@ -12,8 +12,6 @@ namespace xUnitTests.HTTP
     [Collection("Endpoints")]
     public class Inventorys 
     {
-        public static IEnumerable<object[]> Errors => User_Constants.Unsafe_Users;
-
         [IntegrationTrait.Long_Integration]
         [Fact]
         public async Task Get_CanViewInventory()
@@ -24,11 +22,14 @@ namespace xUnitTests.HTTP
 
         }
 
-        [IntegrationTrait]
+        [IntegrationTrait.Long_Integration]
         [Theory]
-        [MemberData(nameof(Errors)) ]
-        public async Task Get_CanViewInventory_Error(ulong id) => 
+        [InlineData(BANNED)]
+        [InlineData(DOEST_EXIST)]
+        public async Task Get_CanViewInventory_Error(ulong id) 
+        {
             await Assert.ThrowsAsync<InvalidUserException>(() => Inventory_v1.Get_CanViewInventoryAsync(id));
+        }
 
     }
 }

@@ -59,6 +59,7 @@ namespace xUnitTests.HTTP
             );
         }
 
+        [IntegrationTrait]
         [Theory]
         [InlineData(Size.x30, true)] //size x30 should throw an error
         [InlineData(Size.x48)]
@@ -93,6 +94,7 @@ namespace xUnitTests.HTTP
 
         }
 
+        [IntegrationTrait]
         [Theory]
         [InlineData(Size.x30, Format.Png, true)] //Size.x30 should throw an error
         [InlineData(Size.x48, Format.Jpeg, true)] //Format.Jpeg should throw an error

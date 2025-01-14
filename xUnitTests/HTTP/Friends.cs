@@ -32,16 +32,16 @@ namespace xUnitTests.HTTP
 
             //error checking
             await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsCountAsync(DOEST_EXIST));
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsCountAsync(TERMINATED));
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsCountAsync(BANNED));
         }
 
-        [IntegrationTrait]
+        [IntegrationTrait.Long_Integration]
         [Fact]
         public async Task Get_FollowersCount()
         {
 
             await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(DOEST_EXIST)); 
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(TERMINATED));
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(BANNED));
 
             ulong roblox = await Friends_v1.Get_FollowersCountAsync(1);
             ulong erik = await Friends_v1.Get_FollowersCountAsync(16);
@@ -62,7 +62,7 @@ namespace xUnitTests.HTTP
 
             //error checking
             await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(0)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(5)); //terminated user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(5)); //BANNED user
         }
 
         [IntegrationTrait]
@@ -90,7 +90,7 @@ namespace xUnitTests.HTTP
         [IntegrationTrait.Long_Integration]
         [Fact]
         public async Task Get_Followings_Error() => 
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsAsync(TERMINATED)); //throws nothing for doesnt exist
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsAsync(BANNED)); //throws nothing for doesnt exist
 
         [IntegrationTrait]
         [Fact]
@@ -104,7 +104,7 @@ namespace xUnitTests.HTTP
 
             //error checking
             await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsAsync(0)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsAsync(5)); //terminated user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FriendsAsync(5)); //BANNED user
         }
 
 
@@ -121,7 +121,7 @@ namespace xUnitTests.HTTP
 
             //error checking
             await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersAsync(0)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersAsync(5)); //terminated user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersAsync(5)); //BANNED user
 
             //new page
             page = await Friends_v1.Get_FollowersAsync(1, page: page); //roblox

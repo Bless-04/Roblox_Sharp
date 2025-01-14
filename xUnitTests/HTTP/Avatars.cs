@@ -42,7 +42,7 @@ namespace xUnitTests.HTTP
 
         [IntegrationTrait]
         [Fact]             //v1 allows banned users
-        public async Task Get_Avatar2_Error() => await Assert.ThrowsAsync<InvalidUserException>(() => Avatars_v2.Get_AvatarAsync(5)); //the terminated user 
+        public async Task Get_Avatar2_Error() => await Assert.ThrowsAsync<InvalidUserException>(() => Avatars_v2.Get_AvatarAsync(5)); //the BANNED user 
 
 
     }
