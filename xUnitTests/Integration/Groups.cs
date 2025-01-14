@@ -3,12 +3,12 @@ using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-namespace xUnitTests.HTTP
+namespace xUnitTests.Integration
 {
     /// <summary>
     /// Tests <see cref="Groups_v1"/> and <see cref="Groups_v2"/> endpoints
     /// </summary>
-    [Collection("Endpoints")]
+    [Collection("Integration")]
     public class Groups
     {
         [IntegrationTrait]

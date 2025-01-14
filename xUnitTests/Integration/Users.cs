@@ -8,12 +8,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using static xUnitTests.User_Constants;
-namespace xUnitTests.HTTP
+namespace xUnitTests.Integration
 {
     /// <summary>
     /// Tests <see cref="Users_v1"/> endpoint
     /// </summary>
-    [Collection("Endpoints")]
+    [Collection("Integration")]
 
     public class Users 
     {

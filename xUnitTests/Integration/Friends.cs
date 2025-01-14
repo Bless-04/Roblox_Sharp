@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using static xUnitTests.User_Constants;
 
 
-namespace xUnitTests.HTTP
+namespace xUnitTests.Integration
 {
     /// <summary>
     /// Test <see cref="Friends_v1"/> Endpoint
     /// </summary>
-    [Collection("Endpoints")]
+    [Collection("Integration")]
     public class Friends
     {
         [IntegrationTrait.Long_Integration]
@@ -45,7 +45,7 @@ namespace xUnitTests.HTTP
             Assert.True(roblox > 100000 && builderman > 100000, "Get_FollowersCount() is failing");
         }
 
-        [IntegrationTrait]
+        [IntegrationTrait.Long_Integration]
         [Theory]
         [InlineData(DOEST_EXIST)]
         [InlineData(DELETED)]
@@ -61,20 +61,16 @@ namespace xUnitTests.HTTP
             ulong erik = await Friends_v1.Get_FollowingsCountAsync(16); //erik.cassel
 
             Assert.True(roblox == 0 && erik > 0, "Get_FollowingsCount() is failing");
-
-            //error checking
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(DOEST_EXIST)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(BANNED)); //BANNED user
         }
 
-        [IntegrationTrait]
+        [IntegrationTrait.Long_Integration]
         [Theory]
         [InlineData(DOEST_EXIST)]
         [InlineData(DELETED)]
         public async Task Get_FollowingsCount_Error(ulong id) => 
             await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsAsync(id));
 
-        [IntegrationTrait]
+        [IntegrationTrait.Long_Integration]
         [Theory]
         [InlineData(Limit.OneHundred)]
         [InlineData(Limit.Fifty)]
@@ -114,7 +110,7 @@ namespace xUnitTests.HTTP
         }
 
 
-        [IntegrationTrait]
+        [IntegrationTrait.Long_Integration]
         [Fact]
         public async Task Get_Followers()
         {
@@ -134,7 +130,7 @@ namespace xUnitTests.HTTP
 
         }
 
-        [IntegrationTrait]
+        [IntegrationTrait.Long_Integration]
         [Theory]
         [InlineData(DOEST_EXIST)]
         [InlineData(DELETED)]

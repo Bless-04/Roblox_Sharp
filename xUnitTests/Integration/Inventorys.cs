@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using static xUnitTests.User_Constants;
-namespace xUnitTests.HTTP
+namespace xUnitTests.Integration
 {
     /// <summary>
     /// Tests <see cref="Inventory_v1"/> Endpoint
     /// </summary>
-    [Collection("Endpoints")]
+    [Collection("Integration")]
     public class Inventorys 
     {
         [IntegrationTrait.Long_Integration]
