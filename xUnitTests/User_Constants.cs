@@ -8,7 +8,7 @@
         public const ushort SHEDLETSKY = 261; 
         
         public const byte DOEST_EXIST = 0;
-
+        public const byte DELETED = 5;
 
        
         public const ulong BANNED = 50770459;
