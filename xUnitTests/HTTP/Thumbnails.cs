@@ -11,7 +11,6 @@ namespace xUnitTests.HTTP
     /// Tests <see cref="Thumbnails_v1"/> endpoint
     /// </summary>
     [Collection("Endpoints")]
-    [Trait("Tests", "Integration")]
     public class Thumbnails
     {
         private bool Test(Func<IReadOnlyList<Thumbnail>> method)
@@ -27,6 +26,7 @@ namespace xUnitTests.HTTP
             return true;
         }
 
+        [IntegrationTrait]
         [Theory]
         [InlineData(Size.x30)]
         [InlineData(Size.x48)]

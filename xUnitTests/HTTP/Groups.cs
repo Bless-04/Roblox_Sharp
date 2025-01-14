@@ -9,9 +9,9 @@ namespace xUnitTests.HTTP
     /// Tests <see cref="Groups_v1"/> and <see cref="Groups_v2"/> endpoints
     /// </summary>
     [Collection("Endpoints")]
-    [Trait("Tests", "Integration")]
     public class Groups
     {
+        [IntegrationTrait]
         [Fact]
         public async Task Get_Group()
         {
@@ -24,6 +24,7 @@ namespace xUnitTests.HTTP
             await Assert.ThrowsAsync<InvalidUserException>(() => Groups_v1.Get_GroupAsync(0)); //doesnt exist
         }
 
+        [IntegrationTrait]
         [Fact]
         public async Task Get_GroupRoles()
         {
@@ -34,7 +35,7 @@ namespace xUnitTests.HTTP
             Assert.True(roles[1].memberCount > 400000, "Group.Role.memberCount is failing"); //more than 400k as of 11/30
 
         }
-
+        [IntegrationTrait]
         [Fact]
         public async Task Get_Groups()
         {

@@ -41,8 +41,11 @@ jobs:
       - name: JSON Deserialization Tests
         run: dotnet test -c Debug --no-build --filter Tests=Deserialization
       
-      - name: Web-based Integration Tests
+      - name: Quick Integration Tests
         run: dotnet test -c Debug --no-build --filter Tests=Integration
+
+      - name : Long Integration Tests
+        run: dotnet test -c Debug --no-build --filter Tests="Long Integration"
 
 
         

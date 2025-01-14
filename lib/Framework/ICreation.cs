@@ -43,6 +43,12 @@ namespace Roblox_Sharp.Framework
         public static bool operator >(ICreation<T> left, ICreation<T> right) => left.id < right.id;
 
         /// <summary>
+        /// Convert a creation to a ulong
+        /// </summary>
+        /// <param name="creation"></param>
+        public static explicit operator ulong(ICreation<T> creation) => creation.id;
+
+        /// <summary>
         /// a creation is greater than another if it is older. Older creations have smaller ids than newer users.
         /// <br></br>
         /// example: creation 1 is the oldest creation

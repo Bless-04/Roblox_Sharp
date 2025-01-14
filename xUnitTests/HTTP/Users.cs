@@ -1,53 +1,53 @@
-﻿using Roblox_Sharp.Endpoints;
+﻿using Microsoft.VisualBasic;
+using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
+using Roblox_Sharp.Framework;
 using Roblox_Sharp.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using xUnitTests.HTTP;
 
+using static xUnitTests.User_Constants;
 namespace xUnitTests.HTTP
 {
+    
+    
     /// <summary>
     /// Tests <see cref="Users_v1"/> endpoint
     /// </summary>
     [Collection("Endpoints")]
-    [Trait("Tests", "Integration")]
-    public class Users : IDelayedTest
+    public class Users 
     {
-        public const int TERMINATED = 5;
-        public const int DOEST_EXIST = 0;
+        public static IEnumerable<object[]> Safe_Users => User_Constants.Safe_Users;
 
+        public static IEnumerable<object[]> Error => User_Constants.Unsafe_Users;
 
-        public static IEnumerable<object[]> Error_Cases()
-        {
-            yield return new object[] { TERMINATED };
-            yield return new object[] { DOEST_EXIST };
-            yield return new object[] { };
-        }
-
+        [IntegrationTrait]
         [Fact]
         public async Task Get_User()
         {
             //error checking
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UserAsync(0));
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UserAsync(5)); //terminated user
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UserAsync(ROBLOX));
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UserAsync(TERMINATED)); //terminated user
 
-            User roblox = await Users_v1.Get_UserAsync(1);
+            User roblox = await Users_v1.Get_UserAsync(ROBLOX);
 
-            Assert.True(roblox.userId == 1, "User.userId is failing");
+            Assert.True(roblox.userId == ROBLOX, "User.userId is failing");
 
             Assert.True(
-                roblox.username == "Roblox" && roblox.displayName == null,
+                roblox.username.Equals(nameof(ROBLOX), StringComparison.OrdinalIgnoreCase) 
+                && roblox.displayName == null,
                 "User.username is failing"
             );
         }
 
+        [IntegrationTrait]
         [Theory]
-        [InlineData(1,"roblox")]
-        [InlineData(16,"erik.cassel")]
+        [MemberData(nameof(Safe_Users))]
         public async Task Get_Usernames(ulong id,string username)
         {
-
             User test = (await Users_v1.Get_UsernamesAsync([id]))[0] ;//
 
             Assert.True(
@@ -55,20 +55,19 @@ namespace xUnitTests.HTTP
                 test.username.Equals(username,System.StringComparison.OrdinalIgnoreCase),
                 "Get_Usernames() is failing"
             );
-
         }
 
+        [IntegrationTrait]
         [Fact]
         public async Task Get_Usernames_Error()
         {
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([0])); //doesnt exist
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([DOEST_EXIST])); 
             await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([])); //empty});
         }
 
+        [IntegrationTrait]
         [Theory]
-        [InlineData(1,"roblox")]
-        [InlineData(16,"erik.cassel")]
-        [InlineData(156,"builderman")]
+        [MemberData(nameof(Safe_Users))]
         public async Task Get_Users(ulong expected_id,string username)
         {
             User test = (await Users_v1.Get_UsersAsync([username])) [0];
@@ -78,6 +77,7 @@ namespace xUnitTests.HTTP
             Assert.True( test.userId == expected_id,"User.userId is failing");
         }
 
+        [IntegrationTrait]
         [Fact]
         public async Task Get_UserSearch()
         {
@@ -88,22 +88,26 @@ namespace xUnitTests.HTTP
             Assert.True(page.nextPageCursor != null, "nextpagecursor should not be null");
         }
 
+        [IntegrationTrait.Long_Integration]
         [Fact]
         public async Task Get_UsernameHistory()
         {
             //7733466 is an admin
-            Page<User> y = await Users_v1.Get_UsernameHistoryAsync(7733466, Limit.MAX);
+            Page<User> y = await Users_v1.Get_UsernameHistoryAsync(7733466);
 
             Assert.False(y.data.Count != 0, "Page.data should not be empty");
         }
 
-
+        [IntegrationTrait]
         [Theory]
-        [MemberData(nameof(Error_Cases))]
+        [MemberData(nameof(Error))]
         public async Task Get_UsernameHistory_Error(ulong id) =>
             await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernameHistoryAsync(id)); 
         
+        
     }
+
+    
 
 
 

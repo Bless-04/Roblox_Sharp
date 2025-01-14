@@ -9,22 +9,23 @@ namespace xUnitTests.HTTP
     /// Tests <see cref="Avatars_v1"/> and <see cref="Avatars_v2"/> Endpoints
     /// </summary>
     [Collection("Endpoints")]
-    [Trait("Tests", "Integration")]
-    public class Avatars : IDelayedTest
+    public class Avatars
     {
+        [IntegrationTrait]
         [Fact]
-        public void Get_CurrentlyWearing() => DelayedTest(async () =>
+        public async Task Get_CurrentlyWearing() 
         {
             IReadOnlyList<ulong> assets = await Avatars_v1.Get_CurrentlyWearingAsync(1);
 
             Assert.NotNull(assets);
             Assert.True(assets.Count > 0, "Assets.Count is failing");
 
-        });
+        }
 
         /// <summary>
         /// tests both Avatar_v1 and Avatar_v2 using one another
         /// </summary>
+        [IntegrationTrait]
         [Fact]
         public async Task Get_Avatar()
         {
@@ -39,6 +40,7 @@ namespace xUnitTests.HTTP
             Assert.Equal(v1.assets[0].meta, v2.assets[0].meta); //can be value checked as it is a struct
         }
 
+        [IntegrationTrait]
         [Fact]             //v1 allows banned users
         public async Task Get_Avatar2_Error() => await Assert.ThrowsAsync<InvalidUserException>(() => Avatars_v2.Get_AvatarAsync(5)); //the terminated user 
 
