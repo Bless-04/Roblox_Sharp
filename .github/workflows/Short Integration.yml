@@ -29,12 +29,8 @@ jobs:
         with:
           dotnet-version: "9.0.x"
 
-      - name: Build Roblox_Sharp Solution
+      - name: Build Roblox_Sharp 
         run:  dotnet build -c Debug Roblox_Sharp.sln
 
       - name: Short Integration Tests
-        run: dotnet test -c Debug --no-build --filter Tests=Integration
-
-
-        
-      
+        run: dotnet test -c Debug --no-build --filter Tests=Integration      
