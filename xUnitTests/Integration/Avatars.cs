@@ -3,6 +3,8 @@ using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
+using static xUnitTests.User_Constants;
 namespace xUnitTests.Integration
 {
     /// <summary>
@@ -15,11 +17,10 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_CurrentlyWearing() 
         {
-            IReadOnlyList<ulong> assets = await Avatars_v1.Get_CurrentlyWearingAsync(1);
+            IReadOnlyList<ulong> assets = await Avatars_v1.Get_CurrentlyWearingAsync(ROBLOX);
 
             Assert.NotNull(assets);
             Assert.True(assets.Count > 0, "Assets.Count is failing");
-
         }
 
         /// <summary>
@@ -29,8 +30,8 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_Avatar()
         {
-            Avatar v1 = await Avatars_v1.Get_AvatarAsync(1);
-            Avatar v2 = await Avatars_v2.Get_AvatarAsync(1);
+            Avatar v1 = await Avatars_v1.Get_AvatarAsync(ROBLOX);
+            Avatar v2 = await Avatars_v2.Get_AvatarAsync(ROBLOX);
 
             Assert.Equal(v1.scales, v2.scales); //should be the same ; can be value checked as it is a struct
 

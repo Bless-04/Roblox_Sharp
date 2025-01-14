@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using static xUnitTests.User_Constants;
 
-
 namespace xUnitTests.Integration
 {
     /// <summary>
@@ -19,7 +18,7 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_FriendsCount()
         {
-            byte roblox = await Friends_v1.Get_FriendsCountAsync(1); //roblox
+            byte roblox = await Friends_v1.Get_FriendsCountAsync(ROBLOX); //roblox
             byte erik = await Friends_v1.Get_FriendsCountAsync(16); //erik.cassel
 
             Assert.True(
@@ -78,12 +77,7 @@ namespace xUnitTests.Integration
         [InlineData(Limit.Ten)]
         public async Task Get_Followings(Limit limit = Limit.Maximum, Sort sort = Sort.Asc, string? cursor = null)
         {
-            const int id = 156; //builderman 
-
-
-            Page<User> test = await Friends_v1.Get_FollowingsAsync(id, limit, sort, cursor);
-
-
+            Page<User> test = await Friends_v1.Get_FollowingsAsync(BUILDERMAN, limit, sort, cursor);
             Assert.True(test.data.Count == (int)limit, "Get_Followings() is failing");
         }
 

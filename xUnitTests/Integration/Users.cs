@@ -14,7 +14,6 @@ namespace xUnitTests.Integration
     /// Tests <see cref="Users_v1"/> endpoint
     /// </summary>
     [Collection("Integration")]
-
     public class Users 
     {
         [IntegrationTrait]
