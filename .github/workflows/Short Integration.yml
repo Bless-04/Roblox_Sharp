@@ -1,9 +1,11 @@
-#Tests the Web requests that have higher rate limits
+#Tests the Web requests that are lenient with the rate limits
 name: Web Integration
 
 on:
   workflow_dispatch:
 
+  push: 
+    branches: [main,stable]
   pull_request: 
     types: [opened]
     branches: 

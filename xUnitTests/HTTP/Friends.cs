@@ -37,31 +37,42 @@ namespace xUnitTests.HTTP
         [Fact]
         public async Task Get_FollowersCount()
         {
-
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(DOEST_EXIST)); 
             //await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(BANNED)); it allows banned users
 
-            ulong roblox = await Friends_v1.Get_FollowersCountAsync(1);
-            ulong erik = await Friends_v1.Get_FollowersCountAsync(16);
+            ulong roblox = await Friends_v1.Get_FollowersCountAsync(ROBLOX);
+            ulong builderman = await Friends_v1.Get_FollowersCountAsync(BUILDERMAN);
 
-            Assert.True(roblox > 100000 && erik > 100000, "Get_FollowersCount() is failing");
-
+            Assert.True(roblox > 100000 && builderman > 100000, "Get_FollowersCount() is failing");
         }
+
+        [IntegrationTrait]
+        [Theory]
+        [InlineData(DOEST_EXIST)]
+        [InlineData(DELETED)]
+        public async Task Get_FollowersCount_Error(ulong id) => 
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersCountAsync(id));
 
         [IntegrationTrait.Long_Integration]
         [Fact]
         public async Task Get_FollowingsCount()
         {
 
-            ulong roblox = await Friends_v1.Get_FollowingsCountAsync(1); //roblox
+            ulong roblox = await Friends_v1.Get_FollowingsCountAsync(ROBLOX); //roblox
             ulong erik = await Friends_v1.Get_FollowingsCountAsync(16); //erik.cassel
 
             Assert.True(roblox == 0 && erik > 0, "Get_FollowingsCount() is failing");
 
             //error checking
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(0)); //doesnt exist
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(DOEST_EXIST)); //doesnt exist
             await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsCountAsync(BANNED)); //BANNED user
         }
+
+        [IntegrationTrait]
+        [Theory]
+        [InlineData(DOEST_EXIST)]
+        [InlineData(DELETED)]
+        public async Task Get_FollowingsCount_Error(ulong id) => 
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsAsync(id));
 
         [IntegrationTrait]
         [Theory]
@@ -78,17 +89,14 @@ namespace xUnitTests.HTTP
 
 
             Assert.True(test.data.Count == (int)limit, "Get_Followings() is failing");
-
-            //error checking
-
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsAsync(5));
         }
 
-       
-        [IntegrationTrait]
-        [Fact]
-        public async Task Get_Followings_Error() => 
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsAsync(DOEST_EXIST)); //throws nothing for doesnt exist
+        [IntegrationTrait.Long_Integration]
+        [Theory]
+        [InlineData(DOEST_EXIST)]
+        [InlineData(DELETED)]
+        public async Task Get_Followings_Error(ulong id) => 
+            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowingsAsync(id)); //throws nothing for doesnt exist
 
         [IntegrationTrait]
         [Fact]
@@ -106,23 +114,18 @@ namespace xUnitTests.HTTP
         }
 
 
-        [IntegrationTrait.Long_Integration]
+        [IntegrationTrait]
         [Fact]
         public async Task Get_Followers()
         {
-            Page<User> page = await Friends_v1.Get_FollowersAsync(1); //roblox
+            Page<User> page = await Friends_v1.Get_FollowersAsync(ROBLOX); //roblox
 
             //old page
             ulong some_id = page.data[0].userId;
 
             Assert.Null(page.previousPageCursor);
-
-            //error checking
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersAsync(0)); //doesnt exist
-            await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersAsync(5)); //BANNED user
-
             //new page
-            page = await Friends_v1.Get_FollowersAsync(1, page: page); //roblox
+            page = await Friends_v1.Get_FollowersAsync(ROBLOX, page: page); //roblox
 
 
             Assert.True(page.previousPageCursor != null, "Get_Followers() is failing");
@@ -130,5 +133,11 @@ namespace xUnitTests.HTTP
             Assert.True(page.data[0].userId != some_id, "Get_Followers() is failing");
 
         }
+
+        [IntegrationTrait]
+        [Theory]
+        [InlineData(DOEST_EXIST)]
+        [InlineData(DELETED)]
+        public async Task Get_Followers_Error(ulong id) => await Assert.ThrowsAsync<InvalidUserException>(() => Friends_v1.Get_FollowersAsync(id));
     }
 }
