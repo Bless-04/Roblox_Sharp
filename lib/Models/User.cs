@@ -47,10 +47,11 @@ namespace Roblox_Sharp.Models
     /// </summary>
     public class User : IUser
     {
-        [JsonInclude]
+
         /// <summary>
-        /// ambiguous with username
+        /// <inheritdoc cref="IUser.username"/>
         /// </summary>
+        [JsonInclude]
         protected string name { init => base.username = value; }
 
         /// <summary>
@@ -64,25 +65,37 @@ namespace Roblox_Sharp.Models
         public DateTime created { get; init; }
 
         /// <summary>
-        /// <b>true</b> if user is banned, <b>false</b> otherwise
+        /// <see langword="true"/> if the user is banned
         /// </summary>
         public bool isBanned { get; init; }
 
         public string? externalAppDisplayName { get; init; }
 
+        /// <summary>
+        /// <see langword="true"/> only if the user has a verified badge
+        /// </summary>
         public bool hasVerifiedBadge { get; init; }
 
         public string? requestedUsername { get; init; }
 
+        /// <summary>
+        /// <inheritdoc cref="Presence_Type"/>
+        /// </summary>
         public Presence_Type presenceType { get; init; }
 
+        /// <summary>
+        /// list of previous usernames
+        /// </summary>
         public IReadOnlyList<string>? previousUsernames { get; init; }
 
         /// <summary>
-        /// <b>true</b> if user is currently online, <b>false</b> otherwise
+        /// <see langword="true"/> if user is currently online
         /// </summary>
         public bool isOnline { get; init; }
 
+        /// <summary>
+        /// <see langword="true"/> if user is deleted/banned/terminated
+        /// </summary>
         public bool isDeleted { get; init; }
 
         public int friendFrequentScore { get; init; }
@@ -91,8 +104,18 @@ namespace Roblox_Sharp.Models
 
         public User() { }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId">id of the user</param>
+        /// <param name="username">username of the user</param>
+        /// <param name="displayName">displayname of the user</param>
         public User(ulong userId, string username, string? displayName = null) : base(userId, username, displayName) { }
 
+        /// <summary>
+        /// Deep clones the instance of <see cref="User"/>
+        /// </summary>
+        /// <returns></returns>
         public override User Clone()
         {
             List<string>? previousUsernamesCopy = null;
@@ -101,8 +124,8 @@ namespace Roblox_Sharp.Models
             {
                 previousUsernamesCopy = new List<string>(previousUsernames.Count);
 
-                foreach (string username in previousUsernames)
-                    previousUsernamesCopy.Add(username);
+                previousUsernamesCopy.AddRange(previousUsernames);
+                
             }
 
             return new User()

@@ -17,11 +17,11 @@ namespace Roblox_Sharp.Endpoints
     public static class Badges_v1
     {
         /// <summary>
-        /// Asynchronously Gets timestamps for when badges were awarded to the given <typeparamref name="userId"/>
+        /// Asynchronously Gets timestamps for when badges were awarded to the given <paramref name="userId"/>
         /// <br></br>
         /// <see href="https://badges.roblox.com//docs/index.html?urls.primaryName=Badges%20Api%20v1">Badges Api v1 Documentation</see>
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="userId"></param>
         /// <param name="badgeIds"></param>
         /// <returns>List of Badge_Award</returns>
         /// <exception cref="ArgumentException"></exception>

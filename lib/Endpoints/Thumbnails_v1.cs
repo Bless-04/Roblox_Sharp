@@ -30,13 +30,13 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="userIds"></param>
         /// <param name="SIZE"></param>
         /// <param name="FORMAT"></param>
-        /// <param name="isCircular"></param>
+        /// <param name="isCircular">if image should be circular</param>
         /// <returns>List of Avatar</returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static async Task<IReadOnlyList<Thumbnail>> Get_AvatarHeadshotsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
         {
             if (EnumExtensions.IsBlackListed(SIZE, [Size.x30])) throw new ArgumentOutOfRangeException($"{SIZE} is not supported for this request.");
-            /// example https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=1&size=48x48&format=Png&isCircular=false
+            // example https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=1&size=48x48&format=Png&isCircular=false
 
             return
                 JsonSerializer.Deserialize<Page<Thumbnail>>(

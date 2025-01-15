@@ -43,22 +43,29 @@ namespace Roblox_Sharp.Models
         public ulong memberCount { get; init; }
 
         /// <summary>
-        /// true if group is buildersclub only, false otherwise 
+        /// <see langword="true"/> if group is buildersclub only
         /// </summary>
         public bool isBuildersClubOnly { get; init; }
 
         /// <summary>
-        /// true if group is public, false otherwise
+        /// <see langword="true"/> if group is public
         /// </summary>
         public bool publicEntryAllowed { get; init; }
 
+        /// <summary>
+        /// <see langword="true"/> if group is locked
+        /// </summary>
         public bool isLocked { get; init; }
 
         /// <summary>
-        /// true if group has a verified badge, false otherwise
+        /// <see langword="true"/> if group has a verified badge
         /// </summary>
         public bool hasVerifiedBadge { get; init; }
 
+        /// <summary>
+        /// Deep Clones the instance of <see cref="Group"/>
+        /// </summary>
+        /// <returns></returns>
         public override object Clone() =>
             new Group()
             {

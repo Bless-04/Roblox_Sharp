@@ -49,6 +49,12 @@ namespace Roblox_Sharp.Models
 
             return page;
         }
+        /// <summary>
+        /// constructs a page
+        /// </summary>
+        /// <param name="previousPageCursor"></param>
+        /// <param name="nextPageCursor"></param>
+        /// <param name="data"></param>
         public Page(string? previousPageCursor = null, string? nextPageCursor = null, IReadOnlyList<T>? data = null)
         {
             base.previousPageCursor = previousPageCursor;

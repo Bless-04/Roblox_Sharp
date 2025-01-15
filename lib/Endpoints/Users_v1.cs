@@ -24,7 +24,7 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="keyword"></param>
         /// <param name="LIMIT"></param>
         /// <param name="page"></param>
-        /// <returns>A <paramref name="Page"/> of Users</returns>
+        /// <returns>A <see cref="Page{T}"/> of Users</returns>
         public static async Task<Page<User>> Get_UserSearchAsync(string keyword, Limit LIMIT = Limit.Minimum, Page<User>? page = null) =>
             /* example url https://users.roblox.com/v1/users/search?keyword=robl&sessionId=l&limit=10 */
             JsonSerializer.Deserialize<Page<User>>(
@@ -109,7 +109,7 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="page"></param>
         /// <returns></returns>
         public static async Task<Page<User>> Get_UsernameHistoryAsync(ulong userId, Limit LIMIT = Limit.Minimum, Sort SORT = Sort.Asc, Page<User>? page = null) =>
-            ///url example 'https://users.roblox.com/v1/users/416181091/username-history?limit=100&sortOrder=Asc
+            //url example 'https://users.roblox.com/v1/users/416181091/username-history?limit=100&sortOrder=Asc
             JsonSerializer.Deserialize<Page<User>>(
                 await Get_RequestAsync(
                     $"https://users.roblox.com/v1/users/{userId}" +

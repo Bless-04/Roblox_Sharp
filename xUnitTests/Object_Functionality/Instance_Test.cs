@@ -13,7 +13,7 @@ namespace xUnitTests.Object_Functionality
     public class Instance
     {
         [Fact]
-        public void User() => Assert.IsAssignableFrom<IUser>(new User() { }); //IUser>
+        public void User() => Assert.IsAssignableFrom<IUser>(new User(default,string.Empty) { }); //IUser>
 
         [Fact]
         public void User_Presence() => Assert.IsAssignableFrom<IUser>(new User_Presence());

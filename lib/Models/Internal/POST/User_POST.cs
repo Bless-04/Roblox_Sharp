@@ -26,6 +26,7 @@ namespace Roblox_Sharp.Models.Internal.POST
         /// <summary>
         /// limits the length of an array
         /// </summary>
+        /// <param name="list"></param>
         /// <param name="limit"></param>
         /// <returns>true if the array is less than the limit</returns>
         public bool ArrayLengthCheck<T>(List<T> list, int limit = 100) => list.Count < limit;

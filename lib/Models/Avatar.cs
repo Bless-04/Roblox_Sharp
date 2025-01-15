@@ -71,10 +71,17 @@ namespace Roblox_Sharp.Models
     /// </summary>
     public partial class Avatar
     {
+        /// <summary>
+        /// <inheritdoc cref="Scales"/>
+        /// </summary>
         public Scales scales { get; init; }
 
+        /// <summary>
+        /// <inheritdoc cref="Avatar_Type"/>
+        /// </summary>
         [JsonConverter(typeof(Avatar_Type_JsonConverter))]
         public Avatar_Type playerAvatarType { get; init; }
+
         /// <summary>
         /// the brickcolor ids for each bodypart
         /// </summary>
@@ -89,13 +96,14 @@ namespace Roblox_Sharp.Models
         /// the assets worn on the avatar
         /// </summary>
         public IReadOnlyList<Asset>? assets { get; init; }
+
         /// <summary>
-        /// true if the default shirt is applied to this avatar
+        /// <see langword="true"/> if the default shirt is applied to this avatar
         /// </summary>
         public bool defaultShirtApplied { get; init; }
 
         /// <summary>
-        /// true if the default pants are applied to this avatar
+        /// <see langword="true"/> if the default pants are applied to this avatar
         /// </summary>
         public bool defaultPantsApplied { get; init; }
 

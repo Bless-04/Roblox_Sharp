@@ -18,7 +18,7 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="groupIds"></param>
         /// <returns>Array of Groups</returns>
         public static async Task<IReadOnlyList<Group>> Get_GroupsAsync(ulong[] groupIds) =>
-            /// example url https://groups.roblox.com/v2/groups?groupIds=2,3,1
+            // example url https://groups.roblox.com/v2/groups?groupIds=2,3,1
             JsonSerializer.Deserialize<Page<Group>>(
                 await Get_RequestAsync($"https://groups.roblox.com/v2/groups?groupIds={string.Join(',', groupIds)}")
             )!.data!;

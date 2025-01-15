@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models
 {
+    /// <summary>
+    /// class used to serialize Badge based requests
+    /// </summary>
     public class Badge : ICreation<Badge>
     {
         /// <summary>
@@ -60,6 +63,9 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public DateTime updated { get; init; }
 
+        /// <summary>
+        /// <inheritdoc cref="Statistics"/>
+        /// </summary>
         public Statistics statistics { get; init; }
 
         /// <summary>
@@ -82,15 +88,31 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public User? creator { get; init; }
 
+        /// <summary>
+        /// Holds the statistics of the badge
+        /// </summary>
         public readonly struct Statistics
         {
+            /// <summary>
+            /// the number of times the badge has been awarded in the last day
+            /// </summary>
             public ulong pastDayAwardedCount { get; init; }
 
+            /// <summary>
+            /// the total number of times the badge has been awarded
+            /// </summary>
             public ulong awardedCount { get; init; }
 
+            /// <summary>
+            /// the win rate of the badge
+            /// </summary>
             public double winRatePercentage { get; init; }
         }
 
+        /// <summary>
+        /// Deep Clones the instance of <see cref="Badge"/>
+        /// </summary>
+        /// <returns></returns>
         public override Badge Clone() =>
             new Badge()
             {

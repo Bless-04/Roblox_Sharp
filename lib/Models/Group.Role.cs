@@ -42,6 +42,9 @@ public partial class Group
         /// </summary>
         public ulong memberCount { get; init; }
 
+        /// <summary>
+        /// description of the Role
+        /// </summary>
         public string? description { get; init; }
     }
 }

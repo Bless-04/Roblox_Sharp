@@ -4,7 +4,6 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -21,7 +20,7 @@ namespace Roblox_Sharp
         private static HttpClient _client = new();
 
         /// <summary>
-        /// <paramref name="HttpClient"/> used for all web requests
+        /// <see cref="HttpClient"></see> used for all web requests
         /// </summary>
         public static HttpClient client => _client;
 
@@ -43,7 +42,7 @@ namespace Roblox_Sharp
             //_client.DefaultRequestHeaders.Authorization needed for auth
         }
         /// <summary>
-        /// sets the <paramref name="HttpClient"/>
+        /// sets the <see cref="HttpClient"/> used for all web requests
         /// useful for configuring httpclient
         /// sets to default if null
         /// </summary>
@@ -65,7 +64,7 @@ namespace Roblox_Sharp
         }
         
 
-        internal static bool SuccessfulRequest(HttpResponseMessage response, EventArgs e)
+        internal static bool SuccessfulRequest(HttpResponseMessage response)
         {
             if (response.IsSuccessStatusCode)
             {
@@ -83,30 +82,19 @@ namespace Roblox_Sharp
         /// </summary>
         /// <param name="url"></param>
         /// <returns>content string</returns>
-        /// <exception cref="InvalidUserException"></exception>
-        internal static async Task<string> Get_RequestAsync(string url, bool RateLimitRetry = false, int MS_Delay = 60009)
+        /// <exception cref="InvalidUserException">When the userid doesnt exist or is terminated/banned</exception>
+        internal static async Task<string> Get_RequestAsync(string url)
         {
             using HttpResponseMessage response = await client.GetAsync(url);
             {
-                if (SuccessfulRequest(response, EventArgs.Empty))
-                    return await response.Content.ReadAsStringAsync();
-
-                
-
+                if (SuccessfulRequest(response)) return await response.Content.ReadAsStringAsync();
                 
                 //errors
                 switch (response.StatusCode)
                 {
-                    case HttpStatusCode.TooManyRequests:
-                        {
-                            if (RateLimitRetry)
-                            {
-                                await Task.Delay(MS_Delay); //default is 60 secs
-                                return await Get_RequestAsync(url, false); //retries once
-                            }
-                            else
-                                throw new RateLimitException($"Rate Limit Exceeded\n{url}\nStatusCode: {response.StatusCode}");
-                        }
+                    case HttpStatusCode.TooManyRequests: 
+                        throw new RateLimitException($"Rate Limit Exceeded\n{url}\nStatusCode: {response.StatusCode}\n{response.Content}");
+                        
                     case HttpStatusCode.BadRequest:
                         throw new InvalidUserException($"User either doesnt exist or is terminated/banned \nStatusCode: {response.StatusCode}\n{url}");
                     case HttpStatusCode.NotFound:
@@ -138,7 +126,7 @@ namespace Roblox_Sharp
                     Encoding.UTF8, "application/json")
                 );
             {
-                if (SuccessfulRequest(response, EventArgs.Empty))
+                if (SuccessfulRequest(response))
                     return await response.Content.ReadAsStringAsync();
                 //errors
                 switch (response.StatusCode)

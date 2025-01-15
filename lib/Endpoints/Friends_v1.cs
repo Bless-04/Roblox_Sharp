@@ -29,7 +29,7 @@ namespace Roblox_Sharp.Endpoints
             )!.data!;
 
         /// <summary>
-        /// Get a <paramref name="Page"/> of all users that follow the given <paramref name="userId"/> with targetUserId in page response format
+        /// Get a <paramref name="page"/> of all users that follow the given <paramref name="userId"/> with targetUserId in page response format
         /// <br></br>
         /// <b><seealso href="https://friends.roblox.com/docs//index.html">Friends API Documentation v1</seealso></b>
         /// </summary>
@@ -38,6 +38,7 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="sortOrder"></param>
         /// <param name="page">The page to start at.</param>
         /// <returns>Page</returns>
+        /// <exception><inheritdoc cref="WebAPI.Get_RequestAsync(string)"/></exception>
         public static async Task<Page<User>> Get_FollowersAsync(ulong userId, Limit limit = Limit.Minimum, Sort sortOrder = Sort.Asc, Page<User>? page = null) =>
             JsonSerializer.Deserialize<Page<User>>(
                 await Get_RequestAsync(
@@ -53,8 +54,7 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>byte</returns>
-        /// <exception cref="InvalidUserIdException"></exception>
-        /// <exception cref="NotImplementedException"></exception>"
+        /// <exception cref="Exceptions.InvalidIdException"></exception>
         public static async Task<byte> Get_FriendsCountAsync(ulong userId) => (byte)
             JsonSerializer.Deserialize<Count_Response>(
                 await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/friends/count")
@@ -62,15 +62,13 @@ namespace Roblox_Sharp.Endpoints
 
         /// <summary>
         /// Get the number of followers a user has asynchronously
-        /// <<br></br>
+        /// <br></br>
         /// <b><seealso href="https://friends.roblox.com/docs//index.html">Friends Documentation v1</seealso></b>
         /// </summary>
-        /// 
-        /// <param name="id"></param>
+        /// <param name="userId">the id of the user</param>
         /// <returns>ulong</returns>
-        /// <exception cref="NotImplementedException"></exception>
-        /// <exception cref="RateLimitException"></exception>
-        /// <exception cref="InvalidUserIdException"></exception>
+        /// <exception cref="Exceptions.RateLimitException"></exception>
+        /// <exception cref="Exceptions.InvalidIdException"></exception>
         public static async Task<ulong> Get_FollowersCountAsync(ulong userId) =>
             JsonSerializer.Deserialize<Count_Response>(
                 await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/followers/count")
@@ -83,9 +81,8 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>ulong</returns>
-        /// <exception cref="NotImplementedException"></exception>
-        /// <exception cref="RateLimitException"></exception>
-        /// <exception cref="InvalidUserIdException"></exception>
+        /// <exception cref="Exceptions.RateLimitException">when rate limitted</exception>
+        /// <exception cref="Exceptions.InvalidUserException">when id doesnt exist</exception>
         public static async Task<ulong> Get_FollowingsCountAsync(ulong userId) =>
             JsonSerializer.Deserialize<Count_Response>(
                 await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/followings/count")

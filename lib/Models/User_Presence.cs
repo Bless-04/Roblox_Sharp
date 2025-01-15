@@ -29,7 +29,7 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public Presence_Type presenceType { get; init; }
 
-        public string? lastLocation { get; init; }
+        public string? lastLocation { get; init; } 
 
         /// <summary>
         /// unique place id
@@ -43,6 +43,9 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public string? gameId { get; init; }
 
+        /// <summary>
+        /// unique universe id
+        /// </summary>
         public ulong? universeId { get; init; }
 
         /// <summary>
@@ -52,6 +55,10 @@ namespace Roblox_Sharp.Models
 
         public DateTime invisibleModeExpiry { get; init; }
 
+        /// <summary>
+        /// Deep Clones the instance of <see cref="User_Presence"/>
+        /// </summary>
+        /// <returns></returns>
         public override User_Presence Clone() =>
             new User_Presence()
             {

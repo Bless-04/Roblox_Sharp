@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace Roblox_Sharp.Framework
 {
     /// <summary>
-    /// Defines a generalized template for any roblox user generated <paramref name="Creation"></paramref> based object
+    /// Defines a generalized template for any roblox user generated <see cref="ICreation{T}"/> based object
     /// </summary>
     public interface ICreation : ICloneable;
     
@@ -20,10 +20,11 @@ namespace Roblox_Sharp.Framework
         where T : ICreation
     {
 
-        [JsonInclude]
+
         /// <summary>
         /// The unique id of the creation
         /// </summary>
+        [JsonInclude]
         protected ulong id { get; init; }
 
         /// <summary>

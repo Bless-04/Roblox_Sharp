@@ -6,6 +6,10 @@ using static Roblox_Sharp.WebAPI;
 
 namespace Roblox_Sharp.Endpoints
 {
+    /// <summary>
+    /// Endpoints for inventory
+    /// <b><see href="https://inventory.roblox.com//docs/index.html">Inventory Documentation</see></b>
+    /// </summary>
     public static class Inventory_v1
     {
         /// <summary>

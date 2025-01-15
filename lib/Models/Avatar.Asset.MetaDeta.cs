@@ -25,7 +25,15 @@ public partial class Avatar
             /// (x, y , z) position of the asset
             /// </summary>
             public Vector3 position { get; init; }
+
+            /// <summary>
+            /// (x, y, z) rotation of the asset
+            /// </summary>
             public Vector3 rotation { get; init; }
+
+            /// <summary>
+            /// (x, y, z) scale of the asset
+            /// </summary>
             public Vector3 scale { get; init; }
 
             /// <summary>

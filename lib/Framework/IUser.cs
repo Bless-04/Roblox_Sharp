@@ -1,15 +1,13 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Roblox_Sharp.Framework
+﻿namespace Roblox_Sharp.Framework
 {
     /// <summary>
-    /// Defines a generalized template for any roblox <paramref name="User"></paramref> based object
-    /// all users inherit have the fields <paramref name="userId"/>, <paramref name="username"/>, and <paramref name="displayName"/>
+    /// Defines a generalized template for any roblox <see cref="IUser"></see> based object
+    /// all users inherit have the fields <b>userId</b> <b>username</b> and <b>displayName</b>
     /// </summary>
     public abstract class IUser : ICreation<IUser>
     {
         /// <summary>
-        /// the Unique numeric <paramref name="userId"/> of the user.
+        /// the Unique numeric id of the user.
         /// </summary>
         public ulong userId
         {
@@ -38,8 +36,7 @@ namespace Roblox_Sharp.Framework
             }
         }
 
-        
-        public IUser() { }
+        protected IUser() { }
 
         public IUser(ulong userId, string username, string? displayName = null)
         {
@@ -50,7 +47,7 @@ namespace Roblox_Sharp.Framework
 
         /// <summary>
         /// string representation of the user <br></br> 
-        /// Format: <b> <paramref name="displayName"/> @ <paramref name="username"/> (<paramref name="id"/>) </b>
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
