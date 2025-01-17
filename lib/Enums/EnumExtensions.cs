@@ -32,17 +32,14 @@ namespace Roblox_Sharp.Enums
         /// <param name="LIMIT"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static string ToString(Limit? LIMIT)
+        public static string ToString(Limit LIMIT) => (LIMIT) switch
         {
-            return (LIMIT) switch
-            {
-                Limit.Ten => "10",
-                Limit.TwentyFive => "25",
-                Limit.Fifty => "50",
-                Limit.OneHundred => "100",
-                _ => throw new ArgumentOutOfRangeException()
-            };
-        }
+            Limit.Ten => "10",
+            Limit.TwentyFive => "25",
+            Limit.Fifty => "50",
+            Limit.OneHundred => "100",
+            _ => throw new ArgumentOutOfRangeException("Limit out of range")
+        };
 
         /// <summary>
         /// converts a string to an avatar type if possible

@@ -357,7 +357,7 @@
             <param name="blacklist"></param>
             <returns></returns>
         </member>
-        <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToString(System.Nullable{Roblox_Sharp.Enums.Limit})">
+        <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToString(Roblox_Sharp.Enums.Limit)">
             <summary>
             gives a string representation of a limit
             </summary>
@@ -1299,7 +1299,7 @@
             <param name="postreq"></param>
             <returns></returns>
             <exception cref="T:Roblox_Sharp.Exceptions.InvalidUserException"></exception>
-            <exception cref="T:Roblox_Sharp.Exceptions.InvalidUserException"></exception>
+            <exception cref="T:Roblox_Sharp.Exceptions.InvalidIdException"></exception>
         </member>
     </members>
 </doc>

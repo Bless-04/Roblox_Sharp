@@ -24,7 +24,7 @@ namespace xUnitTests.Integration
 
             Assert.NotNull(page.nextPageCursor);
 
-            await Assert.ThrowsAsync<InvalidUserException>(() => Badges_v1.Get_BadgesAsync(0)); //doesnt exist
+            await Assert.ThrowsAsync<InvalidIdException>(() => Badges_v1.Get_BadgesAsync(0)); //doesnt exist
 
             Assert.NotNull(erik_badge1.creator);
             Assert.NotNull(erik_badge1.awardingUniverse);
@@ -44,7 +44,7 @@ namespace xUnitTests.Integration
 
             Assert.NotNull(badge);
 
-            await Assert.ThrowsAsync<InvalidUserException>(() => Badges_v1.Get_BadgeAsync(0)); //doesnt exist
+            await Assert.ThrowsAsync<InvalidIdException>(() => Badges_v1.Get_BadgeAsync(0)); //doesnt exist
 
             Assert.True(14417332 == badge.badgeId, "Badge.badgeId is failing");
 

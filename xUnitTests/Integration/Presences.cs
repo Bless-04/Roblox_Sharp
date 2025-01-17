@@ -18,7 +18,7 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_Presences()
         {
-            await Assert.ThrowsAsync<InvalidUserException>(() => Presence_v1.Get_PresencesAsync([0]));
+            await Assert.ThrowsAsync<InvalidIdException>(() => Presence_v1.Get_PresencesAsync([0]));
 
             IReadOnlyList<User_Presence> presences = await Presence_v1.Get_PresencesAsync([156, 16, 1]); //youngest to newest 
 

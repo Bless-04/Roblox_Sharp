@@ -98,7 +98,7 @@ namespace Roblox_Sharp
                     case HttpStatusCode.BadRequest:
                         throw new InvalidUserException($"User either doesnt exist or is terminated/banned \nStatusCode: {response.StatusCode}\n{url}");
                     case HttpStatusCode.NotFound:
-                        throw new InvalidUserException($"Invalid User Id\nStatusCode: {response.StatusCode}\n{url}");
+                        throw new InvalidIdException($"Invalid User Id\nStatusCode: {response.StatusCode}\n{url}");
 
                     case (HttpStatusCode)443:
                         throw new HttpRequestException("There is an Internet Connection Issue\nPlease Connect to the Internet");
@@ -117,7 +117,7 @@ namespace Roblox_Sharp
         /// <param name="postreq"></param>
         /// <returns></returns>
         /// <exception cref="InvalidUserException"></exception>
-        /// <exception cref="InvalidUserException"></exception>
+        /// <exception cref="InvalidIdException"></exception>
         internal static async Task<string> Post_RequestAsync(string url, User_POST postreq)
         {
             using HttpResponseMessage response = await client.PostAsync(
@@ -135,7 +135,7 @@ namespace Roblox_Sharp
                         throw new RateLimitException($"Rate Limit Exceeded\n{url}\nStatusCode: {response.StatusCode}");
 
                     case HttpStatusCode.BadRequest:
-                        if (postreq.userIds != null) throw new InvalidUserException("A userId may not exist,or there is to many");
+                        if (postreq.userIds != null) throw new InvalidIdException("A userId may not exist,or there is to many");
                         else throw new InvalidUserException("A usernamename may not exist,or there is too many");
 
                     case (HttpStatusCode)443:

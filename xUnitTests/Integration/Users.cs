@@ -21,7 +21,7 @@ namespace xUnitTests.Integration
         public async Task Get_User()
         {
             //error checking
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UserAsync(DOEST_EXIST));
+            await Assert.ThrowsAsync<InvalidIdException>(() => Users_v1.Get_UserAsync(DOEST_EXIST));
             //await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UserAsync(BANNED)); //allows banned users
 
             User roblox = await Users_v1.Get_UserAsync(ROBLOX);
