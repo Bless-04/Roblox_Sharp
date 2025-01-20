@@ -69,6 +69,11 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public bool isBanned { get; init; }
 
+        /// <summary>
+        /// <b>Unused, legacy attribute. For now always null to not disturb existing client code that might rely on its existence. </b><br></br>
+        ///Used when user is logged in from third party app (e.g. QQ) <br></br>
+        ///ExternalAppDisplayName is the name used in that app(e.g.QQ nickname
+        /// </summary>
         public string? externalAppDisplayName { get; init; }
 
         /// <summary>
@@ -76,6 +81,9 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public bool hasVerifiedBadge { get; init; }
 
+        /// <summary>
+        /// The username requested by the client 
+        /// </summary>
         public string? requestedUsername { get; init; }
 
         /// <summary>
@@ -98,14 +106,21 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public bool isDeleted { get; init; }
 
+        /// <summary>
+        /// Frequents value for the user
+        /// </summary>
         public int friendFrequentScore { get; init; }
 
+        /// <summary>
+        /// Frequents rank for the user.
+        /// </summary>
         public int friendFrequentRank { get; init; }
+
 
         public User() { }
 
         /// <summary>
-        /// 
+        /// constructor for user
         /// </summary>
         /// <param name="userId">id of the user</param>
         /// <param name="username">username of the user</param>
