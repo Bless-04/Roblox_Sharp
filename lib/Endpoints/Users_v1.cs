@@ -2,11 +2,11 @@
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
 using Roblox_Sharp.Models.Internal.POST;
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 using static Roblox_Sharp.WebAPI;
-
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -118,5 +118,14 @@ namespace Roblox_Sharp.Endpoints
                     $"&sortOrder={SORT}")
             )!;
 
+        /// <summary>
+        /// Gets the minimal Authenticated User asynchronously
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        public static async Task<User> Get_AuthenticatedAsync() =>
+            JsonSerializer.Deserialize<User>(
+                await Get_RequestAsync("https://users.roblox.com/v1/users/authenticated")
+            ) ?? throw new InvalidOperationException("There is no authenticated user");      
     }
 }

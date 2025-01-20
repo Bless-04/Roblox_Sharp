@@ -4,7 +4,6 @@ using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using static xUnitTests.User_Constants;
