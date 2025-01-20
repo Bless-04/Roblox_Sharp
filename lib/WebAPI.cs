@@ -76,6 +76,7 @@ namespace Roblox_Sharp
                 return false;
             }
         }
+
         /// <summary>
         /// helper function for get requests for roblox api
         /// </summary>

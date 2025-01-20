@@ -62,8 +62,5 @@ namespace xUnitTests.Integration
 
             Assert.True(1 == eriks_badges.Count, "Badge_Award.Count is failing"); //erik has only 1 of these
         }
-
-
-
     }
 }

@@ -1,6 +1,4 @@
-﻿using Roblox_Sharp.Framework;
-
-namespace Roblox_Sharp.Models;
+﻿namespace Roblox_Sharp.Models;
 
 public partial class Avatar
 {

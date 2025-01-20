@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace Roblox_Sharp.Enums
 {
-
     /// <summary>
     /// used to get string representations of enums that cant use the literal variable name 
     /// and also contains helpful functions
@@ -16,7 +15,6 @@ namespace Roblox_Sharp.Enums
         /// <param name="SIZE"></param>
         /// <returns></returns>
         public static string ToString(Thumbnail.Size SIZE) => $"{(ushort)SIZE}x{(ushort)SIZE}";
-
 
         /// <summary>
         /// used to check if an enum is blacklisted
@@ -65,7 +63,5 @@ namespace Roblox_Sharp.Enums
                 throw new NotImplementedException($"{text} Avatar_Type is not supported");
             }
         }
-
-
     }
 }
