@@ -34,7 +34,6 @@ namespace Roblox_Sharp
         /// </summary>
         public static event EventHandler? OnFailedRequest;
 
-
         static WebAPI()
         {
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
