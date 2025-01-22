@@ -30,6 +30,7 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_Avatar()
         {
+            #pragma warning disable CS0618 // Type or member is obsolete ; testing
             Avatar v1 = await Avatars_v1.Get_AvatarAsync(ROBLOX);
             Avatar v2 = await Avatars_v2.Get_AvatarAsync(ROBLOX);
 

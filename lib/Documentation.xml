@@ -336,6 +336,13 @@
             <param name="page"></param>
             <returns></returns>
         </member>
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_AuthenticatedAsync">
+            <summary>
+            Gets the minimal Authenticated User asynchronously
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
         <member name="T:Roblox_Sharp.Enums.EnumExtensions">
             <summary>
             used to get string representations of enums that cant use the literal variable name 

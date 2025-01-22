@@ -1,5 +1,6 @@
 ﻿using Roblox_Sharp.Models;
 using Roblox_Sharp.Models.Internal;
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>Avatar</returns>
+        [Obsolete("Avatars_v2's method is better")]
         public static async Task<Avatar> Get_AvatarAsync(ulong userId) =>
             //url https://avatar.roblox.com/v1/users/1/avatar
             JsonSerializer.Deserialize<Avatar>(
