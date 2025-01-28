@@ -53,11 +53,12 @@ namespace Roblox_Sharp.Enums
             }
             catch (FormatException)
             {
-                switch (text)
+                switch (text.ToUpper())
                 {
-                    case string R6 when (text.Equals(Avatar_Type.R6.ToString(), StringComparison.OrdinalIgnoreCase)):
+                    case nameof(Avatar_Type.R6):
                         return Avatar_Type.R6;
-                    case string R15 when (text.Equals(Avatar_Type.R15.ToString(), StringComparison.OrdinalIgnoreCase)):
+
+                    case nameof(Avatar_Type.R15):
                         return Avatar_Type.R15;
                 }
                 throw new NotImplementedException($"{text} Avatar_Type is not supported");
