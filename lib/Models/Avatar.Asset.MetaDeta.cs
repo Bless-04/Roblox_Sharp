@@ -9,18 +9,8 @@ public partial class Avatar
         /// <summary>
         /// metadata of the asset
         /// </summary>
-        public readonly struct Metadata
+        public class Metadata
         {
-            /// <summary>
-            /// layered clothing order
-            /// </summary>
-            public int order { get; init; }
-
-            /// <summary>
-            /// layered clothing puffiness
-            /// </summary>
-            public float puffiness { get; init; }
-
             /// <summary>
             /// (x, y , z) position of the asset
             /// </summary>
@@ -41,6 +31,16 @@ public partial class Avatar
             /// <code>the default is always 1</code>
             /// </summary>
             public ulong version { get; init; }
+
+            /// <summary>
+            /// layered clothing puffiness
+            /// </summary>
+            public float puffiness { get; init; }
+
+            /// <summary>
+            /// layered clothing order
+            /// </summary>
+            public int order { get; init; }           
         }
     }
 }

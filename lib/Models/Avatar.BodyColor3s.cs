@@ -10,7 +10,7 @@ public partial class Avatar
     /// the body color of the avatar using RGB hex
     /// </summary>
 
-    public readonly struct BodyColor3s
+    public class BodyColor3s
     {
         /// <summary>
         /// The RGB hex color for head color, e.g. #FFFFFF

@@ -526,11 +526,10 @@
             </summary>
         </member>
         <member name="M:Roblox_Sharp.Framework.IUser.ToString">
-             <summary>
-             string representation of the user <br></br> 
-            
-             </summary>
-             <returns></returns>
+            <summary>
+            string representation of the user <br></br> 
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Roblox_Sharp.Models.Avatar">
             <summary>
@@ -598,16 +597,6 @@
             metadata of the asset
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.order">
-            <summary>
-            layered clothing order
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.puffiness">
-            <summary>
-            layered clothing puffiness
-            </summary>
-        </member>
         <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.position">
             <summary>
             (x, y , z) position of the asset
@@ -627,6 +616,16 @@
             <summary>
             Client-authoritative meta model format version
             <code>the default is always 1</code>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.puffiness">
+            <summary>
+            layered clothing puffiness
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.order">
+            <summary>
+            layered clothing order
             </summary>
         </member>
         <member name="T:Roblox_Sharp.Models.Avatar.BodyColor3s">
@@ -1167,9 +1166,21 @@
             <see langword="true"/> if the user is banned
             </summary>
         </member>
+        <member name="P:Roblox_Sharp.Models.User.externalAppDisplayName">
+             <summary>
+             <b>Unused, legacy attribute. For now always null to not disturb existing client code that might rely on its existence. </b><br></br>
+            Used when user is logged in from third party app (e.g. QQ) <br></br>
+            ExternalAppDisplayName is the name used in that app(e.g.QQ nickname
+             </summary>
+        </member>
         <member name="P:Roblox_Sharp.Models.User.hasVerifiedBadge">
             <summary>
             <see langword="true"/> only if the user has a verified badge
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.requestedUsername">
+            <summary>
+            The username requested by the client 
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.User.presenceType">
@@ -1192,9 +1203,19 @@
             <see langword="true"/> if user is deleted/banned/terminated
             </summary>
         </member>
+        <member name="P:Roblox_Sharp.Models.User.friendFrequentScore">
+            <summary>
+            Frequents value for the user
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.friendFrequentRank">
+            <summary>
+            Frequents rank for the user.
+            </summary>
+        </member>
         <member name="M:Roblox_Sharp.Models.User.#ctor(System.UInt64,System.String,System.String)">
             <summary>
-            
+            constructor for user
             </summary>
             <param name="userId">id of the user</param>
             <param name="username">username of the user</param>
