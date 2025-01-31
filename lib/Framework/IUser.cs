@@ -35,7 +35,6 @@
                 else _displayName = value;
             }
         }
-
         protected IUser() { }
 
         public IUser(ulong userId, string username, string? displayName = null)

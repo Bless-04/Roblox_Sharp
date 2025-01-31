@@ -7,7 +7,16 @@ namespace Roblox_Sharp.Framework
     /// <summary>
     /// Defines a generalized template for any roblox user generated <see cref="ICreation{T}"/> based object
     /// </summary>
-    public interface ICreation : ICloneable;
+    public interface ICreation : ICloneable
+    {
+        /// <summary>
+        /// hashcode of the unique id
+        /// </summary>
+        /// <returns>
+        /// <inheritdoc cref="object.GetHashCode"/>
+        /// </returns>
+        int GetHashCode();
+    }
     
     /// <summary>
     /// <inheritdoc cref="ICreation"/>
@@ -19,8 +28,6 @@ namespace Roblox_Sharp.Framework
         IEquatable<ICreation<T>>
         where T : ICreation
     {
-
-
         /// <summary>
         /// The unique id of the creation
         /// </summary>
@@ -89,15 +96,17 @@ namespace Roblox_Sharp.Framework
                 : false;
 
         /// <summary>
-        /// hashcode of the unique id
+        /// <inheritdoc cref="ICreation.GetHashCode"/>
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// <inheritdoc/>
+        /// </returns>
         public override int GetHashCode() => id.GetHashCode();
 
         /// <summary>
-        /// returns a deep copy of the creation
+        /// <inheritdoc cref="ICloneable.Clone"/>
         /// </summary>
-        /// <returns></returns>
+        /// <returns>returns a deep copy of the creation</returns>
         abstract public object Clone();
     }
 }
