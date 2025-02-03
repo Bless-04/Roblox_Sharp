@@ -29,14 +29,14 @@ namespace Roblox_Sharp.Enums
         /// </summary>
         /// <param name="LIMIT"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static string ToString(Limit LIMIT) => (LIMIT) switch
+        /// <exception cref="NotImplementedException"></exception>
+        public static string ToString(Limit LIMIT) => LIMIT switch
         {
             Limit.Ten => "10",
             Limit.TwentyFive => "25",
             Limit.Fifty => "50",
             Limit.OneHundred => "100",
-            _ => throw new ArgumentOutOfRangeException("Limit out of range")
+            _ => throw new NotImplementedException($"'{LIMIT}' Limit is not implemented")
         };
 
         /// <summary>
@@ -45,24 +45,13 @@ namespace Roblox_Sharp.Enums
         /// <param name="text"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException">When the avatar type is not programmed in</exception>
-        public static Avatar_Type ToAvatar_Type(string text)
-        {
-            try
+        public static Avatar_Type ToAvatar_Type(string text) => byte.TryParse(text, out byte avatar_byte) 
+            ? (Avatar_Type)avatar_byte
+            : text switch
             {
-                return (Avatar_Type)byte.Parse(text);
-            }
-            catch (FormatException)
-            {
-                switch (text.ToUpper())
-                {
-                    case nameof(Avatar_Type.R6):
-                        return Avatar_Type.R6;
-
-                    case nameof(Avatar_Type.R15):
-                        return Avatar_Type.R15;
-                }
-                throw new NotImplementedException($"{text} Avatar_Type is not supported");
-            }
-        }
+                string t when t.Equals(nameof(Avatar_Type.R6), StringComparison.OrdinalIgnoreCase) => Avatar_Type.R6,
+                string t when t.Equals(nameof(Avatar_Type.R15), StringComparison.OrdinalIgnoreCase) => Avatar_Type.R15,
+                _ => throw new NotImplementedException($"'{text}' Avatar type is not implemented")
+            };
     }
 }

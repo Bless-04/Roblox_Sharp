@@ -1,21 +1,18 @@
 ﻿using Roblox_Sharp.Framework;
-
 namespace Roblox_Sharp.Models
 {
     //TODO: finish
     /// <summary>
     /// Represents a game
     /// </summary>
-    public partial class Game : ICreation<Game>
+    public partial class Game : ICreation , ICloneable<Game>
     {
         /// <summary>
         /// the universe id 
         /// </summary>
-        public ulong universeId
-        {
-            get => base.id;
-            init => base.id = value;
-        }
+        public ulong universeId { get; init; }
+
+        ulong ICreation.id => universeId;
 
         /// <summary>
         /// the universe  name
@@ -31,13 +28,11 @@ namespace Roblox_Sharp.Models
         /// Deep Clones the instance of <see cref="Game"/>
         /// </summary>
         /// <returns></returns>
-        public override Game Clone() =>
-            new Game()
-            {
-                id = base.id,
-                name = name,
-                rootPlaceId = rootPlaceId
-            };
-        
+        public Game Clone() => new Game()
+        {
+            universeId = this.universeId,
+            name = this.name,
+            rootPlaceId = this.rootPlaceId
+        };
     }
 }

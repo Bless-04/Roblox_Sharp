@@ -13,22 +13,18 @@ public partial class Group
     /// <summary>
     /// Group Role Serializer Class
     /// </summary>
-    public class Role 
+    public class Role : ICreation
     {
-        /// <summary>
-        /// ambiguous with roleId
-        /// </summary>
-        [JsonInclude]
-        protected ulong id { init => roleId = value; }
+        ulong ICreation.id => roleId;
 
         /// <summary>
         /// Group Role ID
         /// </summary>
         public ulong roleId { get; init; }
 
-
         /// <summary>
-        /// Group Role Name
+        /// Group Role Name <br/>
+        /// The name of the role
         /// </summary>
         required public string name { get; init; }
 
@@ -46,5 +42,6 @@ public partial class Group
         /// description of the Role
         /// </summary>
         public string? description { get; init; }
+ 
     }
 }

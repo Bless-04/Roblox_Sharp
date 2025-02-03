@@ -22,8 +22,11 @@ namespace Roblox_Sharp.Models
    }
  ]
 }*/
-    public class User_Presence : IUser
+    public class User_Presence : IUser , ICloneable<User_Presence>
     {
+        /// <inheritdoc/>
+        public ulong userId { get; init; }
+
         /// <summary>
         /// <see cref="Presence_Type"/> type of user
         /// </summary>
@@ -59,18 +62,16 @@ namespace Roblox_Sharp.Models
         /// Deep Clones the instance of <see cref="User_Presence"/>
         /// </summary>
         /// <returns></returns>
-        public override User_Presence Clone() =>
-            new User_Presence()
-            {
-                presenceType = presenceType,
-                lastLocation = lastLocation,
-                placeId = placeId,
-                rootPlaceId = rootPlaceId,
-                gameId = gameId,
-                universeId = universeId,
-                lastOnline = lastOnline,
-                invisibleModeExpiry = invisibleModeExpiry
-            };
-     
+        public User_Presence Clone() => new User_Presence()
+        {
+            presenceType = presenceType,
+            lastLocation = lastLocation,
+            placeId = placeId,
+            rootPlaceId = rootPlaceId,
+            gameId = gameId,
+            universeId = universeId,
+            lastOnline = lastOnline,
+            invisibleModeExpiry = invisibleModeExpiry
+        };
     }
 }

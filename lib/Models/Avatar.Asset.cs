@@ -5,16 +5,17 @@ namespace Roblox_Sharp.Models;
 
 public partial class Avatar
 {
-    public partial class Asset : ICreation<Asset>
+    /// <summary>
+    /// Assets that a players Avatar can equip
+    /// </summary>
+    public partial class Asset : ICreation, ICloneable<Asset>
     {
+          
+        ulong ICreation.id => assetId;
         /// <summary>
         /// the unique id of the asset
         /// </summary>
-        public ulong assetId
-        {
-            get => base.id;
-            init => base.id = value;
-        }
+        public ulong assetId { get; init; }
 
 
         /// <summary>
@@ -44,10 +45,10 @@ public partial class Avatar
         /// Deep Clones the instance of <see cref="Avatar.Asset"/>
         /// </summary>
         /// <returns></returns>
-        public override Avatar.Asset Clone() =>
+        public Avatar.Asset Clone() =>
             new Asset()
             {
-                assetId = base.id,
+                assetId = assetId,
                 assetName = assetName,
                 assetType = assetType,
                 currentVersionId = currentVersionId,

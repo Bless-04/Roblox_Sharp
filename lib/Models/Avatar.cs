@@ -1,4 +1,5 @@
 ﻿using Roblox_Sharp.Enums;
+using Roblox_Sharp.Framework;
 using Roblox_Sharp.Models.Internal.JsonConverter;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
@@ -69,7 +70,7 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// used to serialize avatar based requests
     /// </summary>
-    public partial class Avatar
+    public partial class Avatar : ICloneable<Avatar>
     {
         /// <summary>
         /// <inheritdoc cref="Scales"/>
@@ -84,13 +85,15 @@ namespace Roblox_Sharp.Models
 
         /// <summary>
         /// the brickcolor ids for each bodypart
+        /// <note>unique to <seealso cref="Endpoints.Avatars_v1"/> based requests </note>
         /// </summary>
-        public BodyColors bodyColors { get; init; } //unique to v1
+        public BodyColors bodyColors { get; init; } 
 
         /// <summary>
         /// the rgb hex colors for each bodypart
+        /// <note>unique to <seealso cref="Endpoints.Avatars_v2"/> based requests </note>
         /// </summary>
-        public BodyColor3s bodyColor3s { get; init; } //unique to v2
+        public BodyColor3s bodyColor3s { get; init; }
 
         /// <summary>
         /// the assets worn on the avatar
@@ -111,5 +114,18 @@ namespace Roblox_Sharp.Models
         /// the emotes on the avatar
         /// </summary>
         public IReadOnlyList<Emote>? emotes { get; init; }
+
+        ///<inheritdoc/>
+        public Avatar Clone() => new Avatar()
+        {
+            scales = scales,
+            playerAvatarType = playerAvatarType,
+            bodyColors = bodyColors,
+            bodyColor3s = bodyColor3s,
+            assets = assets,
+            defaultShirtApplied = defaultShirtApplied,
+            defaultPantsApplied = defaultPantsApplied,
+            emotes = emotes
+        };
     }
 }

@@ -5,17 +5,14 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize Group based requests
     /// </summary>
-    public partial class Group : ICreation<Group>
+    public partial class Group : ICreation , ICloneable<Group>
     {
+        ulong ICreation.id => groupId;
 
         /// <summary>
-        /// the groups id
+        /// the unique groups id
         /// </summary>
-        public ulong groupId
-        {
-            get => base.id;
-            init => base.id = value;
-        }
+        public ulong groupId { get; init; }
 
         /// <summary>
         /// group name
@@ -66,20 +63,19 @@ namespace Roblox_Sharp.Models
         /// Deep Clones the instance of <see cref="Group"/>
         /// </summary>
         /// <returns></returns>
-        public override object Clone() =>
-            new Group()
-            {
-                id = base.id,
-                name = name,
-                description = description,
-                owner = owner,
-                shout = shout,
-                memberCount = memberCount,
-                isBuildersClubOnly = isBuildersClubOnly,
-                publicEntryAllowed = publicEntryAllowed,
-                isLocked = isLocked,
-                hasVerifiedBadge = hasVerifiedBadge
-            };
+        public Group Clone() => new Group()
+        {
+            groupId = groupId,
+            name = name,
+            description = description,
+            owner = owner,
+            shout = shout,
+            memberCount = memberCount,
+            isBuildersClubOnly = isBuildersClubOnly,
+            publicEntryAllowed = publicEntryAllowed,
+            isLocked = isLocked,
+            hasVerifiedBadge = hasVerifiedBadge
+        };
         
     }
 }

@@ -1,58 +1,61 @@
-﻿namespace Roblox_Sharp.Framework
+﻿using System;
+
+namespace Roblox_Sharp.Framework
 {
     /// <summary>
-    /// Defines a generalized template for any roblox <see cref="IUser"></see> based object
-    /// all users inherit have the fields <b>userId</b> <b>username</b> and <b>displayName</b>
+    /// base class for any roblox <see cref="IUser"></see> based object
     /// </summary>
-    public abstract class IUser : ICreation<IUser>
+    public interface IUser: IComparable<IUser>, IEquatable<IUser>
     {
         /// <summary>
         /// the Unique numeric id of the user.
         /// </summary>
-        public ulong userId
-        {
-            get => base.id;
-            init => base.id = value;
-        }
+        public ulong userId { get;  }
 
         /// <summary>
-        /// unique username for the user
+        /// equal if and only if the userIds are the same
         /// </summary>
-        public string username { get; init; }
+        /// <param name="other"></param>
+        /// <returns></returns>
+        bool IEquatable<IUser>.Equals(IUser? other) => other?.userId == this.userId;
 
-        private string? _displayName { get; init; }
-        /// <summary>
-        /// display name for the user <br></br>
-        /// <b>null</b>if the display name is the same as the username <br></br>
-        /// this indicates that the user has never set a display name
-        /// </summary>
-        public string? displayName
+        /// <inheritdoc cref="IComparable.CompareTo"/>
+        int IComparable<IUser>.CompareTo(IUser? other)
         {
-            get => _displayName;
-            init
-            {
-                if (value != null && value.Equals(username)) _displayName = null;
-                else _displayName = value;
-            }
-        }
-        protected IUser() { }
+            if (other is null) return 1;
 
-        public IUser(ulong userId, string username, string? displayName = null)
-        {
-            base.id = userId;
-            this.username = username;
-            this.displayName = displayName;
+            //if this is older than other
+            if (userId < other.userId) return 1;
+
+            //if this is younger than other
+            if (userId > other.userId) return -1;
+
+            return 0;
         }
+
+        ///<inheritdoc cref="ulong.GetHashCode"/>
+        ///<remarks>uses the same hashcode function as <see langword="ulong"/></remarks>
+        int GetHashCode() => userId.GetHashCode();
 
         /// <summary>
         /// string representation of the user <br></br> 
         /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            if (username == null) return $"(ID {userId})";
-            if (_displayName == null) return $"{username} (ID {userId})";
-            return $"{_displayName}@{username} (ID {userId})";
-        } 
+        string? ToString() =>$"(ID {userId})";
+
+        /// <summary>
+        /// a user is <b> less than </b> another if it is newer. newer user have larger ids than older users
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns><inheritdoc/></returns>
+        static bool operator <(IUser left, IUser right) => left.userId > right.userId;
+
+        /// <summary>
+        /// a user is <b>greater than</b> another if it is older. Older users have smaller ids than newer users.
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns><inheritdoc/></returns>
+        static bool operator >(IUser left, IUser right) => left.userId < right.userId;
     }
 }

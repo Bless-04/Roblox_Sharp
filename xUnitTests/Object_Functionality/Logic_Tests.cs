@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Roblox_Sharp.Framework;
 using Roblox_Sharp.Models;
 
 namespace xUnitTests.Object_Functionality
@@ -21,10 +23,10 @@ namespace xUnitTests.Object_Functionality
         public void IUser_Operator()
         {
             // x > y > z
-            User x = new() { userId = 1 }; //roblox
-            User y = new() { userId = 16 }; //erik.cassel
-            User z = new() { userId = 156 }; //builderman
-            User X = new() { userId = 1 }; //roblox
+            User x = new User() { userId = 1 }; //roblox
+            IUser y = new User() { userId = 16 }; //erik.cassel
+            IUser z = new User() { userId = 156 }; //builderman
+            IUser X = new User() { userId = 1 }; //roblox
 
             Assert.False(x.Equals(y));
 
@@ -42,6 +44,24 @@ namespace xUnitTests.Object_Functionality
             Assert.True(x.Equals(X));
         }
 
+        [Fact]
+        public void User_HashCode()
+        {
+            Random random = new();
+
+            // Convert the byte array to a ulong
+            User user;
+            //long longID;
+            ulong ID = 56;
+
+           
+            for (ushort i = 0; i < ushort.MaxValue; i++, ID = (ulong)random.Next())
+            {
+                user = new User(ID,string.Empty);
+                Assert.Equal(ID.GetHashCode(), user.GetHashCode());
+            }
+        }
+        
 
         [Fact]
         public void Immutable()
@@ -53,7 +73,7 @@ namespace xUnitTests.Object_Functionality
                 new(){ userId = 2}
             ];
 
-            Page<User> page = new(data: data);
+            Page<User> page = new Page<User>() { data = data };
            
             User dummy = page.data[0];
 
@@ -69,8 +89,8 @@ namespace xUnitTests.Object_Functionality
         [Fact]
         public void Page_Operators()
         {
-            Page<bool> page1 = new Page<bool>(previousPageCursor: string.Empty);
-            Page<bool> page2 = new Page<bool>(nextPageCursor: string.Empty);
+            Page<bool> page1 = new Page<bool>() { previousPageCursor = string.Empty };
+            Page<bool> page2 = new Page<bool>() { nextPageCursor= string.Empty};
 
 
             Assert.NotNull(page1.previousPageCursor);

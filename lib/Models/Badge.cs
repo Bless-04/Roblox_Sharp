@@ -7,16 +7,14 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize Badge based requests
     /// </summary>
-    public class Badge : ICreation<Badge>
+    public class Badge : ICreation
     {
         /// <summary>
         /// the badge id 
         /// </summary>
-        public ulong badgeId
-        {
-            get => base.id;
-            init => base.id = value;
-        }
+        public ulong badgeId { get; init; }
+        
+        ulong ICreation.id => badgeId;
 
         /// <summary>
         /// the name of the badge 
@@ -109,14 +107,11 @@ namespace Roblox_Sharp.Models
             public double winRatePercentage { get; init; }
         }
 
-        /// <summary>
-        /// Deep Clones the instance of <see cref="Badge"/>
-        /// </summary>
-        /// <returns></returns>
-        public override Badge Clone() =>
+        /// <inheritdoc/>
+        public Badge Clone() =>
             new Badge()
             {
-                badgeId = base.id,
+                badgeId = badgeId,
                 name = name,
                 description = description,
                 displayName = displayName,
@@ -127,9 +122,8 @@ namespace Roblox_Sharp.Models
                 created = created,
                 updated = updated,
                 statistics = statistics,
-                awardingUniverse = (awardingUniverse != null) ? awardingUniverse.Clone() : null,
-                creator = (creator != null) ? creator.Clone() : null
+                awardingUniverse = awardingUniverse?.Clone(),
+                creator = creator?.Clone()
             };
-        
     }
 }

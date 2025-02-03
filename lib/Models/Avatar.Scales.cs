@@ -1,4 +1,5 @@
 ﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member ; the names are self explanatory
+
 namespace Roblox_Sharp.Models;
 
 public partial class Avatar

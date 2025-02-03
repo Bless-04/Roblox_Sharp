@@ -370,7 +370,7 @@
             </summary>
             <param name="LIMIT"></param>
             <returns></returns>
-            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToAvatar_Type(System.String)">
             <summary>
@@ -414,78 +414,53 @@
             Exception thrown when the rate limit is exceeded
             </summary>
         </member>
+        <member name="T:Roblox_Sharp.Framework.ICloneable`1">
+            <inheritdoc cref="T:System.ICloneable"/>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.ICloneable`1.Clone">
+            <summary>
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
+            </summary>
+            <returns>a deep copy of the <typeparamref name="T"/></returns>
+        </member>
         <member name="T:Roblox_Sharp.Framework.ICreation">
             <summary>
-            Defines a generalized template for any roblox user generated <see cref="T:Roblox_Sharp.Framework.ICreation`1"/> based object
+             generalized template for any roblox object that has a unique id 
             </summary>
         </member>
-        <member name="T:Roblox_Sharp.Framework.ICreation`1">
-            <summary>
-            <inheritdoc cref="T:Roblox_Sharp.Framework.ICreation"/>
-            </summary>
-            <typeparam name="T">Type for specific Id comparisons</typeparam>
-        </member>
-        <member name="P:Roblox_Sharp.Framework.ICreation`1.id">
+        <member name="P:Roblox_Sharp.Framework.ICreation.id">
             <summary>
             The unique id of the creation
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.Framework.ICreation`1.op_LessThan(Roblox_Sharp.Framework.ICreation{`0},Roblox_Sharp.Framework.ICreation{`0})">
+        <member name="M:Roblox_Sharp.Framework.ICreation.System#IEquatable{Roblox_Sharp#Framework#ICreation}#Equals(Roblox_Sharp.Framework.ICreation)">
+            <summary>
+            equal if and only if the ids are the same
+            </summary>
+            <param name="other"></param>
+            <returns>
+            <see langword="true"/> if ids are the same
+            </returns>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.ICreation.op_LessThan(Roblox_Sharp.Framework.ICreation,Roblox_Sharp.Framework.ICreation)">
             <summary>
             a creation is <b> less than </b> another if it is newer. newer creations have larger ids than older ones
             </summary>
             <param name="left"></param>
             <param name="right"></param>
-            <returns>bool</returns>
+            <returns><inheritdoc/></returns>
         </member>
-        <member name="M:Roblox_Sharp.Framework.ICreation`1.op_GreaterThan(Roblox_Sharp.Framework.ICreation{`0},Roblox_Sharp.Framework.ICreation{`0})">
+        <member name="M:Roblox_Sharp.Framework.ICreation.op_GreaterThan(Roblox_Sharp.Framework.ICreation,Roblox_Sharp.Framework.ICreation)">
             <summary>
             a creation is <b>greater than</b> another if it is older. Older creations have smaller ids than newer creations.
             </summary>
             <param name="left"></param>
             <param name="right"></param>
-            <returns>bool</returns>
+            <returns><inheritdoc/></returns>
         </member>
-        <member name="M:Roblox_Sharp.Framework.ICreation`1.op_Explicit(Roblox_Sharp.Framework.ICreation{`0})~System.UInt64">
-            <summary>
-            Convert a creation to a ulong
-            </summary>
-            <param name="creation"></param>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.ICreation`1.CompareTo(Roblox_Sharp.Framework.ICreation{`0})">
-            <summary>
-            a creation is greater than another if it is older. Older creations have smaller ids than newer users.
-            <br></br>
-            example: creation 1 is the oldest creation
-            </summary>
-            <param name="other"></param>
-            <returns>int</returns>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.ICreation`1.Equals(Roblox_Sharp.Framework.ICreation{`0})">
-            <summary>
-            equal if and only if the ids are the same
-            </summary>
-            <param name="other"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.ICreation`1.Equals(System.Object)">
-            <summary>
-            equal if and only if the ids are the same
-            </summary>
-            <param name="obj"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.ICreation`1.GetHashCode">
-            <summary>
-            hashcode of the unique id
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.ICreation`1.Clone">
-            <summary>
-            returns a deep copy of the creation
-            </summary>
-            <returns></returns>
+        <member name="M:Roblox_Sharp.Framework.ICreation.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <remarks>uses the same hashcode function as <see langword="ulong"/></remarks>
         </member>
         <member name="T:Roblox_Sharp.Framework.IPage">
             <summary>
@@ -494,18 +469,63 @@
         </member>
         <member name="P:Roblox_Sharp.Framework.IPage.previousPageCursor">
             <summary>
-            previous page cursor of the request . if <b>null</b> there are no previous pages / is the first page
+            previous page cursor of the request .<br/> <see langword="null"/> if there are no previous pages or object is the first page
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Framework.IPage.nextPageCursor">
             <summary>
-            next page cursor of the request. if <b>null</b> there are no more pages / is the last page
+            next page cursor of the request.<br/> <see langword="null"/> if there are no more pages or instance is the last page
             </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Framework.IPage`1">
+            <summary>
+            used for all the page based requests ; requests that can return multiple pages or have a data[] field
+            </summary>
+            <typeparam name="T">The data type</typeparam>
+            <remarks>indirectly implements <seealso cref="T:System.Collections.Generic.IReadOnlyList`1"/> </remarks>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.IPage`1.data">
+            <summary>
+            List of <typeparamref name="T"/> returned by the request
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.IPage`1.Count">
+            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.IPage`1.Item(System.Int32)">
+            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyList`1.Item(System.Int32)"/>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IPage`1.op_Decrement(Roblox_Sharp.Framework.IPage{`0})">
+            <summary>
+            Goes back 1 page <br></br>
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+            <exception cref="T:System.IndexOutOfRangeException"> if there is no previous page</exception>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IPage`1.Previous(System.Collections.Generic.IEnumerable{`0})">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IPage`1.op_Decrement(Roblox_Sharp.Framework.IPage{`0})"/>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IPage`1.op_Increment(Roblox_Sharp.Framework.IPage{`0})">
+            <summary>
+            Goes forward 1 page
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+            <exception cref="T:System.IndexOutOfRangeException">if there is no next page</exception>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IPage`1.Next(System.Collections.Generic.IEnumerable{`0})">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IPage`1.op_Increment(Roblox_Sharp.Framework.IPage{`0})"/>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IPage`1.GetEnumerator">
+            <summary>
+            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Roblox_Sharp.Framework.IUser">
             <summary>
-            Defines a generalized template for any roblox <see cref="T:Roblox_Sharp.Framework.IUser"></see> based object
-            all users inherit have the fields <b>userId</b> <b>username</b> and <b>displayName</b>
+            base class for any roblox <see cref="T:Roblox_Sharp.Framework.IUser"></see> based object
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Framework.IUser.userId">
@@ -513,23 +533,40 @@
             the Unique numeric id of the user.
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Framework.IUser.username">
+        <member name="M:Roblox_Sharp.Framework.IUser.System#IEquatable{Roblox_Sharp#Framework#IUser}#Equals(Roblox_Sharp.Framework.IUser)">
             <summary>
-            unique username for the user
+            equal if and only if the userIds are the same
             </summary>
+            <param name="other"></param>
+            <returns></returns>
         </member>
-        <member name="P:Roblox_Sharp.Framework.IUser.displayName">
-            <summary>
-            display name for the user <br></br>
-            <b>null</b>if the display name is the same as the username <br></br>
-            this indicates that the user has never set a display name
-            </summary>
+        <member name="M:Roblox_Sharp.Framework.IUser.System#IComparable{Roblox_Sharp#Framework#IUser}#CompareTo(Roblox_Sharp.Framework.IUser)">
+            <inheritdoc cref="M:System.IComparable.CompareTo(System.Object)"/>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IUser.GetHashCode">
+            <inheritdoc cref="M:System.UInt64.GetHashCode"/>
+            <remarks>uses the same hashcode function as <see langword="ulong"/></remarks>
         </member>
         <member name="M:Roblox_Sharp.Framework.IUser.ToString">
             <summary>
             string representation of the user <br></br> 
             </summary>
-            <returns></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IUser.op_LessThan(Roblox_Sharp.Framework.IUser,Roblox_Sharp.Framework.IUser)">
+            <summary>
+            a user is <b> less than </b> another if it is newer. newer user have larger ids than older users
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns><inheritdoc/></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IUser.op_GreaterThan(Roblox_Sharp.Framework.IUser,Roblox_Sharp.Framework.IUser)">
+            <summary>
+            a user is <b>greater than</b> another if it is older. Older users have smaller ids than newer users.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns><inheritdoc/></returns>
         </member>
         <member name="T:Roblox_Sharp.Models.Avatar">
             <summary>
@@ -544,6 +581,11 @@
         <member name="P:Roblox_Sharp.Models.Avatar.Emote.position">
             <summary>
             the position the emote is equipped to
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Avatar.Asset">
+            <summary>
+            Assets that a players Avatar can equip
             </summary>
         </member>
         <member name="T:Roblox_Sharp.Models.Avatar.Asset.Asset_Type">
@@ -711,11 +753,13 @@
         <member name="P:Roblox_Sharp.Models.Avatar.bodyColors">
             <summary>
             the brickcolor ids for each bodypart
+            <note>unique to <seealso cref="T:Roblox_Sharp.Endpoints.Avatars_v1"/> based requests </note>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.Avatar.bodyColor3s">
             <summary>
             the rgb hex colors for each bodypart
+            <note>unique to <seealso cref="T:Roblox_Sharp.Endpoints.Avatars_v2"/> based requests </note>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.Avatar.assets">
@@ -737,6 +781,9 @@
             <summary>
             the emotes on the avatar
             </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Avatar.Clone">
+            <inheritdoc/>
         </member>
         <member name="T:Roblox_Sharp.Models.Avatar.Scales">
             <summary>
@@ -839,10 +886,7 @@
             </summary>
         </member>
         <member name="M:Roblox_Sharp.Models.Badge.Clone">
-            <summary>
-            Deep Clones the instance of <see cref="T:Roblox_Sharp.Models.Badge"/>
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="T:Roblox_Sharp.Models.Badges.Badge_Award">
             <summary>
@@ -887,7 +931,7 @@
         </member>
         <member name="P:Roblox_Sharp.Models.Group.groupId">
             <summary>
-            the groups id
+            the unique groups id
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.Group.name">
@@ -951,11 +995,6 @@
             Group Role Serializer Class
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.Role.id">
-            <summary>
-            ambiguous with roleId
-            </summary>
-        </member>
         <member name="P:Roblox_Sharp.Models.Group.Role.roleId">
             <summary>
             Group Role ID
@@ -963,7 +1002,8 @@
         </member>
         <member name="P:Roblox_Sharp.Models.Group.Role.name">
             <summary>
-            Group Role Name
+            Group Role Name <br/>
+            The name of the role
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.Group.Role.rank">
@@ -1056,39 +1096,54 @@
             since arrays are a reference type, its not worth making this a struct
         </member>
         <member name="T:Roblox_Sharp.Models.Page`1">
+            <remarks>
+            <see langword="new"/> <see cref="T:Roblox_Sharp.Models.Page`1"/>() will throw an error  if <br/>
+            <see cref="P:Roblox_Sharp.Models.Page`1.previousPageCursor"/> and <see cref="P:Roblox_Sharp.Models.Page`1.nextPageCursor"/> are both not set
+            </remarks>
+             <inheritdoc cref="T:Roblox_Sharp.Framework.IPage`1"/>
+             <exception cref="T:System.InvalidOperationException">if both cursors are null</exception>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Page`1.#ctor(System.String,System.String)">
+            <remarks>
+            <see langword="new"/> <see cref="T:Roblox_Sharp.Models.Page`1"/>() will throw an error  if <br/>
+            <see cref="P:Roblox_Sharp.Models.Page`1.previousPageCursor"/> and <see cref="P:Roblox_Sharp.Models.Page`1.nextPageCursor"/> are both not set
+            </remarks>
+             <inheritdoc cref="T:Roblox_Sharp.Framework.IPage`1"/>
+             <exception cref="T:System.InvalidOperationException">if both cursors are null</exception>
+        </member>
+        <member name="F:Roblox_Sharp.Models.Page`1._previousPageCursor">
+            <inheritdoc cref="P:Roblox_Sharp.Models.Page`1.previousPageCursor"/>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Page`1.previousPageCursor">
+            <inheritdoc/>
+        </member>
+        <member name="F:Roblox_Sharp.Models.Page`1._nextPageCursor">
             <summary>
-            used for all the page based requests ; requests that can return multiple pages or have a data[] field
+            <inheritdoc cref="P:Roblox_Sharp.Models.Page`1.nextPageCursor"/>
             </summary>
-            <typeparam name="T[][]"></typeparam> 
+        </member>
+        <member name="P:Roblox_Sharp.Models.Page`1.nextPageCursor">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="F:Roblox_Sharp.Models.Page`1._data">
+            <inheritdoc cref="P:Roblox_Sharp.Models.Page`1.data"/>
         </member>
         <member name="P:Roblox_Sharp.Models.Page`1.data">
-            <summary>
-            data of the request
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Roblox_Sharp.Models.Page`1.op_Decrement(Roblox_Sharp.Models.Page{`0})">
-            <summary>
-            Goes back 1 page <br></br>
-            </summary>
-            <param name="page"></param>
-            <returns></returns>
-            <exception cref="T:System.IndexOutOfRangeException"> if there is no previous page</exception>
+            <inheritdoc cref="M:Roblox_Sharp.Models.Page`1.Previous(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Page`1.Previous(System.Collections.Generic.IEnumerable{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Page`1.Next(System.Collections.Generic.IEnumerable{`0})">
+            <inheritdoc/>
         </member>
         <member name="M:Roblox_Sharp.Models.Page`1.op_Increment(Roblox_Sharp.Models.Page{`0})">
-            <summary>
-            Goes forward 1 page
-            </summary>
-            <param name="page"></param>
-            <returns></returns>
-            <exception cref="T:System.IndexOutOfRangeException">if there is no next page</exception>
-        </member>
-        <member name="M:Roblox_Sharp.Models.Page`1.#ctor(System.String,System.String,System.Collections.Generic.IReadOnlyList{`0})">
-            <summary>
-            constructs a page
-            </summary>
-            <param name="previousPageCursor"></param>
-            <param name="nextPageCursor"></param>
-            <param name="data"></param>
+            <inheritdoc cref="M:Roblox_Sharp.Models.Page`1.Next(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
         <member name="T:Roblox_Sharp.Models.Thumbnail">
             example return 
@@ -1146,10 +1201,71 @@
             class used to serialize User based requests
             </summary>
         </member>
+        <member name="M:Roblox_Sharp.Models.User.#ctor">
+            userid 
+                 * post request
+                    {
+                      "userIds": [
+                        1,2,3,4,5
+                      ],
+                      "excludeBannedUsers": false
+                    }
+            username 
+                 * post request
+                     {
+                        "usernames": [
+                        "string"
+                        ],
+                        "excludeBannedUsers": true
+                     }
+            example return; userid does not have the requestedUsername key
+                 * 
+                    {
+                        "data": [
+                            {
+                              "requestedUsername": "string",
+                              "hasVerifiedBadge": true,
+                              "id": 0,
+                              "name": "string",
+                              "displayName": "string"
+                            }
+                        ]
+                    }
+            <summary>
+            class used to serialize User based requests
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.userId">
+            <inheritdoc/>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.username">
+            <summary>
+            unique username for the user
+            </summary>
+        </member>
         <member name="P:Roblox_Sharp.Models.User.name">
             <summary>
-            <inheritdoc cref="P:Roblox_Sharp.Framework.IUser.username"/>
+            <inheritdoc cref="P:Roblox_Sharp.Models.User.username"/>
             </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User._displayName">
+            <summary>
+            display name for the user <br></br>
+            <see langword="null"/> if the display name is the same as the username <br></br>
+            this indicates that the user has never set a display name
+            string representation of the user <br></br> 
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.displayName">
+            <inheritdoc cref="P:Roblox_Sharp.Models.User._displayName"/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.#ctor(System.UInt64,System.String,System.String)">
+            <summary>
+            constructor for user
+            </summary>
+            <param name="userId">id of the user</param>
+            <param name="username">username of the user</param>
+            <param name="displayName">displayname of the user</param>
         </member>
         <member name="P:Roblox_Sharp.Models.User.description">
             <summary>
@@ -1213,17 +1329,24 @@
             Frequents rank for the user.
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.Models.User.#ctor(System.UInt64,System.String,System.String)">
+        <member name="M:Roblox_Sharp.Models.User.op_Explicit(System.UInt64)~Roblox_Sharp.Models.User">
             <summary>
-            constructor for user
+            <inheritdoc cref="P:Roblox_Sharp.Models.User.userId"/>
             </summary>
-            <param name="userId">id of the user</param>
-            <param name="username">username of the user</param>
-            <param name="displayName">displayname of the user</param>
+            <param name="userId"></param>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.op_Explicit(System.String)~Roblox_Sharp.Models.User">
+            <summary>
+            <inheritdoc cref="P:Roblox_Sharp.Models.User.username"/>
+            </summary>
+            <param name="username"></param>
         </member>
         <member name="M:Roblox_Sharp.Models.User.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.GetHashCode">
             <summary>
-            Deep clones the instance of <see cref="T:Roblox_Sharp.Models.User"/>
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.GetHashCode"/>
             </summary>
             <returns></returns>
         </member>
@@ -1244,6 +1367,9 @@
                }
              ]
             }
+        </member>
+        <member name="P:Roblox_Sharp.Models.User_Presence.userId">
+            <inheritdoc/>
         </member>
         <member name="P:Roblox_Sharp.Models.User_Presence.presenceType">
             <summary>

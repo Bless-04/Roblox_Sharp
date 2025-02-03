@@ -1,4 +1,5 @@
 ﻿using Roblox_Sharp.Models;
+using System;
 using System.Text.Json;
 
 namespace xUnitTests.Deserialization
@@ -9,6 +10,8 @@ namespace xUnitTests.Deserialization
         [Fact]
         public void Page()
         {
+
+            string t = JsonSerializer.Serialize(new Page<bool>("previous"){data = [] });
             const string json_response = @"
             {
               ""previousPageCursor"": ""string"",
@@ -30,7 +33,6 @@ namespace xUnitTests.Deserialization
             Assert.True(1 == page.data.Count, "Page should have 1 item");
 
             Assert.Equal("string", page.data[0].username);
-
 
         }
 

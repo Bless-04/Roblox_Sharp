@@ -8,8 +8,10 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
+///#pragma warning disable IDE1006 // Naming Styles ; idc
 namespace Roblox_Sharp
 {
+   
 
     /// <summary>
     /// static class that holds the functions and logic used for making web requests to Roblox API <br></br>
@@ -88,25 +90,17 @@ namespace Roblox_Sharp
             using HttpResponseMessage response = await client.GetAsync(url);
             {
                 if (SuccessfulRequest(response)) return await response.Content.ReadAsStringAsync();
-                
+
                 //errors
-                switch (response.StatusCode)
+                throw response.StatusCode switch
                 {
-                    case HttpStatusCode.TooManyRequests: 
-                        throw new RateLimitException($"Rate Limit Exceeded\n{url}\nStatusCode: {response.StatusCode}\n{response.Content}");
-                        
-                    case HttpStatusCode.BadRequest:
-                        throw new InvalidUserException($"User either doesnt exist or is terminated/banned \nStatusCode: {response.StatusCode}\n{url}");
-                    case HttpStatusCode.NotFound:
-                        throw new InvalidIdException($"Invalid User Id\nStatusCode: {response.StatusCode}\n{url}");
-
-                    case (HttpStatusCode)443:
-                        throw new HttpRequestException("There is an Internet Connection Issue\nPlease Connect to the Internet");
-
-                    case HttpStatusCode.InternalServerError:
-                        throw new HttpRequestException($"There may be a problem with the Roblox Servers.\nStatusCode: {response.StatusCode}\n{url}");
-                }
-                throw new NotImplementedException($"Unhandled Error\nStatusCode: {response.StatusCode} \n{response.Content}");
+                    HttpStatusCode.TooManyRequests => new RateLimitException($"Rate Limit Exceeded\n{url}\nStatusCode: {response.StatusCode}\n{response.Content}"),
+                    HttpStatusCode.BadRequest => new InvalidUserException($"User either doesnt exist or is terminated/banned \nStatusCode: {response.StatusCode}\n{url}"),
+                    HttpStatusCode.NotFound => new InvalidIdException($"Invalid User Id\nStatusCode: {response.StatusCode}\n{url}"),
+                    (HttpStatusCode)443 => new HttpRequestException("There is an Internet Connection Issue\nPlease Connect to the Internet"),
+                    HttpStatusCode.InternalServerError => new HttpRequestException($"There may be a problem with the Roblox Servers.\nStatusCode: {response.StatusCode}\n{url}"),
+                    _ => new NotImplementedException($"Unhandled Error\nStatusCode: {response.StatusCode} \n{response.Content}"),
+                };
             }
         }
 

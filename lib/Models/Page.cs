@@ -4,62 +4,82 @@ using System.Collections.Generic;
 
 namespace Roblox_Sharp.Models
 {
-    /// <summary>
-    /// used for all the page based requests ; requests that can return multiple pages or have a data[] field
-    /// </summary>
-    /// <typeparam name="T[]"></typeparam> 
-    public class Page<T> : IPage
+
+    ///<remarks>
+    ///<see langword="new"/> <see cref="Page{T}"/>() will throw an error  if <br/>
+    ///<see cref="Page{T}.previousPageCursor"/> and <see cref="Page{T}.nextPageCursor"/> are both not set
+    ///</remarks>
+    /// <inheritdoc cref="IPage{T}"/>
+    /// <exception cref="InvalidOperationException">if both cursors are null</exception>
+
+    public class Page<T>(string? previousPage, string? nextPage = null) : IPage<T>
     {
+        public Page() : this(null, null) { }
+        /// <inheritdoc cref="previousPageCursor"/>
+        private string? _previousPageCursor = previousPage;
 
-        /// <summary>
-        /// data of the request
-        /// </summary>
-        public IReadOnlyList<T> data { get; protected set; }
+        private InvalidOperationException pageCursorError => new($"{nameof(previousPageCursor)} and {nameof(nextPageCursor)} are null");
 
-        /// <summary>
-        /// Goes back 1 page <br></br>
-        /// </summary>
-        /// <param name="page"></param>
-        /// <returns></returns>
-        /// <exception cref="IndexOutOfRangeException"> if there is no previous page</exception>
-        public static Page<T> operator --(Page<T> page)
+        /// <inheritdoc/>
+        public string? previousPageCursor
         {
-
-            if (page.nextPageCursor == null) throw new IndexOutOfRangeException("There is no next Page");
-            page.previousPageCursor = page.nextPageCursor;
-            page.nextPageCursor = null;
-            page.data = Array.Empty<T>();
-            
-            return page;
+            get => _previousPageCursor;
+            init => _previousPageCursor = (previousPageCursor == null && nextPageCursor == null)
+                ? value
+                : throw pageCursorError;
         }
 
         /// <summary>
-        /// Goes forward 1 page
+        /// <inheritdoc cref="nextPageCursor"/>
         /// </summary>
-        /// <param name="page"></param>
-        /// <returns></returns>
-        /// <exception cref="IndexOutOfRangeException">if there is no next page</exception>
-        public static Page<T> operator ++(Page<T> page)
-        {
-            if (page.previousPageCursor == null) throw new IndexOutOfRangeException("There is no previous Page");
+        private string? _nextPageCursor = nextPage;
 
-            page.nextPageCursor = page.previousPageCursor;
-            page.previousPageCursor = null;
-            page.data = Array.Empty<T>();
-
-            return page;
-        }
         /// <summary>
-        /// constructs a page
+        /// <inheritdoc/>
         /// </summary>
-        /// <param name="previousPageCursor"></param>
-        /// <param name="nextPageCursor"></param>
-        /// <param name="data"></param>
-        public Page(string? previousPageCursor = null, string? nextPageCursor = null, IReadOnlyList<T>? data = null)
+        public string? nextPageCursor
         {
-            base.previousPageCursor = previousPageCursor;
-            base.nextPageCursor = nextPageCursor;
-            this.data = data ?? Array.Empty<T>();
+            get => _nextPageCursor;
+            init => _nextPageCursor = (value == null && previousPageCursor == null)
+                ? value 
+                : throw pageCursorError;
         }
+
+        /// <inheritdoc cref="data"/>
+        private IReadOnlyList<T> _data = [];
+
+        /// <inheritdoc/>
+        public IReadOnlyList<T> data
+        {
+            get => _data;
+            init => _data = value;
+        }
+
+        /// <inheritdoc cref="Previous(IEnumerable{T}?)"/>
+        public static Page<T> operator --(Page<T> page) => (Page<T>)page.Previous();
+
+        /// <inheritdoc/>
+        public IPage<T> Previous(IEnumerable<T>? data = null)
+        {
+            if (this._nextPageCursor == null) throw new IndexOutOfRangeException("There is no next Page");
+            this._previousPageCursor = this._nextPageCursor;
+            this._nextPageCursor = null;
+            this._data = (IReadOnlyList<T>?)data ?? [];
+
+            return this;
+        }
+
+        /// <inheritdoc/>
+        public IPage<T> Next(IEnumerable<T>? data = null)
+        {
+            if (this._previousPageCursor == null) throw new IndexOutOfRangeException("There is no previous Page");
+            this._nextPageCursor = this._previousPageCursor;
+            this._previousPageCursor = null;
+            this._data = (IReadOnlyList<T>?)data ?? [];
+            return this;
+        }
+
+        /// <inheritdoc cref="Next(IEnumerable{T}?)"/>
+        public static Page<T> operator ++(Page<T> page) => (Page<T>)page.Next();
     }
 }
