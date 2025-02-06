@@ -12,7 +12,7 @@ namespace Roblox_Sharp.Models.Internal.JsonConverter
         {
             if (reader.TokenType == JsonTokenType.Number) return (Avatar_Type)reader.GetSByte();
 
-            return EnumExtensions.ToAvatar_Type(reader.GetString() ?? throw new JsonException("Error when converting Avatar_Type"));
+            return EnumExtensions.ToEnum<Avatar_Type>(reader.GetString() ?? throw new JsonException("Error when converting Avatar_Type"));
         }
 
 

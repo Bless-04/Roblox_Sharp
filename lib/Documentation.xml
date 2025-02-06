@@ -362,6 +362,34 @@
             </summary>
             <param name="value"></param>
             <param name="blacklist"></param>
+            <returns>
+            <see langword="true"/> if the enum is blacklisted
+            </returns>
+        </member>
+        <member name="M:Roblox_Sharp.Enums.EnumExtensions.SizeBlackListed(Roblox_Sharp.Enums.Thumbnail.Size,Roblox_Sharp.Enums.Thumbnail.Size_Flags)">
+            <summary>
+            <inheritdoc cref="M:Roblox_Sharp.Enums.EnumExtensions.IsBlackListed(System.Enum,System.Enum[])"/>
+            uses the flags of the enum
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <param name="blacklist"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToFlag``1(System.Enum)">
+            <summary>
+            converts an enum to a flag
+            </summary>
+            <typeparam name="T">The enums corresponding flag type</typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToEnum``1(System.String)">
+            <summary>
+            converts a string to an enum in which the string is the name of the enum value
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="text"></param>
             <returns></returns>
         </member>
         <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToString(Roblox_Sharp.Enums.Limit)">
@@ -371,14 +399,6 @@
             <param name="LIMIT"></param>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
-        </member>
-        <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToAvatar_Type(System.String)">
-            <summary>
-            converts a string to an avatar type if possible
-            </summary>
-            <param name="text"></param>
-            <returns></returns>
-            <exception cref="T:System.NotImplementedException">When the avatar type is not programmed in</exception>
         </member>
         <member name="T:Roblox_Sharp.Enums.Limit">
             <summary>
@@ -396,6 +416,17 @@
             InStudio = 3
             <br></br> 
             Invisible = 4 
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Enums.Thumbnail.Size">
+            <summary>
+            Thumbnail sizes
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Enums.Thumbnail.Size_Flags">
+            <summary>
+            bitwise mappings for <see cref="T:Roblox_Sharp.Enums.Thumbnail.Size"/> <br/>
+            variables names must match the ones in <see cref="T:Roblox_Sharp.Enums.Thumbnail.Size"/>
             </summary>
         </member>
         <member name="T:Roblox_Sharp.Exceptions.InvalidIdException">
@@ -525,7 +556,7 @@
         </member>
         <member name="T:Roblox_Sharp.Framework.IUser">
             <summary>
-            base class for any roblox <see cref="T:Roblox_Sharp.Framework.IUser"></see> based object
+            base class for any roblox <see cref="T:Roblox_Sharp.Framework.IUser"></see> to represents a user with a unique id
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Framework.IUser.userId">
@@ -533,28 +564,9 @@
             the Unique numeric id of the user.
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.Framework.IUser.System#IEquatable{Roblox_Sharp#Framework#IUser}#Equals(Roblox_Sharp.Framework.IUser)">
-            <summary>
-            equal if and only if the userIds are the same
-            </summary>
-            <param name="other"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.IUser.System#IComparable{Roblox_Sharp#Framework#IUser}#CompareTo(Roblox_Sharp.Framework.IUser)">
-            <inheritdoc cref="M:System.IComparable.CompareTo(System.Object)"/>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.IUser.GetHashCode">
-            <inheritdoc cref="M:System.UInt64.GetHashCode"/>
-            <remarks>uses the same hashcode function as <see langword="ulong"/></remarks>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.IUser.ToString">
-            <summary>
-            string representation of the user <br></br> 
-            </summary>
-        </member>
         <member name="M:Roblox_Sharp.Framework.IUser.op_LessThan(Roblox_Sharp.Framework.IUser,Roblox_Sharp.Framework.IUser)">
             <summary>
-            a user is <b> less than </b> another if it is newer. newer user have larger ids than older users
+            a user is  <b> less than </b> another if it is newer. newer user have larger ids than older users
             </summary>
             <param name="left"></param>
             <param name="right"></param>
@@ -567,6 +579,33 @@
             <param name="left"></param>
             <param name="right"></param>
             <returns><inheritdoc/></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IUser.GetHashCode">
+            <inheritdoc cref="M:System.UInt64.GetHashCode"/>
+            <remarks>uses the same hashcode function as <see langword="ulong"/></remarks>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IUser.ToString">
+            <summary>
+            string representation of the user <br></br> 
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IUser.Equals(System.Object)">
+            <summary>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/> 
+            </summary>
+            <param name="obj"></param>
+            <returns>
+            <see langword="true"/> if and only if the <see cref="P:Roblox_Sharp.Framework.IUser.userId"/>'s are the same
+            </returns>
+        </member>
+        <member name="T:Roblox_Sharp.Framework.IUser`1">
+            <summary>
+            <inheritdoc cref="T:Roblox_Sharp.Framework.IUser"/>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IUser`1.System#IComparable{T}#CompareTo(`0)">
+            <inheritdoc cref="M:System.IComparable.CompareTo(System.Object)"/>
         </member>
         <member name="T:Roblox_Sharp.Models.Avatar">
             <summary>
@@ -1277,6 +1316,11 @@
             creation date and time of user
             </summary>
         </member>
+        <member name="P:Roblox_Sharp.Models.User.created_string">
+            <summary>
+            creation date and time in the same format as the roblox website 
+            </summary>
+        </member>
         <member name="P:Roblox_Sharp.Models.User.isBanned">
             <summary>
             <see langword="true"/> if the user is banned
@@ -1344,11 +1388,45 @@
         <member name="M:Roblox_Sharp.Models.User.Clone">
             <inheritdoc/>
         </member>
-        <member name="M:Roblox_Sharp.Models.User.GetHashCode">
-            <summary>
-            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.GetHashCode"/>
+        <member name="M:Roblox_Sharp.Models.User.op_LessThan(Roblox_Sharp.Models.User,Roblox_Sharp.Models.User)">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.op_LessThan(Roblox_Sharp.Framework.IUser,Roblox_Sharp.Framework.IUser)"/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.op_GreaterThan(Roblox_Sharp.Models.User,Roblox_Sharp.Models.User)">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.op_GreaterThan(Roblox_Sharp.Framework.IUser,Roblox_Sharp.Framework.IUser)"/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.ToString">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.ToString"/> displayname@username (ID id)
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.ToString(System.String,System.IFormatProvider)">
+            /// <summary>
+            Formats the user information based on the provided format string.
+            Supported format strings:
+            <list type="table">
+              <listheader>
+                <term>Format</term>
+                <description>Output</description>
+              </listheader>
+              <item>
+                <term>"id"</term>
+                <description>Returns the user ID.</description>
+              </item>
+              <item>
+                <term>"name"</term>
+                <description>Returns the username with an '@' prefix.</description>
+              </item>
+              <item>
+                <term>"display"</term>
+                <description>Returns the display name.</description>
+              </item>
+              <item>
+                <term>"joined"</term>
+                <description>Returns the user's join date.</description>
+              </item>
+            </list>
             </summary>
-            <returns></returns>
+            <returns>
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+            </returns>
         </member>
         <member name="T:Roblox_Sharp.Models.User_Presence">
                  * example return 

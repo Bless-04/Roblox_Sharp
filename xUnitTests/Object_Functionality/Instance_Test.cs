@@ -18,7 +18,7 @@ namespace xUnitTests.Object_Functionality
         public void User_Presence() => Assert.IsAssignableFrom<IUser>(new User_Presence());
 
         [Fact]
-        public void Page() => Assert.IsAssignableFrom<IPage>(new Page<bool>() { nextPageCursor=null});
+        public void Page() => Assert.IsAssignableFrom<IPage>(new Page<bool>() { nextPageCursor=string.Empty});
 
         [Fact]
         public void Badge_Award() => Assert.IsAssignableFrom<Badge>(new Badge_Award()

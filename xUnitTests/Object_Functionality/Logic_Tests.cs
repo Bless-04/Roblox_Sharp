@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Roblox_Sharp.Enums;
+using Roblox_Sharp.Enums.Thumbnail;
 using Roblox_Sharp.Framework;
 using Roblox_Sharp.Models;
 
@@ -24,11 +27,16 @@ namespace xUnitTests.Object_Functionality
         {
             // x > y > z
             User x = new User() { userId = 1 }; //roblox
-            IUser y = new User() { userId = 16 }; //erik.cassel
-            IUser z = new User() { userId = 156 }; //builderman
-            IUser X = new User() { userId = 1 }; //roblox
+            User y = new User() { userId = 16 }; //erik.cassel
+            User z = new User() { userId = 156 }; //builderman
+            User X = new User() { userId = 1 }; //roblox
 
+
+            var test = $"{x.created:f}";
             Assert.False(x.Equals(y));
+            Assert.True(x.Equals(X));
+
+            
 
             Assert.True(x > y);
             Assert.True(y > z);
@@ -40,8 +48,6 @@ namespace xUnitTests.Object_Functionality
 
            
 
-            Assert.False(x.Equals(y));
-            Assert.True(x.Equals(X));
         }
 
         [Fact]
@@ -58,7 +64,7 @@ namespace xUnitTests.Object_Functionality
             for (ushort i = 0; i < ushort.MaxValue; i++, ID = (ulong)random.Next())
             {
                 user = new User(ID,string.Empty);
-                Assert.Equal(ID.GetHashCode(), user.GetHashCode());
+                Assert.StrictEqual(ID.GetHashCode(), user.GetHashCode());
             }
         }
         
@@ -106,6 +112,25 @@ namespace xUnitTests.Object_Functionality
             Assert.NotNull(page2.previousPageCursor);
             Assert.Null(page1.previousPageCursor);
             Assert.Null(page2.nextPageCursor);
+        }
+
+
+        [Theory]
+        [InlineData(Size.x30, Size_Flags.x30)]
+        [InlineData(Size.x48, Size_Flags.x48)]
+        [InlineData(Size.x60, Size_Flags.x60)]
+        [InlineData(Size.x75, Size_Flags.x75)]
+        [InlineData(Size.x100, Size_Flags.x100)]
+        [InlineData(Size.x110, Size_Flags.x110)]
+        [InlineData(Size.x150, Size_Flags.x150)]
+        [InlineData(Size.x180, Size_Flags.x180)]
+        [InlineData(Size.x352, Size_Flags.x352)]
+        [InlineData(Size.x420, Size_Flags.x420)]
+        [InlineData(Size.x720, Size_Flags.x720)]
+        public void Flag_Convert(Size value, Size_Flags flag)
+        {
+            Assert.StrictEqual(flag, EnumExtensions.ToFlag<Size_Flags>(value));
+            Assert.NotEqual((ushort)flag >> 1,(ushort) EnumExtensions.ToFlag<Size_Flags>(value));
         }
     }
 

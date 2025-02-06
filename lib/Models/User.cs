@@ -2,6 +2,7 @@ using Roblox_Sharp.Enums;
 using Roblox_Sharp.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.Json.Serialization;
 
@@ -46,7 +47,8 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize User based requests
     /// </summary>
-    public class User() : IUser , ICloneable<User>
+    [DebuggerDisplay("(ID {userId})")]
+    public class User() : IUser<User> , ICloneable<User>, IFormattable
     {
         /// <inheritdoc/>
         public ulong userId { get; init; }
@@ -78,11 +80,7 @@ namespace Roblox_Sharp.Models
         public string? displayName
         {
             get => _displayName;
-            init
-            {
-                if (value != null && value.Equals(username)) _displayName = null;
-                else _displayName = value;
-            }
+            init => _displayName = (value != null && value.Equals(username)) ? null : value;
         }
 
         /// <summary>
@@ -107,6 +105,11 @@ namespace Roblox_Sharp.Models
         /// creation date and time of user
         /// </summary>
         public DateTime created { get; init; }
+
+        /// <summary>
+        /// creation date and time in the same format as the roblox website 
+        /// </summary>
+        public string created_string => created.ToString("d");
 
         /// <summary>
         /// <see langword="true"/> if the user is banned
@@ -192,13 +195,54 @@ namespace Roblox_Sharp.Models
             friendFrequentRank = friendFrequentRank
         };
 
-        /// <summary>
-        /// <inheritdoc cref="IUser.GetHashCode()"/>
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode() => ((IUser)this).GetHashCode();
-        
+        ///<inheritdoc cref="IUser.operator &lt;"/>
+        public static bool operator <(User left, User right) => (IUser)left < (IUser)right;
 
+        /// <inheritdoc cref="IUser.operator >"/>
+        public static bool operator >(User left, User right) => (IUser)left > (IUser)right;
+
+        /// <inheritdoc cref="IUser.ToString"/> displayname@username (ID id)
+        public override string ToString() => $"{displayName}@{username} (ID {userId})";
+
+        /// /// <summary>
+        /// Formats the user information based on the provided format string.
+        /// Supported format strings:
+        /// <list type="table">
+        ///   <listheader>
+        ///     <term>Format</term>
+        ///     <description>Output</description>
+        ///   </listheader>
+        ///   <item>
+        ///     <term>"id"</term>
+        ///     <description>Returns the user ID.</description>
+        ///   </item>
+        ///   <item>
+        ///     <term>"name"</term>
+        ///     <description>Returns the username with an '@' prefix.</description>
+        ///   </item>
+        ///   <item>
+        ///     <term>"display"</term>
+        ///     <description>Returns the display name.</description>
+        ///   </item>
+        ///   <item>
+        ///     <term>"joined"</term>
+        ///     <description>Returns the user's join date.</description>
+        ///   </item>
+        /// </list>
+        /// </summary>
+        /// <returns>
+        /// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+        /// </returns>
+        public string ToString(string? format, IFormatProvider? formatProvider) => format == null ? ToString()
+            : format switch
+            {
+                //user id 
+                "id"  => $"(ID {userId}) ",
+                "name" => "@{username} ",
+                "display" => displayName + ' ' ?? username,
+                "joined" => created_string + ' ',
+                _ => throw new FormatException()
+            };
     }
 }
 

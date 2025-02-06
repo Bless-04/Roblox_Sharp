@@ -24,9 +24,9 @@ namespace Roblox_Sharp.Models
         public string? previousPageCursor
         {
             get => _previousPageCursor;
-            init => _previousPageCursor = (previousPageCursor == null && nextPageCursor == null)
-                ? value
-                : throw pageCursorError;
+            init => _previousPageCursor = (value == null && nextPageCursor == null) 
+                ? throw pageCursorError 
+                : value;        
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace Roblox_Sharp.Models
         {
             get => _nextPageCursor;
             init => _nextPageCursor = (value == null && previousPageCursor == null)
-                ? value 
-                : throw pageCursorError;
+                ? throw pageCursorError 
+                : value;
         }
 
         /// <inheritdoc cref="data"/>
