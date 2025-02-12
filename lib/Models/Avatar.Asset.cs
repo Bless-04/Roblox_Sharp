@@ -8,10 +8,9 @@ public partial class Avatar
     /// <summary>
     /// Assets that a players Avatar can equip
     /// </summary>
-    public partial class Asset : ICreation, ICloneable<Asset>
+    public partial class Asset : Creation, ICloneable<Asset>
     {
-          
-        ulong ICreation.id => assetId;
+
         /// <summary>
         /// the unique id of the asset
         /// </summary>

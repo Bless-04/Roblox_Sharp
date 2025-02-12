@@ -22,33 +22,7 @@ namespace Roblox_Sharp.Enums
         /// <returns>
         /// <see langword="true"/> if the enum is blacklisted
         /// </returns>
-        public static bool IsBlackListed(Enum value,params Enum[] blacklist) => blacklist.Contains(value);
-
-        /// <summary>
-        /// <inheritdoc cref="IsBlackListed(Enum, Enum[])"/>
-        /// uses the flags of the enum
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="value"></param>
-        /// <param name="blacklist"></param>
-        /// <returns></returns>
-        public static bool SizeBlackListed(Size value, Size_Flags blacklist) => (
-            value.ToString() switch
-            {
-                nameof(Size.x30) => Size_Flags.x30,
-                nameof(Size.x48) => Size_Flags.x48,
-                nameof(Size.x50) => Size_Flags.x50,
-                nameof(Size.x60) => Size_Flags.x60,
-                nameof(Size.x75) => Size_Flags.x75,
-                nameof(Size.x100) => Size_Flags.x100,
-                nameof(Size.x110) => Size_Flags.x110,
-                nameof(Size.x150) => Size_Flags.x150,
-                nameof(Size.x180) => Size_Flags.x180,
-                nameof(Size.x352) => Size_Flags.x352,
-                nameof(Size.x420) => Size_Flags.x420,
-                nameof(Size.x720) => Size_Flags.x720,
-                _ => Size_Flags.All
-            } & blacklist) != 0; //enum is not blacklisted if it is in the flags
+        public static bool IsBlackListed(Enum value,Enum[] blacklist) => blacklist.Contains(value);
 
         /// <summary>
         /// converts an enum to a flag
@@ -88,6 +62,6 @@ namespace Roblox_Sharp.Enums
         /// </summary>
         /// <param name="SIZE"></param>
         /// <returns></returns>
-        public static string ToString(Thumbnail.Size SIZE) => $"{(ushort)SIZE}x{(ushort)SIZE}";
+        public static string ToString(Size SIZE) => $"{(ushort)SIZE}x{(ushort)SIZE}";
     }
 }

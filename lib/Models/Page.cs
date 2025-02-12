@@ -55,11 +55,11 @@ namespace Roblox_Sharp.Models
             init => _data = value;
         }
 
-        /// <inheritdoc cref="Previous(IEnumerable{T}?)"/>
+        /// <inheritdoc cref="Previous(List{T}?)"/>
         public static Page<T> operator --(Page<T> page) => (Page<T>)page.Previous();
 
         /// <inheritdoc/>
-        public IPage<T> Previous(IEnumerable<T>? data = null)
+        public IPage<T> Previous(List<T>? data = null)
         {
             if (this._nextPageCursor == null) throw new IndexOutOfRangeException("There is no next Page");
             this._previousPageCursor = this._nextPageCursor;
@@ -70,7 +70,7 @@ namespace Roblox_Sharp.Models
         }
 
         /// <inheritdoc/>
-        public IPage<T> Next(IEnumerable<T>? data = null)
+        public IPage<T> Next(List<T>? data = null)
         {
             if (this._previousPageCursor == null) throw new IndexOutOfRangeException("There is no previous Page");
             this._nextPageCursor = this._previousPageCursor;
@@ -79,7 +79,7 @@ namespace Roblox_Sharp.Models
             return this;
         }
 
-        /// <inheritdoc cref="Next(IEnumerable{T}?)"/>
+        /// <inheritdoc cref="Next(List{T}?)"/>
         public static Page<T> operator ++(Page<T> page) => (Page<T>)page.Next();
     }
 }

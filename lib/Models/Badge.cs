@@ -7,14 +7,16 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize Badge based requests
     /// </summary>
-    public class Badge : ICreation
+    public class Badge : Creation
     {
         /// <summary>
         /// the badge id 
         /// </summary>
-        public ulong badgeId { get; init; }
-        
-        ulong ICreation.id => badgeId;
+        public ulong badgeId
+        {
+            get => id;
+            init => id = value;
+        }
 
         /// <summary>
         /// the name of the badge 

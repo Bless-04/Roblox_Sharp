@@ -47,7 +47,7 @@ namespace Roblox_Sharp.Framework
         public static IPage<T> operator --(IPage<T> page) => page.Previous();
 
         /// <inheritdoc cref="operator --(IPage{T})"/>
-        public abstract IPage<T> Previous(IEnumerable<T>? data = null);
+        public abstract IPage<T> Previous(List<T>? data = null);
 
         /// <summary>
         /// Goes forward 1 page
@@ -58,7 +58,7 @@ namespace Roblox_Sharp.Framework
         public static IPage<T> operator ++(IPage<T> page) => page.Next();
 
         /// <inheritdoc cref="operator ++(IPage{T})"/>
-        public abstract IPage<T> Next(IEnumerable<T>? data = null);
+        public abstract IPage<T> Next(List<T>? data = null);
         
         /// <summary>
         /// <inheritdoc cref="IEnumerable.GetEnumerator"/>

@@ -1,19 +1,24 @@
 ﻿using Roblox_Sharp.Framework;
+using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models
 {
     /// <summary>
     /// class used to serialize Group based requests
     /// </summary>
-    public partial class Group : ICreation , ICloneable<Group>
+    public partial class Group : Creation , ICloneable<Group>
     {
-        ulong ICreation.id => groupId;
+
 
         /// <summary>
         /// the unique groups id
         /// </summary>
-        public ulong groupId { get; init; }
-
+        public ulong groupId
+        {
+            get => base.id;
+            init => base.id = value;
+        }
+        
         /// <summary>
         /// group name
         /// </summary>
@@ -25,14 +30,16 @@ namespace Roblox_Sharp.Models
         public string? description { get; init; }
 
         /// <summary>
-        /// group owner
+        /// group owner <br/>
+        /// <see langword="null"/> if data not requested
         /// </summary>
-        public User owner { get; init; }
+        public User? owner { get; init; }
 
         /// <summary>
-        /// most recent group shout
+        /// most recent group shout <br/>
+        /// <see langword="null"/> if data not requested
         /// </summary>
-        public Shout shout { get; init; }
+        public Shout? shout { get; init; }
 
         /// <summary>
         /// group member count

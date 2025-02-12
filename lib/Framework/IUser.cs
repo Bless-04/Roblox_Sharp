@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace Roblox_Sharp.Framework
 {
@@ -30,13 +29,8 @@ namespace Roblox_Sharp.Framework
         public static bool operator >(IUser left, IUser right) => left.userId < right.userId;
 
         ///<inheritdoc cref="ulong.GetHashCode"/>
-        ///<remarks>uses the same hashcode function as <see langword="ulong"/></remarks>
-        int GetHashCode() => userId.GetHashCode();
-
-        /// <summary>
-        /// string representation of the user <br></br> 
-        /// </summary>
-        string? ToString() => $"(ID {userId})";
+        ///<remarks>uses the hashcode function of the <see langword="ulong"/> <see cref="userId"/></remarks>
+        int GetHashCode();
 
         /// <summary>
         /// <inheritdoc cref="object.Equals(object?)"/> 
@@ -69,5 +63,10 @@ namespace Roblox_Sharp.Framework
 
             return 0;
         }
+
+        /// <summary>
+        /// string representation of the <typeparamref name="T"/>
+        /// </summary>
+        string? ToString();
     }
 }

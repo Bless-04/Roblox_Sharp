@@ -47,11 +47,19 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize User based requests
     /// </summary>
-    [DebuggerDisplay("(ID {userId})")]
+    [DebuggerDisplay("{displayname?}@{username} (ID {userId})")]
     public class User() : IUser<User> , ICloneable<User>, IFormattable
     {
         /// <inheritdoc/>
         public ulong userId { get; init; }
+
+        /// <inheritdoc cref="userId"/>
+        [JsonInclude]
+        private ulong id
+        {
+            init => userId = value;
+            get => userId;
+        }
 
         /// <summary>
         /// unique username for the user
@@ -62,11 +70,12 @@ namespace Roblox_Sharp.Models
         /// <inheritdoc cref="username"/>
         /// </summary>
         [JsonInclude]
-        protected string name
+        private string name
         {
-            get => username;
             init => username = value;
+            get => username;
         }
+        
 
         /// <summary>
         /// display name for the user <br></br>
@@ -201,8 +210,14 @@ namespace Roblox_Sharp.Models
         /// <inheritdoc cref="IUser.operator >"/>
         public static bool operator >(User left, User right) => (IUser)left > (IUser)right;
 
-        /// <inheritdoc cref="IUser.ToString"/> displayname@username (ID id)
+        /// <inheritdoc cref="IUser.GetHashCode"/>
+        public override int GetHashCode() => userId.GetHashCode();
+
+        /// <inheritdoc cref="IUser{User}.ToString"/> displayname@username (ID id)
         public override string ToString() => $"{displayName}@{username} (ID {userId})";
+
+        /// <inheritdoc cref="IUser.Equals"/>
+        public override bool Equals(object? obj) => obj is User user && userId == user.userId;
 
         /// /// <summary>
         /// Formats the user information based on the provided format string.

@@ -64,7 +64,7 @@ namespace xUnitTests.Object_Functionality
             for (ushort i = 0; i < ushort.MaxValue; i++, ID = (ulong)random.Next())
             {
                 user = new User(ID,string.Empty);
-                Assert.StrictEqual(ID.GetHashCode(), user.GetHashCode());
+                Assert.Equal(ID.GetHashCode(), user.GetHashCode());
             }
         }
         
@@ -115,23 +115,19 @@ namespace xUnitTests.Object_Functionality
         }
 
 
-        [Theory]
-        [InlineData(Size.x30, Size_Flags.x30)]
-        [InlineData(Size.x48, Size_Flags.x48)]
-        [InlineData(Size.x60, Size_Flags.x60)]
-        [InlineData(Size.x75, Size_Flags.x75)]
-        [InlineData(Size.x100, Size_Flags.x100)]
-        [InlineData(Size.x110, Size_Flags.x110)]
-        [InlineData(Size.x150, Size_Flags.x150)]
-        [InlineData(Size.x180, Size_Flags.x180)]
-        [InlineData(Size.x352, Size_Flags.x352)]
-        [InlineData(Size.x420, Size_Flags.x420)]
-        [InlineData(Size.x720, Size_Flags.x720)]
-        public void Flag_Convert(Size value, Size_Flags flag)
+        [Fact]
+        public void Flag_Convert()
         {
-            Assert.StrictEqual(flag, EnumExtensions.ToFlag<Size_Flags>(value));
-            Assert.NotEqual((ushort)flag >> 1,(ushort) EnumExtensions.ToFlag<Size_Flags>(value));
+            Size_Flags flag,sum = Size_Flags.x720;
+            foreach (Size size in Enum.GetValues(typeof(Size)))
+            {
+                flag = EnumExtensions.ToFlag<Size_Flags>(size);
+                sum |= flag; //guarantees everything is base 2
+                
+                Assert.StrictEqual(flag, EnumExtensions.ToFlag<Size_Flags>(size)); //checks that toflag returns the correct value
+                Assert.StrictEqual(flag, sum & flag);  //checks that the or is working correctly the flags together returns the value
+                Assert.NotEqual((Size_Flags)((ushort)flag << 1), sum & flag); //    
+            }
         }
     }
-
 }

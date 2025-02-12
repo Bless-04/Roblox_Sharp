@@ -1,5 +1,6 @@
 ﻿using Roblox_Sharp.Exceptions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Roblox_Sharp.Models.Internal.POST
 {
@@ -16,12 +17,12 @@ namespace Roblox_Sharp.Models.Internal.POST
         /// <summary>
         /// array of user ids
         /// </summary>
-        public IReadOnlyList<ulong>? userIds { get; init; }
+        public IEnumerable<ulong>? userIds { get; init; }
 
         /// <summary>
         /// array of username
         /// </summary>
-        public IReadOnlyList<string>? usernames { get; init; }
+        public IEnumerable<string>? usernames { get; init; }
 
         /// <summary>
         /// limits the length of an array
@@ -29,7 +30,7 @@ namespace Roblox_Sharp.Models.Internal.POST
         /// <param name="list"></param>
         /// <param name="limit"></param>
         /// <returns>true if the array is less than the limit</returns>
-        public bool ArrayLengthCheck<T>(List<T> list, int limit = 100) => list.Count < limit;
+        public bool ArrayLengthCheck<T>(IEnumerable<T> list, int limit = 100) => list.Count() < limit;
 
         public User_POST(List<ulong> userIds, bool excludeBannedUsers = false)
         {

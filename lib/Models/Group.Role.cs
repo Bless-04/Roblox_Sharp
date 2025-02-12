@@ -13,9 +13,9 @@ public partial class Group
     /// <summary>
     /// Group Role Serializer Class
     /// </summary>
-    public class Role : ICreation
+    public class Role : Creation
     {
-        ulong ICreation.id => roleId;
+        ulong Creation.id => roleId;
 
         /// <summary>
         /// Group Role ID

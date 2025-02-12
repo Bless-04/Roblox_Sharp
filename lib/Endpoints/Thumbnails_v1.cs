@@ -35,7 +35,7 @@ namespace Roblox_Sharp.Endpoints
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static async Task<IReadOnlyList<Thumbnail>> Get_AvatarHeadshotsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
         {
-            if (EnumExtensions.IsBlackListed(SIZE, [Size.x30])) throw new ArgumentOutOfRangeException($"{SIZE} is not supported for this request.");
+            if (SIZE == Size.x30) throw new ArgumentOutOfRangeException($"{SIZE} is not supported for this request.");
             // example https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=1&size=48x48&format=Png&isCircular=false
 
             return
@@ -68,7 +68,7 @@ namespace Roblox_Sharp.Endpoints
         /// <exception cref="ArgumentException"></exception>
         public static async Task<IReadOnlyList<Thumbnail>> Get_AvatarBustsAsync(ulong[] userIds, Size SIZE = Size.x48, Format FORMAT = Format.Png, bool isCircular = false)
         {
-            if (EnumExtensions.SizeBlackListed(SIZE, Size_Flags.x30 | Size_Flags.x110 | Size_Flags.x720)) throw new ArgumentException($"{SIZE} is not valid for this request");
+            if (((Size_Flags.x30 | Size_Flags.x110 | Size_Flags.x720) & EnumExtensions.ToFlag<Size_Flags>(SIZE)) != 0) throw new ArgumentException($"{SIZE} is not valid for this request");
             // url example https://thumbnails.roblox.com/v1/users/avatar-bust?userIds=1,156,256,2,16&size=48x48&format=Png&isCircular=false
             if (FORMAT == Format.Jpeg) throw new ArgumentException($"{FORMAT} is not supported for this request");
 

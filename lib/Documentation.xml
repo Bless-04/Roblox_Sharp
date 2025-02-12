@@ -349,13 +349,6 @@
             and also contains helpful functions
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToString(Roblox_Sharp.Enums.Thumbnail.Size)">
-            <summary>
-            gives a string representation of a thumbnail size
-            </summary>
-            <param name="SIZE"></param>
-            <returns></returns>
-        </member>
         <member name="M:Roblox_Sharp.Enums.EnumExtensions.IsBlackListed(System.Enum,System.Enum[])">
             <summary>
             used to check if an enum is blacklisted
@@ -365,16 +358,6 @@
             <returns>
             <see langword="true"/> if the enum is blacklisted
             </returns>
-        </member>
-        <member name="M:Roblox_Sharp.Enums.EnumExtensions.SizeBlackListed(Roblox_Sharp.Enums.Thumbnail.Size,Roblox_Sharp.Enums.Thumbnail.Size_Flags)">
-            <summary>
-            <inheritdoc cref="M:Roblox_Sharp.Enums.EnumExtensions.IsBlackListed(System.Enum,System.Enum[])"/>
-            uses the flags of the enum
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <param name="blacklist"></param>
-            <returns></returns>
         </member>
         <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToFlag``1(System.Enum)">
             <summary>
@@ -390,7 +373,7 @@
             </summary>
             <typeparam name="T"></typeparam>
             <param name="text"></param>
-            <returns></returns>
+            <exception cref="T:System.ArgumentException"></exception>
         </member>
         <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToString(Roblox_Sharp.Enums.Limit)">
             <summary>
@@ -399,6 +382,13 @@
             <param name="LIMIT"></param>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToString(Roblox_Sharp.Enums.Thumbnail.Size)">
+            <summary>
+            gives a string representation of a thumbnail size
+            </summary>
+            <param name="SIZE"></param>
+            <returns></returns>
         </member>
         <member name="T:Roblox_Sharp.Enums.Limit">
             <summary>
@@ -454,17 +444,17 @@
             </summary>
             <returns>a deep copy of the <typeparamref name="T"/></returns>
         </member>
-        <member name="T:Roblox_Sharp.Framework.ICreation">
+        <member name="T:Roblox_Sharp.Framework.Creation">
             <summary>
              generalized template for any roblox object that has a unique id 
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Framework.ICreation.id">
+        <member name="P:Roblox_Sharp.Framework.Creation.id">
             <summary>
             The unique id of the creation
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.Framework.ICreation.System#IEquatable{Roblox_Sharp#Framework#ICreation}#Equals(Roblox_Sharp.Framework.ICreation)">
+        <member name="M:Roblox_Sharp.Framework.Creation.System#IEquatable{Roblox_Sharp#Framework#Creation}#Equals(Roblox_Sharp.Framework.Creation)">
             <summary>
             equal if and only if the ids are the same
             </summary>
@@ -473,7 +463,7 @@
             <see langword="true"/> if ids are the same
             </returns>
         </member>
-        <member name="M:Roblox_Sharp.Framework.ICreation.op_LessThan(Roblox_Sharp.Framework.ICreation,Roblox_Sharp.Framework.ICreation)">
+        <member name="M:Roblox_Sharp.Framework.Creation.op_LessThan(Roblox_Sharp.Framework.Creation,Roblox_Sharp.Framework.Creation)">
             <summary>
             a creation is <b> less than </b> another if it is newer. newer creations have larger ids than older ones
             </summary>
@@ -481,7 +471,7 @@
             <param name="right"></param>
             <returns><inheritdoc/></returns>
         </member>
-        <member name="M:Roblox_Sharp.Framework.ICreation.op_GreaterThan(Roblox_Sharp.Framework.ICreation,Roblox_Sharp.Framework.ICreation)">
+        <member name="M:Roblox_Sharp.Framework.Creation.op_GreaterThan(Roblox_Sharp.Framework.Creation,Roblox_Sharp.Framework.Creation)">
             <summary>
             a creation is <b>greater than</b> another if it is older. Older creations have smaller ids than newer creations.
             </summary>
@@ -489,7 +479,7 @@
             <param name="right"></param>
             <returns><inheritdoc/></returns>
         </member>
-        <member name="M:Roblox_Sharp.Framework.ICreation.GetHashCode">
+        <member name="M:Roblox_Sharp.Framework.Creation.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <remarks>uses the same hashcode function as <see langword="ulong"/></remarks>
         </member>
@@ -534,7 +524,7 @@
             <returns></returns>
             <exception cref="T:System.IndexOutOfRangeException"> if there is no previous page</exception>
         </member>
-        <member name="M:Roblox_Sharp.Framework.IPage`1.Previous(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:Roblox_Sharp.Framework.IPage`1.Previous(System.Collections.Generic.List{`0})">
             <inheritdoc cref="M:Roblox_Sharp.Framework.IPage`1.op_Decrement(Roblox_Sharp.Framework.IPage{`0})"/>
         </member>
         <member name="M:Roblox_Sharp.Framework.IPage`1.op_Increment(Roblox_Sharp.Framework.IPage{`0})">
@@ -545,7 +535,7 @@
             <returns></returns>
             <exception cref="T:System.IndexOutOfRangeException">if there is no next page</exception>
         </member>
-        <member name="M:Roblox_Sharp.Framework.IPage`1.Next(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:Roblox_Sharp.Framework.IPage`1.Next(System.Collections.Generic.List{`0})">
             <inheritdoc cref="M:Roblox_Sharp.Framework.IPage`1.op_Increment(Roblox_Sharp.Framework.IPage{`0})"/>
         </member>
         <member name="M:Roblox_Sharp.Framework.IPage`1.GetEnumerator">
@@ -582,12 +572,7 @@
         </member>
         <member name="M:Roblox_Sharp.Framework.IUser.GetHashCode">
             <inheritdoc cref="M:System.UInt64.GetHashCode"/>
-            <remarks>uses the same hashcode function as <see langword="ulong"/></remarks>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.IUser.ToString">
-            <summary>
-            string representation of the user <br></br> 
-            </summary>
+            <remarks>uses the hashcode function of the <see langword="ulong"/> <see cref="P:Roblox_Sharp.Framework.IUser.userId"/></remarks>
         </member>
         <member name="M:Roblox_Sharp.Framework.IUser.Equals(System.Object)">
             <summary>
@@ -606,6 +591,11 @@
         </member>
         <member name="M:Roblox_Sharp.Framework.IUser`1.System#IComparable{T}#CompareTo(`0)">
             <inheritdoc cref="M:System.IComparable.CompareTo(System.Object)"/>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IUser`1.ToString">
+            <summary>
+            string representation of the <typeparamref name="T"/>
+            </summary>
         </member>
         <member name="T:Roblox_Sharp.Models.Avatar">
             <summary>
@@ -947,6 +937,9 @@
             the universe id 
             </summary>
         </member>
+        <member name="P:Roblox_Sharp.Models.Game.Roblox_Sharp#Framework#Creation#id">
+            <inheritdoc/>
+        </member>
         <member name="P:Roblox_Sharp.Models.Game.name">
             <summary>
             the universe  name
@@ -1120,7 +1113,7 @@
             array of username
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.Models.Internal.POST.User_POST.ArrayLengthCheck``1(System.Collections.Generic.List{``0},System.Int32)">
+        <member name="M:Roblox_Sharp.Models.Internal.POST.User_POST.ArrayLengthCheck``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
             <summary>
             limits the length of an array
             </summary>
@@ -1173,16 +1166,16 @@
             <inheritdoc/>
         </member>
         <member name="M:Roblox_Sharp.Models.Page`1.op_Decrement(Roblox_Sharp.Models.Page{`0})">
-            <inheritdoc cref="M:Roblox_Sharp.Models.Page`1.Previous(System.Collections.Generic.IEnumerable{`0})"/>
+            <inheritdoc cref="M:Roblox_Sharp.Models.Page`1.Previous(System.Collections.Generic.List{`0})"/>
         </member>
-        <member name="M:Roblox_Sharp.Models.Page`1.Previous(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:Roblox_Sharp.Models.Page`1.Previous(System.Collections.Generic.List{`0})">
             <inheritdoc/>
         </member>
-        <member name="M:Roblox_Sharp.Models.Page`1.Next(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:Roblox_Sharp.Models.Page`1.Next(System.Collections.Generic.List{`0})">
             <inheritdoc/>
         </member>
         <member name="M:Roblox_Sharp.Models.Page`1.op_Increment(Roblox_Sharp.Models.Page{`0})">
-            <inheritdoc cref="M:Roblox_Sharp.Models.Page`1.Next(System.Collections.Generic.IEnumerable{`0})"/>
+            <inheritdoc cref="M:Roblox_Sharp.Models.Page`1.Next(System.Collections.Generic.List{`0})"/>
         </member>
         <member name="T:Roblox_Sharp.Models.Thumbnail">
             example return 
@@ -1276,6 +1269,9 @@
         </member>
         <member name="P:Roblox_Sharp.Models.User.userId">
             <inheritdoc/>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.id">
+            <inheritdoc cref="P:Roblox_Sharp.Models.User.userId"/>
         </member>
         <member name="P:Roblox_Sharp.Models.User.username">
             <summary>
@@ -1394,8 +1390,14 @@
         <member name="M:Roblox_Sharp.Models.User.op_GreaterThan(Roblox_Sharp.Models.User,Roblox_Sharp.Models.User)">
             <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.op_GreaterThan(Roblox_Sharp.Framework.IUser,Roblox_Sharp.Framework.IUser)"/>
         </member>
+        <member name="M:Roblox_Sharp.Models.User.GetHashCode">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.GetHashCode"/>
+        </member>
         <member name="M:Roblox_Sharp.Models.User.ToString">
-            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.ToString"/> displayname@username (ID id)
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser`1.ToString"/> displayname@username (ID id)
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.Equals(System.Object)">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.Equals(System.Object)"/>
         </member>
         <member name="M:Roblox_Sharp.Models.User.ToString(System.String,System.IFormatProvider)">
             /// <summary>

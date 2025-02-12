@@ -1,5 +1,6 @@
 ﻿using Roblox_Sharp.Enums;
 using Roblox_Sharp.Models;
+using System.Linq;
 using System.Text.Json;
 
 namespace xUnitTests.Deserialization
@@ -70,7 +71,7 @@ namespace xUnitTests.Deserialization
             User user = page.data[0];
 
             Assert.NotNull(user.previousUsernames);
-            Assert.True(1 == user.previousUsernames.Count);
+            Assert.True(1 == user.previousUsernames.Count());
 
             Assert.True(user.hasVerifiedBadge);
             Assert.Equal<ulong>(0, user.userId);
