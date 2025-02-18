@@ -7,7 +7,7 @@ namespace Roblox_Sharp.Framework
     /// <summary>
     /// template for all the page based requests that have a previous and next cursor
     /// </summary>
-    public interface IPage 
+    public interface IPage
     {
         /// <summary>
         /// previous page cursor of the request .<br/> <see langword="null"/> if there are no previous pages or object is the first page
@@ -25,7 +25,7 @@ namespace Roblox_Sharp.Framework
     /// </summary>
     /// <typeparam name="T">The data type</typeparam>
     /// <remarks>indirectly implements <seealso cref="IReadOnlyList{T}"/> </remarks>
-    public interface IPage<T> : IPage 
+    public interface IPage<T> : IPage
     {
         /// <summary>
         /// List of <typeparamref name="T"/> returned by the request
@@ -59,7 +59,7 @@ namespace Roblox_Sharp.Framework
 
         /// <inheritdoc cref="operator ++(IPage{T})"/>
         public abstract IPage<T> Next(List<T>? data = null);
-        
+
         /// <summary>
         /// <inheritdoc cref="IEnumerable.GetEnumerator"/>
         /// </summary>

@@ -1,4 +1,5 @@
-﻿using Roblox_Sharp.Framework;
+﻿using Roblox_Sharp.Exceptions;
+using Roblox_Sharp.Framework;
 using System;
 using System.Text.Json.Serialization;
 
@@ -14,8 +15,8 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public ulong badgeId
         {
-            get => id;
-            init => id = value;
+            get => base.id ?? throw new NotRequestedException(nameof(badgeId));
+            init => base.id = value;
         }
 
         /// <summary>

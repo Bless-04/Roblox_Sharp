@@ -33,7 +33,7 @@
         </member>
         <member name="M:Roblox_Sharp.Endpoints.Avatars_v2.Get_AvatarAsync(System.UInt64)">
             <summary>
-            Returns details about a avatar using specified with<paramref name="userId"/>
+            Returns details about a avatar using specified with <paramref name="userId"/>
             </summary>
             <param name="userId"></param>
             <returns>Avatar</returns>
@@ -430,38 +430,39 @@
             Exception thrown when a <see cref="T:Roblox_Sharp.Framework.IUser"/> based argument is invalid/does not exist/banned/terminated 
             </summary>
         </member>
+        <member name="T:Roblox_Sharp.Exceptions.NotRequestedException">
+            <summary>
+            thrown when <b>important</b> data that was never gotten is requested
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Exceptions.NotRequestedException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Roblox_Sharp.Exceptions.NotRequestedException"/> class
+            </summary>
+            <param name="variable_name"></param>
+        </member>
         <member name="T:Roblox_Sharp.Exceptions.RateLimitException">
             <summary>
             Exception thrown when the rate limit is exceeded
             </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Framework.ICloneable`1">
-            <inheritdoc cref="T:System.ICloneable"/>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.ICloneable`1.Clone">
-            <summary>
-            <inheritdoc cref="M:System.ICloneable.Clone"/>
-            </summary>
-            <returns>a deep copy of the <typeparamref name="T"/></returns>
         </member>
         <member name="T:Roblox_Sharp.Framework.Creation">
             <summary>
              generalized template for any roblox object that has a unique id 
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Framework.Creation.id">
+        <member name="M:Roblox_Sharp.Framework.Creation.#ctor(System.Nullable{System.UInt64})">
             <summary>
-            The unique id of the creation
+             generalized template for any roblox object that has a unique id 
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.Framework.Creation.System#IEquatable{Roblox_Sharp#Framework#Creation}#Equals(Roblox_Sharp.Framework.Creation)">
+        <member name="P:Roblox_Sharp.Framework.Creation.id">
             <summary>
-            equal if and only if the ids are the same
+            The unique id of the creation; Null if not requested
             </summary>
-            <param name="other"></param>
-            <returns>
-            <see langword="true"/> if ids are the same
-            </returns>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.Creation.Equals(Roblox_Sharp.Framework.Creation)">
+            <inheritdoc />
         </member>
         <member name="M:Roblox_Sharp.Framework.Creation.op_LessThan(Roblox_Sharp.Framework.Creation,Roblox_Sharp.Framework.Creation)">
             <summary>
@@ -482,6 +483,27 @@
         <member name="M:Roblox_Sharp.Framework.Creation.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <remarks>uses the same hashcode function as <see langword="ulong"/></remarks>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.Creation.Equals(System.Object)">
+            <summary>
+            equal if and only if the ids are the same
+            </summary>
+            <param name="other"></param>
+            <returns>
+            <see langword="true"/> if ids are the same
+            </returns>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.Creation.CompareTo(Roblox_Sharp.Framework.Creation)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Roblox_Sharp.Framework.ICloneable`1">
+            <inheritdoc cref="T:System.ICloneable"/>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.ICloneable`1.Clone">
+            <summary>
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
+            </summary>
+            <returns>a deep copy of the <typeparamref name="T"/></returns>
         </member>
         <member name="T:Roblox_Sharp.Framework.IPage">
             <summary>
@@ -937,12 +959,9 @@
             the universe id 
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Game.Roblox_Sharp#Framework#Creation#id">
-            <inheritdoc/>
-        </member>
         <member name="P:Roblox_Sharp.Models.Game.name">
             <summary>
-            the universe  name
+            the universe name
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.Game.rootPlaceId">
@@ -978,12 +997,14 @@
         </member>
         <member name="P:Roblox_Sharp.Models.Group.owner">
             <summary>
-            group owner
+            group owner <br/>
+            <see langword="null"/> if data not requested
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.Group.shout">
             <summary>
-            most recent group shout
+            most recent group shout <br/>
+            <see langword="null"/> if data not requested
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.Group.memberCount">
@@ -1128,42 +1149,21 @@
             since arrays are a reference type, its not worth making this a struct
         </member>
         <member name="T:Roblox_Sharp.Models.Page`1">
-            <remarks>
-            <see langword="new"/> <see cref="T:Roblox_Sharp.Models.Page`1"/>() will throw an error  if <br/>
-            <see cref="P:Roblox_Sharp.Models.Page`1.previousPageCursor"/> and <see cref="P:Roblox_Sharp.Models.Page`1.nextPageCursor"/> are both not set
-            </remarks>
-             <inheritdoc cref="T:Roblox_Sharp.Framework.IPage`1"/>
-             <exception cref="T:System.InvalidOperationException">if both cursors are null</exception>
+            <inheritdoc cref="T:Roblox_Sharp.Framework.IPage`1"/>
         </member>
-        <member name="M:Roblox_Sharp.Models.Page`1.#ctor(System.String,System.String)">
-            <remarks>
-            <see langword="new"/> <see cref="T:Roblox_Sharp.Models.Page`1"/>() will throw an error  if <br/>
-            <see cref="P:Roblox_Sharp.Models.Page`1.previousPageCursor"/> and <see cref="P:Roblox_Sharp.Models.Page`1.nextPageCursor"/> are both not set
-            </remarks>
-             <inheritdoc cref="T:Roblox_Sharp.Framework.IPage`1"/>
-             <exception cref="T:System.InvalidOperationException">if both cursors are null</exception>
-        </member>
-        <member name="F:Roblox_Sharp.Models.Page`1._previousPageCursor">
-            <inheritdoc cref="P:Roblox_Sharp.Models.Page`1.previousPageCursor"/>
+        <member name="M:Roblox_Sharp.Models.Page`1.#ctor">
+            <inheritdoc cref="T:Roblox_Sharp.Framework.IPage`1"/>
         </member>
         <member name="P:Roblox_Sharp.Models.Page`1.previousPageCursor">
-            <inheritdoc/>
-        </member>
-        <member name="F:Roblox_Sharp.Models.Page`1._nextPageCursor">
-            <summary>
-            <inheritdoc cref="P:Roblox_Sharp.Models.Page`1.nextPageCursor"/>
-            </summary>
+            <inheritdoc cref="P:Roblox_Sharp.Framework.IPage.previousPageCursor"/>
         </member>
         <member name="P:Roblox_Sharp.Models.Page`1.nextPageCursor">
-            <summary>
-            <inheritdoc/>
-            </summary>
-        </member>
-        <member name="F:Roblox_Sharp.Models.Page`1._data">
-            <inheritdoc cref="P:Roblox_Sharp.Models.Page`1.data"/>
+            <inheritdoc cref="P:Roblox_Sharp.Framework.IPage.nextPageCursor"/>
         </member>
         <member name="P:Roblox_Sharp.Models.Page`1.data">
-            <inheritdoc/>
+            <summary>
+            <inheritdoc cref="P:Roblox_Sharp.Framework.IPage`1.data"/>
+            </summary>
         </member>
         <member name="M:Roblox_Sharp.Models.Page`1.op_Decrement(Roblox_Sharp.Models.Page{`0})">
             <inheritdoc cref="M:Roblox_Sharp.Models.Page`1.Previous(System.Collections.Generic.List{`0})"/>

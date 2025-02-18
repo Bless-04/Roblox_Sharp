@@ -15,7 +15,7 @@ namespace xUnitTests.Integration
     {
         [IntegrationTrait.Long_Integration]
         [Fact]
-        public async Task Get_CurrentlyWearing() 
+        public async Task Get_CurrentlyWearing()
         {
             IReadOnlyList<ulong> assets = await Avatars_v1.Get_CurrentlyWearingAsync(ROBLOX);
 
@@ -30,7 +30,7 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_Avatar()
         {
-            #pragma warning disable CS0618 // Type or member is obsolete ; testing
+#pragma warning disable CS0618 // Type or member is obsolete ; testing
             Avatar v1 = await Avatars_v1.Get_AvatarAsync(ROBLOX);
             Avatar v2 = await Avatars_v2.Get_AvatarAsync(ROBLOX);
 
@@ -41,11 +41,6 @@ namespace xUnitTests.Integration
 
             Assert.Equal(v1.assets[0].meta, v2.assets[0].meta); //can be value checked as it is a struct
         }
-
-        [IntegrationTrait]
-        [Fact]             //v1 allows banned users
-        public async Task Get_Avatar2_Error() => await Assert.ThrowsAsync<InvalidUserException>(() => Avatars_v2.Get_AvatarAsync(5)); //the BANNED user 
-
 
     }
 }

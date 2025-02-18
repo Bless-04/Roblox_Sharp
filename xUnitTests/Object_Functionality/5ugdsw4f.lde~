@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Enums.Thumbnail;
 using Roblox_Sharp.Framework;
@@ -66,9 +68,11 @@ namespace xUnitTests.Object_Functionality
             Page<User> page = new Page<User>
             {
                 data = [
-                    new(){ userId = 1},
-                    new(){ userId = 2}
+                new(){ userId = 1},
+                new(){ userId = 2}
                 ]
+
+
             };
 
             User dummy = page.data[0];

@@ -12,13 +12,13 @@ namespace xUnitTests.Object_Functionality
     public class Instance
     {
         [Fact]
-        public void User() => Assert.IsAssignableFrom<IUser>(new User()); 
+        public void User() => Assert.IsAssignableFrom<IUser>(new User());
 
         [Fact]
         public void User_Presence() => Assert.IsAssignableFrom<IUser>(new User_Presence());
 
         [Fact]
-        public void Page() => Assert.IsAssignableFrom<IPage>(new Page<bool>() { nextPageCursor=string.Empty});
+        public void Page() => Assert.IsAssignableFrom<IPage>(new Page<bool>());
 
         [Fact]
         public void Badge_Award() => Assert.IsAssignableFrom<Badge>(new Badge_Award()

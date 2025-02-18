@@ -1,24 +1,24 @@
 ﻿using Roblox_Sharp.Framework;
-using System.Text.Json.Serialization;
+using Roblox_Sharp.Exceptions;
 namespace Roblox_Sharp.Models
 {
     //TODO: finish
     /// <summary>
     /// Represents a game
     /// </summary>
-    public partial class Game : Creation , ICloneable<Game>
+    public partial class Game : Creation, ICloneable<Game>
     {
         /// <summary>
         /// the universe id 
         /// </summary>
-        public ulong universeId { get; init; }
-
-        /// <inheritdoc/>
-        [JsonInclude]
-        ulong Creation.id => universeId;
+        public ulong universeId
+        {
+            get => base.id ?? throw new NotRequestedException(nameof(universeId));
+            init => base.id = value;
+        }
 
         /// <summary>
-        /// the universe  name
+        /// the universe name
         /// </summary>
         public string? name { get; init; }
 

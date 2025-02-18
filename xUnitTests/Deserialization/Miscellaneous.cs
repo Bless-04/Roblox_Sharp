@@ -10,8 +10,6 @@ namespace xUnitTests.Deserialization
         [Fact]
         public void Page()
         {
-
-            string t = JsonSerializer.Serialize(new Page<bool>("previous"){data = [] });
             const string json_response = @"
             {
               ""previousPageCursor"": ""string"",

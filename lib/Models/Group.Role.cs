@@ -1,6 +1,6 @@
 ﻿using Roblox_Sharp.Framework;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Roblox_Sharp.Exceptions;
 namespace Roblox_Sharp.Models;
 
 public partial class Group
@@ -15,12 +15,14 @@ public partial class Group
     /// </summary>
     public class Role : Creation
     {
-        ulong Creation.id => roleId;
-
         /// <summary>
         /// Group Role ID
         /// </summary>
-        public ulong roleId { get; init; }
+        public ulong roleId
+        {
+            get => base.id ?? throw new NotRequestedException(nameof(roleId));
+            init => base.id = value;
+        }
 
         /// <summary>
         /// Group Role Name <br/>
@@ -42,6 +44,5 @@ public partial class Group
         /// description of the Role
         /// </summary>
         public string? description { get; init; }
- 
     }
 }

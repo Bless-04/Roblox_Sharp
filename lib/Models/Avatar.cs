@@ -87,7 +87,7 @@ namespace Roblox_Sharp.Models
         /// the brickcolor ids for each bodypart
         /// <note>unique to <seealso cref="Endpoints.Avatars_v1"/> based requests </note>
         /// </summary>
-        public BodyColors bodyColors { get; init; } 
+        public BodyColors bodyColors { get; init; }
 
         /// <summary>
         /// the rgb hex colors for each bodypart

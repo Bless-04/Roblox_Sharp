@@ -1,4 +1,5 @@
 ﻿using Roblox_Sharp.Framework;
+using Roblox_Sharp.Exceptions;
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models
@@ -6,19 +7,17 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize Group based requests
     /// </summary>
-    public partial class Group : Creation , ICloneable<Group>
+    public partial class Group : Creation, ICloneable<Group>
     {
-
-
         /// <summary>
         /// the unique groups id
         /// </summary>
         public ulong groupId
         {
-            get => base.id;
+            get => base.id ?? throw new NotRequestedException(nameof(groupId));
             init => base.id = value;
         }
-        
+
         /// <summary>
         /// group name
         /// </summary>
@@ -83,6 +82,5 @@ namespace Roblox_Sharp.Models
             isLocked = isLocked,
             hasVerifiedBadge = hasVerifiedBadge
         };
-        
     }
 }

@@ -3,18 +3,17 @@ using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Framework
 {
-    
+
     /// <summary>
     ///  generalized template for any roblox object that has a unique id 
     /// </summary>
-    public abstract class Creation : IComparable<Creation>, IEquatable<Creation>
+    public abstract class Creation(ulong? id = null) : IComparable<Creation>, IEquatable<Creation>
     {
         /// <summary>
-        /// The unique id of the creation
+        /// The unique id of the creation; Null if not requested
         /// </summary>
         [JsonInclude]
-        protected ulong id { get; init; }
-
+        protected ulong? id { get; init; } = id;
 
         /// <inheritdoc />
         public bool Equals(Creation? other) => other != null && id == other.id;
@@ -49,7 +48,7 @@ namespace Roblox_Sharp.Framework
         public override bool Equals(object? other) => Equals(other as Creation);
 
         /// <inheritdoc/>
-        public int CompareTo(Creation? other) 
+        public int CompareTo(Creation? other)
         {
             if (other is null) return 1;
 
@@ -62,5 +61,5 @@ namespace Roblox_Sharp.Framework
             return 0;
         }
     }
-}   
+}
 

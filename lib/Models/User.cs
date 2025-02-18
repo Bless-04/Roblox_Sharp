@@ -1,4 +1,5 @@
 using Roblox_Sharp.Enums;
+using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Framework;
 using System;
 using System.Collections.Generic;
@@ -47,35 +48,34 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize User based requests
     /// </summary>
-    [DebuggerDisplay("{displayname?}@{username} (ID {userId})")]
-    public class User() : IUser<User> , ICloneable<User>, IFormattable
+    [DebuggerDisplay("@{username} (ID {userId})")]
+    public class User() : IUser<User>, ICloneable<User>, IFormattable
     {
-        /// <inheritdoc/>
-        public ulong userId { get; init; }
-
         /// <inheritdoc cref="userId"/>
         [JsonInclude]
-        private ulong id
+        private ulong? id { get; init; }
+
+        /// <inheritdoc/>
+        public ulong userId
         {
-            init => userId = value;
-            get => userId;
+            get => id ?? throw new NotRequestedException(nameof(userId));
+            init => id = value;
         }
 
         /// <summary>
         /// unique username for the user
         /// </summary>
-        public string username { get; init; } = string.Empty;
+        public string username
+        {
+            get => name ?? throw new NotRequestedException(nameof(username));
+            init => name = value;
+        }
 
         /// <summary>
         /// <inheritdoc cref="username"/>
         /// </summary>
         [JsonInclude]
-        private string name
-        {
-            init => username = value;
-            get => username;
-        }
-        
+        private string? name { get; init; }
 
         /// <summary>
         /// display name for the user <br></br>
@@ -104,7 +104,7 @@ namespace Roblox_Sharp.Models
             this.username = username;
             this.displayName = displayName;
         }
-       
+
         /// <summary>
         /// description for the user
         /// </summary>
@@ -252,7 +252,7 @@ namespace Roblox_Sharp.Models
             : format switch
             {
                 //user id 
-                "id"  => $"(ID {userId}) ",
+                "id" => $"(ID {userId}) ",
                 "name" => "@{username} ",
                 "display" => displayName + ' ' ?? username,
                 "joined" => created_string + ' ',

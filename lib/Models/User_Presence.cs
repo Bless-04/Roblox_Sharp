@@ -22,7 +22,7 @@ namespace Roblox_Sharp.Models
    }
  ]
 }*/
-    public class User_Presence : IUser , ICloneable<User_Presence>
+    public class User_Presence : IUser<User_Presence>, ICloneable<User_Presence>
     {
         /// <inheritdoc/>
         public ulong userId { get; init; }
@@ -32,7 +32,7 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public Presence_Type presenceType { get; init; }
 
-        public string? lastLocation { get; init; } 
+        public string? lastLocation { get; init; }
 
         /// <summary>
         /// unique place id
@@ -57,6 +57,9 @@ namespace Roblox_Sharp.Models
         public DateTime lastOnline { get; init; }
 
         public DateTime invisibleModeExpiry { get; init; }
+
+        /// <inheritdoc cref="IUser.GetHashCode()"/>
+        public override int GetHashCode() => userId.GetHashCode();
 
         /// <summary>
         /// Deep Clones the instance of <see cref="User_Presence"/>
