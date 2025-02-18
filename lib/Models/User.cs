@@ -67,7 +67,7 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public string username
         {
-            get => name ?? throw new NotRequestedException(nameof(username));
+            get => name;
             init => name = value;
         }
 
@@ -75,7 +75,7 @@ namespace Roblox_Sharp.Models
         /// <inheritdoc cref="username"/>
         /// </summary>
         [JsonInclude]
-        private string? name { get; init; }
+        private string name { get; init; } = string.Empty;
 
         /// <summary>
         /// display name for the user <br></br>
