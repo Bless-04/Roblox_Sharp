@@ -1267,11 +1267,11 @@
             class used to serialize User based requests
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.userId">
-            <inheritdoc/>
-        </member>
         <member name="P:Roblox_Sharp.Models.User.id">
             <inheritdoc cref="P:Roblox_Sharp.Models.User.userId"/>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.userId">
+            <inheritdoc/>
         </member>
         <member name="P:Roblox_Sharp.Models.User.username">
             <summary>
@@ -1475,6 +1475,9 @@
             <summary>
             exact date and time user was last online
             </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User_Presence.GetHashCode">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.GetHashCode"/>
         </member>
         <member name="M:Roblox_Sharp.Models.User_Presence.Clone">
             <summary>

@@ -5,7 +5,7 @@ namespace Roblox_Sharp.Exceptions
     /// <summary>
     /// thrown when <b>important</b> data that was never gotten is requested
     /// </summary>
-    public sealed class NotRequestedException : NullReferenceException
+    public sealed class NotRequestedException : Exception
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NotRequestedException"/> class
