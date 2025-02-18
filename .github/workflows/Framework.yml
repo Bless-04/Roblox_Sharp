@@ -12,7 +12,6 @@ defaults:
 
 jobs:
   Build-and-Test:
-    name: Build and Test
     runs-on: windows-latest
       
     steps:
