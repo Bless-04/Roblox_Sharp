@@ -1,31 +1,29 @@
-# Tests the Web requests that get rate limitted easily
+ # Tests the Web requests that get rate limitted easily
 name: Long Web Integration
 
 on:
   workflow_dispatch:
 
-  pull_request: 
+  pull_request:
     types: [opened]
-    branches: 
+    branches:
       - stable
       - main
-    paths: 
+    paths:
     - '**.cs'
     - '**.csproj'
-    
+
 defaults:
   run:
     working-directory: "lib"
 
 jobs:
   Build-and-Test:
-    name: Build and Test
     runs-on: windows-latest
-      
+
     steps:
       - uses: actions/checkout@v4
-      - name: Install .NET 8.0.x
-        uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "8.0.x"
 
@@ -34,7 +32,3 @@ jobs:
 
       - name : Long Integration Tests
         run: dotnet test -c Debug --no-build --filter xUnitTests=Long_Integration
-
-
-        
-      

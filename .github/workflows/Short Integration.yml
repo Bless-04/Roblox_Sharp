@@ -4,32 +4,30 @@ name: Web Integration
 on:
   workflow_dispatch:
 
-  push: 
-    branches: 
+  push:
+    branches:
       - stable
       - main
-    paths: 
+    paths:
     - '**.cs'
     - '**.csproj'
-    
+
 defaults:
   run:
     working-directory: "lib"
 
 jobs:
   Build-and-Test:
-    name: Build and Test
     runs-on: windows-latest
-      
+
     steps:
       - uses: actions/checkout@v4
-      - name: Install .NET 8.0.x
-        uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "8.0.x"
 
-      - name: Build Roblox_Sharp 
+      - name: Build Roblox_Sharp
         run:  dotnet build -c Debug Roblox_Sharp.sln
 
       - name: Short Integration Tests
-        run: dotnet test -c Debug --no-build --filter xUnitTests=Integration    
+        run: dotnet test -c Debug --no-build --filter xUnitTests=Integration
