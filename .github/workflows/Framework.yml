@@ -17,8 +17,7 @@ jobs:
       
     steps:
       - uses: actions/checkout@v4
-      - name: Install .NET 8.0.x
-        uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "8.0.x"
 
