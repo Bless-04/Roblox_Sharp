@@ -1,34 +1,34 @@
- # Tests the Web requests that get rate limitted easily
+# Tests the Web requests that get rate limitted easily
 name: Long Web Integration
 
 on:
-  workflow_dispatch:
+    workflow_dispatch:
 
-  pull_request:
-    types: [opened]
-    branches:
-      - stable
-      - main
-    paths:
-    - '**.cs'
-    - '**.csproj'
+    pull_request:
+        types: [opened]
+        branches:
+            - stable
+            - main
+        paths:
+            - "**.cs"
+            - "**.csproj"
 
 defaults:
-  run:
-    working-directory: "lib"
+    run:
+        working-directory: "lib"
 
 jobs:
-  Build-and-Test:
-    runs-on: windows-latest
+    Build-and-Test:
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "8.0.x"
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.0.x"
 
-      - name: Build Roblox_Sharp
-        run:  dotnet build -c Debug Roblox_Sharp.sln
+            - name: Build Roblox_Sharp
+              run: dotnet build -c Debug Roblox_Sharp.sln
 
-      - name : Long Integration Tests
-        run: dotnet test -c Debug --no-build --filter xUnitTests=Long_Integration
+            - name: Long Integration Tests
+              run: dotnet test -c Debug --no-build --filter xUnitTests=Long_Integration

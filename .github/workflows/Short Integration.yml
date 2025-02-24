@@ -2,32 +2,32 @@
 name: Web Integration
 
 on:
-  workflow_dispatch:
+    workflow_dispatch:
 
-  push:
-    branches:
-      - stable
-      - main
-    paths:
-    - '**.cs'
-    - '**.csproj'
+    push:
+        branches:
+            - stable
+            - main
+        paths:
+            - "**.cs"
+            - "**.csproj"
 
 defaults:
-  run:
-    working-directory: "lib"
+    run:
+        working-directory: "lib"
 
 jobs:
-  Build-and-Test:
-    runs-on: ubuntu-latest
+    Build-and-Test:
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "8.0.x"
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.0.x"
 
-      - name: Build Roblox_Sharp
-        run:  dotnet build -c Debug Roblox_Sharp.sln
+            - name: Build Roblox_Sharp
+              run: dotnet build -c Debug Roblox_Sharp.sln
 
-      - name: Short Integration Tests
-        run: dotnet test -c Debug --no-build --filter xUnitTests=Integration
+            - name: Short Integration Tests
+              run: dotnet test -c Debug --no-build --filter xUnitTests=Integration
