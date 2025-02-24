@@ -2,29 +2,29 @@
 name: Framework Functionality
 
 on:
-  workflow_dispatch:
+    workflow_dispatch:
 
-  push: 
-    
+    push:
+
 defaults:
-  run:
-    working-directory: "lib"
+    run:
+        working-directory: "lib"
 
 jobs:
-  Build-and-Test:
-    runs-on: windows-latest
-      
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "8.0.x"
+    Build-and-Test:
+        runs-on: ubuntu-latest
 
-      - name: Build Roblox_Sharp
-        run:  dotnet build -c Debug Roblox_Sharp.sln
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.0.x"
 
-      - name: Object Functionality Tests
-        run: dotnet test -c Debug --no-build --filter xUnitTests=Object_Functionality
+            - name: Build Roblox_Sharp
+              run: dotnet build -c Debug Roblox_Sharp.sln
 
-      - name: JSON Deserialization Tests
-        run: dotnet test -c Debug --no-build --filter xUnitTests=Deserialization
+            - name: Object Functionality Tests
+              run: dotnet test -c Debug --no-build --filter xUnitTests=Object_Functionality
+
+            - name: JSON Deserialization Tests
+              run: dotnet test -c Debug --no-build --filter xUnitTests=Deserialization
