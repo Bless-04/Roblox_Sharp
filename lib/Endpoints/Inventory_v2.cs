@@ -1,6 +1,8 @@
-﻿using Roblox_Sharp.Enums;
+﻿using Roblox_Sharp.Models;
+using Roblox_Sharp.Enums;
 using System;
 using System.Threading.Tasks;
+using static Roblox_Sharp.WebAPI;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -9,6 +11,8 @@ namespace Roblox_Sharp.Endpoints
     /// </summary>
     public static class Inventory_v2
     {
+        
+        /* wasnt working on the official site
         /// <summary>
         /// Get user's inventory by multiple Roblox.Platform.Assets.AssetType. <br/>
         /// <b>GamePass and Badges not allowed.</b>
@@ -22,10 +26,10 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="cursor">The order the results are sorted in.</param>
         /// <returns></returns>
         [Obsolete("This method has not been tested", true)]
-        public static async Task<bool> Get_InventoryAsync(ulong userId, AssetType[] assetTypes, bool filterDisapprovedAssets = false, bool showApprovedOnly = false, Limit limit = Limit.Ten, Sort sortOrder = Sort.Asc, string? cursor = null)
+        public static async Task<Page<>> Get_InventoryAsync(ulong userId, AssetType[] assetTypes, bool filterDisapprovedAssets = false, bool showApprovedOnly = false, Limit limit = Limit.Ten, Sort sortOrder = Sort.Asc, string? cursor = null)
         {
-
+            await Get_RequestAsync()
         }
-
+        */
     }
 }

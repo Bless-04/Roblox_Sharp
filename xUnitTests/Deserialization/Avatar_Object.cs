@@ -4,7 +4,6 @@ using System;
 using System.Drawing;
 using System.Text.Json;
 
-
 namespace xUnitTests.Deserialization
 {
     [Trait(nameof(xUnitTests), nameof(Deserialization))]
@@ -90,7 +89,7 @@ namespace xUnitTests.Deserialization
             Avatar.Asset assets = avatar.assets![0];
             Assert.Equal<ulong>(0, assets.assetId);
             Assert.Equal("string", assets.assetName);
-            Assert.Equal<ulong>(0, assets.assetType.id);
+            Assert.Equal(0, (byte)assets.assetType.id);
             Assert.Equal("string", assets.assetType.name);
             Assert.Equal<ulong>(0, assets.currentVersionId);
             Assert.Equal(0, assets.meta.order);
@@ -204,7 +203,7 @@ namespace xUnitTests.Deserialization
             Avatar.Asset assets = avatar.assets![0];
             Assert.Equal<ulong>(0, assets.assetId);
             Assert.Equal("string", assets.assetName);
-            Assert.Equal<ulong>(0, assets.assetType.id);
+            Assert.Equal<AssetType>(0, assets.assetType.id);
             Assert.Equal("string", assets.assetType.name);
             Assert.Equal<ulong>(0, assets.currentVersionId);
             Assert.Equal(0, assets.meta.order);
@@ -229,10 +228,8 @@ namespace xUnitTests.Deserialization
             Assert.Equal(0, scales.bodyType);
 
 
-
             Color expected_color = ColorTranslator.FromHtml("#A3A2A5");
             Avatar.BodyColor3s bodyColor3s = JsonSerializer.Deserialize<Avatar>(json_response)!.bodyColor3s;
-
 
             Assert.Equal(expected_color, bodyColor3s.headColor3);
             Assert.Equal(expected_color, bodyColor3s.torsoColor3);
@@ -261,9 +258,6 @@ namespace xUnitTests.Deserialization
             Assert.Equal(AvatarType.R15, EnumExtensions.ToEnum<AvatarType>(r15));
 
             Assert.Throws<ArgumentException>(() => EnumExtensions.ToEnum<AvatarType>(bad1));
-
-
-
 
         }
     }

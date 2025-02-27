@@ -7,7 +7,7 @@ namespace Roblox_Sharp.Exceptions
     /// Exception thrown when a ID is invalid/does not exist
     /// can be used for any object that has a unique ID
     /// </summary>
-   public sealed class InvalidIdException : Exception
+    public class InvalidIdException : Exception
     {
 
         public InvalidIdException() { }

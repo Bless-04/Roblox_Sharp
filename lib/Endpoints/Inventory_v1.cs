@@ -36,11 +36,6 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="itemTargetId">Id of the item in question</param>
         /// <returns></returns>
         [Obsolete("This method has not been tested", true)]
-        public static async Task<Page> Get_ItemsAsync(ulong userId, ItemType itemType, ulong itemTargetId)
-        {
-
-        }
+        public static async Task<Page<Item>> Get_ItemsAsync(ulong userId, ItemType itemType, ulong itemTargetId) => JsonSerializer.Deserialize<Page<Item>>(await Get_RequestAsync($"https://inventory.roblox.com/v1/users/{userId}/items/{itemType}/{itemTargetId}"))!;
     }
-
-
 }

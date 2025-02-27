@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using Roblox_Sharp.Framework;
 using Roblox_Sharp.Models;
-using Roblox_Sharp.Models.Badges;
 
 namespace xUnitTests.Object_Functionality
 {

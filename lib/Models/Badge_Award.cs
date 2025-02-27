@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Roblox_Sharp.Models.Badges
+namespace Roblox_Sharp.Models
 {
     /// <summary>
     /// Badge_Award
