@@ -1,8 +1,6 @@
 ﻿using Roblox_Sharp.Enums.Thumbnail;
 using System;
 using System.Linq;
-using System.Numerics;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Roblox_Sharp.Enums
 {
@@ -12,7 +10,7 @@ namespace Roblox_Sharp.Enums
     /// </summary>
     public static class EnumExtensions
     {
-       
+
 
         /// <summary>
         /// used to check if an enum is blacklisted
@@ -22,7 +20,7 @@ namespace Roblox_Sharp.Enums
         /// <returns>
         /// <see langword="true"/> if the enum is blacklisted
         /// </returns>
-        public static bool IsBlackListed(Enum value,Enum[] blacklist) => blacklist.Contains(value);
+        public static bool IsBlackListed(Enum value, Enum[] blacklist) => blacklist.Contains(value);
 
         /// <summary>
         /// converts an enum to a flag
@@ -30,7 +28,7 @@ namespace Roblox_Sharp.Enums
         /// <typeparam name="T">The enums corresponding flag type</typeparam>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static T ToFlag<T>(Enum value) where T : Enum => (T) Enum.Parse(typeof(T), value.ToString(),true);
+        public static T ToFlag<T>(Enum value) where T : Enum => (T)Enum.Parse(typeof(T), value.ToString(), true);
 
         /// <summary>
         /// converts a string to an enum in which the string is the name of the enum value
@@ -38,9 +36,9 @@ namespace Roblox_Sharp.Enums
         /// <typeparam name="T"></typeparam>
         /// <param name="text"></param>
         /// <exception cref="ArgumentException"></exception>
-        public static T ToEnum<T>(string text) where T : Enum => int.TryParse(text, out int value) 
+        public static T ToEnum<T>(string text) where T : Enum => int.TryParse(text, out int value)
             ? (T)Enum.ToObject(typeof(T), value)
-            : (T)Enum.Parse(typeof(T), text,ignoreCase:true);
+            : (T)Enum.Parse(typeof(T), text, ignoreCase: true);
 
         /// <summary>
         /// gives a string representation of a limit

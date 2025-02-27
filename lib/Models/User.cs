@@ -143,9 +143,9 @@ namespace Roblox_Sharp.Models
         public string? requestedUsername { get; init; }
 
         /// <summary>
-        /// <inheritdoc cref="Presence_Type"/>
+        /// <inheritdoc cref="PresenceType"/>
         /// </summary>
-        public Presence_Type presenceType { get; init; }
+        public PresenceType presenceType { get; init; }
 
         /// <summary>
         /// list of previous usernames

@@ -1,8 +1,11 @@
 ﻿using Roblox_Sharp.Models.Internal;
 using System.Text.Json;
+using Roblox_Sharp.Models;
 using System.Threading.Tasks;
+using Roblox_Sharp.Enums;
 
 using static Roblox_Sharp.WebAPI;
+using System;
 
 namespace Roblox_Sharp.Endpoints
 {
@@ -23,5 +26,21 @@ namespace Roblox_Sharp.Endpoints
                 await Get_RequestAsync($"https://inventory.roblox.com/v1/users/{userId}/can-view-inventory")
             ).canView;
 
+        /// <summary>
+        ///Gets owned items of the specified item type.  <br/>
+        ///Game Servers can make requests for any user, but can only make requests for game passes that belong to the place sending the request.  <br/>
+        ///Place creators can make requests as if they were the Game Server <br/>
+        /// </summary>
+        /// <param name="userId">Id of the user in question</param>
+        /// <param name="itemType">Type of the item in question (ie. Asset, GamePass, Badge, Bundle)</param>
+        /// <param name="itemTargetId">Id of the item in question</param>
+        /// <returns></returns>
+        [Obsolete("This method has not been tested", true)]
+        public static async Task<Page> Get_ItemsAsync(ulong userId, ItemType itemType, ulong itemTargetId)
+        {
+
+        }
     }
+
+
 }

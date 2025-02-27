@@ -80,7 +80,7 @@ namespace xUnitTests.Deserialization
 
             Assert.True(avatar.defaultShirtApplied);
             Assert.True(avatar.defaultPantsApplied);
-            Assert.Equal(Avatar_Type.R15, avatar.playerAvatarType);
+            Assert.Equal(AvatarType.R15, avatar.playerAvatarType);
 
             Avatar.Emote emotes = avatar.emotes![0];
             Assert.Equal<ulong>(0, emotes.assetId);
@@ -194,7 +194,7 @@ namespace xUnitTests.Deserialization
 
             Assert.True(avatar.defaultShirtApplied);
             Assert.True(avatar.defaultPantsApplied);
-            Assert.Equal(Avatar_Type.R6, avatar.playerAvatarType);
+            Assert.Equal(AvatarType.R6, avatar.playerAvatarType);
 
             Avatar.Emote emotes = avatar.emotes![0];
             Assert.Equal<ulong>(0, emotes.assetId);
@@ -254,13 +254,13 @@ namespace xUnitTests.Deserialization
 
             const string bad1 = "Rddoesntexist";
 
-            Assert.Equal(Avatar_Type.R6, EnumExtensions.ToEnum<Avatar_Type>(R6));
-            Assert.Equal(Avatar_Type.R6, EnumExtensions.ToEnum<Avatar_Type>(r6));
+            Assert.Equal(AvatarType.R6, EnumExtensions.ToEnum<AvatarType>(R6));
+            Assert.Equal(AvatarType.R6, EnumExtensions.ToEnum<AvatarType>(r6));
 
-            Assert.Equal(Avatar_Type.R15, EnumExtensions.ToEnum<Avatar_Type>(R15));
-            Assert.Equal(Avatar_Type.R15, EnumExtensions.ToEnum<Avatar_Type>(r15));
+            Assert.Equal(AvatarType.R15, EnumExtensions.ToEnum<AvatarType>(R15));
+            Assert.Equal(AvatarType.R15, EnumExtensions.ToEnum<AvatarType>(r15));
 
-            Assert.Throws<ArgumentException>(() => EnumExtensions.ToEnum<Avatar_Type>(bad1));
+            Assert.Throws<ArgumentException>(() => EnumExtensions.ToEnum<AvatarType>(bad1));
 
 
 

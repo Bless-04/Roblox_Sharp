@@ -126,7 +126,7 @@ namespace xUnitTests.Deserialization
 
             Assert.NotNull(userPresence);
 
-            Assert.Equal<Presence_Type>(0, userPresence.presenceType);
+            Assert.Equal<PresenceType>(0, userPresence.presenceType);
             Assert.Equal("string", userPresence.lastLocation);
             Assert.Equal<ulong?>(0, userPresence.placeId);
             Assert.Equal<ulong?>(0, userPresence.rootPlaceId);

@@ -28,9 +28,9 @@ namespace Roblox_Sharp.Models
         public ulong userId { get; init; }
 
         /// <summary>
-        /// <see cref="Presence_Type"/> type of user
+        /// <see cref="PresenceType"/> type of user
         /// </summary>
-        public Presence_Type presenceType { get; init; }
+        public PresenceType presenceType { get; init; }
 
         public string? lastLocation { get; init; }
 
