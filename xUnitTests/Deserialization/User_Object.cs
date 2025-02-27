@@ -27,9 +27,7 @@ namespace xUnitTests.Deserialization
                 ""displayName"": ""string""
             }";
 
-
             User? user = JsonSerializer.Deserialize<User>(json_response);
-
 
             Assert.NotNull(user);
 
@@ -81,8 +79,7 @@ namespace xUnitTests.Deserialization
             Assert.Equal("string", user.username);
             Assert.Equal("displayName", user.displayName);
 
-
-
+            Assert.Equal(page.data.Count, RoundTrip(page).data.Count);
         }
 
         /// <summary>

@@ -15,6 +15,7 @@ namespace xUnitTests.Deserialization
         /// <returns></returns>
         internal static void RoundTripTest<T>(T obj) => Assert.Equal(obj, JsonSerializer.Deserialize<T>(JsonSerializer.Serialize(obj)));
 
+        internal static T RoundTrip<T>(T obj) => JsonSerializer.Deserialize<T>(JsonSerializer.Serialize(obj))!;
         [Fact]
         public void Page()
         {
