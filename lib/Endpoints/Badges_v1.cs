@@ -1,7 +1,6 @@
 ﻿using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
-using Roblox_Sharp.Models.Badges;
 using System;
 using System.Collections.Generic;
 using System.Text.Json;

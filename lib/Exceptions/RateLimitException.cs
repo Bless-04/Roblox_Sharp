@@ -6,7 +6,7 @@ namespace Roblox_Sharp.Exceptions
     /// <summary>
     /// Exception thrown when the rate limit is exceeded
     /// </summary>
-    public sealed class RateLimitException : Exception
+    public class RateLimitException : Exception
     {
         public RateLimitException() { }
 

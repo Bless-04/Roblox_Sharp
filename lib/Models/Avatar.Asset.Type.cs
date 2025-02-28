@@ -1,4 +1,5 @@
-﻿namespace Roblox_Sharp.Models;
+﻿using Roblox_Sharp.Enums;
+namespace Roblox_Sharp.Models;
 
 public partial class Avatar
 {
@@ -7,17 +8,17 @@ public partial class Avatar
         /// <summary>
         /// the type of the asset
         /// </summary>
-        public class Asset_Type 
+        public class Type
         {
             /// <summary>
             /// the id of the Asset_Type
             /// </summary>
-            public ulong id { get; init; }
+            public AssetType id { get; init; }
 
             /// <summary>
-            /// The name of the Asset_Type
+            /// the name of the Asset_Type
             /// </summary>
-            required public string name { get; init; }
+            public string name { get; init; }
         }
     }
 }

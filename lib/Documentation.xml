@@ -197,6 +197,22 @@
             <param name="userId">The users id </param>
             <returns>true if the inventory can be viewed</returns>
         </member>
+        <member name="M:Roblox_Sharp.Endpoints.Inventory_v1.Get_ItemsAsync(System.UInt64,Roblox_Sharp.Enums.ItemType,System.UInt64)">
+             <summary>
+            Gets owned items of the specified item type.  <br/>
+            Game Servers can make requests for any user, but can only make requests for game passes that belong to the place sending the request.  <br/>
+            Place creators can make requests as if they were the Game Server <br/>
+             </summary>
+             <param name="userId">Id of the user in question</param>
+             <param name="itemType">Type of the item in question (ie. Asset, GamePass, Badge, Bundle)</param>
+             <param name="itemTargetId">Id of the item in question</param>
+             <returns></returns>
+        </member>
+        <member name="T:Roblox_Sharp.Endpoints.Inventory_v2">
+            <summary>
+            <inheritdoc cref="T:Roblox_Sharp.Endpoints.Inventory_v1"/>
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.Endpoints.Presence_v1">
             <summary>
             all Endpoints for managing presence 
@@ -343,6 +359,17 @@
             <returns></returns>
             <exception cref="T:System.InvalidOperationException"></exception>
         </member>
+        <member name="T:Roblox_Sharp.Enums.AssetType">
+            <summary>
+            The asset type id of asset with id Roblox.Inventory.Api.V2.UserAssetItemModelV2.AssetId. <br/>
+            <seealso cref="T:Roblox_Sharp.Endpoints.Inventory_v2"/>
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Enums.CategoryType">
+            <summary>
+            	Describes what type an AssetsExplorerCategoryItemModel contains
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.Enums.EnumExtensions">
             <summary>
             used to get string representations of enums that cant use the literal variable name 
@@ -393,19 +420,6 @@
         <member name="T:Roblox_Sharp.Enums.Limit">
             <summary>
             The number of results per request.
-            </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Enums.Presence_Type">
-            <summary>
-            Offline = 0 
-            <br></br>
-            Online = 1  
-            <br></br> 
-            InGame = 2  
-            <br></br>
-            InStudio = 3
-            <br></br> 
-            Invisible = 4 
             </summary>
         </member>
         <member name="T:Roblox_Sharp.Enums.Thumbnail.Size">
@@ -495,6 +509,11 @@
         </member>
         <member name="M:Roblox_Sharp.Framework.Creation.CompareTo(Roblox_Sharp.Framework.Creation)">
             <inheritdoc/>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.IAsset.assetId">
+            <summary>
+            The unique id of the asset
+            </summary>
         </member>
         <member name="T:Roblox_Sharp.Framework.ICloneable`1">
             <inheritdoc cref="T:System.ICloneable"/>
@@ -624,39 +643,14 @@
             used to serialize avatar based requests
             </summary>
         </member>
-        <member name="T:Roblox_Sharp.Models.Avatar.Emote">
-            <summary>
-            a roblox emote
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Emote.position">
-            <summary>
-            the position the emote is equipped to
-            </summary>
-        </member>
         <member name="T:Roblox_Sharp.Models.Avatar.Asset">
             <summary>
             Assets that a players Avatar can equip
             </summary>
         </member>
-        <member name="T:Roblox_Sharp.Models.Avatar.Asset.Asset_Type">
-            <summary>
-            the type of the asset
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Asset_Type.id">
-            <summary>
-            the id of the Asset_Type
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Asset_Type.name">
-            <summary>
-            The name of the Asset_Type
-            </summary>
-        </member>
         <member name="P:Roblox_Sharp.Models.Avatar.Asset.assetId">
             <summary>
-            the unique id of the asset
+            <inheritdoc/>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.Avatar.Asset.assetName">
@@ -671,7 +665,7 @@
         </member>
         <member name="P:Roblox_Sharp.Models.Avatar.Asset.assetType">
             <summary>
-            <inheritdoc cref="T:Roblox_Sharp.Models.Avatar.Asset.Asset_Type"/>
+            <inheritdoc cref="T:Roblox_Sharp.Enums.AssetType"/>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.Avatar.Asset.meta">
@@ -719,6 +713,21 @@
         <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.order">
             <summary>
             layered clothing order
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Avatar.Asset.Type">
+            <summary>
+            the type of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Type.id">
+            <summary>
+            the id of the Asset_Type
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Type.name">
+            <summary>
+            the name of the Asset_Type
             </summary>
         </member>
         <member name="T:Roblox_Sharp.Models.Avatar.BodyColor3s">
@@ -798,7 +807,7 @@
         </member>
         <member name="P:Roblox_Sharp.Models.Avatar.playerAvatarType">
             <summary>
-            <inheritdoc cref="T:Roblox_Sharp.Enums.Avatar_Type"/>
+            <inheritdoc cref="T:Roblox_Sharp.Enums.AvatarType"/>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.Avatar.bodyColors">
@@ -835,6 +844,16 @@
         </member>
         <member name="M:Roblox_Sharp.Models.Avatar.Clone">
             <inheritdoc/>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Avatar.Emote">
+            <summary>
+            a roblox emote
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Emote.position">
+            <summary>
+            the position the emote is equipped to
+            </summary>
         </member>
         <member name="T:Roblox_Sharp.Models.Avatar.Scales">
             <summary>
@@ -939,14 +958,49 @@
         <member name="M:Roblox_Sharp.Models.Badge.Clone">
             <inheritdoc/>
         </member>
-        <member name="T:Roblox_Sharp.Models.Badges.Badge_Award">
+        <member name="T:Roblox_Sharp.Models.Badge_Award">
             <summary>
             Badge_Award
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Badges.Badge_Award.awardedDate">
+        <member name="P:Roblox_Sharp.Models.Badge_Award.awardedDate">
             <summary>
             date badge was awarded
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.userAssetId">
+            <summary>
+            The user asset id
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.serialNumber">
+            <summary>
+            The serial number of the user asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.assetId">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.name">
+            <summary>
+            The asset name of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.recentAveragePrice">
+            <summary>
+            The recent average price of the user asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.originalPrice">
+            <summary>
+            The original price of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.isOnHold">
+            <summary>
+            Whether the user asset has an active hold
             </summary>
         </member>
         <member name="T:Roblox_Sharp.Models.Game">
@@ -1148,6 +1202,36 @@
             </summary>
             since arrays are a reference type, its not worth making this a struct
         </member>
+        <member name="T:Roblox_Sharp.Models.Item">
+            <summary>
+            class used to serialize Item based requests
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Item.Id">
+            <summary>
+            The ID of the item
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Item.assetId">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Item.Name">
+            <summary>
+            The name of the item
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Item.Type">
+            <summary>
+            The type of the item
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Item.InstanceId">
+            <summary>
+            The instance id of the item if applicable
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.Models.Page`1">
             <inheritdoc cref="T:Roblox_Sharp.Framework.IPage`1"/>
         </member>
@@ -1341,7 +1425,7 @@
         </member>
         <member name="P:Roblox_Sharp.Models.User.presenceType">
             <summary>
-            <inheritdoc cref="T:Roblox_Sharp.Enums.Presence_Type"/>
+            <inheritdoc cref="T:Roblox_Sharp.Enums.PresenceType"/>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.User.previousUsernames">
@@ -1453,7 +1537,7 @@
         </member>
         <member name="P:Roblox_Sharp.Models.User_Presence.presenceType">
             <summary>
-            <see cref="T:Roblox_Sharp.Enums.Presence_Type"/> type of user
+            <see cref="T:Roblox_Sharp.Enums.PresenceType"/> type of user
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.User_Presence.placeId">

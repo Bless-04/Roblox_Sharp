@@ -4,7 +4,6 @@ using System;
 using System.Drawing;
 using System.Text.Json;
 
-
 namespace xUnitTests.Deserialization
 {
     [Trait(nameof(xUnitTests), nameof(Deserialization))]
@@ -80,7 +79,7 @@ namespace xUnitTests.Deserialization
 
             Assert.True(avatar.defaultShirtApplied);
             Assert.True(avatar.defaultPantsApplied);
-            Assert.Equal(Avatar_Type.R15, avatar.playerAvatarType);
+            Assert.Equal(AvatarType.R15, avatar.playerAvatarType);
 
             Avatar.Emote emotes = avatar.emotes![0];
             Assert.Equal<ulong>(0, emotes.assetId);
@@ -90,7 +89,7 @@ namespace xUnitTests.Deserialization
             Avatar.Asset assets = avatar.assets![0];
             Assert.Equal<ulong>(0, assets.assetId);
             Assert.Equal("string", assets.assetName);
-            Assert.Equal<ulong>(0, assets.assetType.id);
+            Assert.Equal(0, (byte)assets.assetType.id);
             Assert.Equal("string", assets.assetType.name);
             Assert.Equal<ulong>(0, assets.currentVersionId);
             Assert.Equal(0, assets.meta.order);
@@ -194,7 +193,7 @@ namespace xUnitTests.Deserialization
 
             Assert.True(avatar.defaultShirtApplied);
             Assert.True(avatar.defaultPantsApplied);
-            Assert.Equal(Avatar_Type.R6, avatar.playerAvatarType);
+            Assert.Equal(AvatarType.R6, avatar.playerAvatarType);
 
             Avatar.Emote emotes = avatar.emotes![0];
             Assert.Equal<ulong>(0, emotes.assetId);
@@ -204,7 +203,7 @@ namespace xUnitTests.Deserialization
             Avatar.Asset assets = avatar.assets![0];
             Assert.Equal<ulong>(0, assets.assetId);
             Assert.Equal("string", assets.assetName);
-            Assert.Equal<ulong>(0, assets.assetType.id);
+            Assert.Equal<AssetType>(0, assets.assetType.id);
             Assert.Equal("string", assets.assetType.name);
             Assert.Equal<ulong>(0, assets.currentVersionId);
             Assert.Equal(0, assets.meta.order);
@@ -229,10 +228,8 @@ namespace xUnitTests.Deserialization
             Assert.Equal(0, scales.bodyType);
 
 
-
             Color expected_color = ColorTranslator.FromHtml("#A3A2A5");
             Avatar.BodyColor3s bodyColor3s = JsonSerializer.Deserialize<Avatar>(json_response)!.bodyColor3s;
-
 
             Assert.Equal(expected_color, bodyColor3s.headColor3);
             Assert.Equal(expected_color, bodyColor3s.torsoColor3);
@@ -254,16 +251,13 @@ namespace xUnitTests.Deserialization
 
             const string bad1 = "Rddoesntexist";
 
-            Assert.Equal(Avatar_Type.R6, EnumExtensions.ToEnum<Avatar_Type>(R6));
-            Assert.Equal(Avatar_Type.R6, EnumExtensions.ToEnum<Avatar_Type>(r6));
+            Assert.Equal(AvatarType.R6, EnumExtensions.ToEnum<AvatarType>(R6));
+            Assert.Equal(AvatarType.R6, EnumExtensions.ToEnum<AvatarType>(r6));
 
-            Assert.Equal(Avatar_Type.R15, EnumExtensions.ToEnum<Avatar_Type>(R15));
-            Assert.Equal(Avatar_Type.R15, EnumExtensions.ToEnum<Avatar_Type>(r15));
+            Assert.Equal(AvatarType.R15, EnumExtensions.ToEnum<AvatarType>(R15));
+            Assert.Equal(AvatarType.R15, EnumExtensions.ToEnum<AvatarType>(r15));
 
-            Assert.Throws<ArgumentException>(() => EnumExtensions.ToEnum<Avatar_Type>(bad1));
-
-
-
+            Assert.Throws<ArgumentException>(() => EnumExtensions.ToEnum<AvatarType>(bad1));
 
         }
     }

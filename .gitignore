@@ -6,3 +6,5 @@
 /xUnitTests/.vs
 /xUnitTests/bin
 /xUnitTests/obj
+*.user
+/lib/Properties

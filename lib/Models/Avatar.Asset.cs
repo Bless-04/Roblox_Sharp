@@ -1,4 +1,5 @@
 ﻿using Roblox_Sharp.Framework;
+using Roblox_Sharp.Exceptions;
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models;
@@ -8,19 +9,21 @@ public partial class Avatar
     /// <summary>
     /// Assets that a players Avatar can equip
     /// </summary>
-    public partial class Asset : Creation, ICloneable<Asset>
+    public partial class Asset : Creation, IAsset, ICloneable<Asset>
     {
-
         /// <summary>
-        /// the unique id of the asset
+        /// <inheritdoc/>
         /// </summary>
-        public ulong assetId { get; init; }
-
+        public ulong assetId
+        {
+            get => base.id ?? throw new NotRequestedException(nameof(assetId));
+            init => base.id = value;
+        }
 
         /// <summary>
         /// the name of the asset
         /// </summary>
-        public string assetName { get; init; }
+        public string? assetName { get; init; }
 
         /// <summary>
         /// <inheritdoc cref="assetName"/>
@@ -29,9 +32,9 @@ public partial class Avatar
         protected string name { init => assetName = value; }
 
         /// <summary>
-        /// <inheritdoc cref="Asset_Type"/>
+        /// <inheritdoc cref="Roblox_Sharp.Enums.AssetType"/>
         /// </summary>
-        public Asset_Type assetType { get; init; }
+        public Avatar.Asset.Type assetType { get; init; }
 
         public ulong currentVersionId { get; init; }
 
@@ -52,6 +55,6 @@ public partial class Avatar
                 assetType = assetType,
                 currentVersionId = currentVersionId,
                 meta = meta
-            };       
+            };
     }
 }

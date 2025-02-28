@@ -1,5 +1,5 @@
-﻿using Roblox_Sharp.Models;
-using System;
+﻿using Roblox_Sharp.Framework;
+using Roblox_Sharp.Models;
 using System.Text.Json;
 
 namespace xUnitTests.Deserialization
@@ -7,6 +7,15 @@ namespace xUnitTests.Deserialization
     [Trait(nameof(xUnitTests), nameof(Deserialization))]
     public class Miscellaneous
     {
+        /// <summary>
+        /// Serializes the object and then returns the deserialized object 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        internal static void RoundTripTest<T>(T obj) => Assert.Equal(obj, JsonSerializer.Deserialize<T>(JsonSerializer.Serialize(obj)));
+
+        internal static T RoundTrip<T>(T obj) => JsonSerializer.Deserialize<T>(JsonSerializer.Serialize(obj))!;
         [Fact]
         public void Page()
         {
@@ -16,12 +25,13 @@ namespace xUnitTests.Deserialization
               ""nextPageCursor"": ""string"",
               ""data"": [
                 {
-                  ""name"": ""string""
+              ""Id"": 1,    
+                  ""Name"": ""string""
                 }
               ]
             }";
 
-            Page<User>? page = JsonSerializer.Deserialize<Page<User>>(json_response);
+            Page<Item>? page = JsonSerializer.Deserialize<Page<Item>>(json_response);
 
             Assert.NotNull(page);
 
@@ -30,7 +40,7 @@ namespace xUnitTests.Deserialization
 
             Assert.True(1 == page.data.Count, "Page should have 1 item");
 
-            Assert.Equal("string", page.data[0].username);
+            Assert.Equal("string", page.data[0].Name);
 
         }
 
@@ -39,7 +49,7 @@ namespace xUnitTests.Deserialization
         {
             const string json_response = @"  
             {
-                ""targetId"": 0,
+                ""targetId"": 1,
                 ""state"": ""Error"",
                 ""imageUrl"": ""string"",
                 ""version"": ""string""
@@ -48,10 +58,54 @@ namespace xUnitTests.Deserialization
             Thumbnail? thumbnail = JsonSerializer.Deserialize<Thumbnail>(json_response);
 
             Assert.NotNull(thumbnail);
-            //Assert.Equal<ulong>(0, thumbnail.targetId);
+            Assert.Equal<ulong>(1, thumbnail.targetId);
             Assert.Equal("Error", thumbnail.state);
             Assert.Equal("string", thumbnail.imageUrl);
             Assert.Equal("string", thumbnail.version);
+
+        }
+
+        [Fact]
+        public void CollectibleAsset()
+        {
+            const string json = @"{
+              ""userAssetId"": 1,
+              ""serialNumber"": 2,
+              ""assetId"": 4,
+              ""name"": ""string"",
+              ""recentAveragePrice"": 4,
+              ""originalPrice"": 8,
+              ""assetStock"": 16,
+              ""buildersClubMembershipType"": 32,
+              ""isOnHold"": true
+            }";
+            CollectibleAsset? test = JsonSerializer.Deserialize<CollectibleAsset>(json);
+
+            Assert.NotNull(test);
+            Assert.Equal<byte>(0, (byte)(test.userAssetId & test.serialNumber & test.assetId & test.recentAveragePrice & test.originalPrice & test.assetStock & (byte)test.buildersClubMembershipType));
+
+            RoundTripTest(test);
+        }
+
+        [Fact]
+        public void Item()
+        {
+            const string json = @"
+            {
+              ""Id"": 1,
+              ""Name"": ""string"",
+              ""Type"": 2,
+              ""InstanceId"": 4
+            }";
+
+            Item? test = JsonSerializer.Deserialize<Item>(json);
+
+            Assert.NotNull(test);
+            Assert.Equal(0, (byte)(test.Id & (byte)test.Type & test.InstanceId));
+
+            Assert.Equal("string", test.Name);
+
+            RoundTripTest(test);
 
         }
     }

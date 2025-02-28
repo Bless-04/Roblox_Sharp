@@ -78,10 +78,10 @@ namespace Roblox_Sharp.Models
         public Scales scales { get; init; }
 
         /// <summary>
-        /// <inheritdoc cref="Avatar_Type"/>
+        /// <inheritdoc cref="AvatarType"/>
         /// </summary>
         [JsonConverter(typeof(Avatar_Type_JsonConverter))]
-        public Avatar_Type playerAvatarType { get; init; }
+        public AvatarType playerAvatarType { get; init; }
 
         /// <summary>
         /// the brickcolor ids for each bodypart

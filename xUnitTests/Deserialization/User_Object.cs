@@ -1,7 +1,7 @@
 ﻿using Roblox_Sharp.Enums;
 using Roblox_Sharp.Models;
-using System.Linq;
 using System.Text.Json;
+using static xUnitTests.Deserialization.Miscellaneous;
 
 namespace xUnitTests.Deserialization
 {
@@ -26,9 +26,7 @@ namespace xUnitTests.Deserialization
                 ""displayName"": ""string""
             }";
 
-
             User? user = JsonSerializer.Deserialize<User>(json_response);
-
 
             Assert.NotNull(user);
 
@@ -40,6 +38,8 @@ namespace xUnitTests.Deserialization
             Assert.Equal<ulong>(0, user.userId);
             Assert.Equal("string", user.username);
             Assert.Null(user.displayName);
+
+            RoundTripTest(user);
         }
 
         [Fact]
@@ -71,13 +71,14 @@ namespace xUnitTests.Deserialization
             User user = page.data[0];
 
             Assert.NotNull(user.previousUsernames);
-            Assert.True(1 == user.previousUsernames.Count());
+            Assert.Single(user.previousUsernames);
 
             Assert.True(user.hasVerifiedBadge);
             Assert.Equal<ulong>(0, user.userId);
             Assert.Equal("string", user.username);
             Assert.Equal("displayName", user.displayName);
 
+            Assert.Equal(page.data.Count, RoundTrip(page).data.Count);
         }
 
         /// <summary>
@@ -103,6 +104,7 @@ namespace xUnitTests.Deserialization
                 presence.userId == user.userId,
                 "The id in the User_Presence object should be the same as the id in the User object");
 
+            RoundTripTest(user);
         }
 
         [Fact]
@@ -126,7 +128,7 @@ namespace xUnitTests.Deserialization
 
             Assert.NotNull(userPresence);
 
-            Assert.Equal<Presence_Type>(0, userPresence.presenceType);
+            Assert.Equal<PresenceType>(0, userPresence.presenceType);
             Assert.Equal("string", userPresence.lastLocation);
             Assert.Equal<ulong?>(0, userPresence.placeId);
             Assert.Equal<ulong?>(0, userPresence.rootPlaceId);
@@ -135,6 +137,8 @@ namespace xUnitTests.Deserialization
             Assert.Equal<ulong?>(0, userPresence.userId);
             Assert.Equal(2024, userPresence.lastOnline.Year);
             Assert.Equal(2024, userPresence.invisibleModeExpiry.Year);
+
+            RoundTripTest(userPresence);
         }
 
     }
