@@ -2,10 +2,7 @@
 name: Long Web Integration
 
 on:
-    workflow_dispatch:
-
-    pull_request:
-        types: [opened]
+    push:
         branches:
             - stable
             - main
