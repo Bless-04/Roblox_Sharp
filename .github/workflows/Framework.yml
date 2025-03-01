@@ -1,9 +1,8 @@
-#Tests functionality of objects and json deserialization
+#Builds Roblox_Sharp and also Tests functionality of objects and json deserialization
 name: Framework Functionality
 
 on:
     workflow_dispatch:
-
     push:
 
 defaults:
@@ -11,7 +10,7 @@ defaults:
         working-directory: "lib"
 
 jobs:
-    Build-and-Test:
+    Build:
         runs-on: ubuntu-latest
 
         steps:
@@ -22,6 +21,12 @@ jobs:
 
             - name: Build Roblox_Sharp
               run: dotnet build -c Debug Roblox_Sharp.sln
+
+            - name: Upload Roblox_Sharp Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: built-project
+                  path: lib/bin/Debug/
 
             - name: Object Functionality Tests
               run: dotnet test -c Debug --no-build --filter xUnitTests=Object_Functionality
