@@ -2,8 +2,6 @@
 name: Web Integration
 
 on:
-    workflow_dispatch:
-
     push:
         branches:
             - stable
@@ -17,17 +15,19 @@ defaults:
         working-directory: "lib"
 
 jobs:
-    Build-and-Test:
+    Short-Integration-Tests:
         runs-on: ubuntu-latest
-
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-dotnet@v4
               with:
                   dotnet-version: "8.0.x"
 
-            - name: Build Roblox_Sharp
-              run: dotnet build -c Debug Roblox_Sharp.sln
+            - name: Download Roblox_Sharp Artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: built-project
+                  path: lib/bin/Debug/
 
             - name: Short Integration Tests
               run: dotnet test -c Debug --no-build --filter xUnitTests=Integration
