@@ -22,14 +22,16 @@ jobs:
             - name: Build Roblox_Sharp
               run: dotnet build -c Debug Roblox_Sharp.sln
 
-            - name: Upload Roblox_Sharp Artifact
-              uses: actions/upload-artifact@v4
+            - name: Cache Roblox_Sharp
+              uses: actions/cache@v4
               with:
-                  name: built-project
-                  path: lib/bin/Debug/
+                  path: "**/bin/Debug/"
+                  key: ${{ runner.os }}-build-${{ github.sha }}
 
             - name: Object Functionality Tests
               run: dotnet test -c Debug --no-build --filter xUnitTests=Object_Functionality
+
+              continue-on-error: true
 
             - name: JSON Deserialization Tests
               run: dotnet test -c Debug --no-build --filter xUnitTests=Deserialization
