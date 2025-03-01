@@ -22,16 +22,8 @@ jobs:
             - name: Build Roblox_Sharp
               run: dotnet build -c Debug Roblox_Sharp.sln
 
-            - name: Cache Roblox_Sharp
-              uses: actions/cache@v4
-              with:
-                  path: "**/bin/Debug/"
-                  key: ${{ runner.os }}-build-${{ github.sha }}
-
             - name: Object Functionality Tests
               run: dotnet test -c Debug --no-build --filter xUnitTests=Object_Functionality
-
-              continue-on-error: true
 
             - name: JSON Deserialization Tests
               run: dotnet test -c Debug --no-build --filter xUnitTests=Deserialization

@@ -13,25 +13,22 @@ on:
 
 defaults:
     run:
-        working-directory: "lib"
+        working-directory: "xUnitTests"
 
 jobs:
     Build:
-        name: Build Roblox_Sharp
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-dotnet@v4
               with:
                   dotnet-version: "8.0.x"
-            - name: Build Roblox_Sharp
-              run: dotnet build Roblox_Sharp.sln
 
-            - name: Upload Roblox_Sharp Artifact
-              uses: actions/upload-artifact@v4
+            - run: dotnet build xUnitTests.sln
+            - uses: actions/upload-artifact@v4
               with:
-                  name: roblox_sharp
-                  path: lib/bin/Debug/
+                  name: tests
+                  path: bin/Debug/
 
     Integration-Tests:
         name: Short Integration Tests
@@ -40,8 +37,8 @@ jobs:
         steps:
             - uses: actions/download-artifact@v4 # Artifact Downloading
               with:
-                  name: roblox_sharp
-                  path: lib/bin/Debug/
+                  name: tests
+                  path: bin/Debug/
             - uses: actions/checkout@v4
             - uses: actions/setup-dotnet@v4
               with:
@@ -62,7 +59,7 @@ jobs:
             - uses: actions/download-artifact@v4
               with:
                   name: roblox_sharp
-                  path: lib/bin/Debug/
+                  path: bin/Debug/
 
             - name: Long Integration Tests
               run: dotnet test -c Debug --no-build --filter xUnitTests=Long_Integration
