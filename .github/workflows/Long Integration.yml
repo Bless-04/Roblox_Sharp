@@ -17,18 +17,19 @@ defaults:
 jobs:
     Long-Integration-Tests:
         runs-on: ubuntu-latest
-
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-dotnet@v4
               with:
                   dotnet-version: "8.0.x"
 
-            - name: Download Roblox_Sharp Artifact
-              uses: actions/download-artifact@v4
+            - name: Download Cached Roblox_Sharp
+              uses: actions/cache@v4
               with:
-                  name: built-project
-                  path: lib/bin/Debug/
+                  path: "**/bin/Debug/"
+                  key: ${{ runner.os }}-build-${{ github.sha }}
+                  restore-keys: |
+                      ${{ runner.os }}-build-
 
             - name: Long Integration Tests
               run: dotnet test -c Debug --no-build --filter xUnitTests=Long_Integration
