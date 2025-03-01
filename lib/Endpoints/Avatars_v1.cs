@@ -1,9 +1,9 @@
-﻿using Roblox_Sharp.Models;
-using Roblox_Sharp.Models.Internal;
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Roblox_Sharp.Models;
+using Roblox_Sharp.Models.Internal;
 using static Roblox_Sharp.WebAPI;
 
 namespace Roblox_Sharp.Endpoints
