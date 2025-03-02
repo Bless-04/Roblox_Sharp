@@ -2,7 +2,10 @@
 name: Web Integration
 
 on:
-    workflow_dispatch:
+    workflow_run:
+        workflows: ["Framework Functionality"]
+        types: [completed]
+        branches: [stable, main]
     # push:
     #    branches:
     #       - stable
@@ -19,12 +22,21 @@ jobs:
     Build:
         runs-on: ubuntu-latest
         steps:
+            - name: Download Cached Roblox_Sharp
+              uses: actions/cache@v4
+              with:
+                  path: "**/bin/Debug/"
+                  key: ${{ runner.os }}-build-${{ github.sha }}
+                  restore-keys: |
+                      ${{ runner.os }}-build-
+
             - uses: actions/checkout@v4
             - uses: actions/setup-dotnet@v4
               with:
                   dotnet-version: "8.0.x"
 
-            - run: dotnet build xUnitTests.sln
+            - name: Build Tests
+              run: dotnet build xUnitTests.sln
             - uses: actions/upload-artifact@v4
               with:
                   name: tests
@@ -58,7 +70,7 @@ jobs:
                   dotnet-version: "8.0.x"
             - uses: actions/download-artifact@v4
               with:
-                  name: roblox_sharp
+                  name: tests
                   path: bin/Debug/
 
             - name: Long Integration Tests
