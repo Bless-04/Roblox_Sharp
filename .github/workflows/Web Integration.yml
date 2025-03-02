@@ -18,6 +18,11 @@ jobs:
     Build:
         runs-on: ubuntu-latest
         steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.0.x"
+
             - name: Download Cached Roblox_Sharp
               uses: actions/cache@v4
               with:
@@ -26,13 +31,8 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-build-
 
-            - uses: actions/checkout@v4
-            - uses: actions/setup-dotnet@v4
-              with:
-                  dotnet-version: "8.0.x"
-
-            - run: dotnet build lib\
-            # - run: dotnet build -c Debug xUnitTests\
+            # - run: dotnet build lib\
+            - run: dotnet build xUnitTests -c Debug xUnitTests\
             - uses: actions/upload-artifact@v4
               with:
                   name: tests
