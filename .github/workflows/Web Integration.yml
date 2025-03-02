@@ -20,7 +20,7 @@ defaults:
 
 jobs:
     Integration-Tests:
-        name: Short Integration Tests
+        name: Short Integration
 
         runs-on: ubuntu-latest
         steps:
@@ -28,31 +28,19 @@ jobs:
             - uses: actions/setup-dotnet@v4
               with:
                   dotnet-version: "8.0.x"
-            - uses: actions/cache@v4
-              with:
-                  path: "**/bin/Debug/"
-                  key: ${{ runner.os }}-build-${{ github.sha }}
-                  restore-keys: |
-                      ${{ runner.os }}-build-
 
+            - run: dotnet build
             - name: Short Integration Tests
-              run: dotnet test -c Debug  --filter xUnitTests=Integration
+              run: dotnet test -c Debug --no-build  --filter xUnitTests=Integration
 
     Long-Integration-Tests:
-        name: Rate Limitted Integration Tests
+        name: Rate Limitted Integration
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-dotnet@v4
               with:
                   dotnet-version: "8.0.x"
-            - name: Download Roblox_Sharp
-              uses: actions/cache@v4
-              with:
-                  path: "**/bin/Debug/"
-                  key: ${{ runner.os }}-build-${{ github.sha }}
-                  restore-keys: |
-                      ${{ runner.os }}-build-
-
+            - run: dotnet build
             - name: Long Integration Tests
               run: dotnet test -c Debug --no-build --filter xUnitTests=Long_Integration
