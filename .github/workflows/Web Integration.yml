@@ -4,12 +4,12 @@ name: Web Integration
 on:
     workflow_dispatch:
     push:
-        #  branches:
-        #   - stable
-        #     - main
-        # paths:
-        #  - "**.cs"
-        #   - "**.csproj"
+        branches:
+            - stable
+            - main
+        paths:
+            - "**.cs"
+            - "**.csproj"
 defaults:
     run:
         working-directory: "lib"
