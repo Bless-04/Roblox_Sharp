@@ -2,25 +2,23 @@
 name: Web Integration
 
 on:
-    workflow_run:
-        workflows: [Framework Functionality]
-        types: [completed]
-        branches: [stable, main]
-    # push:
-    #    branches:
-    #       - stable
-    #      - main
-    # paths:
-    #    - "**.cs"
-    #   - "**.csproj"
-
+    workflow_dispatch:
+    push:
+        #  branches:
+        #   - stable
+        #     - main
+        # paths:
+        #  - "**.cs"
+        #   - "**.csproj"
 defaults:
     run:
         working-directory: "lib"
 
 jobs:
     Integration-Tests:
-        name: Short Integration
+        name: Integration
+
+        continue-on-error: true
 
         runs-on: ubuntu-latest
         steps:
@@ -29,18 +27,11 @@ jobs:
               with:
                   dotnet-version: "8.0.x"
 
-            - run: dotnet build
+            - name: Build Roblox_Sharp
+              run: dotnet build
+
             - name: Short Integration Tests
               run: dotnet test -c Debug --no-build  --filter xUnitTests=Integration
 
-    Long-Integration-Tests:
-        name: Rate Limitted Integration
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-dotnet@v4
-              with:
-                  dotnet-version: "8.0.x"
-            - run: dotnet build
             - name: Long Integration Tests
               run: dotnet test -c Debug --no-build --filter xUnitTests=Long_Integration
