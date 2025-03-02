@@ -3,7 +3,7 @@ name: Web Integration
 
 on:
     workflow_run:
-        workflows: ["Framework Functionality"]
+        workflows: [Framework]
         types: [completed]
         branches: [stable, main]
     # push:
