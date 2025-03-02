@@ -15,59 +15,40 @@ on:
     #   - "**.csproj"
 
 jobs:
-    Build:
+    Integration-Tests:
+        name: Short Integration Tests
+
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-dotnet@v4
               with:
                   dotnet-version: "8.0.x"
-
-            - name: Download Cached Roblox_Sharp
-              uses: actions/cache@v4
+            - uses: actions/cache@v4
               with:
                   path: "**/bin/Debug/"
                   key: ${{ runner.os }}-build-${{ github.sha }}
                   restore-keys: |
                       ${{ runner.os }}-build-
 
-            # - run: dotnet build lib\
-            - run: dotnet build xUnitTests -c Debug xUnitTests\
-            - uses: actions/upload-artifact@v4
-              with:
-                  name: tests
-                  path: "**/bin/Debug/"
-
-    Integration-Tests:
-        name: Short Integration Tests
-        needs: Build
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/download-artifact@v4 # Artifact Downloading
-              with:
-                  name: tests
-                  path: "**/bin/Debug/"
-            - uses: actions/checkout@v4
-            - uses: actions/setup-dotnet@v4
-              with:
-                  dotnet-version: "8.0.x"
-
             - name: Short Integration Tests
-              run: dotnet test -c Debug lib/ --no-build --filter xUnitTests=Integration
+              run: dotnet test -c Debug lib/  --filter xUnitTests=Integration
 
     Long-Integration-Tests:
         name: Rate Limitted Integration Tests
-        needs: Build
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-dotnet@v4
               with:
                   dotnet-version: "8.0.x"
-            - uses: actions/download-artifact@v4
+            - name: Download Roblox_Sharp
+              uses: actions/cache@v4
               with:
-                  name: tests
                   path: "**/bin/Debug/"
+                  key: ${{ runner.os }}-build-${{ github.sha }}
+                  restore-keys: |
+                      ${{ runner.os }}-build-
 
             - name: Long Integration Tests
               run: dotnet test -c Debug lib/ --no-build --filter xUnitTests=Long_Integration
