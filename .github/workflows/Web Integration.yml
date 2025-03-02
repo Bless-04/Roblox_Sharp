@@ -53,7 +53,7 @@ jobs:
                   dotnet-version: "8.0.x"
 
             - name: Short Integration Tests
-              run: dotnet test -c Debug --no-build --filter xUnitTests=Integration
+              run: dotnet test -c Debug lib/ --no-build --filter xUnitTests=Integration
 
     Long-Integration-Tests:
         name: Rate Limitted Integration Tests
@@ -70,4 +70,4 @@ jobs:
                   path: "**/bin/Debug/"
 
             - name: Long Integration Tests
-              run: dotnet test -c Debug --no-build --filter xUnitTests=Long_Integration
+              run: dotnet test -c Debug lib/ --no-build --filter xUnitTests=Long_Integration
