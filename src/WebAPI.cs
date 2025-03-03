@@ -64,7 +64,6 @@ namespace Roblox_Sharp
             _client.DefaultRequestHeaders.UserAgent.TryParseAdd(name);
         }
 
-
         internal static bool SuccessfulRequest(HttpResponseMessage response)
         {
             if (response.IsSuccessStatusCode)
