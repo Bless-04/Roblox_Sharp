@@ -1,0 +1,1626 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Roblox_Sharp</name>
+    </assembly>
+    <members>
+        <member name="T:Roblox_Sharp.Endpoints.Avatars_v1">
+            <summary>
+            Endpoints relating to the customization of player avatars <br></br>
+            <b><see href="https://avatar.roblox.com//docs/index.html?urls.primaryName=Avatar%20Api%20v2">Avatars Documentation</see></b>
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Avatars_v1.Get_AvatarAsync(System.UInt64)">
+            <summary>
+            Returns details about a avatar using specified with<paramref name="userId"/> <br></br>
+            Allows requesting terminated users
+            </summary>
+            <param name="userId"></param>
+            <returns>Avatar</returns>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Avatars_v1.Get_CurrentlyWearingAsync(System.UInt64)">
+            <summary>
+            Gets a list of asset ids that the <paramref name="userId"/> is currently wearing
+            </summary>
+            <param name="userId"></param>
+            <returns>List of ulong</returns>
+        </member>
+        <member name="T:Roblox_Sharp.Endpoints.Avatars_v2">
+            <summary>
+            Endpoints relating to the customization of player avatars <br></br>
+            <b><see href="https://avatar.roblox.com//docs/index.html?urls.primaryName=Avatar%20Api%20v2">Avatars Documentation</see></b>
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Avatars_v2.Get_AvatarAsync(System.UInt64)">
+            <summary>
+            Returns details about a avatar using specified with <paramref name="userId"/>
+            </summary>
+            <param name="userId"></param>
+            <returns>Avatar</returns>
+        </member>
+        <member name="T:Roblox_Sharp.Endpoints.Badges_v1">
+             <summary>
+            Endpoints for badges and badge awards management <br></br>
+             <b><see href="https://badges.roblox.com//docs/index.html?urls.primaryName=Badges%20Api%20v1">Badges Documentation</see></b>
+             </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Badges_v1.Get_BadgesAwardedDatesAsync(System.UInt64,System.Collections.Generic.List{System.UInt64})">
+            <summary>
+            Asynchronously Gets timestamps for when badges were awarded to the given <paramref name="userId"/>
+            <br></br>
+            <see href="https://badges.roblox.com//docs/index.html?urls.primaryName=Badges%20Api%20v1">Badges Api v1 Documentation</see>
+            </summary>
+            <param name="userId"></param>
+            <param name="badgeIds"></param>
+            <returns>List of Badge_Award</returns>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:Roblox_Sharp.Exceptions.InvalidUserException"></exception>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Badges_v1.Get_BadgeAsync(System.UInt64)">
+            <summary>
+            Get detailed badge information by the given <paramref name="badgeId"/>
+            </summary>
+            <param name="badgeId"></param>
+            <returns>Badge</returns>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Badges_v1.Get_BadgesAsync(System.UInt64,Roblox_Sharp.Enums.Limit,Roblox_Sharp.Enums.Sort,Roblox_Sharp.Models.Page{Roblox_Sharp.Models.Badge})">
+            <summary>
+            Gets a list of badges a user has been awarded.
+            </summary>
+            <param name="userId">The user id </param>
+            <param name="limit">The number of results per request</param>
+            <param name="sortOrder">the order the results are stored in</param>
+            <param name="page">used for the paging cursor</param>
+            <returns>Page of Badges</returns>
+        </member>
+        <member name="T:Roblox_Sharp.Endpoints.Friends_v1">
+            <summary>
+            Endpoints for all Friends, followers, and contacts management
+            <b><see href="https://friends.roblox.com/docs//index.html">Friends Documentation</see></b>
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Friends_v1.Get_FriendsAsync(System.UInt64)">
+            <summary>
+            Get list of <b>all</b> friends for the specified <paramref name="userId"/>
+            <br></br>
+             <b><see href="https://friends.roblox.com/docs//index.html">Friends Documentation v1</see></b>
+            </summary>
+            <param name="userId"></param>
+            <returns>User[]</returns>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Friends_v1.Get_FollowersAsync(System.UInt64,Roblox_Sharp.Enums.Limit,Roblox_Sharp.Enums.Sort,Roblox_Sharp.Models.Page{Roblox_Sharp.Models.User})">
+            <summary>
+            Get a <paramref name="page"/> of all users that follow the given <paramref name="userId"/> with targetUserId in page response format
+            <br></br>
+            <b><seealso href="https://friends.roblox.com/docs//index.html">Friends API Documentation v1</seealso></b>
+            </summary>
+            <param name="userId"></param>
+            <param name="limit"></param>
+            <param name="sortOrder"></param>
+            <param name="page">The page to start at.</param>
+            <returns>Page</returns>
+            <exception><inheritdoc cref="M:Roblox_Sharp.WebAPI.Get_RequestAsync(System.String)"/></exception>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Friends_v1.Get_FriendsCountAsync(System.UInt64)">
+            <summary>
+            Get the number of friends a given <paramref name="userId"/> has asynchronously
+            <br></br>
+            <seealso href="https://friends.roblox.com/docs//index.html">Friends Documentation v1</seealso>
+            </summary>
+            <param name="userId"></param>
+            <returns>byte</returns>
+            <exception cref="T:Roblox_Sharp.Exceptions.InvalidIdException"></exception>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Friends_v1.Get_FollowersCountAsync(System.UInt64)">
+            <summary>
+            Get the number of followers a user has asynchronously
+            <br></br>
+            <b><seealso href="https://friends.roblox.com/docs//index.html">Friends Documentation v1</seealso></b>
+            </summary>
+            <param name="userId">the id of the user</param>
+            <returns>ulong</returns>
+            <exception cref="T:Roblox_Sharp.Exceptions.RateLimitException"></exception>
+            <exception cref="T:Roblox_Sharp.Exceptions.InvalidIdException"></exception>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Friends_v1.Get_FollowingsCountAsync(System.UInt64)">
+            <summary>
+            Get the number users a <paramref name="userId"/> is following asynchronously
+            <br></br>
+            <seealso href="https://friends.roblox.com/docs//index.html">Friends API Documentation v1</seealso>
+            </summary>
+            <param name="userId"></param>
+            <returns>ulong</returns>
+            <exception cref="T:Roblox_Sharp.Exceptions.RateLimitException">when rate limitted</exception>
+            <exception cref="T:Roblox_Sharp.Exceptions.InvalidUserException">when id doesnt exist</exception>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Friends_v1.Get_FollowingsAsync(System.UInt64,Roblox_Sharp.Enums.Limit,Roblox_Sharp.Enums.Sort,System.String)">
+            <summary>
+            Get all users that the given  <paramref name="userId"/> is following in page response format
+            <br></br>
+            <seealso href="https://friends.roblox.com/docs//index.html">Friends API Documentation v1</seealso>
+            </summary>
+            <param name="userId"></param>
+            <param name="limit"></param>
+            <param name="sortOrder"></param>
+            <param name="cursor"></param>
+            <returns>Page</returns>
+        </member>
+        <member name="T:Roblox_Sharp.Endpoints.Games_v2">
+            <summary>
+            All endpoints for game discovery, and details
+            <b><see href="https://games.roblox.com//docs/index.html?urls.primaryName=Games%20Api%20v2">Games Documentation</see></b>
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Endpoints.Groups_v1">
+            <summary>
+            Groups management endpoints <br></br>
+            <b><see href="https://groups.roblox.com/docs//index.html">Groups Documentation</see></b>
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Groups_v1.Get_GroupAsync(System.UInt64)">
+            <summary>
+            Gets group information
+            </summary>
+            <param name="groupId">The group id</param>
+            <returns>Group</returns>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Groups_v1.Get_GroupRolesAsync(System.UInt64)">
+            <summary>
+            Gets a list of the rolesets in a group using the given group id
+            </summary>
+            <param name="groupId">The group id</param>
+            <returns>Group.Role</returns>
+        </member>
+        <member name="T:Roblox_Sharp.Endpoints.Groups_v2">
+            <summary>
+            Groups management endpoints <br></br>
+            <b><see href="https://groups.roblox.com/docs//index.html">Groups Documentation</see></b>
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Groups_v2.Get_GroupsAsync(System.UInt64[])">
+            <summary>
+            Multi-get groups information by <paramref name="groupIds[][]"/>.
+            </summary>
+            <param name="groupIds"></param>
+            <returns>Array of Groups</returns>
+        </member>
+        <member name="T:Roblox_Sharp.Endpoints.Inventory_v1">
+            <summary>
+            Endpoints for inventory
+            <b><see href="https://inventory.roblox.com//docs/index.html">Inventory Documentation</see></b>
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Inventory_v1.Get_CanViewInventoryAsync(System.UInt64)">
+            <summary>
+            Gets whether the specified user's inventory can be viewed.
+            </summary>
+            <param name="userId">The users id </param>
+            <returns>true if the inventory can be viewed</returns>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Inventory_v1.Get_ItemsAsync(System.UInt64,Roblox_Sharp.Enums.ItemType,System.UInt64)">
+             <summary>
+            Gets owned items of the specified item type.  <br/>
+            Game Servers can make requests for any user, but can only make requests for game passes that belong to the place sending the request.  <br/>
+            Place creators can make requests as if they were the Game Server <br/>
+             </summary>
+             <param name="userId">Id of the user in question</param>
+             <param name="itemType">Type of the item in question (ie. Asset, GamePass, Badge, Bundle)</param>
+             <param name="itemTargetId">Id of the item in question</param>
+             <returns></returns>
+        </member>
+        <member name="T:Roblox_Sharp.Endpoints.Inventory_v2">
+            <summary>
+            <inheritdoc cref="T:Roblox_Sharp.Endpoints.Inventory_v1"/>
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Endpoints.Presence_v1">
+            <summary>
+            all Endpoints for managing presence 
+            <br></br> 
+            <b><see href="https://presence.roblox.com//docs/index.html">Presence API Documentation</see></b>
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Presence_v1.Get_PresencesAsync(System.Collections.Generic.List{System.UInt64})">
+            <summary>
+            Get Presence for the given array of <paramref name="userIds"/> 
+            <br></br>
+            <b><see href="https://presence.roblox.com//docs/index.html">Presence API Documentation</see></b>
+            </summary>
+            <param name="userIds"></param>
+            <returns>userPresence[]</returns>
+        </member>
+        <member name="T:Roblox_Sharp.Endpoints.Thumbnails_v1">
+            <summary>
+            Endpoints for requesting thumbnails
+            <b><see href="https://thumbnails.roblox.com//docs/index.html">Thumbnails API Documentation v1</see></b>
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Thumbnails_v1.Get_AvatarHeadshotsAsync(System.UInt64[],Roblox_Sharp.Enums.Thumbnail.Size,Roblox_Sharp.Enums.Thumbnail.Format,System.Boolean)">
+            <summary>
+            Get Avatar Headshots for the given array of <paramref name="userIds"/> 
+            <br></br>
+            <b><seealso href="https://thumbnails.roblox.com//docs/index.html">Thumbnails API Documentation v1</seealso></b>
+            <br></br>
+            <b>Will ignore users that, dont exist , are terminated/banned or are already in list</b>
+            <br></br>
+            <br></br>
+            <code><paramref name="SIZE"/> blacklist: 
+            <br></br> Size.x30</code>
+            </summary>
+            <param name="userIds"></param>
+            <param name="SIZE"></param>
+            <param name="FORMAT"></param>
+            <param name="isCircular">if image should be circular</param>
+            <returns>List of Avatar</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Thumbnails_v1.Get_AvatarBustsAsync(System.UInt64[],Roblox_Sharp.Enums.Thumbnail.Size,Roblox_Sharp.Enums.Thumbnail.Format,System.Boolean)">
+            <summary>
+            Get Avatar Busts for the given array of <paramref name="userIds"/>
+            <br></br>
+            <b><seealso href="https://thumbnails.roblox.com//docs/index.html">Thumbnails API Documentation v1</seealso></b>
+            <br></br>
+            <b>Will ignore users that, dont exist , are terminated/banned or are already in list</b>
+            <br></br>
+            <br></br>
+            <code><paramref name="SIZE"/> blacklist:
+            <br></br> Size.x30, Size.x110, Size.x720</code> 
+            </summary>
+            <param name="userIds"></param>
+            <param name="SIZE"></param>
+            <param name="FORMAT"></param>
+            <param name="isCircular"></param>
+            <returns>Avatar[]</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Thumbnails_v1.Get_AvatarsAsync(System.UInt64[],Roblox_Sharp.Enums.Thumbnail.Size,Roblox_Sharp.Enums.Thumbnail.Format,System.Boolean)">
+            <summary>
+            Get Avatar Full body shots for the given array of <paramref name="userIds"/> 
+            <br></br><b><seealso href="https://thumbnails.roblox.com//docs/index.html">Thumbnails API Documentation v1</seealso></b>
+            </summary>
+            <param name="userIds"></param>
+            <param name="SIZE"></param>
+            <param name="FORMAT"></param>
+            <param name="isCircular"></param>
+            <returns>Avatar[]</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">When <paramref name="SIZE"/> is x50 or x48</exception>
+        </member>
+        <member name="T:Roblox_Sharp.Endpoints.Users_v1">
+            <summary>
+            endpoints for direct Roblox user information. <br></br>
+            <b><see href="https://users.roblox.com/docs//index.html">Users Documentation v1</see></b>
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserSearchAsync(System.String,Roblox_Sharp.Enums.Limit,Roblox_Sharp.Models.Page{Roblox_Sharp.Models.User})">
+            <summary>
+            Gets a list of users that either have a similar username or display name of the given <paramref name="keyword"/> asynchronously
+            <br></br><b><seealso href="https://users.roblox.com/docs//index.html">Users Documentation v1</seealso></b>
+            
+            </summary>
+            <param name="keyword"></param>
+            <param name="LIMIT"></param>
+            <param name="page"></param>
+            <returns>A <see cref="T:Roblox_Sharp.Models.Page`1"/> of Users</returns>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserAsync(System.UInt64)">
+            <summary>
+            Get detailed user information for the given <paramref name="userId"/> asynchronously
+            <br></br>
+            <b><seealso href="https://users.roblox.com//docs/index.html">Users Documentation v1</seealso></b>
+            </summary>
+            <param name="userId"></param>
+            <returns>User</returns>
+            <exception cref="T:Roblox_Sharp.Exceptions.InvalidUserException">if userid is invalid</exception>
+            <exception cref="T:Roblox_Sharp.Exceptions.RateLimitException">If the request is rate limited</exception>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsernamesAsync(System.Collections.Generic.List{System.UInt64},System.Boolean)">
+            <summary>
+            get usernames using the given array of <paramref name="userIds"/> asynchronousoly 
+            <br></br>
+            ignores <paramref name="userIds"/> that dont exist
+            <br></br>
+            <b><seealso href="https://users.roblox.com/docs//index.html">Users Documentation v1</seealso></b>
+            </summary>
+            
+            <param name="userIds"></param>
+            <param name="excludeBannedUsers"></param>
+            <returns>List of Users</returns>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsersAsync(System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            get usersIds using the given array of <paramref name="usernames"/> asynchronously
+            <br></br>
+            ignores <paramref name="usernames"/> that dont exist
+            <br></br>
+            <br></br>
+            <b><seealso href="https://users.roblox.com/docs//index.html">Users Documentation v1</seealso></b>
+            </summary>
+            <param name="usernames"></param>
+            <param name="excludeBannedUsers"></param>
+            <returns>User[]</returns>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsernameHistoryAsync(System.UInt64,Roblox_Sharp.Enums.Limit,Roblox_Sharp.Enums.Sort,Roblox_Sharp.Models.Page{Roblox_Sharp.Models.User})">
+            <summary>
+            Retrieves the username history for a given <paramref name="userId"/>.
+            <br></br>
+            <seealso href="https://users.roblox.com/docs//index.html">Users Documentation v1</seealso>
+            </summary>
+            <param name="userId"></param>
+            <param name="LIMIT"></param>
+            <param name="SORT"></param>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_AuthenticatedAsync">
+            <summary>
+            Gets the minimal Authenticated User asynchronously
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="T:Roblox_Sharp.Enums.AssetType">
+            <summary>
+            The asset type id of asset with id Roblox.Inventory.Api.V2.UserAssetItemModelV2.AssetId. <br/>
+            <seealso cref="T:Roblox_Sharp.Endpoints.Inventory_v2"/>
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Enums.CategoryType">
+            <summary>
+            	Describes what type an AssetsExplorerCategoryItemModel contains
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Enums.EnumExtensions">
+            <summary>
+            used to get string representations of enums that cant use the literal variable name 
+            and also contains helpful functions
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Enums.EnumExtensions.IsBlackListed(System.Enum,System.Enum[])">
+            <summary>
+            used to check if an enum is blacklisted
+            </summary>
+            <param name="value"></param>
+            <param name="blacklist"></param>
+            <returns>
+            <see langword="true"/> if the enum is blacklisted
+            </returns>
+        </member>
+        <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToFlag``1(System.Enum)">
+            <summary>
+            converts an enum to a flag
+            </summary>
+            <typeparam name="T">The enums corresponding flag type</typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToEnum``1(System.String)">
+            <summary>
+            converts a string to an enum in which the string is the name of the enum value
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToString(Roblox_Sharp.Enums.Limit)">
+            <summary>
+            gives a string representation of a limit
+            </summary>
+            <param name="LIMIT"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToString(Roblox_Sharp.Enums.Thumbnail.Size)">
+            <summary>
+            gives a string representation of a thumbnail size
+            </summary>
+            <param name="SIZE"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Roblox_Sharp.Enums.Limit">
+            <summary>
+            The number of results per request.
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Enums.Thumbnail.Size">
+            <summary>
+            Thumbnail sizes
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Enums.Thumbnail.Size_Flags">
+            <summary>
+            bitwise mappings for <see cref="T:Roblox_Sharp.Enums.Thumbnail.Size"/> <br/>
+            variables names must match the ones in <see cref="T:Roblox_Sharp.Enums.Thumbnail.Size"/>
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Exceptions.InvalidIdException">
+            <summary>
+            Exception thrown when a ID is invalid/does not exist
+            can be used for any object that has a unique ID
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Exceptions.InvalidUserException">
+            <summary>
+            Exception thrown when a <see cref="T:Roblox_Sharp.Framework.IUser"/> based argument is invalid/does not exist/banned/terminated 
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Exceptions.NotRequestedException">
+            <summary>
+            thrown when <b>important</b> data that was never gotten is requested
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Exceptions.NotRequestedException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Roblox_Sharp.Exceptions.NotRequestedException"/> class
+            </summary>
+            <param name="variable_name"></param>
+        </member>
+        <member name="T:Roblox_Sharp.Exceptions.RateLimitException">
+            <summary>
+            Exception thrown when the rate limit is exceeded
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Framework.Creation">
+            <summary>
+             generalized template for any roblox object that has a unique id 
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.Creation.#ctor(System.Nullable{System.UInt64})">
+            <summary>
+             generalized template for any roblox object that has a unique id 
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.Creation.id">
+            <summary>
+            The unique id of the creation; Null if not requested
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.Creation.Equals(Roblox_Sharp.Framework.Creation)">
+            <inheritdoc />
+        </member>
+        <member name="M:Roblox_Sharp.Framework.Creation.op_LessThan(Roblox_Sharp.Framework.Creation,Roblox_Sharp.Framework.Creation)">
+            <summary>
+            a creation is <b> less than </b> another if it is newer. newer creations have larger ids than older ones
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns><inheritdoc/></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.Creation.op_GreaterThan(Roblox_Sharp.Framework.Creation,Roblox_Sharp.Framework.Creation)">
+            <summary>
+            a creation is <b>greater than</b> another if it is older. Older creations have smaller ids than newer creations.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns><inheritdoc/></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.Creation.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <remarks>uses the same hashcode function as <see langword="ulong"/></remarks>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.Creation.Equals(System.Object)">
+            <summary>
+            equal if and only if the ids are the same
+            </summary>
+            <param name="other"></param>
+            <returns>
+            <see langword="true"/> if ids are the same
+            </returns>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.Creation.CompareTo(Roblox_Sharp.Framework.Creation)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.IAsset.assetId">
+            <summary>
+            The unique id of the asset
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Framework.ICloneable`1">
+            <inheritdoc cref="T:System.ICloneable"/>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.ICloneable`1.Clone">
+            <summary>
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
+            </summary>
+            <returns>a deep copy of the <typeparamref name="T"/></returns>
+        </member>
+        <member name="T:Roblox_Sharp.Framework.IPage">
+            <summary>
+            template for all the page based requests that have a previous and next cursor
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.IPage.previousPageCursor">
+            <summary>
+            previous page cursor of the request .<br/> <see langword="null"/> if there are no previous pages or object is the first page
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.IPage.nextPageCursor">
+            <summary>
+            next page cursor of the request.<br/> <see langword="null"/> if there are no more pages or instance is the last page
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Framework.IPage`1">
+            <summary>
+            used for all the page based requests ; requests that can return multiple pages or have a data[] field
+            </summary>
+            <typeparam name="T">The data type</typeparam>
+            <remarks>indirectly implements <seealso cref="T:System.Collections.Generic.IReadOnlyList`1"/> </remarks>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.IPage`1.data">
+            <summary>
+            List of <typeparamref name="T"/> returned by the request
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.IPage`1.Count">
+            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.IPage`1.Item(System.Int32)">
+            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyList`1.Item(System.Int32)"/>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IPage`1.op_Decrement(Roblox_Sharp.Framework.IPage{`0})">
+            <summary>
+            Goes back 1 page <br></br>
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+            <exception cref="T:System.IndexOutOfRangeException"> if there is no previous page</exception>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IPage`1.Previous(System.Collections.Generic.List{`0})">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IPage`1.op_Decrement(Roblox_Sharp.Framework.IPage{`0})"/>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IPage`1.op_Increment(Roblox_Sharp.Framework.IPage{`0})">
+            <summary>
+            Goes forward 1 page
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+            <exception cref="T:System.IndexOutOfRangeException">if there is no next page</exception>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IPage`1.Next(System.Collections.Generic.List{`0})">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IPage`1.op_Increment(Roblox_Sharp.Framework.IPage{`0})"/>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IPage`1.GetEnumerator">
+            <summary>
+            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Roblox_Sharp.Framework.IUser">
+            <summary>
+            base class for any roblox <see cref="T:Roblox_Sharp.Framework.IUser"></see> to represents a user with a unique id
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.IUser.userId">
+            <summary>
+            the Unique numeric id of the user.
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IUser.op_LessThan(Roblox_Sharp.Framework.IUser,Roblox_Sharp.Framework.IUser)">
+            <summary>
+            a user is  <b> less than </b> another if it is newer. newer user have larger ids than older users
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns><inheritdoc/></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IUser.op_GreaterThan(Roblox_Sharp.Framework.IUser,Roblox_Sharp.Framework.IUser)">
+            <summary>
+            a user is <b>greater than</b> another if it is older. Older users have smaller ids than newer users.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns><inheritdoc/></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IUser.GetHashCode">
+            <inheritdoc cref="M:System.UInt64.GetHashCode"/>
+            <remarks>uses the hashcode function of the <see langword="ulong"/> <see cref="P:Roblox_Sharp.Framework.IUser.userId"/></remarks>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IUser.Equals(System.Object)">
+            <summary>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/> 
+            </summary>
+            <param name="obj"></param>
+            <returns>
+            <see langword="true"/> if and only if the <see cref="P:Roblox_Sharp.Framework.IUser.userId"/>'s are the same
+            </returns>
+        </member>
+        <member name="T:Roblox_Sharp.Framework.IUser`1">
+            <summary>
+            <inheritdoc cref="T:Roblox_Sharp.Framework.IUser"/>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IUser`1.System#IComparable{T}#CompareTo(`0)">
+            <inheritdoc cref="M:System.IComparable.CompareTo(System.Object)"/>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.IUser`1.ToString">
+            <summary>
+            string representation of the <typeparamref name="T"/>
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Avatar">
+            <summary>
+            used to serialize avatar based requests
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Avatar.Asset">
+            <summary>
+            Assets that a players Avatar can equip
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.assetId">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.assetName">
+            <summary>
+            the name of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.name">
+            <summary>
+            <inheritdoc cref="P:Roblox_Sharp.Models.Avatar.Asset.assetName"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.assetType">
+            <summary>
+            <inheritdoc cref="T:Roblox_Sharp.Enums.AssetType"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.meta">
+            <summary>
+            <inheritdoc cref="T:Roblox_Sharp.Models.Avatar.Asset.Metadata"/>
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Avatar.Asset.Clone">
+            <summary>
+            Deep Clones the instance of <see cref="T:Roblox_Sharp.Models.Avatar.Asset"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Avatar.Asset.Metadata">
+            <summary>
+            metadata of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.position">
+            <summary>
+            (x, y , z) position of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.rotation">
+            <summary>
+            (x, y, z) rotation of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.scale">
+            <summary>
+            (x, y, z) scale of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.version">
+            <summary>
+            Client-authoritative meta model format version
+            <code>the default is always 1</code>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.puffiness">
+            <summary>
+            layered clothing puffiness
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.order">
+            <summary>
+            layered clothing order
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Avatar.Asset.Type">
+            <summary>
+            the type of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Type.id">
+            <summary>
+            the id of the Asset_Type
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Type.name">
+            <summary>
+            the name of the Asset_Type
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Avatar.BodyColor3s">
+            <summary>
+            the body color of the avatar using RGB hex
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.headColor3">
+            <summary>
+            The RGB hex color for head color, e.g. #FFFFFF
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.torsoColor3">
+            <summary>
+            The RGB hex color for torso color
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.rightArmColor3">
+            <summary>
+            The RGB hex color for right arm color, e.g. #FFFFFF
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.leftArmColor3">
+            <summary>
+            The RGB hex color for left arm color, e.g. #FFFFFF
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.rightLegColor3">
+            <summary>
+            The RGB hex color for right leg color, e.g. #FFFFFF
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.leftLegColor3">
+            <summary>
+            The RGB hex color for left leg color, e.g. #FFFFFF
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Avatar.BodyColors">
+            <summary>
+            body color of the avatar using brickcolorid
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.headColorId">
+            <summary>
+            The BrickColor id for head color
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.torsoColorId">
+            <summary>
+            The BrickColor id for torso color
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.rightArmColorId">
+            <summary>
+            The BrickColor id for right arm color
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.leftArmColorId">
+            <summary>
+            The BrickColor id for left arm color
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.rightLegColorId">
+            <summary>
+            The BrickColor id for right leg color
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.leftLegColorId">
+            <summary>
+            The BrickColor id for left leg color
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.scales">
+            <summary>
+            <inheritdoc cref="T:Roblox_Sharp.Models.Avatar.Scales"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.playerAvatarType">
+            <summary>
+            <inheritdoc cref="T:Roblox_Sharp.Enums.AvatarType"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.bodyColors">
+            <summary>
+            the brickcolor ids for each bodypart
+            <note>unique to <seealso cref="T:Roblox_Sharp.Endpoints.Avatars_v1"/> based requests </note>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.bodyColor3s">
+            <summary>
+            the rgb hex colors for each bodypart
+            <note>unique to <seealso cref="T:Roblox_Sharp.Endpoints.Avatars_v2"/> based requests </note>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.assets">
+            <summary>
+            the assets worn on the avatar
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.defaultShirtApplied">
+            <summary>
+            <see langword="true"/> if the default shirt is applied to this avatar
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.defaultPantsApplied">
+            <summary>
+            <see langword="true"/> if the default pants are applied to this avatar
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.emotes">
+            <summary>
+            the emotes on the avatar
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Avatar.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Avatar.Emote">
+            <summary>
+            a roblox emote
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Avatar.Emote.position">
+            <summary>
+            the position the emote is equipped to
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Avatar.Scales">
+            <summary>
+            Holds the scaling of the avatar
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Badge">
+            <summary>
+            class used to serialize Badge based requests
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.badgeId">
+            <summary>
+            the badge id 
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.name">
+            <summary>
+            the name of the badge 
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.description">
+            <summary>
+            the badge description 
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.displayName">
+            <summary>
+            the localized name of the badge 
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.displayDescription">
+            <summary>
+            the localized description of the badge
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.enabled">
+            <summary>
+            whether or not the badge is enabled
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.iconImageId">
+            <summary>
+            The badge icon asset Id.
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.displayIconImageId">
+            <summary>
+            The localized badge icon asset Id.
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.created">
+            <summary>
+            When the badge was created.
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.updated">
+            <summary>
+            When the badge was updated.
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.statistics">
+            <summary>
+            <inheritdoc cref="T:Roblox_Sharp.Models.Badge.Statistics"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.awardingUniverse">
+            <summary>
+            the place that awarded the badge
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.awarder">
+            <summary>
+            ambiguous with awarding universe
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.creator">
+            <summary>
+            the user that created the badge
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Badge.Statistics">
+            <summary>
+            Holds the statistics of the badge
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.Statistics.pastDayAwardedCount">
+            <summary>
+            the number of times the badge has been awarded in the last day
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.Statistics.awardedCount">
+            <summary>
+            the total number of times the badge has been awarded
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.Statistics.winRatePercentage">
+            <summary>
+            the win rate of the badge
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Badge.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Badge_Award">
+            <summary>
+            Badge_Award
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge_Award.awardedDate">
+            <summary>
+            date badge was awarded
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.userAssetId">
+            <summary>
+            The user asset id
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.serialNumber">
+            <summary>
+            The serial number of the user asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.assetId">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.name">
+            <summary>
+            The asset name of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.recentAveragePrice">
+            <summary>
+            The recent average price of the user asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.originalPrice">
+            <summary>
+            The original price of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.isOnHold">
+            <summary>
+            Whether the user asset has an active hold
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Game">
+            <summary>
+            Represents a game
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Game.universeId">
+            <summary>
+            the universe id 
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Game.name">
+            <summary>
+            the universe name
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Game.rootPlaceId">
+            <summary>
+            The description of the universe.
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Game.Clone">
+            <summary>
+            Deep Clones the instance of <see cref="T:Roblox_Sharp.Models.Game"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Group">
+            <summary>
+            class used to serialize Group based requests
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.groupId">
+            <summary>
+            the unique groups id
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.name">
+            <summary>
+            group name
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.description">
+            <summary>
+            group description
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.owner">
+            <summary>
+            group owner <br/>
+            <see langword="null"/> if data not requested
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.shout">
+            <summary>
+            most recent group shout <br/>
+            <see langword="null"/> if data not requested
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.memberCount">
+            <summary>
+            group member count
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.isBuildersClubOnly">
+            <summary>
+            <see langword="true"/> if group is buildersclub only
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.publicEntryAllowed">
+            <summary>
+            <see langword="true"/> if group is public
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.isLocked">
+            <summary>
+            <see langword="true"/> if group is locked
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.hasVerifiedBadge">
+            <summary>
+            <see langword="true"/> if group has a verified badge
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Group.Clone">
+            <summary>
+            Deep Clones the instance of <see cref="T:Roblox_Sharp.Models.Group"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.roles">
+            <summary>
+            unique to role requests
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Group.Role">
+            <summary>
+            Group Role Serializer Class
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.Role.roleId">
+            <summary>
+            Group Role ID
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.Role.name">
+            <summary>
+            Group Role Name <br/>
+            The name of the role
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.Role.rank">
+            <summary>
+            Group role rank (255 is the owner)
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.Role.memberCount">
+            <summary>
+            Number of members in the role
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.Role.description">
+            <summary>
+            description of the Role
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.created">
+            <summary>
+            The date the Group Shout was created. 
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Group.Shout">
+            <summary>
+            Group Shout Serializer
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.Shout.body">
+            <summary>
+            group shoutouts message body
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.Shout.poster">
+            <summary>
+            user information of the Group Shouts poster
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.Shout.created">
+            <summary>
+            The shouts created date 
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Group.Shout.updated">
+            <summary>
+            The date of the last Group Shout 
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Internal.Count_Response">
+            <summary>
+            used to serialize the responses with a count field 
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Internal.JsonConverter.Color_JsonConverter">
+            <summary>
+            used to convert the color to and from RGB hex
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Internal.POST.User_POST">
+            <summary>
+            class used to serialize User POST based requests
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Internal.POST.User_POST.excludeBannedUsers">
+            <summary>
+            exclude banned users
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Internal.POST.User_POST.userIds">
+            <summary>
+            array of user ids
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Internal.POST.User_POST.usernames">
+            <summary>
+            array of username
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Internal.POST.User_POST.ArrayLengthCheck``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            limits the length of an array
+            </summary>
+            <param name="list"></param>
+            <param name="limit"></param>
+            <returns>true if the array is less than the limit</returns>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Internal.Presence_Response">
+            <summary>
+            used for response of userPresence requests
+            </summary>
+            since arrays are a reference type, its not worth making this a struct
+        </member>
+        <member name="T:Roblox_Sharp.Models.Item">
+            <summary>
+            class used to serialize Item based requests
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Item.Id">
+            <summary>
+            The ID of the item
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Item.assetId">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Item.Name">
+            <summary>
+            The name of the item
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Item.Type">
+            <summary>
+            The type of the item
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Item.InstanceId">
+            <summary>
+            The instance id of the item if applicable
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Page`1">
+            <inheritdoc cref="T:Roblox_Sharp.Framework.IPage`1"/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Page`1.#ctor">
+            <inheritdoc cref="T:Roblox_Sharp.Framework.IPage`1"/>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Page`1.previousPageCursor">
+            <inheritdoc cref="P:Roblox_Sharp.Framework.IPage.previousPageCursor"/>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Page`1.nextPageCursor">
+            <inheritdoc cref="P:Roblox_Sharp.Framework.IPage.nextPageCursor"/>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Page`1.data">
+            <summary>
+            <inheritdoc cref="P:Roblox_Sharp.Framework.IPage`1.data"/>
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Page`1.op_Decrement(Roblox_Sharp.Models.Page{`0})">
+            <inheritdoc cref="M:Roblox_Sharp.Models.Page`1.Previous(System.Collections.Generic.List{`0})"/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Page`1.Previous(System.Collections.Generic.List{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Page`1.Next(System.Collections.Generic.List{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.Page`1.op_Increment(Roblox_Sharp.Models.Page{`0})">
+            <inheritdoc cref="M:Roblox_Sharp.Models.Page`1.Next(System.Collections.Generic.List{`0})"/>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Thumbnail">
+            example return 
+             * 
+             {
+                "data": [
+                    {
+                        "targetId": 0,
+                        "state": "Error",
+                        "imageUrl": "string",
+                        "version": "string"
+                    }
+                ]
+            }
+            <summary>
+            class used to serialize Thumbnail based requests
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Thumbnail.imageUrl">
+            <summary>
+            image url of thumbnail 
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.User">
+            userid 
+                 * post request
+                    {
+                      "userIds": [
+                        1,2,3,4,5
+                      ],
+                      "excludeBannedUsers": false
+                    }
+            username 
+                 * post request
+                     {
+                        "usernames": [
+                        "string"
+                        ],
+                        "excludeBannedUsers": true
+                     }
+            example return; userid does not have the requestedUsername key
+                 * 
+                    {
+                        "data": [
+                            {
+                              "requestedUsername": "string",
+                              "hasVerifiedBadge": true,
+                              "id": 0,
+                              "name": "string",
+                              "displayName": "string"
+                            }
+                        ]
+                    }
+            <summary>
+            class used to serialize User based requests
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.#ctor">
+            userid 
+                 * post request
+                    {
+                      "userIds": [
+                        1,2,3,4,5
+                      ],
+                      "excludeBannedUsers": false
+                    }
+            username 
+                 * post request
+                     {
+                        "usernames": [
+                        "string"
+                        ],
+                        "excludeBannedUsers": true
+                     }
+            example return; userid does not have the requestedUsername key
+                 * 
+                    {
+                        "data": [
+                            {
+                              "requestedUsername": "string",
+                              "hasVerifiedBadge": true,
+                              "id": 0,
+                              "name": "string",
+                              "displayName": "string"
+                            }
+                        ]
+                    }
+            <summary>
+            class used to serialize User based requests
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.id">
+            <inheritdoc cref="P:Roblox_Sharp.Models.User.userId"/>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.userId">
+            <inheritdoc/>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.username">
+            <summary>
+            unique username for the user
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.name">
+            <summary>
+            <inheritdoc cref="P:Roblox_Sharp.Models.User.username"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User._displayName">
+            <summary>
+            display name for the user <br></br>
+            <see langword="null"/> if the display name is the same as the username <br></br>
+            this indicates that the user has never set a display name
+            string representation of the user <br></br> 
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.displayName">
+            <inheritdoc cref="P:Roblox_Sharp.Models.User._displayName"/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.#ctor(System.UInt64,System.String,System.String)">
+            <summary>
+            constructor for user
+            </summary>
+            <param name="userId">id of the user</param>
+            <param name="username">username of the user</param>
+            <param name="displayName">displayname of the user</param>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.description">
+            <summary>
+            description for the user
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.created">
+            <summary>
+            creation date and time of user
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.created_string">
+            <summary>
+            creation date and time in the same format as the roblox website 
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.isBanned">
+            <summary>
+            <see langword="true"/> if the user is banned
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.externalAppDisplayName">
+             <summary>
+             <b>Unused, legacy attribute. For now always null to not disturb existing client code that might rely on its existence. </b><br></br>
+            Used when user is logged in from third party app (e.g. QQ) <br></br>
+            ExternalAppDisplayName is the name used in that app(e.g.QQ nickname
+             </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.hasVerifiedBadge">
+            <summary>
+            <see langword="true"/> only if the user has a verified badge
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.requestedUsername">
+            <summary>
+            The username requested by the client 
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.presenceType">
+            <summary>
+            <inheritdoc cref="T:Roblox_Sharp.Enums.PresenceType"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.previousUsernames">
+            <summary>
+            list of previous usernames
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.isOnline">
+            <summary>
+            <see langword="true"/> if user is currently online
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.isDeleted">
+            <summary>
+            <see langword="true"/> if user is deleted/banned/terminated
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.friendFrequentScore">
+            <summary>
+            Frequents value for the user
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.friendFrequentRank">
+            <summary>
+            Frequents rank for the user.
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.op_Explicit(System.UInt64)~Roblox_Sharp.Models.User">
+            <summary>
+            <inheritdoc cref="P:Roblox_Sharp.Models.User.userId"/>
+            </summary>
+            <param name="userId"></param>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.op_Explicit(System.String)~Roblox_Sharp.Models.User">
+            <summary>
+            <inheritdoc cref="P:Roblox_Sharp.Models.User.username"/>
+            </summary>
+            <param name="username"></param>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.op_LessThan(Roblox_Sharp.Models.User,Roblox_Sharp.Models.User)">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.op_LessThan(Roblox_Sharp.Framework.IUser,Roblox_Sharp.Framework.IUser)"/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.op_GreaterThan(Roblox_Sharp.Models.User,Roblox_Sharp.Models.User)">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.op_GreaterThan(Roblox_Sharp.Framework.IUser,Roblox_Sharp.Framework.IUser)"/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.GetHashCode">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.GetHashCode"/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.ToString">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser`1.ToString"/> displayname@username (ID id)
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.Equals(System.Object)">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.Equals(System.Object)"/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.ToString(System.String,System.IFormatProvider)">
+            /// <summary>
+            Formats the user information based on the provided format string.
+            Supported format strings:
+            <list type="table">
+              <listheader>
+                <term>Format</term>
+                <description>Output</description>
+              </listheader>
+              <item>
+                <term>"id"</term>
+                <description>Returns the user ID.</description>
+              </item>
+              <item>
+                <term>"name"</term>
+                <description>Returns the username with an '@' prefix.</description>
+              </item>
+              <item>
+                <term>"display"</term>
+                <description>Returns the display name.</description>
+              </item>
+              <item>
+                <term>"joined"</term>
+                <description>Returns the user's join date.</description>
+              </item>
+            </list>
+            </summary>
+            <returns>
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+            </returns>
+        </member>
+        <member name="T:Roblox_Sharp.Models.User_Presence">
+                 * example return 
+                * {
+             "userPresences": [
+               {
+                 "userPresenceType": 0,
+                 "lastLocation": "string",
+                 "placeId": 0,
+                 "rootPlaceId": 0,
+                 "gameId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                 "universeId": 0,
+                 "userId": 0,
+                 "lastOnline": "2024-09-12T16:24:42.067Z",
+                 "invisibleModeExpiry": "2024-09-12T16:24:42.067Z"
+               }
+             ]
+            }
+        </member>
+        <member name="P:Roblox_Sharp.Models.User_Presence.userId">
+            <inheritdoc/>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User_Presence.presenceType">
+            <summary>
+            <see cref="T:Roblox_Sharp.Enums.PresenceType"/> type of user
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User_Presence.placeId">
+            <summary>
+            unique place id
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User_Presence.gameId">
+            <summary>
+            unique game id
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User_Presence.universeId">
+            <summary>
+            unique universe id
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User_Presence.lastOnline">
+            <summary>
+            exact date and time user was last online
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User_Presence.GetHashCode">
+            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.GetHashCode"/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User_Presence.Clone">
+            <summary>
+            Deep Clones the instance of <see cref="T:Roblox_Sharp.Models.User_Presence"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Roblox_Sharp.WebAPI">
+            <summary>
+            static class that holds the functions and logic used for making web requests to Roblox API <br></br>
+            <b><see href="https://github.com/matthewdean/roblox-web-apis?tab=readme-ov-file">Endpoints Documentation</see></b>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.WebAPI.client">
+            <summary>
+            <see cref="T:System.Net.Http.HttpClient"></see> used for all web requests
+            </summary>
+        </member>
+        <member name="E:Roblox_Sharp.WebAPI.OnSuccessfulRequest">
+            <summary>
+            an event that is raised when the web request is successful/statuscode 200
+            </summary>
+        </member>
+        <member name="E:Roblox_Sharp.WebAPI.OnFailedRequest">
+            <summary>
+            an event that is raised when the web request fails / statuscode is not 200
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.WebAPI.Set_HttpClient(System.Net.Http.HttpClient)">
+            <summary>
+            sets the <see cref="T:System.Net.Http.HttpClient"/> used for all web requests
+            useful for configuring httpclient
+            sets to default if null
+            </summary>
+            <param name="new_client"></param>
+        </member>
+        <member name="M:Roblox_Sharp.WebAPI.Set_UserAgent(System.String)">
+            <summary>
+            sets the name of the user agent used for all requests
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:Roblox_Sharp.WebAPI.Get_RequestAsync(System.String)">
+            <summary>
+            helper function for get requests for roblox api
+            </summary>
+            <param name="url"></param>
+            <returns>content string</returns>
+            <exception cref="T:Roblox_Sharp.Exceptions.InvalidUserException">When the userid doesnt exist or is terminated/banned</exception>
+        </member>
+        <member name="M:Roblox_Sharp.WebAPI.Post_RequestAsync(System.String,Roblox_Sharp.Models.Internal.POST.User_POST)">
+            <summary>
+            helper function for post requests for roblox api
+            </summary>
+            <param name="url"></param>
+            <param name="postreq"></param>
+            <returns></returns>
+            <exception cref="T:Roblox_Sharp.Exceptions.InvalidUserException"></exception>
+            <exception cref="T:Roblox_Sharp.Exceptions.InvalidIdException"></exception>
+        </member>
+    </members>
+</doc>

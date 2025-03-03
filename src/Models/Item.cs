@@ -23,12 +23,11 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public ulong assetId => Id;
 
-
         /// <summary>
         /// The name of the item
         /// </summary>
         public required string Name { get; init; }
-            
+
         /// <summary>
         /// The type of the item
         /// </summary>

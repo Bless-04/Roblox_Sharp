@@ -1,10 +1,10 @@
 
 /.vs
-/lib/.vs
-/lib/bin
-/lib/obj
+/src/.vs
+/src/bin
+/src/obj
 /xUnitTests/.vs
 /xUnitTests/bin
 /xUnitTests/obj
 *.user
-/lib/Properties
+/src/Properties
