@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 ///#pragma warning disable IDE1006 // Naming Styles ; idc
 namespace Roblox_Sharp
 {
-   
+
 
     /// <summary>
     /// static class that holds the functions and logic used for making web requests to Roblox API <br></br>
@@ -63,7 +63,7 @@ namespace Roblox_Sharp
             _client.DefaultRequestHeaders.UserAgent.Clear();
             _client.DefaultRequestHeaders.UserAgent.TryParseAdd(name);
         }
-        
+
 
         internal static bool SuccessfulRequest(HttpResponseMessage response)
         {
@@ -130,14 +130,15 @@ namespace Roblox_Sharp
 
                     case HttpStatusCode.BadRequest:
                         if (postreq.userIds != null) throw new InvalidIdException("A userId may not exist,or there is to many");
-                        else throw new InvalidUserException("A usernamename may not exist,or there is too many");
+                        else throw new InvalidUserException("A username may not exist,or there is too many");
 
                     case (HttpStatusCode)443:
                         throw new HttpRequestException("There is an Internet Connection Issue\nPlease Connect to the Internet");
 
                     default:
                         throw new NotImplementedException($"Unhandled Error: {response.StatusCode}\n{url}\n{response.Content}");
-                };
+                }
+                ;
             }
         }
     }
