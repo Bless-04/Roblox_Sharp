@@ -33,7 +33,7 @@
         </member>
         <member name="M:Roblox_Sharp.Endpoints.Avatars_v2.Get_AvatarAsync(System.UInt64)">
             <summary>
-            Returns details about a avatar using specified with <paramref name="userId"/>
+            Returns details about a avatar using specified <paramref name="userId"/>
             </summary>
             <param name="userId"></param>
             <returns>Avatar</returns>

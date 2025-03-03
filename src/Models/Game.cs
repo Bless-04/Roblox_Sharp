@@ -31,7 +31,7 @@ namespace Roblox_Sharp.Models
         /// Deep Clones the instance of <see cref="Game"/>
         /// </summary>
         /// <returns></returns>
-        public Game Clone() => new Game()
+        public Game Clone() => new Game
         {
             universeId = this.universeId,
             name = this.name,

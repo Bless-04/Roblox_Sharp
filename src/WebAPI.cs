@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 ///#pragma warning disable IDE1006 // Naming Styles ; idc
@@ -27,7 +28,7 @@ namespace Roblox_Sharp
         public static HttpClient client => _client;
 
         /// <summary>
-        /// an event that is raised when the web request is successful/statuscode 200
+        /// an event that is raised only when the web request is successful/statuscode 200
         /// </summary>
         public static event EventHandler? OnSuccessfulRequest;
 
@@ -42,17 +43,15 @@ namespace Roblox_Sharp
             Set_UserAgent(nameof(Roblox_Sharp));
             //_client.DefaultRequestHeaders.Authorization needed for auth
         }
+
         /// <summary>
         /// sets the <see cref="HttpClient"/> used for all web requests
         /// useful for configuring httpclient
         /// sets to default if null
         /// </summary>
         /// <param name="new_client"></param>
-        public static void Set_HttpClient(HttpClient new_client)
-        {
-            _client.Dispose();
-            _client = new_client;
-        }
+        public static void Set_HttpClient(HttpClient new_client) => Interlocked.Exchange(ref _client, new_client).Dispose(); //internet says this make it thread safe
+
 
         /// <summary>
         /// sets the name of the user agent used for all requests
