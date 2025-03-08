@@ -31,11 +31,11 @@ namespace xUnitTests.Deserialization
 
             Assert.NotNull(user);
 
-            Assert.Equal("string", user.description);
+            Assert.Equal("string", user.Description);
             Assert.Equal(2024, user.Created.Year);
-            Assert.True(user.isBanned && user.IsDeleted);
-            Assert.Equal("string", user.externalAppDisplayName);
-            Assert.True(user.hasVerifiedBadge);
+            Assert.True(user.IsBanned && user.IsDeleted);
+            Assert.Equal("string", user.ExternalAppDisplayName);
+            Assert.True(user.HasVerifiedBadge);
             Assert.Equal<ulong>(0, user.UserId);
             Assert.Equal("string", user.Username);
             Assert.Null(user.DisplayName);
@@ -72,10 +72,10 @@ namespace xUnitTests.Deserialization
 
             User user = page.Data[0];
 
-            Assert.NotNull(user.previousUsernames);
-            Assert.Single(user.previousUsernames);
+            Assert.NotNull(user.PreviousUsernames);
+            Assert.Single(user.PreviousUsernames);
 
-            Assert.True(user.hasVerifiedBadge);
+            Assert.True(user.HasVerifiedBadge);
             Assert.Equal<ulong>(0, user.UserId);
             Assert.Equal("string", user.Username);
             Assert.Equal("displayName", user.DisplayName);

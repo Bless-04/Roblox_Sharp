@@ -107,7 +107,7 @@ namespace Roblox_Sharp.Models
         /// description for the user
         /// </summary>
         [JsonPropertyName("description")]
-        public string? description { get; init; }
+        public string? Description { get; init; }
 
         /// <summary>
         /// creation date and time of user
@@ -118,13 +118,14 @@ namespace Roblox_Sharp.Models
         /// <summary>
         /// creation date and time in the same format as the roblox website 
         /// </summary>
-        public string created_string => Created.ToString("d");
+        [JsonIgnore]
+        public string CreatedString => Created.ToString("d");
 
         /// <summary>
         /// <see langword="true"/> if the user is banned
         /// </summary>
         [JsonPropertyName("isBanned")]
-        public bool isBanned { get; init; }
+        public bool IsBanned { get; init; }
 
         /// <summary>
         /// <b>Unused, legacy attribute. For now always null to not disturb existing client code that might rely on its existence. </b><br></br>
@@ -132,37 +133,37 @@ namespace Roblox_Sharp.Models
         ///ExternalAppDisplayName is the name used in that app(e.g.QQ nickname
         /// </summary>
         [JsonPropertyName("externalAppDisplayName")]
-        public string? externalAppDisplayName { get; init; }
+        public string? ExternalAppDisplayName { get; init; }
 
         /// <summary>
         /// <see langword="true"/> only if the user has a verified badge
         /// </summary>
         [JsonPropertyName("hasVerifiedBadge")]
-        public bool hasVerifiedBadge { get; init; }
+        public bool HasVerifiedBadge { get; init; }
 
         /// <summary>
         /// The username requested by the client 
         /// </summary>
         [JsonPropertyName("requestedUsername")]
-        public string? requestedUsername { get; init; }
+        public string? RequestedUsername { get; init; }
 
         /// <summary>
         /// <inheritdoc cref="UserPresenceType"/>
         /// </summary>
         [JsonPropertyName("presenceType")]
-        public UserPresenceType presenceType { get; init; }
+        public UserPresenceType PresenceType { get; init; }
 
         /// <summary>
         /// list of previous usernames
         /// </summary>
         [JsonPropertyName("previousUsernames")]
-        public IReadOnlyList<string>? previousUsernames { get; init; }
+        public IReadOnlyList<string>? PreviousUsernames { get; init; }
 
         /// <summary>
         /// <see langword="true"/> if user is currently online
         /// </summary>
         [JsonPropertyName("isOnline")]
-        public bool isOnline { get; init; }
+        public bool IsOnline { get; init; }
 
         /// <summary>
         /// <see langword="true"/> if user is deleted/banned/terminated
@@ -174,13 +175,13 @@ namespace Roblox_Sharp.Models
         /// Frequents value for the user
         /// </summary>
         [JsonPropertyName("friendFrequentScore")]
-        public int friendFrequentScore { get; init; }
+        public int FriendFrequentScore { get; init; }
 
         /// <summary>
         /// Frequents rank for the user.
         /// </summary>
         [JsonPropertyName("friendFrequentRank")]
-        public int friendFrequentRank { get; init; }
+        public int FriendFrequentRank { get; init; }
 
         #endregion
         #region Operators
@@ -204,18 +205,18 @@ namespace Roblox_Sharp.Models
             UserId = UserId,
             Username = Username,
             DisplayName = DisplayName,
-            description = description,
+            Description = Description,
             Created = Created,
-            isBanned = isBanned,
-            externalAppDisplayName = externalAppDisplayName,
-            hasVerifiedBadge = hasVerifiedBadge,
-            requestedUsername = requestedUsername,
-            presenceType = presenceType,
-            previousUsernames = previousUsernames?.ToList(),
-            isOnline = isOnline,
+            IsBanned = IsBanned,
+            ExternalAppDisplayName = ExternalAppDisplayName,
+            HasVerifiedBadge = HasVerifiedBadge,
+            RequestedUsername = RequestedUsername,
+            PresenceType = PresenceType,
+            PreviousUsernames = PreviousUsernames?.ToList(),
+            IsOnline = IsOnline,
             IsDeleted = IsDeleted,
-            friendFrequentScore = friendFrequentScore,
-            friendFrequentRank = friendFrequentRank
+            FriendFrequentScore = FriendFrequentScore,
+            FriendFrequentRank = FriendFrequentRank
         };
 
         /// <inheritdoc cref="IUser.GetHashCode"/>
@@ -263,7 +264,7 @@ namespace Roblox_Sharp.Models
                 "id" => $"(ID {UserId}) ",
                 "name" => "@{username} ",
                 "display" => DisplayName + ' ' ?? Username,
-                "joined" => created_string + ' ',
+                "joined" => CreatedString + ' ',
                 _ => throw new FormatException()
             };
         #endregion

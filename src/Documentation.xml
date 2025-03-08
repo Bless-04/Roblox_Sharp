@@ -1340,7 +1340,7 @@
         <member name="P:Roblox_Sharp.Models.User.DisplayName">
             <inheritdoc cref="P:Roblox_Sharp.Models.User._displayName"/>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.description">
+        <member name="P:Roblox_Sharp.Models.User.Description">
             <summary>
             description for the user
             </summary>
@@ -1350,44 +1350,44 @@
             creation date and time of user
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.created_string">
+        <member name="P:Roblox_Sharp.Models.User.CreatedString">
             <summary>
             creation date and time in the same format as the roblox website 
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.isBanned">
+        <member name="P:Roblox_Sharp.Models.User.IsBanned">
             <summary>
             <see langword="true"/> if the user is banned
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.externalAppDisplayName">
+        <member name="P:Roblox_Sharp.Models.User.ExternalAppDisplayName">
              <summary>
              <b>Unused, legacy attribute. For now always null to not disturb existing client code that might rely on its existence. </b><br></br>
             Used when user is logged in from third party app (e.g. QQ) <br></br>
             ExternalAppDisplayName is the name used in that app(e.g.QQ nickname
              </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.hasVerifiedBadge">
+        <member name="P:Roblox_Sharp.Models.User.HasVerifiedBadge">
             <summary>
             <see langword="true"/> only if the user has a verified badge
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.requestedUsername">
+        <member name="P:Roblox_Sharp.Models.User.RequestedUsername">
             <summary>
             The username requested by the client 
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.presenceType">
+        <member name="P:Roblox_Sharp.Models.User.PresenceType">
             <summary>
             <inheritdoc cref="T:Roblox_Sharp.Enums.UserPresenceType"/>
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.previousUsernames">
+        <member name="P:Roblox_Sharp.Models.User.PreviousUsernames">
             <summary>
             list of previous usernames
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.isOnline">
+        <member name="P:Roblox_Sharp.Models.User.IsOnline">
             <summary>
             <see langword="true"/> if user is currently online
             </summary>
@@ -1397,12 +1397,12 @@
             <see langword="true"/> if user is deleted/banned/terminated
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.friendFrequentScore">
+        <member name="P:Roblox_Sharp.Models.User.FriendFrequentScore">
             <summary>
             Frequents value for the user
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.friendFrequentRank">
+        <member name="P:Roblox_Sharp.Models.User.FriendFrequentRank">
             <summary>
             Frequents rank for the user.
             </summary>

@@ -53,13 +53,13 @@ namespace xUnitTests.Deserialization
 
             Assert.Equal("string", group.description);
 
-            Assert.True(group.owner!.hasVerifiedBadge);
+            Assert.True(group.owner!.HasVerifiedBadge);
             Assert.Equal<ulong>(0, group.owner!.UserId);
             Assert.Equal("string", group.owner.Username);
             Assert.Null(group.owner.DisplayName);
 
             Assert.Equal("string", group.shout!.Body);
-            Assert.True(group.shout.Poster.hasVerifiedBadge);
+            Assert.True(group.shout.Poster.HasVerifiedBadge);
             Assert.Equal<ulong>(0, group.shout.Poster.UserId);
             Assert.Equal("string", group.shout.Poster.Username);
             Assert.Equal("poster", group.shout.Poster.DisplayName);

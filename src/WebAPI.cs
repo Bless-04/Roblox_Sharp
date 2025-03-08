@@ -92,7 +92,7 @@ namespace Roblox_Sharp
         /// <param name="url"></param>
         /// <returns>content string</returns>
         /// <exception cref="InvalidUserException">When the userid doesnt exist or is terminated/banned</exception>
-        internal static async Task<string> Get_RequestAsync(string url)
+        public static async Task<string> Get_RequestAsync(string url)
         {
             using HttpResponseMessage response = await _client.GetAsync(url);
             {
@@ -112,14 +112,14 @@ namespace Roblox_Sharp
         }
 
         /// <summary>
-        /// helper function for post requests for roblox api
+        /// function for User.Post request that is pretty much a get request
         /// </summary>
         /// <param name="url"></param>
         /// <param name="POST"></param>
         /// <returns></returns>
         /// <exception cref="InvalidUserException"></exception>
         /// <exception cref="InvalidIdException"></exception>
-        internal static async Task<string> Post_RequestAsync(string url, User.Post POST)
+        public static async Task<string> Post_RequestAsync(string url, User.Post POST)
         {
             using HttpResponseMessage response = await _client.PostAsync(
                     url, new StringContent(
@@ -145,8 +145,12 @@ namespace Roblox_Sharp
                     default:
                         throw new NotImplementedException($"Unhandled Error: {response.StatusCode}\n{url}\n{response.Content}");
                 }
-                ;
+                
             }
         }
+        /* Not needed yet
+        public static async Task<string> Post_RequestAsync<T>(string url,)
+
+        */
     }
 }
