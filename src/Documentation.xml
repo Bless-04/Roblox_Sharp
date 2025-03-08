@@ -52,7 +52,7 @@
             </summary>
             <param name="userId"></param>
             <param name="badgeIds"></param>
-            <returns>List of Badge_Award</returns>
+            <returns>List of Badge.Award</returns>
             <exception cref="T:System.ArgumentException"></exception>
             <exception cref="T:Roblox_Sharp.Exceptions.InvalidUserException"></exception>
         </member>
@@ -525,7 +525,12 @@
         </member>
         <member name="P:Roblox_Sharp.Framework.IAsset.AssetId">
             <summary>
-            The unique id of the asset
+            The unique id of the <see cref="T:Roblox_Sharp.Framework.IAsset"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.IBadge.BadgeId">
+            <summary>
+            The unique id of the <see cref="T:Roblox_Sharp.Framework.IBadge"/>
             </summary>
         </member>
         <member name="T:Roblox_Sharp.Framework.ICloneable`1">
@@ -542,12 +547,12 @@
             template for all the page based requests that have a previous and next cursor
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Framework.IPage.previousPageCursor">
+        <member name="P:Roblox_Sharp.Framework.IPage.PreviousPageCursor">
             <summary>
             previous page cursor of the request .<br/> <see langword="null"/> if there are no previous pages or object is the first page
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Framework.IPage.nextPageCursor">
+        <member name="P:Roblox_Sharp.Framework.IPage.NextPageCursor">
             <summary>
             next page cursor of the request.<br/> <see langword="null"/> if there are no more pages or instance is the last page
             </summary>
@@ -559,7 +564,7 @@
             <typeparam name="T">The data type</typeparam>
             <remarks>indirectly implements <seealso cref="T:System.Collections.Generic.IReadOnlyList`1"/> </remarks>
         </member>
-        <member name="P:Roblox_Sharp.Framework.IPage`1.data">
+        <member name="P:Roblox_Sharp.Framework.IPage`1.Data">
             <summary>
             List of <typeparamref name="T"/> returned by the request
             </summary>
@@ -600,20 +605,13 @@
         </member>
         <member name="T:Roblox_Sharp.Framework.IUser">
             <summary>
-            base class for any roblox <see cref="T:Roblox_Sharp.Framework.IUser"></see> to represents a user with a unique id
+            base class for any roblox <see cref="T:Roblox_Sharp.Framework.IUser"></see> to represents a user with a unique user id
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Framework.IUser.userId">
+        <member name="P:Roblox_Sharp.Framework.IUser.UserId">
             <summary>
-            the Unique numeric id of the user.
+            the Unique numeric id of the <see cref="T:Roblox_Sharp.Framework.IUser"/>.
             </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Framework.IUser`1">
-            <summary>
-            <inheritdoc cref="T:Roblox_Sharp.Framework.IUser"/> <br/>
-            uses <typeparamref name="T"/> to automatically implement <see cref="T:System.IComparable`1"/> and <see cref="T:System.IEquatable`1"/>
-            </summary>
-            <typeparam name="T"></typeparam>
         </member>
         <member name="T:Roblox_Sharp.Models.Avatar">
             <summary>
@@ -697,12 +695,12 @@
             the type of the asset
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Type.id">
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Type.Id">
             <summary>
             the id of the Asset_Type
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Type.name">
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Type.Name">
             <summary>
             the name of the Asset_Type
             </summary>
@@ -712,32 +710,32 @@
             the body color of the avatar using RGB hex
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.headColor3">
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.HeadColor3">
             <summary>
             The RGB hex color for head color, e.g. #FFFFFF
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.torsoColor3">
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.TorsoColor3">
             <summary>
             The RGB hex color for torso color
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.rightArmColor3">
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.RightArmColor3">
             <summary>
             The RGB hex color for right arm color, e.g. #FFFFFF
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.leftArmColor3">
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.LeftArmColor3">
             <summary>
             The RGB hex color for left arm color, e.g. #FFFFFF
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.rightLegColor3">
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.RightLegColor3">
             <summary>
             The RGB hex color for right leg color, e.g. #FFFFFF
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.leftLegColor3">
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3s.LeftLegColor3">
             <summary>
             The RGB hex color for left leg color, e.g. #FFFFFF
             </summary>
@@ -747,32 +745,32 @@
             body color of the avatar using brickcolorid
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.headColorId">
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.HeadColorId">
             <summary>
             The BrickColor id for head color
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.torsoColorId">
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.TorsoColorId">
             <summary>
             The BrickColor id for torso color
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.rightArmColorId">
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.RightArmColorId">
             <summary>
             The BrickColor id for right arm color
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.leftArmColorId">
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.LeftArmColorId">
             <summary>
             The BrickColor id for left arm color
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.rightLegColorId">
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.RightLegColorId">
             <summary>
             The BrickColor id for right leg color
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.leftLegColorId">
+        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors.LeftLegColorId">
             <summary>
             The BrickColor id for left leg color
             </summary>
@@ -799,22 +797,22 @@
             <note>unique to <seealso cref="T:Roblox_Sharp.Endpoints.Avatars_v2"/> based requests </note>
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.assets">
+        <member name="P:Roblox_Sharp.Models.Avatar.Assets">
             <summary>
             the assets worn on the avatar
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.defaultShirtApplied">
+        <member name="P:Roblox_Sharp.Models.Avatar.DefaultShirtApplied">
             <summary>
             <see langword="true"/> if the default shirt is applied to this avatar
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.defaultPantsApplied">
+        <member name="P:Roblox_Sharp.Models.Avatar.DefaultPantsApplied">
             <summary>
             <see langword="true"/> if the default pants are applied to this avatar
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.emotes">
+        <member name="P:Roblox_Sharp.Models.Avatar.Emotes">
             <summary>
             the emotes on the avatar
             </summary>
@@ -827,7 +825,7 @@
             a roblox emote
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Emote.position">
+        <member name="P:Roblox_Sharp.Models.Avatar.Emote.Position">
             <summary>
             the position the emote is equipped to
             </summary>
@@ -842,22 +840,35 @@
             class used to serialize Badge based requests
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Badge.badgeId">
+        <member name="T:Roblox_Sharp.Models.Badge.Award">
+            <summary>
+            Badge.Award
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.Award.AwardedDate">
+            <summary>
+            date badge was awarded
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.Award.BadgeId">
+            <inheritdoc/>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Badge.BadgeId">
             <summary>
             the badge id 
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Badge.name">
+        <member name="P:Roblox_Sharp.Models.Badge.BadgeName">
             <summary>
             the name of the badge 
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Badge.description">
+        <member name="P:Roblox_Sharp.Models.Badge.Description">
             <summary>
             the badge description 
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Badge.displayName">
+        <member name="P:Roblox_Sharp.Models.Badge.DisplayName">
             <summary>
             the localized name of the badge 
             </summary>
@@ -935,16 +946,6 @@
         <member name="M:Roblox_Sharp.Models.Badge.Clone">
             <inheritdoc/>
         </member>
-        <member name="T:Roblox_Sharp.Models.Badge_Award">
-            <summary>
-            Badge_Award
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Badge_Award.awardedDate">
-            <summary>
-            date badge was awarded
-            </summary>
-        </member>
         <member name="P:Roblox_Sharp.Models.CollectibleAsset.UserAssetId">
             <summary>
             The user asset id
@@ -1000,7 +1001,7 @@
             the universe name
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Game.rootPlaceId">
+        <member name="P:Roblox_Sharp.Models.Game.RootPlaceId">
             <summary>
             The description of the universe.
             </summary>
@@ -1016,7 +1017,7 @@
             class used to serialize Group based requests
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.groupId">
+        <member name="P:Roblox_Sharp.Models.Group.GroupId">
             <summary>
             the unique groups id
             </summary>
@@ -1034,13 +1035,11 @@
         <member name="P:Roblox_Sharp.Models.Group.owner">
             <summary>
             group owner <br/>
-            <see langword="null"/> if data not requested
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.Group.shout">
             <summary>
             most recent group shout <br/>
-            <see langword="null"/> if data not requested
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.Group.memberCount">
@@ -1074,7 +1073,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.roles">
+        <member name="P:Roblox_Sharp.Models.Group.Roles">
             <summary>
             unique to role requests
             </summary>
@@ -1084,33 +1083,33 @@
             Group Role Serializer Class
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.Role.roleId">
+        <member name="P:Roblox_Sharp.Models.Group.Role.RoleId">
             <summary>
             Group Role ID
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.Role.name">
+        <member name="P:Roblox_Sharp.Models.Group.Role.Name">
             <summary>
             Group Role Name <br/>
             The name of the role
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.Role.rank">
+        <member name="P:Roblox_Sharp.Models.Group.Role.Rank">
             <summary>
             Group role rank (255 is the owner)
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.Role.memberCount">
+        <member name="P:Roblox_Sharp.Models.Group.Role.MemberCount">
             <summary>
             Number of members in the role
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.Role.description">
+        <member name="P:Roblox_Sharp.Models.Group.Role.Description">
             <summary>
             description of the Role
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.created">
+        <member name="P:Roblox_Sharp.Models.Group.Created">
             <summary>
             The date the Group Shout was created. 
             </summary>
@@ -1187,15 +1186,15 @@
         <member name="M:Roblox_Sharp.Models.Page`1.#ctor">
             <inheritdoc cref="T:Roblox_Sharp.Framework.IPage`1"/>
         </member>
-        <member name="P:Roblox_Sharp.Models.Page`1.previousPageCursor">
-            <inheritdoc cref="P:Roblox_Sharp.Framework.IPage.previousPageCursor"/>
+        <member name="P:Roblox_Sharp.Models.Page`1.PreviousPageCursor">
+            <inheritdoc cref="P:Roblox_Sharp.Framework.IPage.PreviousPageCursor"/>
         </member>
-        <member name="P:Roblox_Sharp.Models.Page`1.nextPageCursor">
-            <inheritdoc cref="P:Roblox_Sharp.Framework.IPage.nextPageCursor"/>
+        <member name="P:Roblox_Sharp.Models.Page`1.NextPageCursor">
+            <inheritdoc cref="P:Roblox_Sharp.Framework.IPage.NextPageCursor"/>
         </member>
-        <member name="P:Roblox_Sharp.Models.Page`1.data">
+        <member name="P:Roblox_Sharp.Models.Page`1.Data">
             <summary>
-            <inheritdoc cref="P:Roblox_Sharp.Framework.IPage`1.data"/>
+            <inheritdoc cref="P:Roblox_Sharp.Framework.IPage`1.Data"/>
             </summary>
         </member>
         <member name="M:Roblox_Sharp.Models.Page`1.op_Decrement(Roblox_Sharp.Models.Page{`0})">
@@ -1317,7 +1316,7 @@
             <param name="username">username of the user</param>
             <param name="displayName">displayname of the user</param>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.userId">
+        <member name="P:Roblox_Sharp.Models.User.UserId">
             <inheritdoc/>
         </member>
         <member name="P:Roblox_Sharp.Models.User.Username">
@@ -1380,7 +1379,7 @@
         </member>
         <member name="P:Roblox_Sharp.Models.User.presenceType">
             <summary>
-            <inheritdoc cref="T:Roblox_Sharp.Enums.PresenceType"/>
+            <inheritdoc cref="T:Roblox_Sharp.Enums.UserPresenceType"/>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.User.previousUsernames">
@@ -1410,7 +1409,7 @@
         </member>
         <member name="M:Roblox_Sharp.Models.User.op_Explicit(System.UInt64)~Roblox_Sharp.Models.User">
             <summary>
-            <inheritdoc cref="P:Roblox_Sharp.Models.User.userId"/>
+            <inheritdoc cref="P:Roblox_Sharp.Models.User.UserId"/>
             </summary>
             <param name="userId"></param>
         </member>
@@ -1463,29 +1462,7 @@
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
             </returns>
         </member>
-        <member name="T:Roblox_Sharp.Models.Thumbnail">
-            example return 
-             * 
-             {
-                "data": [
-                    {
-                        "targetId": 0,
-                        "state": "Error",
-                        "imageUrl": "string",
-                        "version": "string"
-                    }
-                ]
-            }
-            <summary>
-            class used to serialize Thumbnail based requests
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Thumbnail.imageUrl">
-            <summary>
-            image url of thumbnail 
-            </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Models.User_Presence">
+        <member name="T:Roblox_Sharp.Models.User.Presence">
                  * example return 
                 * {
              "userPresences": [
@@ -1503,42 +1480,61 @@
              ]
             }
         </member>
-        <member name="P:Roblox_Sharp.Models.User_Presence.userId">
+        <member name="P:Roblox_Sharp.Models.User.Presence.UserId">
             <inheritdoc/>
         </member>
-        <member name="P:Roblox_Sharp.Models.User_Presence.presenceType">
+        <member name="P:Roblox_Sharp.Models.User.Presence.PresenceType">
             <summary>
-            <see cref="T:Roblox_Sharp.Enums.PresenceType"/> type of user
+            <see cref="T:Roblox_Sharp.Enums.UserPresenceType"/> type of user
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User_Presence.placeId">
+        <member name="P:Roblox_Sharp.Models.User.Presence.PlaceId">
             <summary>
             unique place id
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User_Presence.gameId">
+        <member name="P:Roblox_Sharp.Models.User.Presence.GameId">
             <summary>
             unique game id
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User_Presence.universeId">
+        <member name="P:Roblox_Sharp.Models.User.Presence.UniverseId">
             <summary>
             unique universe id
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User_Presence.lastOnline">
+        <member name="P:Roblox_Sharp.Models.User.Presence.LastOnline">
             <summary>
             exact date and time user was last online
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.Models.User_Presence.GetHashCode">
-            <inheritdoc cref="!:IUser.GetHashCode()"/>
-        </member>
-        <member name="M:Roblox_Sharp.Models.User_Presence.Clone">
+        <member name="M:Roblox_Sharp.Models.User.Presence.Clone">
             <summary>
-            Deep Clones the instance of <see cref="T:Roblox_Sharp.Models.User_Presence"/>
+            Deep Clones the instance of <see cref="T:Roblox_Sharp.Models.User.Presence"/>
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Roblox_Sharp.Models.Thumbnail">
+            example return 
+             * 
+             {
+                "data": [
+                    {
+                        "targetId": 0,
+                        "state": "Error",
+                        "imageUrl": "string",
+                        "version": "string"
+                    }
+                ]
+            }
+            <summary>
+            class used to serialize Thumbnail based requests
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Thumbnail.ImageUrl">
+            <summary>
+            image url of thumbnail 
+            </summary>
         </member>
         <member name="T:Roblox_Sharp.WebAPI">
             <summary>
@@ -1549,11 +1545,6 @@
         <member name="P:Roblox_Sharp.WebAPI.Client">
             <summary>
             <see cref="T:System.Net.Http.HttpClient"></see> used for all web requests
-            </summary>
-        </member>
-        <member name="F:Roblox_Sharp.WebAPI.SerializerOptions">
-            <summary>
-            <see cref="T:System.Text.Json.JsonSerializerOptions"></see> used for all web requests
             </summary>
         </member>
         <member name="E:Roblox_Sharp.WebAPI.OnSuccessfulRequest">

@@ -29,7 +29,7 @@ namespace Roblox_Sharp.Models
         /// The description of the universe.
         /// </summary>
         [JsonPropertyName("rootPlaceId")]
-        public ulong rootPlaceId { get; init; }
+        public ulong RootPlaceId { get; init; }
 
         /// <summary>
         /// Deep Clones the instance of <see cref="Game"/>
@@ -39,7 +39,7 @@ namespace Roblox_Sharp.Models
         {
             UniverseId = this.UniverseId,
             UniverseName = this.UniverseName,
-            rootPlaceId = this.rootPlaceId
+            RootPlaceId = this.RootPlaceId
         };
     }
 }

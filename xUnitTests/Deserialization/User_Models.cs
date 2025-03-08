@@ -36,7 +36,7 @@ namespace xUnitTests.Deserialization
             Assert.True(user.isBanned && user.IsDeleted);
             Assert.Equal("string", user.externalAppDisplayName);
             Assert.True(user.hasVerifiedBadge);
-            Assert.Equal<ulong>(0, user.userId);
+            Assert.Equal<ulong>(0, user.UserId);
             Assert.Equal("string", user.Username);
             Assert.Null(user.DisplayName);
 
@@ -67,20 +67,20 @@ namespace xUnitTests.Deserialization
             Page<User>? page = JsonSerializer.Deserialize<Page<User>>(json_response);
             Assert.NotNull(page);
 
-            Assert.Equal("string", page.previousPageCursor);
-            Assert.Equal("string", page.nextPageCursor);
+            Assert.Equal("string", page.PreviousPageCursor);
+            Assert.Equal("string", page.NextPageCursor);
 
-            User user = page.data[0];
+            User user = page.Data[0];
 
             Assert.NotNull(user.previousUsernames);
             Assert.Single(user.previousUsernames);
 
             Assert.True(user.hasVerifiedBadge);
-            Assert.Equal<ulong>(0, user.userId);
+            Assert.Equal<ulong>(0, user.UserId);
             Assert.Equal("string", user.Username);
             Assert.Equal("displayName", user.DisplayName);
 
-            Assert.Equal(page.data.Count, RoundTrip(page).data.Count);
+            Assert.Equal(page.Data.Count, RoundTrip(page).Data.Count);
         }
 
         /// <summary>
@@ -98,13 +98,13 @@ namespace xUnitTests.Deserialization
             User? user = JsonSerializer.Deserialize<User>(json_response);
             Assert.NotNull(user);
 
-            User_Presence? presence = JsonSerializer.Deserialize<User_Presence>(json_response);
+            User.Presence? presence = JsonSerializer.Deserialize<User.Presence>(json_response);
             Assert.NotNull(presence);
 
 
             Assert.True(
-                presence.userId == user.userId,
-                "The id in the User_Presence object should be the same as the id in the User object");
+                presence.UserId == user.UserId,
+                "The id in the User.Presence object should be the same as the id in the User object");
 
             RoundTripTest(user);
         }
@@ -125,20 +125,20 @@ namespace xUnitTests.Deserialization
               ""invisibleModeExpiry"": ""2024-12-23T16:36:03.740Z""
             }";
 
-            User_Presence? userPresence = JsonSerializer.Deserialize<User_Presence>(json_response);
+            User.Presence? userPresence = JsonSerializer.Deserialize<User.Presence>(json_response);
 
 
             Assert.NotNull(userPresence);
 
-            Assert.Equal<PresenceType>(0, userPresence.presenceType);
-            Assert.Equal("string", userPresence.lastLocation);
-            Assert.Equal<ulong?>(0, userPresence.placeId);
-            Assert.Equal<ulong?>(0, userPresence.rootPlaceId);
-            Assert.Equal("3fa85f64-5717-4562-b3fc-2c963f66afa6", userPresence.gameId);
-            Assert.Equal<ulong?>(0, userPresence.universeId);
-            Assert.Equal<ulong?>(0, userPresence.userId);
-            Assert.Equal(2024, userPresence.lastOnline.Year);
-            Assert.Equal(2024, userPresence.invisibleModeExpiry.Year);
+            Assert.Equal<UserPresenceType>(0, userPresence.PresenceType);
+            Assert.Equal("string", userPresence.LastLocation);
+            Assert.Equal<ulong?>(0, userPresence.PlaceId);
+            Assert.Equal<ulong?>(0, userPresence.RootPlaceId);
+            Assert.Equal("3fa85f64-5717-4562-b3fc-2c963f66afa6", userPresence.GameId);
+            Assert.Equal<ulong?>(0, userPresence.UniverseId);
+            Assert.Equal<ulong?>(0, userPresence.UserId);
+            Assert.Equal(2024, userPresence.LastOnline.Year);
+            Assert.Equal(2024, userPresence.InvisibleModeExpiry.Year);
 
             RoundTripTest(userPresence);
         }

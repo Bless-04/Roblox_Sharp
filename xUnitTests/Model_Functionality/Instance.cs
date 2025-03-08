@@ -19,7 +19,7 @@ namespace xUnitTests.Model_Functionality
             public void User() => Assert.IsAssignableFrom<IUser>(new User());
 
             [Fact]
-            public void User_Presence() => Assert.IsAssignableFrom<IUser>(new User_Presence());
+            public void User_Presence() => Assert.IsAssignableFrom<IUser>(new User.Presence());
 
             [Fact]
             public void Asset() => Assert.IsAssignableFrom<IAsset>(new Avatar.Asset());
@@ -27,11 +27,9 @@ namespace xUnitTests.Model_Functionality
         #endregion
 
         [Fact]
-        public void Badge_Award() => Assert.IsAssignableFrom<Badge>(new Badge_Award()
+        public void Badge_Award() => Assert.IsAssignableFrom<IBadge>(new Badge.Award()
         {
-            name = "",
-            description = "",
-            badgeId = 0
+            BadgeId = ulong.MaxValue
         });
 
         [Fact]

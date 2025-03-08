@@ -36,10 +36,10 @@ namespace xUnitTests.Integration
 
             Assert.Equal(v1.scales, v2.scales); //should be the same ; can be value checked as it is a struct
 
-            Assert.NotNull(v1.assets);
-            Assert.NotNull(v2.assets);
+            Assert.NotNull(v1.Assets);
+            Assert.NotNull(v2.Assets);
 
-            Assert.Equal(v1.assets[0].Meta, v2.assets[0].Meta); //can be value checked as it is a struct
+            Assert.Equal(v1.Assets[0].Meta, v2.Assets[0].Meta); //can be value checked as it is a struct
         }
 
     }

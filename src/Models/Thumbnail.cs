@@ -1,4 +1,6 @@
-﻿namespace Roblox_Sharp.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace Roblox_Sharp.Models;
 /** example return 
  * 
  {
@@ -17,14 +19,18 @@
 /// </summary>
 public class Thumbnail
 {
-    public ulong targetId { get; init; }
+    [JsonPropertyName("targetId")]
+    public ulong TargetId { get; init; }
 
-    required public string state { get; init; }
+    [JsonPropertyName("state")]
+    required public string State { get; init; }
 
     /// <summary>
     /// image url of thumbnail 
     /// </summary>
-    required public string imageUrl { get; init; }
+    [JsonPropertyName("imageUrl")]
+    required public string ImageUrl { get; init; }
 
-    required public string version { get; init; }
+    [JsonPropertyName("version")]
+    required public string Version { get; init; }
 }

@@ -20,6 +20,8 @@ namespace Roblox_Sharp.Models
             init => base._id = value;
         }
 
+        ulong IAsset.AssetId => ItemId;
+
         /// <summary>
         /// The name of the item
         /// </summary>
@@ -34,7 +36,5 @@ namespace Roblox_Sharp.Models
         /// The instance id of the item if applicable
         /// </summary>
         public ulong InstanceId { get; init; }
-
-        ulong IAsset.AssetId => ItemId;
     }
 }

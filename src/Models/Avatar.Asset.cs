@@ -57,14 +57,13 @@ public partial class Avatar
         /// Deep Clones the instance of <see cref="Avatar.Asset"/>
         /// </summary>
         /// <returns></returns>
-        public Avatar.Asset Clone() =>
-            new()
-            {
-                AssetId = AssetId,
-                AssetName = AssetName,
-                AssetType = AssetType,
-                CurrentVersionId = CurrentVersionId,
-                Meta = Meta
-            };
+        public Avatar.Asset Clone() => new()
+        {
+            AssetId = AssetId,
+            AssetName = AssetName,
+            AssetType = AssetType,
+            CurrentVersionId = CurrentVersionId,
+            Meta = Meta
+        };
     }
 }

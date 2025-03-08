@@ -35,12 +35,12 @@ namespace xUnitTests.Deserialization
 
             Assert.NotNull(page);
 
-            Assert.Equal("string", page.previousPageCursor);
-            Assert.Equal("string", page.nextPageCursor);
+            Assert.Equal("string", page.PreviousPageCursor);
+            Assert.Equal("string", page.NextPageCursor);
 
-            Assert.True(1 == page.data.Count, "Page should have 1 item");
+            Assert.True(1 == page.Data.Count, "Page should have 1 item");
 
-            Assert.Equal("string", page.data[0].Name);
+            Assert.Equal("string", page.Data[0].Name);
 
         }
 
@@ -58,10 +58,10 @@ namespace xUnitTests.Deserialization
             Thumbnail? thumbnail = JsonSerializer.Deserialize<Thumbnail>(json_response);
 
             Assert.NotNull(thumbnail);
-            Assert.Equal<ulong>(1, thumbnail.targetId);
-            Assert.Equal("Error", thumbnail.state);
-            Assert.Equal("string", thumbnail.imageUrl);
-            Assert.Equal("string", thumbnail.version);
+            Assert.Equal<ulong>(1, thumbnail.TargetId);
+            Assert.Equal("Error", thumbnail.State);
+            Assert.Equal("string", thumbnail.ImageUrl);
+            Assert.Equal("string", thumbnail.Version);
 
         }
 

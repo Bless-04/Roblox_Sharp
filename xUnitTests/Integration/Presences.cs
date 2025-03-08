@@ -20,17 +20,17 @@ namespace xUnitTests.Integration
         {
             await Assert.ThrowsAsync<InvalidIdException>(() => Presence_v1.Get_PresencesAsync([0]));
 
-            IReadOnlyList<User_Presence> presences = await Presence_v1.Get_PresencesAsync([156, 16, 1]); //youngest to newest 
+            IReadOnlyList<User.Presence> presences = await Presence_v1.Get_PresencesAsync([156, 16, 1]); //youngest to newest 
 
-            presences = [.. presences.OrderByDescending(user => user.userId)];
+            presences = [.. presences.OrderByDescending(user => user.UserId)];
 
             //await Assert.ThrowsAsync<InvalidUserException>(() => Presence_v1.Get_PresencesAsync([])); doesnt throw anything
 
             Assert.True(
-                presences[2].userId == 1 &&
-                presences[1].userId == 16 &&
-                presences[0].userId == 156,
-                "User_Presence.userId is failing"
+                presences[2].UserId == 1 &&
+                presences[1].UserId == 16 &&
+                presences[0].UserId == 156,
+                $"{nameof(User.Presence.UserId)} is failing"
             );
         }
     }

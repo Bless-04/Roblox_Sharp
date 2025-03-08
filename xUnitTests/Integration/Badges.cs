@@ -19,16 +19,16 @@ namespace xUnitTests.Integration
         {
             Page<Badge> page = await Badges_v1.Get_BadgesAsync(16, Limit.Ten); //erik.cassel
 
-            Badge erik_badge1 = page.data[0];
+            Badge erik_badge1 = page.Data[0];
 
-            Assert.NotNull(page.nextPageCursor);
+            Assert.NotNull(page.NextPageCursor);
 
             await Assert.ThrowsAsync<InvalidIdException>(() => Badges_v1.Get_BadgesAsync(0)); //doesnt exist
 
             Assert.NotNull(erik_badge1.creator);
             Assert.NotNull(erik_badge1.awardingUniverse);
 
-            Assert.True(2925703 == erik_badge1.creator.userId, nameof(erik_badge1.creator.userId) + " is failing");
+            Assert.True(2925703 == erik_badge1.creator.UserId, nameof(erik_badge1.creator.UserId) + " is failing");
             Assert.True(2009 == erik_badge1.created.Year, nameof(erik_badge1.created.Year) + " is failing");
             Assert.True(10277240 == erik_badge1.awardingUniverse.UniverseId, nameof(erik_badge1.awardingUniverse.UniverseId) + " is failing"); //game id
 
@@ -45,7 +45,7 @@ namespace xUnitTests.Integration
 
             await Assert.ThrowsAsync<InvalidIdException>(() => Badges_v1.Get_BadgeAsync(0)); //doesnt exist
 
-            Assert.True(14417332 == badge.badgeId, nameof(badge.badgeId) + " is failing");
+            Assert.True(14417332 == badge.BadgeId, nameof(badge.BadgeId) + " is failing");
 
             Assert.True(badge.created.Year == 2009, nameof(badge.created.Year) + " is failing");
         }
@@ -57,7 +57,7 @@ namespace xUnitTests.Integration
             await Assert.ThrowsAsync<InvalidUserException>(() => Badges_v1.Get_BadgesAwardedDatesAsync(0, [])); //doesnt exist
 
             List<ulong> badges = [2126601323, 2126601209, 94278219];
-            IReadOnlyList<Badge_Award> eriks_badges = await Badges_v1.Get_BadgesAwardedDatesAsync(16, badges); //eik.cassel
+            IReadOnlyList<Badge.Award> eriks_badges = await Badges_v1.Get_BadgesAwardedDatesAsync(16, badges); //eik.cassel
 
             Assert.True(1 == eriks_badges.Count, nameof(eriks_badges.Count) + " is failing"); //erik has only 1 of these
         }

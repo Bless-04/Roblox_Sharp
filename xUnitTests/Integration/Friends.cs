@@ -76,7 +76,7 @@ namespace xUnitTests.Integration
         public async Task Get_Followings(Limit limit = Limit.Maximum, Sort sort = Sort.Asc, string? cursor = null)
         {
             Page<User> test = await Friends_v1.Get_FollowingsAsync(BUILDERMAN, limit, sort, cursor);
-            Assert.True(test.data.Count == (int)limit, "Get_Followings() is failing");
+            Assert.True(test.Data.Count == (int)limit, "Get_Followings() is failing");
         }
 
         [IntegrationTrait.Long_Integration]
@@ -109,9 +109,9 @@ namespace xUnitTests.Integration
             Page<User> page = await Friends_v1.Get_FollowersAsync(ROBLOX); //roblox
 
             //old page
-            ulong some_id = page.data[0].userId;
+            ulong some_id = page.Data[0].UserId;
 
-            Assert.Null(page.previousPageCursor);
+            Assert.Null(page.PreviousPageCursor);
 
 
             await Task.Delay(61000); //special case 
@@ -119,9 +119,9 @@ namespace xUnitTests.Integration
             page = await Friends_v1.Get_FollowersAsync(ROBLOX, page: page); //roblox
 
 
-            Assert.True(page.previousPageCursor != null, "Get_Followers() is failing");
+            Assert.True(page.PreviousPageCursor != null, "Get_Followers() is failing");
 
-            Assert.True(page.data[0].userId != some_id, "Get_Followers() is failing");
+            Assert.True(page.Data[0].UserId != some_id, "Get_Followers() is failing");
 
         }
 

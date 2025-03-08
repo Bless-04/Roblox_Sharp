@@ -48,19 +48,19 @@ namespace xUnitTests.Deserialization
             Assert.NotNull(group);
 
 
-            Assert.Equal<ulong>(0, group.groupId);
+            Assert.Equal<ulong>(0, group.GroupId);
             Assert.Equal("string", group.name);
 
             Assert.Equal("string", group.description);
 
             Assert.True(group.owner!.hasVerifiedBadge);
-            Assert.Equal<ulong>(0, group.owner!.userId);
+            Assert.Equal<ulong>(0, group.owner!.UserId);
             Assert.Equal("string", group.owner.Username);
             Assert.Null(group.owner.DisplayName);
 
             Assert.Equal("string", group.shout!.Body);
             Assert.True(group.shout.Poster.hasVerifiedBadge);
-            Assert.Equal<ulong>(0, group.shout.Poster.userId);
+            Assert.Equal<ulong>(0, group.shout.Poster.UserId);
             Assert.Equal("string", group.shout.Poster.Username);
             Assert.Equal("poster", group.shout.Poster.DisplayName);
 
@@ -94,16 +94,16 @@ namespace xUnitTests.Deserialization
             Group? group = JsonSerializer.Deserialize<Group>(json_reponse);
 
             Assert.NotNull(group);
-            Assert.Equal<ulong>(0, group.groupId);
+            Assert.Equal<ulong>(0, group.GroupId);
 
-            Group.Role role = group.roles![0];
+            Group.Role role = group.Roles![0];
 
 
-            Assert.Equal<ulong>(0, role.roleId);
-            Assert.Equal("string", role.name);
-            Assert.Equal("string", role.description);
-            Assert.Equal<ulong>(0, role.rank);
-            Assert.Equal<ulong>(0, role.memberCount);
+            Assert.Equal<ulong>(0, role.RoleId);
+            Assert.Equal("string", role.Name);
+            Assert.Equal("string", role.Description);
+            Assert.Equal<ulong>(0, role.Rank);
+            Assert.Equal<ulong>(0, role.MemberCount);
         }
     }
 }

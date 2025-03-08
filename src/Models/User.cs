@@ -59,16 +59,17 @@ namespace Roblox_Sharp.Models
         /// <param name="displayName">displayname of the user</param>
         public User(ulong userId, string username, string? displayName = null) : this()
         {
-            this.userId = userId;
+            this.UserId = userId;
             this.Username = username;
             this.DisplayName = displayName;
         }
 
         #region Properties
         /// <inheritdoc/>
-        public ulong userId
+        [JsonPropertyName("userId")]
+        public ulong UserId
         {
-            get => base._id ?? throw new NotRequestedException(nameof(userId));
+            get => base._id ?? throw new NotRequestedException(nameof(UserId));
             init => base._id = value;
         }
 
@@ -146,10 +147,10 @@ namespace Roblox_Sharp.Models
         public string? requestedUsername { get; init; }
 
         /// <summary>
-        /// <inheritdoc cref="PresenceType"/>
+        /// <inheritdoc cref="UserPresenceType"/>
         /// </summary>
         [JsonPropertyName("presenceType")]
-        public PresenceType presenceType { get; init; }
+        public UserPresenceType presenceType { get; init; }
 
         /// <summary>
         /// list of previous usernames
@@ -184,10 +185,10 @@ namespace Roblox_Sharp.Models
         #endregion
         #region Operators
         /// <summary>
-        /// <inheritdoc cref="userId"/>
+        /// <inheritdoc cref="UserId"/>
         /// </summary>
         /// <param name="userId"></param>
-        public static explicit operator User(ulong userId) => new() { userId = userId };
+        public static explicit operator User(ulong userId) => new() { UserId = userId };
 
         /// <summary>
         /// <inheritdoc cref="Username"/>
@@ -200,7 +201,7 @@ namespace Roblox_Sharp.Models
         /// <inheritdoc/>
         public User Clone() => new()
         {
-            userId = userId,
+            UserId = UserId,
             Username = Username,
             DisplayName = DisplayName,
             description = description,
@@ -218,13 +219,13 @@ namespace Roblox_Sharp.Models
         };
 
         /// <inheritdoc cref="IUser.GetHashCode"/>
-        public override int GetHashCode() => userId.GetHashCode();
+        public override int GetHashCode() => UserId.GetHashCode();
 
         /// <inheritdoc cref="IUser.Equals"/>
-        public override bool Equals(object? obj) => obj is IUser user && userId == user.userId;
+        public override bool Equals(object? obj) => obj is IUser user && UserId == user.UserId;
 
         /// <inheritdoc cref="IUser{User}.ToString"/> displayname@username (ID id)
-        public override string ToString() => $"{DisplayName}@{Username} (ID {userId})";
+        public override string ToString() => $"{DisplayName}@{Username} (ID {UserId})";
 
         /// /// <summary>
         /// Formats the user information based on the provided format string.
@@ -259,7 +260,7 @@ namespace Roblox_Sharp.Models
             : format switch
             {
                 //user id 
-                "id" => $"(ID {userId}) ",
+                "id" => $"(ID {UserId}) ",
                 "name" => "@{username} ",
                 "display" => DisplayName + ' ' ?? Username,
                 "joined" => created_string + ' ',

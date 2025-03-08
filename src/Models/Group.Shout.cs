@@ -10,7 +10,8 @@ public partial class Group
     /// <summary>
     /// The date the Group Shout was created. 
     /// </summary>
-    public DateTime created { get; init; }
+    [JsonPropertyName("created")]
+    public DateTime Created { get; init; }
 
     /// <summary>
     /// Group Shout Serializer

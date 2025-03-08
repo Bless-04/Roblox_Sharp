@@ -1,7 +1,7 @@
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member ; the names are self explanatory
 namespace Roblox_Sharp.Enums
 {
-    public enum PresenceType : byte
+    public enum UserPresenceType : byte
     {
         Offline = 0,
         Online = 1,

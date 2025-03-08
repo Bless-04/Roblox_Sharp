@@ -25,7 +25,7 @@ namespace xUnitTests.Integration
 
             User roblox = await Users_v1.Get_UserAsync(ROBLOX);
 
-            Assert.True(roblox.userId == ROBLOX, "User.userId is failing");
+            Assert.True(roblox.UserId == ROBLOX, "User.userId is failing");
 
             Assert.True(
                 roblox.Username.Equals(nameof(ROBLOX), StringComparison.OrdinalIgnoreCase)
@@ -44,7 +44,7 @@ namespace xUnitTests.Integration
             User test = (await Users_v1.Get_UsernamesAsync([id]))[0];//
 
             Assert.True(
-                test.userId == id &&
+                test.UserId == id &&
                 test.Username.Equals(Username, System.StringComparison.OrdinalIgnoreCase),
                 "Get_Usernames() is failing"
             );
@@ -69,7 +69,7 @@ namespace xUnitTests.Integration
 
             await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsersAsync([]));
 
-            Assert.True(test.userId == expected_id, "User.userId is failing");
+            Assert.True(test.UserId == expected_id, "User.userId is failing");
         }
 
         [IntegrationTrait.Long_Integration]
@@ -78,9 +78,9 @@ namespace xUnitTests.Integration
         {
             Page<User> page = await Users_v1.Get_UserSearchAsync("robl", Limit.MAX);
 
-            Assert.True(page.data.Count != 0, "Page.data should not be empty");
-            Assert.True(page.previousPageCursor == null, "previouspagecursor should be null");
-            Assert.True(page.nextPageCursor != null, "nextpagecursor should not be null");
+            Assert.True(page.Data.Count != 0, "Page.data should not be empty");
+            Assert.True(page.PreviousPageCursor == null, "previouspagecursor should be null");
+            Assert.True(page.NextPageCursor != null, "nextpagecursor should not be null");
         }
 
         [IntegrationTrait.Long_Integration]
@@ -90,7 +90,7 @@ namespace xUnitTests.Integration
             //7733466 is an admin
             Page<User> y = await Users_v1.Get_UsernameHistoryAsync(7733466, Limit.Ten);
 
-            Assert.False(y.data.Count == 0, "Page.data should not be empty");
+            Assert.False(y.Data.Count == 0, "Page.data should not be empty");
         }
 
         [IntegrationTrait.Long_Integration]

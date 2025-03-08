@@ -12,9 +12,10 @@ namespace Roblox_Sharp.Models
         /// <summary>
         /// the unique groups id
         /// </summary>
-        public ulong groupId
+        [JsonPropertyName("groupId")]
+        public ulong GroupId
         {
-            get => base._id ?? throw new NotRequestedException(nameof(groupId));
+            get => base._id ?? throw new NotRequestedException(nameof(GroupId));
             init => base._id = value;
         }
 
@@ -30,15 +31,13 @@ namespace Roblox_Sharp.Models
 
         /// <summary>
         /// group owner <br/>
-        /// <see langword="null"/> if data not requested
         /// </summary>
-        public User? owner { get; init; }
+        public User owner { get; init; }
 
         /// <summary>
         /// most recent group shout <br/>
-        /// <see langword="null"/> if data not requested
         /// </summary>
-        public Shout? shout { get; init; }
+        public Shout shout { get; init; }
 
         /// <summary>
         /// group member count
@@ -71,7 +70,7 @@ namespace Roblox_Sharp.Models
         /// <returns></returns>
         public Group Clone() => new Group()
         {
-            groupId = groupId,
+            GroupId = GroupId,
             name = name,
             description = description,
             owner = owner,

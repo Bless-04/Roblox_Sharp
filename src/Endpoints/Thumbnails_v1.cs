@@ -45,7 +45,7 @@ namespace Roblox_Sharp.Endpoints
                         $"&size={EnumExtensions.ToString(SIZE)}" +
                         $"&format={FORMAT}" +
                         $"&isCircular={isCircular}")
-            )!.data;
+            )!.Data;
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Roblox_Sharp.Endpoints
                         $"&size={EnumExtensions.ToString(SIZE)}" +
                         $"&format={FORMAT}" +
                         $"&isCircular={isCircular}")
-                )!.data;
+                )!.Data;
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Roblox_Sharp.Endpoints
                         $"&size={EnumExtensions.ToString(SIZE)}" +
                         $"&format={FORMAT.ToString()}" +
                         $"&isCircular={isCircular}")
-                )!.data;
+                )!.Data;
         }
 
     }

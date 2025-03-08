@@ -1,4 +1,5 @@
 ﻿using Roblox_Sharp.Enums;
+using System.Text.Json.Serialization;
 namespace Roblox_Sharp.Models;
 
 public partial class Avatar
@@ -13,12 +14,14 @@ public partial class Avatar
             /// <summary>
             /// the id of the Asset_Type
             /// </summary>
-            public AssetType id { get; init; }
+            [JsonPropertyName("id")]
+            public AssetType Id { get; init; }
 
             /// <summary>
             /// the name of the Asset_Type
             /// </summary>
-            public string name { get; init; }
+            [JsonPropertyName("name")]
+            public string? Name { get; init; }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace xUnitTests.Model_Functionality
         [Fact]
         public void IClonable_Implementation()
         {
-            User user = new() { userId = 1 };
+            User user = new() { UserId = 1 };
 
             Assert.NotSame(user, user.Clone());
         }
@@ -24,10 +24,10 @@ namespace xUnitTests.Model_Functionality
         public void Operators()
         {
             // x > y > z
-            User x = new User() { userId = 1 }; //roblox
-            User y = new User() { userId = 16 }; //erik.cassel
-            User z = new User() { userId = 156 }; //builderman
-            User X = new User() { userId = 1 }; //roblox
+            User x = new User() { UserId = 1 }; //roblox
+            User y = new User() { UserId = 16 }; //erik.cassel
+            User z = new User() { UserId = 156 }; //builderman
+            User X = new User() { UserId = 1 }; //roblox
 
             Assert.False(x.Equals(y));
             Assert.True(x.Equals(X));
@@ -65,43 +65,43 @@ namespace xUnitTests.Model_Functionality
         {
             Page<User> page = new Page<User>
             {
-                data = [
-                    new(){ userId = 1},
-                    new(){ userId = 2}
+                Data = [
+                    new(){ UserId = 1},
+                    new(){ UserId = 2}
                 ]
             };
 
-            User dummy = page.data[0];
+            User dummy = page.Data[0];
 
-            Assert.Equal(dummy, page.data[0]);
+            Assert.Equal(dummy, page.Data[0]);
 
             //makes sure its not a shallow copy of the object         
-            dummy = page.data[1];
+            dummy = page.Data[1];
 
-            Assert.NotNull(page.data[0]);
-            Assert.NotStrictEqual(dummy, page.data[0]);
+            Assert.NotNull(page.Data[0]);
+            Assert.NotStrictEqual(dummy, page.Data[0]);
         }
 
         [Fact]
         public void Page_Operators()
         {
-            Page<bool> page1 = new Page<bool>() { previousPageCursor = string.Empty };
-            Page<bool> page2 = new Page<bool>() { nextPageCursor = string.Empty };
+            Page<bool> page1 = new Page<bool>() { PreviousPageCursor = string.Empty };
+            Page<bool> page2 = new Page<bool>() { NextPageCursor = string.Empty };
 
 
-            Assert.NotNull(page1.previousPageCursor);
-            Assert.NotNull(page2.nextPageCursor);
+            Assert.NotNull(page1.PreviousPageCursor);
+            Assert.NotNull(page2.NextPageCursor);
 
-            Assert.Null(page1.nextPageCursor);
-            Assert.Null(page2.previousPageCursor);
+            Assert.Null(page1.NextPageCursor);
+            Assert.Null(page2.PreviousPageCursor);
 
             page1++; //go to next page
             page2--; //go to previous page
 
-            Assert.NotNull(page1.nextPageCursor);
-            Assert.NotNull(page2.previousPageCursor);
-            Assert.Null(page1.previousPageCursor);
-            Assert.Null(page2.nextPageCursor);
+            Assert.NotNull(page1.NextPageCursor);
+            Assert.NotNull(page2.PreviousPageCursor);
+            Assert.Null(page1.PreviousPageCursor);
+            Assert.Null(page2.NextPageCursor);
         }
 
 

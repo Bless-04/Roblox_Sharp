@@ -19,9 +19,9 @@ namespace xUnitTests.Integration
 
             Thumbnail thumbnail = thumbnails[0];
 
-            Assert.NotNull(thumbnail.imageUrl);
-            Assert.NotNull(thumbnail.state);
-            Assert.NotNull(thumbnail.version);
+            Assert.NotNull(thumbnail.ImageUrl);
+            Assert.NotNull(thumbnail.State);
+            Assert.NotNull(thumbnail.Version);
 
             return true;
         }

@@ -8,9 +8,8 @@ namespace Roblox_Sharp.Framework
     public interface IAsset
     {
         /// <summary>
-        /// The unique id of the asset
+        /// The unique id of the <see cref="IAsset"/>
         /// </summary>
-        [JsonPropertyName("assetId")]
-        public ulong AssetId { get; }
+        ulong AssetId { get; }
     }
 }

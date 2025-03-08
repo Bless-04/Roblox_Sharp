@@ -12,12 +12,12 @@ namespace Roblox_Sharp.Framework
         /// <summary>
         /// previous page cursor of the request .<br/> <see langword="null"/> if there are no previous pages or object is the first page
         /// </summary>
-        public string? previousPageCursor { get; }
+        public string? PreviousPageCursor { get; }
 
         /// <summary>
         /// next page cursor of the request.<br/> <see langword="null"/> if there are no more pages or instance is the last page
         /// </summary>
-        public string? nextPageCursor { get; }
+        public string? NextPageCursor { get; }
     }
 
     /// <summary>
@@ -30,13 +30,13 @@ namespace Roblox_Sharp.Framework
         /// <summary>
         /// List of <typeparamref name="T"/> returned by the request
         /// </summary>
-        IReadOnlyList<T> data { get; }
+        IReadOnlyList<T> Data { get; }
 
         /// <inheritdoc cref="IReadOnlyCollection{T}.Count"/>
-        public int Count => data.Count;
+        public int Count => Data.Count;
 
         /// <inheritdoc cref="IReadOnlyList{T}.this[int]"/>
-        public T this[int index] => data[index];
+        public T this[int index] => Data[index];
 
         /// <summary>
         /// Goes back 1 page <br></br>
@@ -64,6 +64,6 @@ namespace Roblox_Sharp.Framework
         /// <inheritdoc cref="IEnumerable.GetEnumerator"/>
         /// </summary>
         /// <returns></returns>
-        public IEnumerator<T> GetEnumerator() => data.GetEnumerator();
+        public IEnumerator<T> GetEnumerator() => Data.GetEnumerator();
     }
 }

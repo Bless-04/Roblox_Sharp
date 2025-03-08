@@ -33,6 +33,6 @@ namespace Roblox_Sharp.Endpoints
             //url example https://groups.roblox.com/v1/groups/2/roles
             JsonSerializer.Deserialize<Group>(
                 await Get_RequestAsync($"https://groups.roblox.com/v1/groups/{groupId}/roles")
-            )!.roles ?? Array.Empty<Group.Role>();
+            )!.Roles ?? Array.Empty<Group.Role>();
     }
 }

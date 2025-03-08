@@ -17,9 +17,9 @@ namespace xUnitTests.Integration
         {
             Group group = await Groups_v1.Get_GroupAsync(2);
 
-            Assert.True(User_Constants.SHEDLETSKY == group.owner.userId, "Group.owner.userId is failing"); //owner is 261
-            Assert.True(2 == group.groupId, "Group.groupId is failing"); //group id is 2
-            Assert.True(group.memberCount > 100000, "Group.memberCount is failing"); //over 100k members as of 11/27/24
+            Assert.True(User_Constants.SHEDLETSKY == group.owner.UserId, nameof(group.owner.UserId) + " is failing"); //owner is 261
+            Assert.True(2 == group.GroupId, $"{nameof(group.GroupId)} is failing"); //group id is 2
+            Assert.True(group.memberCount > 100000, $"{nameof(group.memberCount)} is failing"); //over 100k members as of 11/27/24
 
             await Assert.ThrowsAsync<InvalidUserException>(() => Groups_v1.Get_GroupAsync(0)); //doesnt exist
         }
@@ -32,7 +32,7 @@ namespace xUnitTests.Integration
 
             Assert.True(roles.Count > 1, "Group.Role.Count is failing");
 
-            Assert.True(roles[1].memberCount > 400000, "Group.Role.memberCount is failing"); //more than 400k as of 11/30
+            Assert.True(roles[1].MemberCount > 400000, "Group.Role.memberCount is failing"); //more than 400k as of 11/30
 
         }
 
@@ -49,14 +49,14 @@ namespace xUnitTests.Integration
             Group group3 = groups[2];
 
             Assert.True(
-                1179762 == group1.owner.userId &&
-                261 == group2.owner.userId &&
-                24941 == group3.owner.userId,
+                1179762 == group1.owner.UserId &&
+                261 == group2.owner.UserId &&
+                24941 == group3.owner.UserId,
                 "Group.owner.userId is failing"
             );
             Assert.True(
-                group1.created.Year == group2.created.Year &&
-                group3.created.Year == group2.created.Year,
+                group1.Created.Year == group2.Created.Year &&
+                group3.Created.Year == group2.Created.Year,
                 "Group.created.Year is failing"
             ); // all created in 2009
         }

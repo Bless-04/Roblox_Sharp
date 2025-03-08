@@ -25,6 +25,7 @@ namespace Roblox_Sharp
         /// </summary>
         public static HttpClient Client => _client;
 
+        /*
         /// <summary>
         /// <see cref="JsonSerializerOptions"></see> used for all web requests
         /// </summary>
@@ -35,6 +36,7 @@ namespace Roblox_Sharp
             WriteIndented = true,
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
+        */
         /// <summary>
         /// an event that is raised only when the web request is successful/statuscode 200
         /// </summary>

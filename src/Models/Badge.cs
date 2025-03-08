@@ -8,31 +8,35 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize Badge based requests
     /// </summary>
-    public class Badge : Creation<Badge>
+    public partial class Badge : Creation<IBadge> , IBadge
     {
         /// <summary>
         /// the badge id 
         /// </summary>
-        public ulong badgeId
+        [JsonPropertyName("badgeId")]
+        public ulong BadgeId
         {
-            get => base._id ?? throw new NotRequestedException(nameof(badgeId));
+            get => base._id ?? throw new NotRequestedException(nameof(BadgeId));
             init => base._id = value;
         }
 
         /// <summary>
         /// the name of the badge 
         /// </summary>
-        public string? name { get; init; }
+        [JsonPropertyName("name")]
+        public string? BadgeName { get; init; }
 
         /// <summary>
         /// the badge description 
         /// </summary>
-        public string? description { get; init; }
+        [JsonPropertyName("description")]
+        public string? Description { get; init; }
 
         /// <summary>
         /// the localized name of the badge 
         /// </summary>
-        public string? displayName { get; init; }
+        [JsonPropertyName("displayName")]
+        public string? DisplayName { get; init; }
 
         /// <summary>
         /// the localized description of the badge
@@ -114,10 +118,10 @@ namespace Roblox_Sharp.Models
         public Badge Clone() =>
             new Badge()
             {
-                badgeId = badgeId,
-                name = name,
-                description = description,
-                displayName = displayName,
+                BadgeId = BadgeId,
+                BadgeName = BadgeName,
+                Description = Description,
+                DisplayName = DisplayName,
                 displayDescription = displayDescription,
                 enabled = enabled,
                 iconImageId = iconImageId,

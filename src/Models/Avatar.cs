@@ -93,39 +93,43 @@ namespace Roblox_Sharp.Models
         /// the rgb hex colors for each bodypart
         /// <note>unique to <seealso cref="Endpoints.Avatars_v2"/> based requests </note>
         /// </summary>
-        public BodyColor3s bodyColor3s { get; init; }
+        public BodyColor3s? bodyColor3s { get; init; } 
 
         /// <summary>
         /// the assets worn on the avatar
         /// </summary>
-        public IReadOnlyList<Asset>? assets { get; init; }
+        [JsonPropertyName("assets")]
+        public IReadOnlyList<Asset>? Assets { get; init; }
 
         /// <summary>
         /// <see langword="true"/> if the default shirt is applied to this avatar
         /// </summary>
-        public bool defaultShirtApplied { get; init; }
+        [JsonPropertyName("defaultShirtApplied")]
+        public bool DefaultShirtApplied { get; init; }
 
         /// <summary>
         /// <see langword="true"/> if the default pants are applied to this avatar
         /// </summary>
-        public bool defaultPantsApplied { get; init; }
+        [JsonPropertyName("defaultPantsApplied")]
+        public bool DefaultPantsApplied { get; init; }
 
         /// <summary>
         /// the emotes on the avatar
         /// </summary>
-        public IReadOnlyList<Emote>? emotes { get; init; }
+        [JsonPropertyName("emotes")]
+        public IReadOnlyList<Emote>? Emotes { get; init; }
 
         ///<inheritdoc/>
-        public Avatar Clone() => new Avatar()
+        public Avatar Clone() => new()
         {
             scales = scales,
             playerAvatarType = playerAvatarType,
             bodyColors = bodyColors,
             bodyColor3s = bodyColor3s,
-            assets = assets,
-            defaultShirtApplied = defaultShirtApplied,
-            defaultPantsApplied = defaultPantsApplied,
-            emotes = emotes
+            Assets = Assets,
+            DefaultShirtApplied = DefaultShirtApplied,
+            DefaultPantsApplied = DefaultPantsApplied,
+            Emotes = Emotes
         };
     }
 }

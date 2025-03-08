@@ -16,36 +16,42 @@ public partial class Avatar
         /// The RGB hex color for head color, e.g. #FFFFFF
         /// </summary>
         [JsonConverter(typeof(Color_Converter))]
-        public Color headColor3 { get; init; }
+        [JsonPropertyName("headColor3")]
+        public Color HeadColor3 { get; init; }
 
         /// <summary>
         /// The RGB hex color for torso color
         /// </summary>
         [JsonConverter(typeof(Color_Converter))]
-        public Color torsoColor3 { get; init; }
+        [JsonPropertyName("torsoColor3")]
+        public Color TorsoColor3 { get; init; }
 
         /// <summary>
         /// The RGB hex color for right arm color, e.g. #FFFFFF
         /// </summary>
         [JsonConverter(typeof(Color_Converter))]
-        public Color rightArmColor3 { get; init; }
+        [JsonPropertyName("rightArmColor3")]
+        public Color RightArmColor3 { get; init; }
 
         /// <summary>
         /// The RGB hex color for left arm color, e.g. #FFFFFF
         /// </summary>
         [JsonConverter(typeof(Color_Converter))]
-        public Color leftArmColor3 { get; init; }
+        [JsonPropertyName("leftArmColor3")]
+        public Color LeftArmColor3 { get; init; }
 
         /// <summary>
         /// The RGB hex color for right leg color, e.g. #FFFFFF
         /// </summary>
         [JsonConverter(typeof(Color_Converter))]
-        public Color rightLegColor3 { get; init; }
+        [JsonPropertyName("rightLegColor3")]
+        public Color RightLegColor3 { get; init; }
 
         /// <summary>
         /// The RGB hex color for left leg color, e.g. #FFFFFF
         /// </summary>
         [JsonConverter(typeof(Color_Converter))]
-        public Color leftLegColor3 { get; init; }
+        [JsonPropertyName("leftLegColor3")]
+        public Color LeftLegColor3 { get; init; }
     }
 }

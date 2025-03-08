@@ -26,7 +26,7 @@ namespace Roblox_Sharp.Endpoints
             //url example 'https://friends.roblox.com/v1/users/16/friends?userSort=0
             JsonSerializer.Deserialize<Page<User>>(
                 await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/friends")
-            )!.data!;
+            )!.Data!;
 
         /// <summary>
         /// Get a <paramref name="page"/> of all users that follow the given <paramref name="userId"/> with targetUserId in page response format
@@ -44,7 +44,7 @@ namespace Roblox_Sharp.Endpoints
                 await Get_RequestAsync(
                     $"https://friends.roblox.com/v1/users/{userId}" +
                     $"/followers?limit=50&sortOrder={sortOrder}" +
-                    $"&cursor={page?.nextPageCursor}")
+                    $"&cursor={page?.NextPageCursor}")
             )!;
 
         /// <summary>

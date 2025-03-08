@@ -31,7 +31,7 @@ namespace Roblox_Sharp.Endpoints
                     $"https://users.roblox.com/v1/users/search?" +
                     $"keyword={keyword}" +
                     $"&limit={EnumExtensions.ToString(LIMIT)}" +
-                    $"&cursor={page?.nextPageCursor}")
+                    $"&cursor={page?.NextPageCursor}")
             )!;
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Roblox_Sharp.Endpoints
 
             IReadOnlyList<User> users = JsonSerializer.Deserialize<Page<User>>(
                 await Post_RequestAsync("https://users.roblox.com/v1/users", new User.Post(userIds, excludeBannedUsers))
-            )!.data;
+            )!.Data;
 
             if (users.Count == 0) throw new InvalidUserException($"No valid user ids\n[{string.Join(',', userIds)}]");
 
@@ -90,7 +90,7 @@ namespace Roblox_Sharp.Endpoints
             //StringContent(json, Encoding.UTF8, "application/json");
             IReadOnlyList<User> users = JsonSerializer.Deserialize<Page<User>>(
                 await Post_RequestAsync("https://users.roblox.com/v1/usernames/users", new User.Post(usernames, excludeBannedUsers))
-            )!.data;
+            )!.Data;
 
             if (users.Count == 0) throw new InvalidUserException($"No valid usernames\n[{string.Join(',', usernames)}]");
 
@@ -113,7 +113,7 @@ namespace Roblox_Sharp.Endpoints
                 await Get_RequestAsync(
                     $"https://users.roblox.com/v1/users/{userId}" +
                     $"/username-history?limit={EnumExtensions.ToString(LIMIT)}" +
-                    $"&cursor={page?.nextPageCursor}" +
+                    $"&cursor={page?.NextPageCursor}" +
                     $"&sortOrder={SORT}")
             )!;
 

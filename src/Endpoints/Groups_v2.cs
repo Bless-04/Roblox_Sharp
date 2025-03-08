@@ -21,6 +21,6 @@ namespace Roblox_Sharp.Endpoints
             // example url https://groups.roblox.com/v2/groups?groupIds=2,3,1
             JsonSerializer.Deserialize<Page<Group>>(
                 await Get_RequestAsync($"https://groups.roblox.com/v2/groups?groupIds={string.Join(',', groupIds)}")
-            )!.data!;
+            )!.Data!;
     }
 }

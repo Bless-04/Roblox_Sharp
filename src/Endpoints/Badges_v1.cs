@@ -22,19 +22,19 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="badgeIds"></param>
-        /// <returns>List of Badge_Award</returns>
+        /// <returns>List of Badge.Award</returns>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="InvalidUserException"></exception>
-        public static async Task<IReadOnlyList<Badge_Award>> Get_BadgesAwardedDatesAsync(ulong userId, List<ulong> badgeIds)
+        public static async Task<IReadOnlyList<Badge.Award>> Get_BadgesAwardedDatesAsync(ulong userId, List<ulong> badgeIds)
         {
             if (badgeIds.Count == 0) throw new InvalidUserException("atleast one badge id is required");
             //URL example https://badges.roblox.com/v1/users/63225213/badges/awarded-dates?badgeIds=2126601323,2126601209,94278219,-1
             return
-                JsonSerializer.Deserialize<Page<Badge_Award>>(
+                JsonSerializer.Deserialize<Page<Badge.Award>>(
                     await Get_RequestAsync(
                         $"https://badges.roblox.com/v1/users/{userId}" +
                         $"/badges/awarded-dates?badgeIds={string.Join(',', badgeIds)}")
-                )!.data;
+                )!.Data;
         }
         /// <summary>
         /// Get detailed badge information by the given <paramref name="badgeId"/>
@@ -61,7 +61,7 @@ namespace Roblox_Sharp.Endpoints
                 await Get_RequestAsync(
                     $"https://badges.roblox.com/v1/users/{userId}/badges?limit={EnumExtensions.ToString(limit)}" +
                     $"&sortOrder={sortOrder}" +
-                    $"&cursor={page?.nextPageCursor}")
+                    $"&cursor={page?.NextPageCursor}")
             )!;
 
     }
