@@ -1,4 +1,6 @@
-﻿namespace Roblox_Sharp.Framework
+﻿using System.Text.Json.Serialization;
+
+namespace Roblox_Sharp.Framework
 {
     /// <summary>
     /// Represents an asset
@@ -8,6 +10,7 @@
         /// <summary>
         /// The unique id of the asset
         /// </summary>
+        [JsonPropertyName("assetId")]
         public ulong AssetId { get; }
     }
 }

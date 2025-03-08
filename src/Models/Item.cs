@@ -8,7 +8,7 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize Item based requests
     /// </summary>
-    public class Item : Creation<IAsset>, IAsset
+    public class Item : Creation<Item>, IAsset
     {
         /// <summary>
         /// The ID of the item
@@ -19,11 +19,6 @@ namespace Roblox_Sharp.Models
             get => base._id ?? throw new NotRequestedException(nameof(ItemId));
             init => base._id = value;
         }
-
-        /// <summary>
-        /// <inheritdoc/>
-        /// </summary>
-        public ulong AssetId => ItemId;
 
         /// <summary>
         /// The name of the item
@@ -39,5 +34,7 @@ namespace Roblox_Sharp.Models
         /// The instance id of the item if applicable
         /// </summary>
         public ulong InstanceId { get; init; }
+
+        ulong IAsset.AssetId => ItemId;
     }
 }

@@ -10,14 +10,21 @@ namespace xUnitTests.Model_Functionality
     [Trait(nameof(Roblox_Sharp.Models), nameof(Model_Functionality))]
     public class Instance
     {
-        [Fact]
-        public void User() => Assert.IsAssignableFrom<IUser>(new User());
+        #region Interfaces
 
-        [Fact]
-        public void User_Presence() => Assert.IsAssignableFrom<IUser>(new User_Presence());
+            [Fact]
+            public void Page() => Assert.IsAssignableFrom<IPage>(new Page<bool>());
 
-        [Fact]
-        public void Page() => Assert.IsAssignableFrom<IPage>(new Page<bool>());
+            [Fact]
+            public void User() => Assert.IsAssignableFrom<IUser>(new User());
+
+            [Fact]
+            public void User_Presence() => Assert.IsAssignableFrom<IUser>(new User_Presence());
+
+            [Fact]
+            public void Asset() => Assert.IsAssignableFrom<IAsset>(new Avatar.Asset());
+        
+        #endregion
 
         [Fact]
         public void Badge_Award() => Assert.IsAssignableFrom<Badge>(new Badge_Award()
@@ -29,5 +36,10 @@ namespace xUnitTests.Model_Functionality
 
         [Fact]
         public void Emote() => Assert.IsAssignableFrom<Avatar.Asset>(new Avatar.Emote());
+
+
+       
+
+
     }
 }

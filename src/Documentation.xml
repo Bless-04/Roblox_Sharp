@@ -1120,22 +1120,22 @@
             Group Shout Serializer
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.Shout.body">
+        <member name="P:Roblox_Sharp.Models.Group.Shout.Body">
             <summary>
             group shoutouts message body
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.Shout.poster">
+        <member name="P:Roblox_Sharp.Models.Group.Shout.Poster">
             <summary>
             user information of the Group Shouts poster
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.Shout.created">
+        <member name="P:Roblox_Sharp.Models.Group.Shout.Created">
             <summary>
             The shouts created date 
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.Shout.updated">
+        <member name="P:Roblox_Sharp.Models.Group.Shout.Updated">
             <summary>
             The date of the last Group Shout 
             </summary>
@@ -1164,11 +1164,6 @@
         <member name="P:Roblox_Sharp.Models.Item.ItemId">
             <summary>
             The ID of the item
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Item.AssetId">
-            <summary>
-            <inheritdoc/>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.Item.Name">
