@@ -17,9 +17,9 @@ namespace xUnitTests.Integration
         {
             Group group = await Groups_v1.Get_GroupAsync(2);
 
-            Assert.True(User_Constants.SHEDLETSKY == group.owner.UserId, nameof(group.owner.UserId) + " is failing"); //owner is 261
+            Assert.True(User_Constants.SHEDLETSKY == group.Owner.UserId, nameof(group.Owner.UserId) + " is failing"); //owner is 261
             Assert.True(2 == group.GroupId, $"{nameof(group.GroupId)} is failing"); //group id is 2
-            Assert.True(group.memberCount > 100000, $"{nameof(group.memberCount)} is failing"); //over 100k members as of 11/27/24
+            Assert.True(group.MemberCount > 100000, $"{nameof(group.MemberCount)} is failing"); //over 100k members as of 11/27/24
 
             await Assert.ThrowsAsync<InvalidUserException>(() => Groups_v1.Get_GroupAsync(0)); //doesnt exist
         }
@@ -49,9 +49,9 @@ namespace xUnitTests.Integration
             Group group3 = groups[2];
 
             Assert.True(
-                1179762 == group1.owner.UserId &&
-                261 == group2.owner.UserId &&
-                24941 == group3.owner.UserId,
+                1179762 == group1.Owner.UserId &&
+                261 == group2.Owner.UserId &&
+                24941 == group3.Owner.UserId,
                 "Group.owner.userId is failing"
             );
             Assert.True(

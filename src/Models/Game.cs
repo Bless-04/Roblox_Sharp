@@ -1,12 +1,14 @@
 ﻿using Roblox_Sharp.Framework;
 using Roblox_Sharp.Exceptions;
 using System.Text.Json.Serialization;
+using System;
 namespace Roblox_Sharp.Models
 {
     //TODO: finish
     /// <summary>
     /// Represents a game
     /// </summary>
+    [Obsolete("This class is not finished")]
     public partial class Game : Creation<Game>, ICloneable<Game>
     {
         /// <summary>
@@ -23,7 +25,7 @@ namespace Roblox_Sharp.Models
         /// the universe name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? UniverseName { get; init; }
+        public string? Name { get; init; }
 
         /// <summary>
         /// The description of the universe.
@@ -38,7 +40,7 @@ namespace Roblox_Sharp.Models
         public Game Clone() => new Game
         {
             UniverseId = this.UniverseId,
-            UniverseName = this.UniverseName,
+            Name = this.Name,
             RootPlaceId = this.RootPlaceId
         };
     }

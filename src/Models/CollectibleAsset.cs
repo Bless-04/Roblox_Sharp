@@ -34,7 +34,7 @@ namespace Roblox_Sharp.Models
         /// The asset name of the asset
         /// </summary>
         [JsonPropertyName("name")]
-        public required string AssetName { get; init; }
+        public required string Name { get; init; }
 
         /// <summary>
         /// The recent average price of the user asset

@@ -22,47 +22,56 @@ namespace Roblox_Sharp.Models
         /// <summary>
         /// group name
         /// </summary>
-        public string? name { get; init; }
+        [JsonPropertyName("name")]
+        public string? Name { get; init; }
 
         /// <summary>
         /// group description
         /// </summary>
-        public string? description { get; init; }
+        [JsonPropertyName("description")]
+        public string? Description { get; init; }
 
         /// <summary>
         /// group owner <br/>
         /// </summary>
-        public User owner { get; init; }
+        [JsonPropertyName("owner")]
+        public User? Owner { get; init; }
 
         /// <summary>
         /// most recent group shout <br/>
         /// </summary>
-        public Shout shout { get; init; }
+        [JsonPropertyName("shout")]
+        public Group.Shout? shout { get; init; }
 
         /// <summary>
         /// group member count
         /// </summary>
-        public ulong memberCount { get; init; }
+        [JsonPropertyName("memberCount")]
+        public ulong MemberCount { get; init; }
 
         /// <summary>
         /// <see langword="true"/> if group is buildersclub only
         /// </summary>
-        public bool isBuildersClubOnly { get; init; }
+        [JsonPropertyName("isBuildersClubOnly")]
+        public bool IsBuildersClubOnly { get; init; }
 
         /// <summary>
         /// <see langword="true"/> if group is public
         /// </summary>
-        public bool publicEntryAllowed { get; init; }
+        [JsonPropertyName("publicEntryAllowed")]
+        public bool PublicEntryAllowed { get; init; }
 
         /// <summary>
         /// <see langword="true"/> if group is locked
         /// </summary>
-        public bool isLocked { get; init; }
+        [JsonPropertyName("isLocked")]
+        public bool IsLocked { get; init; }
 
         /// <summary>
         /// <see langword="true"/> if group has a verified badge
         /// </summary>
-        public bool hasVerifiedBadge { get; init; }
+        [JsonPropertyName("hasVerifiedBadge")]
+        public bool HasVerifiedBadge { get; init; }
 
         /// <summary>
         /// Deep Clones the instance of <see cref="Group"/>
@@ -71,15 +80,15 @@ namespace Roblox_Sharp.Models
         public Group Clone() => new Group()
         {
             GroupId = GroupId,
-            name = name,
-            description = description,
-            owner = owner,
+            Name = Name,
+            Description = Description,
+            Owner = Owner,
             shout = shout,
-            memberCount = memberCount,
-            isBuildersClubOnly = isBuildersClubOnly,
-            publicEntryAllowed = publicEntryAllowed,
-            isLocked = isLocked,
-            hasVerifiedBadge = hasVerifiedBadge
+            MemberCount = MemberCount,
+            IsBuildersClubOnly = IsBuildersClubOnly,
+            PublicEntryAllowed = PublicEntryAllowed,
+            IsLocked = IsLocked,
+            HasVerifiedBadge = HasVerifiedBadge
         };
     }
 }

@@ -961,7 +961,7 @@
             <inheritdoc/>
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.CollectibleAsset.AssetName">
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.Name">
             <summary>
             The asset name of the asset
             </summary>
@@ -996,7 +996,7 @@
             the universe id 
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Game.UniverseName">
+        <member name="P:Roblox_Sharp.Models.Game.Name">
             <summary>
             the universe name
             </summary>
@@ -1022,17 +1022,17 @@
             the unique groups id
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.name">
+        <member name="P:Roblox_Sharp.Models.Group.Name">
             <summary>
             group name
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.description">
+        <member name="P:Roblox_Sharp.Models.Group.Description">
             <summary>
             group description
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.owner">
+        <member name="P:Roblox_Sharp.Models.Group.Owner">
             <summary>
             group owner <br/>
             </summary>
@@ -1042,27 +1042,27 @@
             most recent group shout <br/>
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.memberCount">
+        <member name="P:Roblox_Sharp.Models.Group.MemberCount">
             <summary>
             group member count
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.isBuildersClubOnly">
+        <member name="P:Roblox_Sharp.Models.Group.IsBuildersClubOnly">
             <summary>
             <see langword="true"/> if group is buildersclub only
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.publicEntryAllowed">
+        <member name="P:Roblox_Sharp.Models.Group.PublicEntryAllowed">
             <summary>
             <see langword="true"/> if group is public
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.isLocked">
+        <member name="P:Roblox_Sharp.Models.Group.IsLocked">
             <summary>
             <see langword="true"/> if group is locked
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.hasVerifiedBadge">
+        <member name="P:Roblox_Sharp.Models.Group.HasVerifiedBadge">
             <summary>
             <see langword="true"/> if group has a verified badge
             </summary>
@@ -1581,7 +1581,7 @@
         </member>
         <member name="M:Roblox_Sharp.WebAPI.Post_RequestAsync(System.String,Roblox_Sharp.Models.User.Post)">
             <summary>
-            helper function for post requests for roblox api
+            function for User.Post request that is pretty much a get request
             </summary>
             <param name="url"></param>
             <param name="POST"></param>

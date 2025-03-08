@@ -1,4 +1,4 @@
-#Builds Roblox_Sharp and also Tests functionality of objects and json deserialization
+#Builds Roblox_Sharp and also Tests functionality of objects
 name: Framework Functionality
 
 on:

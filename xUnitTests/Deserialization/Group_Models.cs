@@ -49,14 +49,14 @@ namespace xUnitTests.Deserialization
 
 
             Assert.Equal<ulong>(0, group.GroupId);
-            Assert.Equal("string", group.name);
+            Assert.Equal("string", group.Name);
 
-            Assert.Equal("string", group.description);
+            Assert.Equal("string", group.Description);
 
-            Assert.True(group.owner!.HasVerifiedBadge);
-            Assert.Equal<ulong>(0, group.owner!.UserId);
-            Assert.Equal("string", group.owner.Username);
-            Assert.Null(group.owner.DisplayName);
+            Assert.True(group.Owner!.HasVerifiedBadge);
+            Assert.Equal<ulong>(0, group.Owner!.UserId);
+            Assert.Equal("string", group.Owner.Username);
+            Assert.Null(group.Owner.DisplayName);
 
             Assert.Equal("string", group.shout!.Body);
             Assert.True(group.shout.Poster.HasVerifiedBadge);
@@ -67,11 +67,11 @@ namespace xUnitTests.Deserialization
             Assert.Equal(2024, group.shout.Created.Year);
             Assert.Equal(2024, group.shout.Updated.Year);
 
-            Assert.Equal<ulong>(0, group.memberCount);
-            Assert.True(group.isBuildersClubOnly);
-            Assert.True(group.publicEntryAllowed);
-            Assert.True(group.isLocked);
-            Assert.True(group.hasVerifiedBadge);
+            Assert.Equal<ulong>(0, group.MemberCount);
+            Assert.True(group.IsBuildersClubOnly);
+            Assert.True(group.PublicEntryAllowed);
+            Assert.True(group.IsLocked);
+            Assert.True(group.HasVerifiedBadge);
         }
 
         [Fact]
