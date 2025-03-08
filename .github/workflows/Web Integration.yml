@@ -21,7 +21,7 @@ defaults:
 jobs:
     Integration-Tests:
         name: Integration
-        continue-on-error: true
+
         concurrency:
             group: Integration
             cancel-in-progress: true
@@ -37,6 +37,8 @@ jobs:
 
             - name: Short Integration Tests
               run: dotnet test -c Debug --no-build  --filter Endpoints=Integration
+
+              continue-on-error: true
 
             - name: Long Integration Tests
               run: dotnet test -c Debug --no-build --filter Endpoints=Long_Integration

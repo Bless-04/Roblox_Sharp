@@ -24,5 +24,12 @@ jobs:
             - name: Model Functionality
               run: dotnet test -c Debug --no-build --filter Models=Model_Functionality
 
+              continue-on-error: true
+
+            - name: JSON Serialization
+              run: dotnet test -c Debug --no-build --filter Models=Serialization
+
+              continue-on-error: true
+
             - name: JSON Deserialization
               run: dotnet test -c Debug --no-build --filter Models=Deserialization
