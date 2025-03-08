@@ -7,7 +7,7 @@ namespace xUnitTests.Deserialization
     /// Tests Serialization for all Group endpoints
     /// </summary>
     [Trait(nameof(xUnitTests), nameof(Deserialization))]
-    public class Group_Object
+    public class Group_Models
     {
         [Fact]
         public void Get_Group()
@@ -22,7 +22,7 @@ namespace xUnitTests.Deserialization
                 ""hasVerifiedBadge"": true,
                 ""userId"": 0,
                 ""username"": ""string"",
-                ""DisplayName"": ""string""
+                ""displayName"": ""string""
                 },
                 ""shout"": {
                 ""body"": ""string"",
@@ -30,8 +30,8 @@ namespace xUnitTests.Deserialization
                     ""buildersClubMembershipType"": 0,
                     ""hasVerifiedBadge"": true,
                     ""userId"": 0,
-                    ""Username"": ""string"",
-                    ""DisplayName"": ""poster""
+                    ""username"": ""string"",
+                    ""displayName"": ""poster""
                 },
                 ""created"": ""2024-12-23T06:22:04.576Z"",
                 ""updated"": ""2024-12-23T06:22:04.576Z""
