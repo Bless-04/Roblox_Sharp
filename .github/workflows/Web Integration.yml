@@ -16,7 +16,7 @@ on:
             - "**.csproj"
 defaults:
     run:
-        working-directory: "lib"
+        working-directory: "src"
 
 jobs:
     Integration-Tests:
