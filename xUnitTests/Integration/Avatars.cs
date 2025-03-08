@@ -39,7 +39,7 @@ namespace xUnitTests.Integration
             Assert.NotNull(v1.assets);
             Assert.NotNull(v2.assets);
 
-            Assert.Equal(v1.assets[0].meta, v2.assets[0].meta); //can be value checked as it is a struct
+            Assert.Equal(v1.assets[0].Meta, v2.assets[0].Meta); //can be value checked as it is a struct
         }
 
     }

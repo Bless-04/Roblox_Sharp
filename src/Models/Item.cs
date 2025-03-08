@@ -1,27 +1,29 @@
 ﻿using Roblox_Sharp.Framework;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Enums;
+using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models
 {
     /// <summary>
     /// class used to serialize Item based requests
     /// </summary>
-    public class Item : Creation, IAsset
+    public class Item : Creation<IAsset>, IAsset
     {
         /// <summary>
         /// The ID of the item
         /// </summary>
-        public ulong Id
+        [JsonPropertyName("Id")]
+        public ulong ItemId
         {
-            get => base.id ?? throw new NotRequestedException(nameof(Id));
-            init => base.id = value;
+            get => base._id ?? throw new NotRequestedException(nameof(ItemId));
+            init => base._id = value;
         }
 
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public ulong assetId => Id;
+        public ulong AssetId => ItemId;
 
         /// <summary>
         /// The name of the item

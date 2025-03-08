@@ -8,15 +8,15 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize Badge based requests
     /// </summary>
-    public class Badge : Creation
+    public class Badge : Creation<Badge>
     {
         /// <summary>
         /// the badge id 
         /// </summary>
         public ulong badgeId
         {
-            get => base.id ?? throw new NotRequestedException(nameof(badgeId));
-            init => base.id = value;
+            get => base._id ?? throw new NotRequestedException(nameof(badgeId));
+            init => base._id = value;
         }
 
         /// <summary>

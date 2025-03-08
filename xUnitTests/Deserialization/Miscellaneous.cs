@@ -82,7 +82,7 @@ namespace xUnitTests.Deserialization
             CollectibleAsset? test = JsonSerializer.Deserialize<CollectibleAsset>(json);
 
             Assert.NotNull(test);
-            Assert.Equal<byte>(0, (byte)(test.userAssetId & test.serialNumber & test.assetId & test.recentAveragePrice & test.originalPrice & test.assetStock & (byte)test.buildersClubMembershipType));
+            Assert.Equal<byte>(0, (byte)(test.UserAssetId & test.SerialNumber & test.AssetId & test.RecentAveragePrice & test.OriginalPrice & test.AssetStock & (byte)test.BuildersClubMembershipType));
 
             RoundTripTest(test);
         }
@@ -101,7 +101,7 @@ namespace xUnitTests.Deserialization
             Item? test = JsonSerializer.Deserialize<Item>(json);
 
             Assert.NotNull(test);
-            Assert.Equal(0, (byte)(test.Id & (byte)test.Type & test.InstanceId));
+            Assert.Equal(0, (byte)(test.ItemId & (byte)test.Type & test.InstanceId));
 
             Assert.Equal("string", test.Name);
 

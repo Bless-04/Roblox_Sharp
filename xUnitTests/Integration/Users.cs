@@ -13,7 +13,7 @@ namespace xUnitTests.Integration
     /// Tests <see cref="Users_v1"/> endpoint
     /// </summary>
     [Collection(nameof(Integration))]
-    public class Users 
+    public class Users
     {
         [IntegrationTrait]
         [Fact]
@@ -28,9 +28,9 @@ namespace xUnitTests.Integration
             Assert.True(roblox.userId == ROBLOX, "User.userId is failing");
 
             Assert.True(
-                roblox.username.Equals(nameof(ROBLOX), StringComparison.OrdinalIgnoreCase) 
-                && roblox.displayName == null,
-                "User.username is failing"
+                roblox.Username.Equals(nameof(ROBLOX), StringComparison.OrdinalIgnoreCase)
+                && roblox.DisplayName == null,
+                "User.Username is failing"
             );
         }
 
@@ -38,14 +38,14 @@ namespace xUnitTests.Integration
         [Theory]
         [InlineData(ROBLOX, nameof(ROBLOX))]
         [InlineData(BUILDERMAN, nameof(BUILDERMAN))]
-        [InlineData(SHEDLETSKY,nameof(SHEDLETSKY))]
-        public async Task Get_Usernames(ulong id,string username)
+        [InlineData(SHEDLETSKY, nameof(SHEDLETSKY))]
+        public async Task Get_Usernames(ulong id, string Username)
         {
-            User test = (await Users_v1.Get_UsernamesAsync([id]))[0] ;//
+            User test = (await Users_v1.Get_UsernamesAsync([id]))[0];//
 
             Assert.True(
-                test.userId == id && 
-                test.username.Equals(username,System.StringComparison.OrdinalIgnoreCase),
+                test.userId == id &&
+                test.Username.Equals(Username, System.StringComparison.OrdinalIgnoreCase),
                 "Get_Usernames() is failing"
             );
         }
@@ -54,7 +54,7 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_Usernames_Error()
         {
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([DOEST_EXIST])); 
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([DOEST_EXIST]));
             await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernamesAsync([])); //empty});
         }
 
@@ -63,13 +63,13 @@ namespace xUnitTests.Integration
         [InlineData(ROBLOX, nameof(ROBLOX))]
         [InlineData(BUILDERMAN, nameof(BUILDERMAN))]
         [InlineData(SHEDLETSKY, nameof(SHEDLETSKY))]
-        public async Task Get_Users(ulong expected_id,string username)
+        public async Task Get_Users(ulong expected_id, string Username)
         {
-            User test = (await Users_v1.Get_UsersAsync([username])) [0];
+            User test = (await Users_v1.Get_UsersAsync([Username]))[0];
 
             await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsersAsync([]));
 
-            Assert.True( test.userId == expected_id,"User.userId is failing");
+            Assert.True(test.userId == expected_id, "User.userId is failing");
         }
 
         [IntegrationTrait.Long_Integration]
@@ -88,7 +88,7 @@ namespace xUnitTests.Integration
         public async Task Get_UsernameHistory()
         {
             //7733466 is an admin
-            Page<User> y = await Users_v1.Get_UsernameHistoryAsync(7733466,Limit.Ten);
+            Page<User> y = await Users_v1.Get_UsernameHistoryAsync(7733466, Limit.Ten);
 
             Assert.False(y.data.Count == 0, "Page.data should not be empty");
         }
@@ -98,7 +98,7 @@ namespace xUnitTests.Integration
         [InlineData(BANNED)]
         [InlineData(DOEST_EXIST)]
         public async Task Get_UsernameHistory_Error(ulong id) =>
-            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernameHistoryAsync(id)); 
-        
+            await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernameHistoryAsync(id));
+
     }
 }

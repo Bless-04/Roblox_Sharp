@@ -1,30 +1,34 @@
 ﻿using Roblox_Sharp.Framework;
 using Roblox_Sharp.Exceptions;
+using System.Text.Json.Serialization;
 namespace Roblox_Sharp.Models
 {
     //TODO: finish
     /// <summary>
     /// Represents a game
     /// </summary>
-    public partial class Game : Creation, ICloneable<Game>
+    public partial class Game : Creation<Game>, ICloneable<Game>
     {
         /// <summary>
         /// the universe id 
         /// </summary>
-        public ulong universeId
+        [JsonPropertyName("universeId")]
+        public ulong UniverseId
         {
-            get => base.id ?? throw new NotRequestedException(nameof(universeId));
-            init => base.id = value;
+            get => base._id ?? throw new NotRequestedException(nameof(UniverseId));
+            init => base._id = value;
         }
 
         /// <summary>
         /// the universe name
         /// </summary>
-        public string? name { get; init; }
+        [JsonPropertyName("name")]
+        public string? UniverseName { get; init; }
 
         /// <summary>
         /// The description of the universe.
         /// </summary>
+        [JsonPropertyName("rootPlaceId")]
         public ulong rootPlaceId { get; init; }
 
         /// <summary>
@@ -33,8 +37,8 @@ namespace Roblox_Sharp.Models
         /// <returns></returns>
         public Game Clone() => new Game
         {
-            universeId = this.universeId,
-            name = this.name,
+            UniverseId = this.UniverseId,
+            UniverseName = this.UniverseName,
             rootPlaceId = this.rootPlaceId
         };
     }

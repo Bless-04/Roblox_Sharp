@@ -9,7 +9,7 @@ namespace xUnitTests.Deserialization
     /// Tests Serialization for <paramref name="User"/>
     /// </summary>
     [Trait(nameof(xUnitTests), nameof(Deserialization))]
-    public class User_Object
+    public class User_Models
     {
         [Fact]
         public void Get_User()
@@ -19,6 +19,7 @@ namespace xUnitTests.Deserialization
                 ""description"": ""string"",
                 ""created"": ""2024-12-23T05:47:33.196Z"",
                 ""isBanned"": true,
+                ""isDeleted"": true,
                 ""externalAppDisplayName"": ""string"",
                 ""hasVerifiedBadge"": true,
                 ""id"": 0,
@@ -31,13 +32,14 @@ namespace xUnitTests.Deserialization
             Assert.NotNull(user);
 
             Assert.Equal("string", user.description);
-            Assert.Equal(2024, user.created.Year);
-            Assert.True(user.isBanned);
+            Assert.Equal(2024, user.Created.Year);
+            Assert.True(user.isBanned && user.IsDeleted);
             Assert.Equal("string", user.externalAppDisplayName);
             Assert.True(user.hasVerifiedBadge);
             Assert.Equal<ulong>(0, user.userId);
-            Assert.Equal("string", user.username);
-            Assert.Null(user.displayName);
+            Assert.Equal("string", user.Username);
+            Assert.Null(user.DisplayName);
+
 
             RoundTripTest(user);
         }
@@ -75,8 +77,8 @@ namespace xUnitTests.Deserialization
 
             Assert.True(user.hasVerifiedBadge);
             Assert.Equal<ulong>(0, user.userId);
-            Assert.Equal("string", user.username);
-            Assert.Equal("displayName", user.displayName);
+            Assert.Equal("string", user.Username);
+            Assert.Equal("displayName", user.DisplayName);
 
             Assert.Equal(page.data.Count, RoundTrip(page).data.Count);
         }

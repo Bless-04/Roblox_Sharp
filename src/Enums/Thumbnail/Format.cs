@@ -9,6 +9,5 @@ namespace Roblox_Sharp.Enums.Thumbnail
         Png = 1 << 0,
         Jpeg = 1 << 1,
         Webp = 1 << 2,
-        All = byte.MaxValue
     }
 }

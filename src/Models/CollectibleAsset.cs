@@ -1,53 +1,66 @@
 ﻿using Roblox_Sharp.Framework;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Enums;
+using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models
 {
 
-    public class CollectibleAsset : Creation, IAsset
+    public class CollectibleAsset : Creation<IAsset>, IAsset
     {
         /// <summary>
         /// The user asset id
         /// </summary>
-        public ulong userAssetId { get; init; }
+        [JsonPropertyName("userAssetId")]
+        public ulong UserAssetId { get; init; }
 
         /// <summary>
         /// The serial number of the user asset
         /// </summary>
-        public ulong serialNumber { get; init; }
+        [JsonPropertyName("serialNumber")]
+        public ulong SerialNumber { get; init; }
 
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public ulong assetId
+        [JsonPropertyName("assetId")]
+        public ulong AssetId
         {
-            get => base.id ?? throw new NotRequestedException(nameof(assetId));
-            init => base.id = value;
+            get => base._id ?? throw new NotRequestedException(nameof(AssetId));
+            init => base._id = value;
         }
 
         /// <summary>
         /// The asset name of the asset
         /// </summary>
-        public required string name { get; init; }
+        [JsonPropertyName("name")]
+        public required string AssetName { get; init; }
 
         /// <summary>
         /// The recent average price of the user asset
         /// </summary>
-        public ulong recentAveragePrice { get; init; }
+        [JsonPropertyName("recentAveragePrice")]
+        public ulong RecentAveragePrice { get; init; }
 
         /// <summary>
         /// The original price of the asset
         /// </summary>
-        public ulong originalPrice { get; init; }
+        [JsonPropertyName("originalPrice")]
+        public ulong OriginalPrice { get; init; }
 
-        public ulong assetStock { get; init; }
+        [JsonPropertyName("assetStock")]
+        public ulong AssetStock { get; init; }
 
-        public BuildersClubMembershipType buildersClubMembershipType { get; init; }
+        /// <remarks>
+        /// Should only be either <see cref="BuildersClubMembershipType.None"/>, <see cref="BuildersClubMembershipType.RobloxPremium"/> 
+        /// </remarks>
+        [JsonPropertyName("buildersClubMembershipType")]
+        public BuildersClubMembershipType BuildersClubMembershipType { get; init; }
 
         /// <summary>
         /// Whether the user asset has an active hold
         /// </summary>
-        public bool isOnHold { get; init; }
+        [JsonPropertyName("isOnHold")]
+        public bool IsOnHold { get; init; }
     }
 }

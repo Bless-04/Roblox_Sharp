@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models;
 
@@ -14,33 +15,39 @@ public partial class Avatar
             /// <summary>
             /// (x, y , z) position of the asset
             /// </summary>
-            public Vector3 position { get; init; }
+            [JsonPropertyName("position")]
+            public Vector3 Position { get; init; }
 
             /// <summary>
             /// (x, y, z) rotation of the asset
             /// </summary>
-            public Vector3 rotation { get; init; }
+            [JsonPropertyName("rotation")]
+            public Vector3 Rotation { get; init; }
 
             /// <summary>
             /// (x, y, z) scale of the asset
             /// </summary>
-            public Vector3 scale { get; init; }
+            [JsonPropertyName("scale")]
+            public Vector3 Scale { get; init; }
 
             /// <summary>
             /// Client-authoritative meta model format version
             /// <code>the default is always 1</code>
             /// </summary>
-            public ulong version { get; init; }
+            [JsonPropertyName("version")]
+            public ulong Version { get; init; }
 
             /// <summary>
             /// layered clothing puffiness
             /// </summary>
-            public float puffiness { get; init; }
+            [JsonPropertyName("puffiness")]
+            public float Puffiness { get; init; }
 
             /// <summary>
             /// layered clothing order
             /// </summary>
-            public int order { get; init; }           
+            [JsonPropertyName("order")]
+            public int Order { get; init; }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Roblox_Sharp.Enums;
 using Roblox_Sharp.Framework;
 using System;
+using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models
 {
@@ -22,7 +23,7 @@ namespace Roblox_Sharp.Models
    }
  ]
 }*/
-    public class User_Presence : IUser<User_Presence>, ICloneable<User_Presence>
+    public class User_Presence : Creation<IUser>, IUser, ICloneable<User_Presence>
     {
         /// <inheritdoc/>
         public ulong userId { get; init; }
@@ -32,6 +33,7 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public PresenceType presenceType { get; init; }
 
+        [JsonPropertyName("lastLocation")]
         public string? lastLocation { get; init; }
 
         /// <summary>

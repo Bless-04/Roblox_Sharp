@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 namespace Roblox_Sharp
 {
 
-
     /// <summary>
     /// static class that holds the functions and logic used for making web requests to Roblox API <br></br>
     /// <b><see href="https://github.com/matthewdean/roblox-web-apis?tab=readme-ov-file">Endpoints Documentation</see></b>
@@ -24,8 +23,18 @@ namespace Roblox_Sharp
         /// <summary>
         /// <see cref="HttpClient"></see> used for all web requests
         /// </summary>
-        public static HttpClient client => _client;
+        public static HttpClient Client => _client;
 
+        /// <summary>
+        /// <see cref="JsonSerializerOptions"></see> used for all web requests
+        /// </summary>
+        public static readonly JsonSerializerOptions SerializerOptions = new()
+        {
+            PropertyNameCaseInsensitive = true,
+            AllowTrailingCommas = true,
+            WriteIndented = true,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
         /// <summary>
         /// an event that is raised only when the web request is successful/statuscode 200
         /// </summary>
@@ -50,7 +59,6 @@ namespace Roblox_Sharp
         /// </summary>
         /// <param name="new_client"></param>
         public static void Set_HttpClient(HttpClient new_client) => Interlocked.Exchange(ref _client, new_client).Dispose(); //internet says this make it thread safe
-
 
         /// <summary>
         /// sets the name of the user agent used for all requests
@@ -84,7 +92,7 @@ namespace Roblox_Sharp
         /// <exception cref="InvalidUserException">When the userid doesnt exist or is terminated/banned</exception>
         internal static async Task<string> Get_RequestAsync(string url)
         {
-            using HttpResponseMessage response = await client.GetAsync(url);
+            using HttpResponseMessage response = await _client.GetAsync(url);
             {
                 if (SuccessfulRequest(response)) return await response.Content.ReadAsStringAsync();
 
@@ -111,7 +119,7 @@ namespace Roblox_Sharp
         /// <exception cref="InvalidIdException"></exception>
         internal static async Task<string> Post_RequestAsync(string url, User_POST postreq)
         {
-            using HttpResponseMessage response = await client.PostAsync(
+            using HttpResponseMessage response = await _client.PostAsync(
                     url, new StringContent(
                     JsonSerializer.Serialize(postreq),
                     Encoding.UTF8, "application/json")

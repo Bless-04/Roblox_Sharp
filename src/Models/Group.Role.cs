@@ -13,15 +13,15 @@ public partial class Group
     /// <summary>
     /// Group Role Serializer Class
     /// </summary>
-    public class Role : Creation
+    public class Role : Creation<Role>
     {
         /// <summary>
         /// Group Role ID
         /// </summary>
         public ulong roleId
         {
-            get => base.id ?? throw new NotRequestedException(nameof(roleId));
-            init => base.id = value;
+            get => base._id ?? throw new NotRequestedException(nameof(roleId));
+            init => base._id = value;
         }
 
         /// <summary>

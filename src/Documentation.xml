@@ -460,45 +460,33 @@
             Exception thrown when the rate limit is exceeded
             </summary>
         </member>
-        <member name="T:Roblox_Sharp.Framework.Creation">
+        <member name="T:Roblox_Sharp.Framework.Creation`1">
             <summary>
-             generalized template for any roblox object that has a unique id 
+            generalized template for any roblox object that has a <paramref name="uniqueId"/>
             </summary>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.Creation.#ctor(System.Nullable{System.UInt64})">
             <summary>
-             generalized template for any roblox object that has a unique id 
+            uses <typeparamref name="T"/> to automatically implement <see cref="T:System.IComparable`1"/> and <see cref="T:System.IEquatable`1"/>
             </summary>
+            <typeparam name="T"></typeparam>
         </member>
-        <member name="P:Roblox_Sharp.Framework.Creation.id">
+        <member name="M:Roblox_Sharp.Framework.Creation`1.#ctor(System.Nullable{System.UInt64})">
+            <summary>
+            generalized template for any roblox object that has a <paramref name="uniqueId"/>
+            </summary>
+            <summary>
+            uses <typeparamref name="T"/> to automatically implement <see cref="T:System.IComparable`1"/> and <see cref="T:System.IEquatable`1"/>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.Creation`1._id">
             <summary>
             The unique id of the creation; Null if not requested
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.Framework.Creation.Equals(Roblox_Sharp.Framework.Creation)">
-            <inheritdoc />
+        <member name="M:Roblox_Sharp.Framework.Creation`1.CompareTo(Roblox_Sharp.Framework.Creation{`0})">
+            <inheritdoc/>
         </member>
-        <member name="M:Roblox_Sharp.Framework.Creation.op_LessThan(Roblox_Sharp.Framework.Creation,Roblox_Sharp.Framework.Creation)">
-            <summary>
-            a creation is <b> less than </b> another if it is newer. newer creations have larger ids than older ones
-            </summary>
-            <param name="left"></param>
-            <param name="right"></param>
-            <returns><inheritdoc/></returns>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.Creation.op_GreaterThan(Roblox_Sharp.Framework.Creation,Roblox_Sharp.Framework.Creation)">
-            <summary>
-            a creation is <b>greater than</b> another if it is older. Older creations have smaller ids than newer creations.
-            </summary>
-            <param name="left"></param>
-            <param name="right"></param>
-            <returns><inheritdoc/></returns>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.Creation.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <remarks>uses the same hashcode function as <see langword="ulong"/></remarks>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.Creation.Equals(System.Object)">
+        <member name="M:Roblox_Sharp.Framework.Creation`1.Equals(Roblox_Sharp.Framework.Creation{`0})">
             <summary>
             equal if and only if the ids are the same
             </summary>
@@ -507,10 +495,35 @@
             <see langword="true"/> if ids are the same
             </returns>
         </member>
-        <member name="M:Roblox_Sharp.Framework.Creation.CompareTo(Roblox_Sharp.Framework.Creation)">
+        <member name="M:Roblox_Sharp.Framework.Creation`1.op_LessThan(Roblox_Sharp.Framework.Creation{`0},Roblox_Sharp.Framework.Creation{`0})">
+            <summary>
+            a creation is <b> less than </b> another if it is newer. newer creations have larger ids than older ones
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns><inheritdoc/></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.Creation`1.op_GreaterThan(Roblox_Sharp.Framework.Creation{`0},Roblox_Sharp.Framework.Creation{`0})">
+            <summary>
+            a creation is <b>greater than</b> another if it is older. Older creations have smaller ids than newer creations.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns><inheritdoc/></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.Creation`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <remarks>uses the same hashcode function as <see langword="ulong"/></remarks>
+        </member>
+        <member name="M:Roblox_Sharp.Framework.Creation`1.Equals(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="P:Roblox_Sharp.Framework.IAsset.assetId">
+        <member name="T:Roblox_Sharp.Framework.IAsset">
+            <summary>
+            Represents an asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Framework.IAsset.AssetId">
             <summary>
             The unique id of the asset
             </summary>
@@ -595,48 +608,12 @@
             the Unique numeric id of the user.
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.Framework.IUser.op_LessThan(Roblox_Sharp.Framework.IUser,Roblox_Sharp.Framework.IUser)">
-            <summary>
-            a user is  <b> less than </b> another if it is newer. newer user have larger ids than older users
-            </summary>
-            <param name="left"></param>
-            <param name="right"></param>
-            <returns><inheritdoc/></returns>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.IUser.op_GreaterThan(Roblox_Sharp.Framework.IUser,Roblox_Sharp.Framework.IUser)">
-            <summary>
-            a user is <b>greater than</b> another if it is older. Older users have smaller ids than newer users.
-            </summary>
-            <param name="left"></param>
-            <param name="right"></param>
-            <returns><inheritdoc/></returns>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.IUser.GetHashCode">
-            <inheritdoc cref="M:System.UInt64.GetHashCode"/>
-            <remarks>uses the hashcode function of the <see langword="ulong"/> <see cref="P:Roblox_Sharp.Framework.IUser.userId"/></remarks>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.IUser.Equals(System.Object)">
-            <summary>
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/> 
-            </summary>
-            <param name="obj"></param>
-            <returns>
-            <see langword="true"/> if and only if the <see cref="P:Roblox_Sharp.Framework.IUser.userId"/>'s are the same
-            </returns>
-        </member>
         <member name="T:Roblox_Sharp.Framework.IUser`1">
             <summary>
-            <inheritdoc cref="T:Roblox_Sharp.Framework.IUser"/>
+            <inheritdoc cref="T:Roblox_Sharp.Framework.IUser"/> <br/>
+            uses <typeparamref name="T"/> to automatically implement <see cref="T:System.IComparable`1"/> and <see cref="T:System.IEquatable`1"/>
             </summary>
             <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.IUser`1.System#IComparable{T}#CompareTo(`0)">
-            <inheritdoc cref="M:System.IComparable.CompareTo(System.Object)"/>
-        </member>
-        <member name="M:Roblox_Sharp.Framework.IUser`1.ToString">
-            <summary>
-            string representation of the <typeparamref name="T"/>
-            </summary>
         </member>
         <member name="T:Roblox_Sharp.Models.Avatar">
             <summary>
@@ -648,27 +625,27 @@
             Assets that a players Avatar can equip
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.assetId">
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.AssetId">
             <summary>
             <inheritdoc/>
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.assetName">
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.AssetName">
             <summary>
             the name of the asset
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.name">
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset._name">
             <summary>
-            <inheritdoc cref="P:Roblox_Sharp.Models.Avatar.Asset.assetName"/>
+            <inheritdoc cref="P:Roblox_Sharp.Models.Avatar.Asset.AssetName"/>
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.assetType">
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.AssetType">
             <summary>
             <inheritdoc cref="T:Roblox_Sharp.Enums.AssetType"/>
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.meta">
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Meta">
             <summary>
             <inheritdoc cref="T:Roblox_Sharp.Models.Avatar.Asset.Metadata"/>
             </summary>
@@ -684,33 +661,33 @@
             metadata of the asset
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.position">
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.Position">
             <summary>
             (x, y , z) position of the asset
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.rotation">
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.Rotation">
             <summary>
             (x, y, z) rotation of the asset
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.scale">
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.Scale">
             <summary>
             (x, y, z) scale of the asset
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.version">
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.Version">
             <summary>
             Client-authoritative meta model format version
             <code>the default is always 1</code>
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.puffiness">
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.Puffiness">
             <summary>
             layered clothing puffiness
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.order">
+        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.Order">
             <summary>
             layered clothing order
             </summary>
@@ -968,37 +945,42 @@
             date badge was awarded
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.CollectibleAsset.userAssetId">
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.UserAssetId">
             <summary>
             The user asset id
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.CollectibleAsset.serialNumber">
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.SerialNumber">
             <summary>
             The serial number of the user asset
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.CollectibleAsset.assetId">
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.AssetId">
             <summary>
             <inheritdoc/>
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.CollectibleAsset.name">
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.AssetName">
             <summary>
             The asset name of the asset
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.CollectibleAsset.recentAveragePrice">
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.RecentAveragePrice">
             <summary>
             The recent average price of the user asset
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.CollectibleAsset.originalPrice">
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.OriginalPrice">
             <summary>
             The original price of the asset
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.CollectibleAsset.isOnHold">
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.BuildersClubMembershipType">
+            <remarks>
+            Should only be either <see cref="F:Roblox_Sharp.Enums.BuildersClubMembershipType.None"/>, <see cref="F:Roblox_Sharp.Enums.BuildersClubMembershipType.RobloxPremium"/> 
+            </remarks>
+        </member>
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.IsOnHold">
             <summary>
             Whether the user asset has an active hold
             </summary>
@@ -1008,12 +990,12 @@
             Represents a game
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Game.universeId">
+        <member name="P:Roblox_Sharp.Models.Game.UniverseId">
             <summary>
             the universe id 
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Game.name">
+        <member name="P:Roblox_Sharp.Models.Game.UniverseName">
             <summary>
             the universe name
             </summary>
@@ -1207,12 +1189,12 @@
             class used to serialize Item based requests
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Item.Id">
+        <member name="P:Roblox_Sharp.Models.Item.ItemId">
             <summary>
             The ID of the item
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Item.assetId">
+        <member name="P:Roblox_Sharp.Models.Item.AssetId">
             <summary>
             <inheritdoc/>
             </summary>
@@ -1351,20 +1333,25 @@
             class used to serialize User based requests
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.id">
-            <inheritdoc cref="P:Roblox_Sharp.Models.User.userId"/>
+        <member name="M:Roblox_Sharp.Models.User.#ctor(System.UInt64,System.String,System.String)">
+            <summary>
+            constructor for user
+            </summary>
+            <param name="userId">id of the user</param>
+            <param name="username">username of the user</param>
+            <param name="displayName">displayname of the user</param>
         </member>
         <member name="P:Roblox_Sharp.Models.User.userId">
             <inheritdoc/>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.username">
+        <member name="P:Roblox_Sharp.Models.User.Username">
             <summary>
             unique username for the user
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.name">
+        <member name="P:Roblox_Sharp.Models.User._name">
             <summary>
-            <inheritdoc cref="P:Roblox_Sharp.Models.User.username"/>
+            <inheritdoc cref="P:Roblox_Sharp.Models.User.Username"/>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.User._displayName">
@@ -1375,23 +1362,15 @@
             string representation of the user <br></br> 
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.displayName">
+        <member name="P:Roblox_Sharp.Models.User.DisplayName">
             <inheritdoc cref="P:Roblox_Sharp.Models.User._displayName"/>
-        </member>
-        <member name="M:Roblox_Sharp.Models.User.#ctor(System.UInt64,System.String,System.String)">
-            <summary>
-            constructor for user
-            </summary>
-            <param name="userId">id of the user</param>
-            <param name="username">username of the user</param>
-            <param name="displayName">displayname of the user</param>
         </member>
         <member name="P:Roblox_Sharp.Models.User.description">
             <summary>
             description for the user
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.created">
+        <member name="P:Roblox_Sharp.Models.User.Created">
             <summary>
             creation date and time of user
             </summary>
@@ -1438,7 +1417,7 @@
             <see langword="true"/> if user is currently online
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.User.isDeleted">
+        <member name="P:Roblox_Sharp.Models.User.IsDeleted">
             <summary>
             <see langword="true"/> if user is deleted/banned/terminated
             </summary>
@@ -1461,27 +1440,21 @@
         </member>
         <member name="M:Roblox_Sharp.Models.User.op_Explicit(System.String)~Roblox_Sharp.Models.User">
             <summary>
-            <inheritdoc cref="P:Roblox_Sharp.Models.User.username"/>
+            <inheritdoc cref="P:Roblox_Sharp.Models.User.Username"/>
             </summary>
             <param name="username"></param>
         </member>
         <member name="M:Roblox_Sharp.Models.User.Clone">
             <inheritdoc/>
         </member>
-        <member name="M:Roblox_Sharp.Models.User.op_LessThan(Roblox_Sharp.Models.User,Roblox_Sharp.Models.User)">
-            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.op_LessThan(Roblox_Sharp.Framework.IUser,Roblox_Sharp.Framework.IUser)"/>
-        </member>
-        <member name="M:Roblox_Sharp.Models.User.op_GreaterThan(Roblox_Sharp.Models.User,Roblox_Sharp.Models.User)">
-            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.op_GreaterThan(Roblox_Sharp.Framework.IUser,Roblox_Sharp.Framework.IUser)"/>
-        </member>
         <member name="M:Roblox_Sharp.Models.User.GetHashCode">
-            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.GetHashCode"/>
-        </member>
-        <member name="M:Roblox_Sharp.Models.User.ToString">
-            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser`1.ToString"/> displayname@username (ID id)
+            <inheritdoc cref="!:IUser.GetHashCode"/>
         </member>
         <member name="M:Roblox_Sharp.Models.User.Equals(System.Object)">
-            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.Equals(System.Object)"/>
+            <inheritdoc cref="!:IUser.Equals"/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.User.ToString">
+            <inheritdoc cref="!:IUser&lt;User&gt;.ToString"/> displayname@username (ID id)
         </member>
         <member name="M:Roblox_Sharp.Models.User.ToString(System.String,System.IFormatProvider)">
             /// <summary>
@@ -1561,7 +1534,7 @@
             </summary>
         </member>
         <member name="M:Roblox_Sharp.Models.User_Presence.GetHashCode">
-            <inheritdoc cref="M:Roblox_Sharp.Framework.IUser.GetHashCode"/>
+            <inheritdoc cref="!:IUser.GetHashCode()"/>
         </member>
         <member name="M:Roblox_Sharp.Models.User_Presence.Clone">
             <summary>
@@ -1575,9 +1548,14 @@
             <b><see href="https://github.com/matthewdean/roblox-web-apis?tab=readme-ov-file">Endpoints Documentation</see></b>
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.WebAPI.client">
+        <member name="P:Roblox_Sharp.WebAPI.Client">
             <summary>
             <see cref="T:System.Net.Http.HttpClient"></see> used for all web requests
+            </summary>
+        </member>
+        <member name="F:Roblox_Sharp.WebAPI.SerializerOptions">
+            <summary>
+            <see cref="T:System.Text.Json.JsonSerializerOptions"></see> used for all web requests
             </summary>
         </member>
         <member name="E:Roblox_Sharp.WebAPI.OnSuccessfulRequest">

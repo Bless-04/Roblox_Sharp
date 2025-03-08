@@ -10,52 +10,61 @@ public partial class Avatar
     /// <summary>
     /// Assets that a players Avatar can equip
     /// </summary>
-    public partial class Asset : Creation, IAsset, ICloneable<Asset>
+    public partial class Asset : Creation<IAsset>, IAsset, ICloneable<Asset>
     {
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public ulong assetId
+        [JsonPropertyName("assetId")]
+        public ulong AssetId
         {
-            get => base.id ?? throw new NotRequestedException(nameof(assetId));
-            init => base.id = value;
+            get => base._id ?? throw new NotRequestedException(nameof(AssetId));
+            init => base._id = value;
         }
 
         /// <summary>
         /// the name of the asset
         /// </summary>
-        public string? assetName { get; init; }
+        [JsonPropertyName("assetName")]
+        public string? AssetName { get; init; }
 
         /// <summary>
-        /// <inheritdoc cref="assetName"/>
+        /// <inheritdoc cref="AssetName"/>
         /// </summary>
         [JsonInclude]
-        protected string name { init => assetName = value; }
+        [JsonPropertyName("name")]
+        private string _name
+        {
+            init => AssetName = value;
+        }
 
         /// <summary>
         /// <inheritdoc cref="Roblox_Sharp.Enums.AssetType"/>
         /// </summary>
-        public Avatar.Asset.Type assetType { get; init; }
+        [JsonPropertyName("assetType")]
+        public Avatar.Asset.Type AssetType { get; init; }
 
-        public ulong currentVersionId { get; init; }
+        [JsonPropertyName("currentVersionId")]
+        public ulong CurrentVersionId { get; init; }
 
         /// <summary>
         /// <inheritdoc cref="Metadata"/>
         /// </summary>
-        public Metadata meta { get; init; }
+        [JsonPropertyName("meta")]
+        public Metadata Meta { get; init; }
 
         /// <summary>
         /// Deep Clones the instance of <see cref="Avatar.Asset"/>
         /// </summary>
         /// <returns></returns>
         public Avatar.Asset Clone() =>
-            new Asset()
+            new()
             {
-                assetId = assetId,
-                assetName = assetName,
-                assetType = assetType,
-                currentVersionId = currentVersionId,
-                meta = meta
+                AssetId = AssetId,
+                AssetName = AssetName,
+                AssetType = AssetType,
+                CurrentVersionId = CurrentVersionId,
+                Meta = Meta
             };
     }
 }

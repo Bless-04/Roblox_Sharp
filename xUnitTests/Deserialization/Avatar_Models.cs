@@ -7,7 +7,7 @@ using System.Text.Json;
 namespace xUnitTests.Deserialization
 {
     [Trait(nameof(xUnitTests), nameof(Deserialization))]
-    public class Avatar_Object
+    public class Avatar_Models
     {
         [Fact]
         public void Get_Avatar_v1()
@@ -82,28 +82,28 @@ namespace xUnitTests.Deserialization
             Assert.Equal(AvatarType.R15, avatar.playerAvatarType);
 
             Avatar.Emote emotes = avatar.emotes![0];
-            Assert.Equal<ulong>(0, emotes.assetId);
-            Assert.Equal("string", emotes.assetName);
+            Assert.Equal<ulong>(0, emotes.AssetId);
+            Assert.Equal("string", emotes.AssetName);
             Assert.Equal(0, emotes.position);
 
             Avatar.Asset assets = avatar.assets![0];
-            Assert.Equal<ulong>(0, assets.assetId);
-            Assert.Equal("string", assets.assetName);
-            Assert.Equal(0, (byte)assets.assetType.id);
-            Assert.Equal("string", assets.assetType.name);
-            Assert.Equal<ulong>(0, assets.currentVersionId);
-            Assert.Equal(0, assets.meta.order);
-            Assert.Equal(0, assets.meta.puffiness);
-            Assert.Equal(0, assets.meta.position.X);
-            Assert.Equal(0, assets.meta.position.Y);
-            Assert.Equal(0, assets.meta.position.Z);
-            Assert.Equal(0, assets.meta.rotation.X);
-            Assert.Equal(0, assets.meta.rotation.Y);
-            Assert.Equal(0, assets.meta.rotation.Z);
-            Assert.Equal(0, assets.meta.scale.X);
-            Assert.Equal(0, assets.meta.scale.Y);
-            Assert.Equal(0, assets.meta.scale.Z);
-            Assert.Equal<ulong>(0, assets.meta.version);
+            Assert.Equal<ulong>(0, assets.AssetId);
+            Assert.Equal("string", assets.AssetName);
+            Assert.Equal(0, (byte)assets.AssetType.id);
+            Assert.Equal("string", assets.AssetType.name);
+            Assert.Equal<ulong>(0, assets.CurrentVersionId);
+            Assert.Equal(0, assets.Meta.Order);
+            Assert.Equal(0, assets.Meta.Puffiness);
+            Assert.Equal(0, assets.Meta.Position.X);
+            Assert.Equal(0, assets.Meta.Position.Y);
+            Assert.Equal(0, assets.Meta.Position.Z);
+            Assert.Equal(0, assets.Meta.Rotation.X);
+            Assert.Equal(0, assets.Meta.Rotation.Y);
+            Assert.Equal(0, assets.Meta.Rotation.Z);
+            Assert.Equal(0, assets.Meta.Scale.X);
+            Assert.Equal(0, assets.Meta.Scale.Y);
+            Assert.Equal(0, assets.Meta.Scale.Z);
+            Assert.Equal<ulong>(0, assets.Meta.Version);
 
             Avatar.Scales scales = avatar.scales!;
             Assert.Equal(0, scales.height);
@@ -196,28 +196,28 @@ namespace xUnitTests.Deserialization
             Assert.Equal(AvatarType.R6, avatar.playerAvatarType);
 
             Avatar.Emote emotes = avatar.emotes![0];
-            Assert.Equal<ulong>(0, emotes.assetId);
-            Assert.Equal("string", emotes.assetName);
+            Assert.Equal<ulong>(0, emotes.AssetId);
+            Assert.Equal("string", emotes.AssetName);
             Assert.Equal(0, emotes.position);
 
             Avatar.Asset assets = avatar.assets![0];
-            Assert.Equal<ulong>(0, assets.assetId);
-            Assert.Equal("string", assets.assetName);
-            Assert.Equal<AssetType>(0, assets.assetType.id);
-            Assert.Equal("string", assets.assetType.name);
-            Assert.Equal<ulong>(0, assets.currentVersionId);
-            Assert.Equal(0, assets.meta.order);
-            Assert.Equal(0, assets.meta.puffiness);
-            Assert.Equal(0, assets.meta.position.X);
-            Assert.Equal(0, assets.meta.position.Y);
-            Assert.Equal(0, assets.meta.position.Z);
-            Assert.Equal(0, assets.meta.rotation.X);
-            Assert.Equal(0, assets.meta.rotation.Y);
-            Assert.Equal(0, assets.meta.rotation.Z);
-            Assert.Equal(0, assets.meta.scale.X);
-            Assert.Equal(0, assets.meta.scale.Y);
-            Assert.Equal(0, assets.meta.scale.Z);
-            Assert.Equal<ulong>(0, assets.meta.version);
+            Assert.Equal<ulong>(0, assets.AssetId);
+            Assert.Equal("string", assets.AssetName);
+            Assert.Equal<AssetType>(0, assets.AssetType.id);
+            Assert.Equal("string", assets.AssetType.name);
+            Assert.Equal<ulong>(0, assets.CurrentVersionId);
+            Assert.Equal(0, assets.Meta.Order);
+            Assert.Equal(0, assets.Meta.Puffiness);
+            Assert.Equal(0, assets.Meta.Position.X);
+            Assert.Equal(0, assets.Meta.Position.Y);
+            Assert.Equal(0, assets.Meta.Position.Z);
+            Assert.Equal(0, assets.Meta.Rotation.X);
+            Assert.Equal(0, assets.Meta.Rotation.Y);
+            Assert.Equal(0, assets.Meta.Rotation.Z);
+            Assert.Equal(0, assets.Meta.Scale.X);
+            Assert.Equal(0, assets.Meta.Scale.Y);
+            Assert.Equal(0, assets.Meta.Scale.Z);
+            Assert.Equal<ulong>(0, assets.Meta.Version);
 
             Avatar.Scales scales = avatar.scales!;
             Assert.Equal(0, scales.height);

@@ -7,15 +7,15 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize Group based requests
     /// </summary>
-    public partial class Group : Creation, ICloneable<Group>
+    public partial class Group : Creation<Group>, ICloneable<Group>
     {
         /// <summary>
         /// the unique groups id
         /// </summary>
         public ulong groupId
         {
-            get => base.id ?? throw new NotRequestedException(nameof(groupId));
-            init => base.id = value;
+            get => base._id ?? throw new NotRequestedException(nameof(groupId));
+            init => base._id = value;
         }
 
         /// <summary>

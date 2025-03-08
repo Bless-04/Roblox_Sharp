@@ -22,7 +22,7 @@ namespace xUnitTests.Deserialization
                 ""hasVerifiedBadge"": true,
                 ""userId"": 0,
                 ""username"": ""string"",
-                ""displayName"": ""string""
+                ""DisplayName"": ""string""
                 },
                 ""shout"": {
                 ""body"": ""string"",
@@ -30,8 +30,8 @@ namespace xUnitTests.Deserialization
                     ""buildersClubMembershipType"": 0,
                     ""hasVerifiedBadge"": true,
                     ""userId"": 0,
-                    ""username"": ""string"",
-                    ""displayName"": ""poster""
+                    ""Username"": ""string"",
+                    ""DisplayName"": ""poster""
                 },
                 ""created"": ""2024-12-23T06:22:04.576Z"",
                 ""updated"": ""2024-12-23T06:22:04.576Z""
@@ -55,14 +55,14 @@ namespace xUnitTests.Deserialization
 
             Assert.True(group.owner!.hasVerifiedBadge);
             Assert.Equal<ulong>(0, group.owner!.userId);
-            Assert.Equal("string", group.owner.username);
-            Assert.Null(group.owner.displayName);
+            Assert.Equal("string", group.owner.Username);
+            Assert.Null(group.owner.DisplayName);
 
             Assert.Equal("string", group.shout!.body);
             Assert.True(group.shout.poster.hasVerifiedBadge);
             Assert.Equal<ulong>(0, group.shout.poster.userId);
-            Assert.Equal("string", group.shout.poster.username);
-            Assert.Equal("poster", group.shout.poster.displayName);
+            Assert.Equal("string", group.shout.poster.Username);
+            Assert.Equal("poster", group.shout.poster.DisplayName);
 
             Assert.Equal(2024, group.shout.created.Year);
             Assert.Equal(2024, group.shout.updated.Year);

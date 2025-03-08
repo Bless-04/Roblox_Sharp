@@ -10,7 +10,7 @@ namespace xUnitTests.Object_Functionality
     /// tests explicit logic of objects
     /// </summary>
     [Trait(nameof(xUnitTests), nameof(Object_Functionality))]
-    public class Logic_Test
+    public class Logic
     {
         [Fact]
         public void IClonable_Implementation()
@@ -21,13 +21,13 @@ namespace xUnitTests.Object_Functionality
         }
 
         [Fact]
-        public void IUser_Operator()
+        public void Operators()
         {
             // x > y > z
             User x = new User() { userId = 1 }; //roblox
             User y = new User() { userId = 16 }; //erik.cassel
-            IUser z = new User() { userId = 156 }; //builderman
-            IUser X = new User() { userId = 1 }; //roblox
+            User z = new User() { userId = 156 }; //builderman
+            User X = new User() { userId = 1 }; //roblox
 
             Assert.False(x.Equals(y));
             Assert.True(x.Equals(X));
