@@ -1145,38 +1145,10 @@
             used to serialize the responses with a count field 
             </summary>
         </member>
-        <member name="T:Roblox_Sharp.Models.Internal.JsonConverter.Color_JsonConverter">
+        <member name="T:Roblox_Sharp.Models.Internal.JsonConverters.Color_Converter">
             <summary>
             used to convert the color to and from RGB hex
             </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Models.Internal.POST.User_POST">
-            <summary>
-            class used to serialize User POST based requests
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Internal.POST.User_POST.excludeBannedUsers">
-            <summary>
-            exclude banned users
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Internal.POST.User_POST.userIds">
-            <summary>
-            array of user ids
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Internal.POST.User_POST.usernames">
-            <summary>
-            array of username
-            </summary>
-        </member>
-        <member name="M:Roblox_Sharp.Models.Internal.POST.User_POST.ArrayLengthCheck``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
-            <summary>
-            limits the length of an array
-            </summary>
-            <param name="list"></param>
-            <param name="limit"></param>
-            <returns>true if the array is less than the limit</returns>
         </member>
         <member name="T:Roblox_Sharp.Models.Internal.Presence_Response">
             <summary>
@@ -1243,28 +1215,6 @@
         <member name="M:Roblox_Sharp.Models.Page`1.op_Increment(Roblox_Sharp.Models.Page{`0})">
             <inheritdoc cref="M:Roblox_Sharp.Models.Page`1.Next(System.Collections.Generic.List{`0})"/>
         </member>
-        <member name="T:Roblox_Sharp.Models.Thumbnail">
-            example return 
-             * 
-             {
-                "data": [
-                    {
-                        "targetId": 0,
-                        "state": "Error",
-                        "imageUrl": "string",
-                        "version": "string"
-                    }
-                ]
-            }
-            <summary>
-            class used to serialize Thumbnail based requests
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Thumbnail.imageUrl">
-            <summary>
-            image url of thumbnail 
-            </summary>
-        </member>
         <member name="T:Roblox_Sharp.Models.User">
             userid 
                  * post request
@@ -1297,6 +1247,37 @@
                     }
             <summary>
             class used to serialize User based requests
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.User.Post">
+            <summary>
+            class used to serialize <see cref="T:Roblox_Sharp.Models.User"/> POST based requests
+            </summary>
+            <remarks>Does not require X-CSRF-Token protection because this is essentially a get request but as a POST to avoid URI limits.</remarks>
+        </member>
+        <member name="F:Roblox_Sharp.Models.User.Post.MAX_IDS">
+            <summary>
+            max number of ids that can be requested at a time
+            </summary>
+        </member>
+        <member name="F:Roblox_Sharp.Models.User.Post.MAX_USERNAMES">
+            <summary>
+            max number of usernames that can be requested at a time
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.Post.ExcludeBannedUsers">
+            <summary>
+            exclude banned users
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.Post.UserIds">
+            <summary>
+            array of user ids for the post request
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.User.Post.Usernames">
+            <summary>
+            array of usernames for the post request
             </summary>
         </member>
         <member name="M:Roblox_Sharp.Models.User.#ctor">
@@ -1487,6 +1468,28 @@
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
             </returns>
         </member>
+        <member name="T:Roblox_Sharp.Models.Thumbnail">
+            example return 
+             * 
+             {
+                "data": [
+                    {
+                        "targetId": 0,
+                        "state": "Error",
+                        "imageUrl": "string",
+                        "version": "string"
+                    }
+                ]
+            }
+            <summary>
+            class used to serialize Thumbnail based requests
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.Thumbnail.imageUrl">
+            <summary>
+            image url of thumbnail 
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.Models.User_Presence">
                  * example return 
                 * {
@@ -1590,12 +1593,12 @@
             <returns>content string</returns>
             <exception cref="T:Roblox_Sharp.Exceptions.InvalidUserException">When the userid doesnt exist or is terminated/banned</exception>
         </member>
-        <member name="M:Roblox_Sharp.WebAPI.Post_RequestAsync(System.String,Roblox_Sharp.Models.Internal.POST.User_POST)">
+        <member name="M:Roblox_Sharp.WebAPI.Post_RequestAsync(System.String,Roblox_Sharp.Models.User.Post)">
             <summary>
             helper function for post requests for roblox api
             </summary>
             <param name="url"></param>
-            <param name="postreq"></param>
+            <param name="POST"></param>
             <returns></returns>
             <exception cref="T:Roblox_Sharp.Exceptions.InvalidUserException"></exception>
             <exception cref="T:Roblox_Sharp.Exceptions.InvalidIdException"></exception>

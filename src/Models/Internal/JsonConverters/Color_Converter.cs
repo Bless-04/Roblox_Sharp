@@ -3,12 +3,12 @@ using System.Drawing;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Roblox_Sharp.Models.Internal.JsonConverter
+namespace Roblox_Sharp.Models.Internal.JsonConverters
 {
     /// <summary>
     /// used to convert the color to and from RGB hex
     /// </summary>
-    sealed internal class Color_JsonConverter : JsonConverter<Color>
+    internal sealed class Color_Converter : JsonConverter<Color>
     {
         public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
            ColorTranslator.FromHtml(

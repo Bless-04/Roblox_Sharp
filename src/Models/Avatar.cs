@@ -1,6 +1,6 @@
 ﻿using Roblox_Sharp.Enums;
 using Roblox_Sharp.Framework;
-using Roblox_Sharp.Models.Internal.JsonConverter;
+using Roblox_Sharp.Models.Internal.JsonConverters;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -80,7 +80,7 @@ namespace Roblox_Sharp.Models
         /// <summary>
         /// <inheritdoc cref="AvatarType"/>
         /// </summary>
-        [JsonConverter(typeof(Avatar_Type_JsonConverter))]
+        [JsonConverter(typeof(Avatar_Type_Converter))]
         public AvatarType playerAvatarType { get; init; }
 
         /// <summary>

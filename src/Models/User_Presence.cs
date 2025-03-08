@@ -56,6 +56,7 @@ namespace Roblox_Sharp.Models
         /// <summary>
         /// exact date and time user was last online
         /// </summary>
+
         public DateTime lastOnline { get; init; }
 
         public DateTime invisibleModeExpiry { get; init; }

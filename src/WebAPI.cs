@@ -1,5 +1,5 @@
 ﻿using Roblox_Sharp.Exceptions;
-using Roblox_Sharp.Models.Internal.POST;
+using Roblox_Sharp.Models;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -113,15 +113,15 @@ namespace Roblox_Sharp
         /// helper function for post requests for roblox api
         /// </summary>
         /// <param name="url"></param>
-        /// <param name="postreq"></param>
+        /// <param name="POST"></param>
         /// <returns></returns>
         /// <exception cref="InvalidUserException"></exception>
         /// <exception cref="InvalidIdException"></exception>
-        internal static async Task<string> Post_RequestAsync(string url, User_POST postreq)
+        internal static async Task<string> Post_RequestAsync(string url, User.Post POST)
         {
             using HttpResponseMessage response = await _client.PostAsync(
                     url, new StringContent(
-                    JsonSerializer.Serialize(postreq),
+                    JsonSerializer.Serialize(POST),
                     Encoding.UTF8, "application/json")
                 );
             {
@@ -134,7 +134,7 @@ namespace Roblox_Sharp
                         throw new RateLimitException($"Rate Limit Exceeded\n{url}\nStatusCode: {response.StatusCode}");
 
                     case HttpStatusCode.BadRequest:
-                        if (postreq.userIds != null) throw new InvalidIdException("A userId may not exist,or there is to many");
+                        if (POST.UserIds != null) throw new InvalidIdException("A userId may not exist , or there is to many");
                         else throw new InvalidUserException("A username may not exist,or there is too many");
 
                     case (HttpStatusCode)443:

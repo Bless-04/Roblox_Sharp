@@ -49,7 +49,7 @@ namespace Roblox_Sharp.Models
     /// class used to serialize User based requests
     /// </summary>
     [DebuggerDisplay("@{username} (ID {userId})")]
-    public class User() : Creation<IUser>, IUser, ICloneable<User>, IFormattable
+    public partial class User() : Creation<IUser>, IUser, ICloneable<User>, IFormattable
     {
         /// <summary>
         /// constructor for user

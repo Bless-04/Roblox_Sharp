@@ -1,4 +1,4 @@
-﻿using Roblox_Sharp.Models.Internal.JsonConverter;
+﻿using Roblox_Sharp.Models.Internal.JsonConverters;
 using System.Drawing;
 using System.Text.Json.Serialization;
 namespace Roblox_Sharp.Models;
@@ -15,37 +15,37 @@ public partial class Avatar
         /// <summary>
         /// The RGB hex color for head color, e.g. #FFFFFF
         /// </summary>
-        [JsonConverter(typeof(Color_JsonConverter))]
+        [JsonConverter(typeof(Color_Converter))]
         public Color headColor3 { get; init; }
 
         /// <summary>
         /// The RGB hex color for torso color
         /// </summary>
-        [JsonConverter(typeof(Color_JsonConverter))]
+        [JsonConverter(typeof(Color_Converter))]
         public Color torsoColor3 { get; init; }
 
         /// <summary>
         /// The RGB hex color for right arm color, e.g. #FFFFFF
         /// </summary>
-        [JsonConverter(typeof(Color_JsonConverter))]
+        [JsonConverter(typeof(Color_Converter))]
         public Color rightArmColor3 { get; init; }
 
         /// <summary>
         /// The RGB hex color for left arm color, e.g. #FFFFFF
         /// </summary>
-        [JsonConverter(typeof(Color_JsonConverter))]
+        [JsonConverter(typeof(Color_Converter))]
         public Color leftArmColor3 { get; init; }
 
         /// <summary>
         /// The RGB hex color for right leg color, e.g. #FFFFFF
         /// </summary>
-        [JsonConverter(typeof(Color_JsonConverter))]
+        [JsonConverter(typeof(Color_Converter))]
         public Color rightLegColor3 { get; init; }
 
         /// <summary>
         /// The RGB hex color for left leg color, e.g. #FFFFFF
         /// </summary>
-        [JsonConverter(typeof(Color_JsonConverter))]
+        [JsonConverter(typeof(Color_Converter))]
         public Color leftLegColor3 { get; init; }
     }
 }
