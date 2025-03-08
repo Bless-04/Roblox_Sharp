@@ -8,7 +8,7 @@ namespace xUnitTests.Deserialization
     /// <summary>
     /// Tests Serialization for <paramref name="User"/>
     /// </summary>
-    [Trait(nameof(xUnitTests), nameof(Deserialization))]
+    [Trait(nameof(Roblox_Sharp.Models), nameof(Deserialization))]
     public class User_Models
     {
         [Fact]

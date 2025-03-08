@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace xUnitTests.Deserialization
 {
-    [Trait(nameof(xUnitTests), nameof(Deserialization))]
+    [Trait(nameof(Roblox_Sharp.Models), nameof(Deserialization))]
     public class Miscellaneous
     {
         /// <summary>

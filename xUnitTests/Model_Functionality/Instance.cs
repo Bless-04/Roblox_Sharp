@@ -2,12 +2,12 @@
 using Roblox_Sharp.Framework;
 using Roblox_Sharp.Models;
 
-namespace xUnitTests.Object_Functionality
+namespace xUnitTests.Model_Functionality
 {
     /// <summary>
     /// Tests if objects are derived from the correct types
     /// </summary>
-    [Trait(nameof(xUnitTests), nameof(Object_Functionality))]
+    [Trait(nameof(Roblox_Sharp.Models), nameof(Model_Functionality))]
     public class Instance
     {
         [Fact]

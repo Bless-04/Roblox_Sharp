@@ -22,7 +22,7 @@ jobs:
               run: dotnet build -c Debug Roblox_Sharp.sln
 
             - name: Object Functionality
-              run: dotnet test -c Debug --no-build --filter xUnitTests=Object_Functionality
+              run: dotnet test -c Debug --no-build --filter Models=Object_Functionality
 
             - name: JSON Deserialization
-              run: dotnet test -c Debug --no-build --filter xUnitTests=Deserialization
+              run: dotnet test -c Debug --no-build --filter Models=Deserialization

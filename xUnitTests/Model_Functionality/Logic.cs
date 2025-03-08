@@ -4,12 +4,12 @@ using Roblox_Sharp.Enums.Thumbnail;
 using Roblox_Sharp.Framework;
 using Roblox_Sharp.Models;
 
-namespace xUnitTests.Object_Functionality
+namespace xUnitTests.Model_Functionality
 {
     /// <summary>
     /// tests explicit logic of objects
     /// </summary>
-    [Trait(nameof(xUnitTests), nameof(Object_Functionality))]
+    [Trait(nameof(Roblox_Sharp.Models), nameof(Model_Functionality))]
     public class Logic
     {
         [Fact]

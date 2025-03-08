@@ -9,6 +9,6 @@ namespace xUnitTests
         Attribute, 
         ITraitAttribute
     {
-        public IntegrationTrait(string name = nameof(xUnitTests), string value = nameof(Integration)) { }
+        public IntegrationTrait(string name = nameof(Roblox_Sharp.Endpoints), string value = nameof(Integration)) { }
     }
 }

@@ -36,7 +36,7 @@ jobs:
               run: dotnet build
 
             - name: Short Integration Tests
-              run: dotnet test -c Debug --no-build  --filter xUnitTests=Integration
+              run: dotnet test -c Debug --no-build  --filter Endpoints=Integration
 
             - name: Long Integration Tests
-              run: dotnet test -c Debug --no-build --filter xUnitTests=Long_Integration
+              run: dotnet test -c Debug --no-build --filter Endpoints=Long_Integration

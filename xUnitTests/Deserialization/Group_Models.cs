@@ -6,7 +6,7 @@ namespace xUnitTests.Deserialization
     /// <summary>
     /// Tests Serialization for all Group endpoints
     /// </summary>
-    [Trait(nameof(xUnitTests), nameof(Deserialization))]
+    [Trait(nameof(Roblox_Sharp.Models), nameof(Deserialization))]
     public class Group_Models
     {
         [Fact]
