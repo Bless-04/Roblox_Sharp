@@ -43,10 +43,11 @@ namespace Roblox_Sharp.Framework
     }
 
     /// <summary>
-    /// <inheritdoc cref="IUser"/>
+    /// <inheritdoc cref="IUser"/> <br/>
+    /// uses <typeparamref name="T"/> to automatically implement <see cref="IComparable{T}"/> and <see cref="IEquatable{T}"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IUser<T>: IUser, IComparable<T>, IEquatable<T> where T : IUser
+    public interface IUser<T> : IUser, IComparable<T>, IEquatable<T> where T : IUser
     {
         bool IEquatable<T>.Equals(T? other) => other?.userId == this.userId;
 

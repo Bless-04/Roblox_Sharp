@@ -36,6 +36,5 @@ namespace Roblox_Sharp.Endpoints
             JsonSerializer.Deserialize<assetIds_Response>(
                 await Get_RequestAsync($"https://avatar.roblox.com/v1/users/{userId}/currently-wearing")
             )!.assetIds;
-
     }
 }

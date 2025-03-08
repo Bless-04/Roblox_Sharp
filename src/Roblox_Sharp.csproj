@@ -9,7 +9,7 @@
 </Description>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>..\lib\Documentation.xml</DocumentationFile>
+    <DocumentationFile>..\src\Documentation.xml</DocumentationFile>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Title>$(AssemblyName)</Title>
     <PackageTags>Roblox;Roblox API</PackageTags>

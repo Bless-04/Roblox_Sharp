@@ -9,7 +9,6 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-///#pragma warning disable IDE1006 // Naming Styles ; idc
 namespace Roblox_Sharp
 {
 

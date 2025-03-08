@@ -34,6 +34,5 @@ namespace Roblox_Sharp.Endpoints
             JsonSerializer.Deserialize<Group>(
                 await Get_RequestAsync($"https://groups.roblox.com/v1/groups/{groupId}/roles")
             )!.roles ?? Array.Empty<Group.Role>();
-
     }
 }

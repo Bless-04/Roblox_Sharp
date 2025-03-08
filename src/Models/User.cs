@@ -51,6 +51,7 @@ namespace Roblox_Sharp.Models
     [DebuggerDisplay("@{username} (ID {userId})")]
     public class User() : IUser<User>, ICloneable<User>, IFormattable
     {
+        #region Properties
         /// <inheritdoc cref="userId"/>
         [JsonInclude]
         private ulong? id { get; init; }
@@ -172,6 +173,8 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public int friendFrequentRank { get; init; }
 
+        #endregion
+        #region Operators
         /// <summary>
         /// <inheritdoc cref="userId"/>
         /// </summary>
@@ -184,6 +187,14 @@ namespace Roblox_Sharp.Models
         /// <param name="username"></param>
         public static explicit operator User(string username) => new User() { username = username };
 
+        ///<inheritdoc cref="IUser.operator &lt;"/>
+        public static bool operator <(User left, User right) => (IUser)left < (IUser)right;
+
+        /// <inheritdoc cref="IUser.operator >"/>
+        public static bool operator >(User left, User right) => (IUser)left > (IUser)right;
+
+        #endregion
+        #region Functions
         /// <inheritdoc/>
         public User Clone() => new User()
         {
@@ -204,20 +215,15 @@ namespace Roblox_Sharp.Models
             friendFrequentRank = friendFrequentRank
         };
 
-        ///<inheritdoc cref="IUser.operator &lt;"/>
-        public static bool operator <(User left, User right) => (IUser)left < (IUser)right;
-
-        /// <inheritdoc cref="IUser.operator >"/>
-        public static bool operator >(User left, User right) => (IUser)left > (IUser)right;
-
         /// <inheritdoc cref="IUser.GetHashCode"/>
         public override int GetHashCode() => userId.GetHashCode();
 
-        /// <inheritdoc cref="IUser{User}.ToString"/> displayname@username (ID id)
-        public override string ToString() => $"{displayName}@{username} (ID {userId})";
 
         /// <inheritdoc cref="IUser.Equals"/>
-        public override bool Equals(object? obj) => obj is User user && userId == user.userId;
+        public override bool Equals(object? obj) => obj is IUser user && userId == user.userId;
+
+        /// <inheritdoc cref="IUser{User}.ToString"/> displayname@username (ID id)
+        public override string ToString() => $"{displayName}@{username} (ID {userId})";
 
         /// /// <summary>
         /// Formats the user information based on the provided format string.
@@ -258,6 +264,7 @@ namespace Roblox_Sharp.Models
                 "joined" => created_string + ' ',
                 _ => throw new FormatException()
             };
+        #endregion
     }
 }
 
