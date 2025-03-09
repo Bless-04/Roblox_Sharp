@@ -41,7 +41,7 @@ namespace xUnitTests.Integration
             ulong roblox = await Friends_v1.Get_FollowersCountAsync(ROBLOX);
            
 
-            Assert.True(roblox > 100000, "Get_FollowersCount() is failing");
+            Assert.True(roblox > 100000, $"{nameof(Get_FollowersCount)} is failing");
         }
 
         [IntegrationTrait.Long_Integration]

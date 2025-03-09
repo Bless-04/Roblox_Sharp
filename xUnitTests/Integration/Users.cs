@@ -25,7 +25,7 @@ namespace xUnitTests.Integration
 
             User roblox = await Users_v1.Get_UserAsync(ROBLOX);
 
-            Assert.True(roblox.UserId == ROBLOX, "User.userId is failing");
+            Assert.True(roblox.UserId == ROBLOX, nameof(roblox.UserId) + " is failing");
 
             Assert.True(
                 roblox.Username.Equals(nameof(ROBLOX), StringComparison.OrdinalIgnoreCase)

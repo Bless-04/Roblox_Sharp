@@ -1,5 +1,4 @@
 ﻿using Roblox_Sharp.Endpoints;
-using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;

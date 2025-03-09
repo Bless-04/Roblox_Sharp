@@ -48,7 +48,7 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize User based requests
     /// </summary>
-    [DebuggerDisplay("@{username} (ID {userId})")]
+    [DebuggerDisplay("@{Username} (ID {UserId})")]
     public partial class User() : Creation<IUser>, IUser, ICloneable<User>, IFormattable
     {
         /// <summary>
@@ -219,13 +219,9 @@ namespace Roblox_Sharp.Models
             FriendFrequentRank = FriendFrequentRank
         };
 
-        /// <inheritdoc cref="IUser.GetHashCode"/>
-        public override int GetHashCode() => UserId.GetHashCode();
-
-        /// <inheritdoc cref="IUser.Equals"/>
-        public override bool Equals(object? obj) => obj is IUser user && UserId == user.UserId;
-
-        /// <inheritdoc cref="IUser{User}.ToString"/> displayname@username (ID id)
+        /// <summary> a simple string representation of the <see cref="User"/> in the format <br/> 
+        /// displayname@username (ID id)
+        /// </summary> 
         public override string ToString() => $"{DisplayName}@{Username} (ID {UserId})";
 
         /// /// <summary>
