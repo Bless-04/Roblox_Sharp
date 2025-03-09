@@ -184,20 +184,7 @@ namespace Roblox_Sharp.Models
         public int FriendFrequentRank { get; init; }
 
         #endregion
-        #region Operators
-        /// <summary>
-        /// <inheritdoc cref="UserId"/>
-        /// </summary>
-        /// <param name="userId"></param>
-        public static explicit operator User(ulong userId) => new() { UserId = userId };
 
-        /// <summary>
-        /// <inheritdoc cref="Username"/>
-        /// </summary>
-        /// <param name="username"></param>
-        public static explicit operator User(string username) => new() { Username = username };
-
-        #endregion
         #region Functions
         /// <inheritdoc/>
         public User Clone() => new()
