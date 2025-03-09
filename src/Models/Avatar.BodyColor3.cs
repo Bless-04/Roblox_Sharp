@@ -10,7 +10,7 @@ public partial class Avatar
     /// the body color of the avatar using RGB hex
     /// </summary>
 
-    public class BodyColor3s
+    public record BodyColor3
     {
         /// <summary>
         /// The RGB hex color for head color, e.g. #FFFFFF

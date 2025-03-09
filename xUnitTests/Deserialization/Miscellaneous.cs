@@ -1,4 +1,5 @@
-﻿using Roblox_Sharp.Framework;
+﻿using Roblox_Sharp.Enums.Thumbnail;
+using Roblox_Sharp.Framework;
 using Roblox_Sharp.Models;
 using System.Text.Json;
 
@@ -59,7 +60,7 @@ namespace xUnitTests.Deserialization
 
             Assert.NotNull(thumbnail);
             Assert.Equal<ulong>(1, thumbnail.TargetId);
-            Assert.Equal("Error", thumbnail.State);
+            Assert.Equal(State.Error, thumbnail.State);
             Assert.Equal("string", thumbnail.ImageUrl);
             Assert.Equal("string", thumbnail.Version);
 

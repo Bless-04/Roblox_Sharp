@@ -10,7 +10,7 @@ public partial class Avatar
         /// <summary>
         /// metadata of the asset
         /// </summary>
-        public class Metadata
+        public record Metadata
         {
             /// <summary>
             /// (x, y , z) position of the asset

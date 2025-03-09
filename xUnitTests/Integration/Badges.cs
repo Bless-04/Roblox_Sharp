@@ -29,10 +29,10 @@ namespace xUnitTests.Integration
             Assert.NotNull(erik_badge1.awardingUniverse);
 
             Assert.True(2925703 == erik_badge1.creator.UserId, nameof(erik_badge1.creator.UserId) + " is failing");
-            Assert.True(2009 == erik_badge1.created.Year, nameof(erik_badge1.created.Year) + " is failing");
+            Assert.True(2009 == erik_badge1.Created.Year, nameof(erik_badge1.Created.Year) + " is failing");
             Assert.True(10277240 == erik_badge1.awardingUniverse.UniverseId, nameof(erik_badge1.awardingUniverse.UniverseId) + " is failing"); //game id
 
-            Assert.True(erik_badge1.statistics.awardedCount > 1000000, "Badge.statistics.awardedCount is failing"); ///over 1000000 as of 11/29/24
+            Assert.True(erik_badge1.Statistics.AwardedCount > 1000000, $"{nameof(erik_badge1.Statistics.AwardedCount)}Badge.Statistics.AwardedCount is failing"); ///over 1000000 as of 11/29/24
         }
 
         [IntegrationTrait]
@@ -47,7 +47,7 @@ namespace xUnitTests.Integration
 
             Assert.True(14417332 == badge.BadgeId, nameof(badge.BadgeId) + " is failing");
 
-            Assert.True(badge.created.Year == 2009, nameof(badge.created.Year) + " is failing");
+            Assert.True(badge.Created.Year == 2009, nameof(badge.Created.Year) + " is failing");
         }
 
         [IntegrationTrait.Long_Integration]

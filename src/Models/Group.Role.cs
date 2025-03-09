@@ -23,8 +23,8 @@ public partial class Group
         [JsonPropertyName("roleId")]
         public ulong RoleId
         {
-            get => base._id ?? throw new NotRequestedException(nameof(RoleId));
-            init => base._id = value;
+            get => base.CreationId ?? throw new NotRequestedException(nameof(RoleId));
+            init => base.CreationId = value;
         }
 
         /// <summary>

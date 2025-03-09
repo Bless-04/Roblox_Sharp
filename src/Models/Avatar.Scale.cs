@@ -1,5 +1,4 @@
 ﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member ; the names are self explanatory
-
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models;
@@ -9,7 +8,7 @@ public partial class Avatar
     /// <summary>
     /// Holds the scaling of the avatar
     /// </summary>
-    public readonly struct Scales
+    public record Scale
     {
         [JsonPropertyName("height")]
         public double Height { get; init; }

@@ -8,9 +8,8 @@ public partial class Badge
     /// <summary>
     /// Badge.Award
     /// </summary>
-    public class Award : IBadge
+    public record Award : IBadge
     {
-
         /// <summary>
         /// date badge was awarded
         /// </summary>

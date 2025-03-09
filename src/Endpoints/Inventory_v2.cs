@@ -19,8 +19,8 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="userId">The inventory owner's userId.</param>
         /// <param name="assetTypes">The asset Types to query</param>
-        /// <param name="filterDisapprovedAssets">Filters moderated assets when enabled</param>
-        /// <param name="showApprovedOnly">Filters moderated assets and assets pending review when enabled</param>
+        /// <param name="filterDisapprovedAssets">Filters moderated assets when Enabled</param>
+        /// <param name="showApprovedOnly">Filters moderated assets and assets pending review when Enabled</param>
         /// <param name="limit">The number of results per request</param>
         /// <param name="sortOrder">The paging cursor for the previous or next page</param>
         /// <param name="cursor">The order the results are sorted in.</param>

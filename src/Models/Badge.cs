@@ -16,8 +16,8 @@ namespace Roblox_Sharp.Models
         [JsonPropertyName("badgeId")]
         public ulong BadgeId
         {
-            get => base._id ?? throw new NotRequestedException(nameof(BadgeId));
-            init => base._id = value;
+            get => base.CreationId ?? throw new NotRequestedException(nameof(BadgeId));
+            init => base.CreationId = value;
         }
 
         /// <summary>
@@ -41,37 +41,44 @@ namespace Roblox_Sharp.Models
         /// <summary>
         /// the localized description of the badge
         /// </summary>
-        public string? displayDescription { get; init; }
+        [JsonPropertyName("displayDescription")]
+        public string? DisplayDescription { get; init; }
 
         /// <summary>
-        /// whether or not the badge is enabled
+        /// whether or not the badge is Enabled
         /// </summary>
-        public bool enabled { get; init; }
+        [JsonPropertyName("enabled")]
+        public bool Enabled { get; init; }
 
         /// <summary>
         /// The badge icon asset Id.
         /// </summary>
-        public ulong iconImageId { get; init; }
+        [JsonPropertyName("iconImageId")]
+        public ulong IconImageId { get; init; }
 
         /// <summary>
         /// The localized badge icon asset Id.
         /// </summary>
-        public ulong displayIconImageId { get; init; }
+        [JsonPropertyName("displayIconImageId")]
+        public ulong DisplayIconImageId { get; init; }
 
         /// <summary>
         /// When the badge was created.
         /// </summary>
-        public DateTime created { get; init; }
+        [JsonPropertyName("created")]
+        public DateTime Created { get; init; }
 
         /// <summary>
         /// When the badge was updated.
         /// </summary>
-        public DateTime updated { get; init; }
+        [JsonPropertyName("updated")]
+        public DateTime Updated { get; init; }
 
         /// <summary>
-        /// <inheritdoc cref="Statistics"/>
+        /// <inheritdoc cref="Badge.Statistic"/>
         /// </summary>
-        public Statistics statistics { get; init; }
+        [JsonPropertyName("statistics")]
+        public Statistic Statistics { get; init; }
 
         /// <summary>
         /// the place that awarded the badge
@@ -93,44 +100,22 @@ namespace Roblox_Sharp.Models
         /// </summary>
         public User? creator { get; init; }
 
-        /// <summary>
-        /// Holds the statistics of the badge
-        /// </summary>
-        public readonly struct Statistics
-        {
-            /// <summary>
-            /// the number of times the badge has been awarded in the last day
-            /// </summary>
-            public ulong pastDayAwardedCount { get; init; }
-
-            /// <summary>
-            /// the total number of times the badge has been awarded
-            /// </summary>
-            public ulong awardedCount { get; init; }
-
-            /// <summary>
-            /// the win rate of the badge
-            /// </summary>
-            public double winRatePercentage { get; init; }
-        }
-
         /// <inheritdoc/>
-        public Badge Clone() =>
-            new Badge()
-            {
-                BadgeId = BadgeId,
-                BadgeName = BadgeName,
-                Description = Description,
-                DisplayName = DisplayName,
-                displayDescription = displayDescription,
-                enabled = enabled,
-                iconImageId = iconImageId,
-                displayIconImageId = displayIconImageId,
-                created = created,
-                updated = updated,
-                statistics = statistics,
-                awardingUniverse = awardingUniverse?.Clone(),
-                creator = creator?.Clone()
-            };
+        public Badge Clone() => new()
+        {
+            BadgeId = BadgeId,
+            BadgeName = BadgeName,
+            Description = Description,
+            DisplayName = DisplayName,
+            DisplayDescription = DisplayDescription,
+            Enabled = Enabled,
+            IconImageId = IconImageId,
+            DisplayIconImageId = DisplayIconImageId,
+            Created = Created,
+            Updated= Updated,
+            Statistics = Statistics,
+            awardingUniverse = awardingUniverse?.Clone(),
+            creator = creator?.Clone()
+        };
     }
 }

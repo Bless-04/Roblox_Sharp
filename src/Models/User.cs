@@ -69,15 +69,16 @@ namespace Roblox_Sharp.Models
         [JsonPropertyName("userId")]
         public ulong UserId
         {
-            get => base._id ?? throw new NotRequestedException(nameof(UserId));
-            init => base._id = value;
+            get => base.CreationId ?? throw new NotRequestedException(nameof(UserId));
+            init => base.CreationId = value;
         }
 
         /// <summary>
-        /// unique username for the user
+        /// unique username for the user <br/>
+        /// returns <see cref="string.Empty"/> if data not requested
         /// </summary>
         [JsonPropertyName("username")]
-        public string Username { get; init; }
+        public string Username { get; init; } = string.Empty; 
 
         /// <summary>
         /// <inheritdoc cref="Username"/>
@@ -93,7 +94,6 @@ namespace Roblox_Sharp.Models
         /// string representation of the user <br></br> 
         /// </summary>
         private string? _displayName { get; init; }
-
 
         /// <inheritdoc cref="_displayName"/>
         [JsonPropertyName("displayName")]

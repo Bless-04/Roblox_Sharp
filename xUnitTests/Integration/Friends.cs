@@ -109,7 +109,7 @@ namespace xUnitTests.Integration
             Page<User> page = await Friends_v1.Get_FollowersAsync(ROBLOX); //roblox
 
             //old page
-            ulong some_id = page.Data[0].UserId;
+            ulong someCreationId = page.Data[0].UserId;
 
             Assert.Null(page.PreviousPageCursor);
 
@@ -121,7 +121,7 @@ namespace xUnitTests.Integration
 
             Assert.True(page.PreviousPageCursor != null, "Get_Followers() is failing");
 
-            Assert.True(page.Data[0].UserId != some_id, "Get_Followers() is failing");
+            Assert.True(page.Data[0].UserId != someCreationId, "Get_Followers() is failing");
 
         }
 

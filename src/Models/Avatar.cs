@@ -8,7 +8,7 @@ namespace Roblox_Sharp.Models
 {
     //example return 
     /*{
-  "scales": {
+  "Scales": {
     "height": 0,
     "width": 0,
     "head": 0,
@@ -17,7 +17,7 @@ namespace Roblox_Sharp.Models
     "bodyType": 0
   },
   "playerAvatarType": 1,
-  "bodyColors": {
+  "BodyColors": {
     "headColorId": 0,
     "torsoColorId": 0,
     "rightArmColorId": 0,
@@ -75,25 +75,29 @@ namespace Roblox_Sharp.Models
         /// <summary>
         /// <inheritdoc cref="Scales"/>
         /// </summary>
-        public Scales scales { get; init; }
+        [JsonPropertyName("scales")]
+        public Scale? Scales { get; init; }
 
         /// <summary>
         /// <inheritdoc cref="AvatarType"/>
         /// </summary>
         [JsonConverter(typeof(Avatar_Type_Converter))]
-        public AvatarType playerAvatarType { get; init; }
+        [JsonPropertyName("playerAvatarType")]
+        public AvatarType PlayerAvatarType { get; init; }
 
         /// <summary>
         /// the brickcolor ids for each bodypart
         /// <note>unique to <seealso cref="Endpoints.Avatars_v1"/> based requests </note>
         /// </summary>
-        public BodyColors bodyColors { get; init; }
+        [JsonPropertyName("bodyColors")]
+        public BodyColor BodyColors { get; init; }
 
         /// <summary>
         /// the rgb hex colors for each bodypart
         /// <note>unique to <seealso cref="Endpoints.Avatars_v2"/> based requests </note>
         /// </summary>
-        public BodyColor3s? bodyColor3s { get; init; } 
+        [JsonPropertyName("bodyColor3s")]
+        public BodyColor3? BodyColor3s { get; init; } 
 
         /// <summary>
         /// the assets worn on the avatar
@@ -122,10 +126,10 @@ namespace Roblox_Sharp.Models
         ///<inheritdoc/>
         public Avatar Clone() => new()
         {
-            scales = scales,
-            playerAvatarType = playerAvatarType,
-            bodyColors = bodyColors,
-            bodyColor3s = bodyColor3s,
+            Scales = Scales,
+            PlayerAvatarType = PlayerAvatarType,
+            BodyColors = BodyColors,
+            BodyColor3s = BodyColor3s,
             Assets = Assets,
             DefaultShirtApplied = DefaultShirtApplied,
             DefaultPantsApplied = DefaultPantsApplied,

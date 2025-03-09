@@ -18,8 +18,8 @@ public partial class Avatar
         [JsonPropertyName("assetId")]
         public ulong AssetId
         {
-            get => base._id ?? throw new NotRequestedException(nameof(AssetId));
-            init => base._id = value;
+            get => base.CreationId ?? throw new NotRequestedException(nameof(AssetId));
+            init => base.CreationId = value;
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ public partial class Avatar
         /// <inheritdoc cref="Roblox_Sharp.Enums.AssetType"/>
         /// </summary>
         [JsonPropertyName("assetType")]
-        public Avatar.Asset.Type AssetType { get; init; }
+        public Avatar.Asset.Type? AssetType { get; init; }
 
         [JsonPropertyName("currentVersionId")]
         public ulong CurrentVersionId { get; init; }
@@ -51,7 +51,7 @@ public partial class Avatar
         /// <inheritdoc cref="Metadata"/>
         /// </summary>
         [JsonPropertyName("meta")]
-        public Metadata Meta { get; init; }
+        public Metadata? Meta { get; init; }
 
         /// <summary>
         /// Deep Clones the instance of <see cref="Avatar.Asset"/>

@@ -23,6 +23,9 @@ namespace xUnitTests.Model_Functionality
 
             [Fact]
             public void Asset() => Assert.IsAssignableFrom<IAsset>(new Avatar.Asset());
+
+            [Fact]
+            public void Emote() => Assert.IsAssignableFrom<IAsset>(new Avatar.Emote() { AssetName = string.Empty });
         
         #endregion
 
@@ -31,9 +34,6 @@ namespace xUnitTests.Model_Functionality
         {
             BadgeId = ulong.MaxValue
         });
-
-        [Fact]
-        public void Emote() => Assert.IsAssignableFrom<Avatar.Asset>(new Avatar.Emote());
 
 
        

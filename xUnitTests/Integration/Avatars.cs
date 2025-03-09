@@ -33,7 +33,7 @@ namespace xUnitTests.Integration
             Avatar v1 = await Avatars_v1.Get_AvatarAsync(ROBLOX);
             Avatar v2 = await Avatars_v2.Get_AvatarAsync(ROBLOX);
 
-            Assert.Equal(v1.scales, v2.scales); //should be the same ; can be value checked as it is a struct
+            Assert.Equal(v1.Scales, v2.Scales); //should be the same ; can be value checked as it is a struct
 
             Assert.NotNull(v1.Assets);
             Assert.NotNull(v2.Assets);

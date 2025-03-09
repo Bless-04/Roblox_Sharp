@@ -16,7 +16,7 @@ public partial class Group
     /// <summary>
     /// Group Shout Serializer
     /// </summary>
-    public class Shout
+    public record Shout
     {
         /// <summary>
         /// group shoutouts message body

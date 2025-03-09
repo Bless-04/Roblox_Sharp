@@ -79,7 +79,7 @@ namespace xUnitTests.Deserialization
 
             Assert.True(avatar.DefaultShirtApplied);
             Assert.True(avatar.DefaultPantsApplied);
-            Assert.Equal(AvatarType.R15, avatar.playerAvatarType);
+            Assert.Equal(AvatarType.R15, avatar.PlayerAvatarType);
 
             Avatar.Emote emotes = avatar.Emotes![0];
             Assert.Equal<ulong>(0, emotes.AssetId);
@@ -87,11 +87,14 @@ namespace xUnitTests.Deserialization
             Assert.Equal(0, emotes.Position);
 
             Avatar.Asset assets = avatar.Assets![0];
+            
             Assert.Equal<ulong>(0, assets.AssetId);
             Assert.Equal("string", assets.AssetName);
-            Assert.Equal(0, (byte)assets.AssetType.Id);
+            Assert.Equal(0, (byte)assets.AssetType!.Id);
             Assert.Equal("string", assets.AssetType.Name);
             Assert.Equal<ulong>(0, assets.CurrentVersionId);
+
+            Assert.NotNull(assets.Meta);
             Assert.Equal(0, assets.Meta.Order);
             Assert.Equal(0, assets.Meta.Puffiness);
             Assert.Equal(0, assets.Meta.Position.X);
@@ -105,7 +108,9 @@ namespace xUnitTests.Deserialization
             Assert.Equal(0, assets.Meta.Scale.Z);
             Assert.Equal<ulong>(0, assets.Meta.Version);
 
-            Avatar.Scales scales = avatar.scales!;
+            Avatar.Scale? scales = avatar.Scales;
+            Assert.NotNull(scales);
+
             Assert.Equal(0, scales.Height);
             Assert.Equal(0, scales.Width);
             Assert.Equal(0, scales.Head);
@@ -113,7 +118,8 @@ namespace xUnitTests.Deserialization
             Assert.Equal(0, scales.Proportion);
             Assert.Equal(0, scales.BodyType);
 
-            Avatar.BodyColors bodyColors = avatar.bodyColors!;
+            Avatar.BodyColor bodyColors = avatar.BodyColors;
+
             Assert.Equal(0, bodyColors.HeadColorId);
             Assert.Equal(0, bodyColors.TorsoColorId);
             Assert.Equal(0, bodyColors.RightArmColorId);
@@ -193,7 +199,7 @@ namespace xUnitTests.Deserialization
 
             Assert.True(avatar.DefaultShirtApplied);
             Assert.True(avatar.DefaultPantsApplied);
-            Assert.Equal(AvatarType.R6, avatar.playerAvatarType);
+            Assert.Equal(AvatarType.R6, avatar.PlayerAvatarType);
 
             Avatar.Emote emotes = avatar.Emotes![0];
             Assert.Equal<ulong>(0, emotes.AssetId);
@@ -203,9 +209,13 @@ namespace xUnitTests.Deserialization
             Avatar.Asset assets = avatar.Assets![0];
             Assert.Equal<ulong>(0, assets.AssetId);
             Assert.Equal("string", assets.AssetName);
+
+            Assert.NotNull(assets.AssetType);
             Assert.Equal<AssetType>(0, assets.AssetType.Id);
             Assert.Equal("string", assets.AssetType.Name);
             Assert.Equal<ulong>(0, assets.CurrentVersionId);
+
+            Assert.NotNull(assets.Meta);
             Assert.Equal(0, assets.Meta.Order);
             Assert.Equal(0, assets.Meta.Puffiness);
             Assert.Equal(0, assets.Meta.Position.X);
@@ -219,7 +229,7 @@ namespace xUnitTests.Deserialization
             Assert.Equal(0, assets.Meta.Scale.Z);
             Assert.Equal<ulong>(0, assets.Meta.Version);
 
-            Avatar.Scales scales = avatar.scales!;
+            Avatar.Scale scales = avatar.Scales!;
             Assert.Equal(0, scales.Height);
             Assert.Equal(0, scales.Width);
             Assert.Equal(0, scales.Head);
@@ -229,8 +239,9 @@ namespace xUnitTests.Deserialization
 
 
             Color expected_color = ColorTranslator.FromHtml("#A3A2A5");
-            Avatar.BodyColor3s bodyColor3s = JsonSerializer.Deserialize<Avatar>(json_response)!.bodyColor3s;
+            Avatar.BodyColor3? bodyColor3s = JsonSerializer.Deserialize<Avatar>(json_response)!.BodyColor3s;
 
+            Assert.NotNull(bodyColor3s);
             Assert.Equal(expected_color, bodyColor3s.HeadColor3);
             Assert.Equal(expected_color, bodyColor3s.TorsoColor3);
             Assert.Equal(expected_color, bodyColor3s.RightArmColor3);

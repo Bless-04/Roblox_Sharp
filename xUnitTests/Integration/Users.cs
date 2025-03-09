@@ -43,6 +43,7 @@ namespace xUnitTests.Integration
         {
             User test = (await Users_v1.Get_UsernamesAsync([id]))[0];//
 
+            Assert.NotNull(test.Username);
             Assert.True(
                 test.UserId == id &&
                 test.Username.Equals(Username, System.StringComparison.OrdinalIgnoreCase),
@@ -63,13 +64,13 @@ namespace xUnitTests.Integration
         [InlineData(ROBLOX, nameof(ROBLOX))]
         [InlineData(BUILDERMAN, nameof(BUILDERMAN))]
         [InlineData(SHEDLETSKY, nameof(SHEDLETSKY))]
-        public async Task Get_Users(ulong expected_id, string Username)
+        public async Task Get_Users(ulong expectedCreationId, string Username)
         {
             User test = (await Users_v1.Get_UsersAsync([Username]))[0];
 
             await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsersAsync([]));
 
-            Assert.True(test.UserId == expected_id, "User.userId is failing");
+            Assert.True(test.UserId == expectedCreationId, "User.userId is failing");
         }
 
         [IntegrationTrait.Long_Integration]

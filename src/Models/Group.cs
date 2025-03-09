@@ -15,8 +15,8 @@ namespace Roblox_Sharp.Models
         [JsonPropertyName("groupId")]
         public ulong GroupId
         {
-            get => base._id ?? throw new NotRequestedException(nameof(GroupId));
-            init => base._id = value;
+            get => base.CreationId ?? throw new NotRequestedException(nameof(GroupId));
+            init => base.CreationId = value;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Roblox_Sharp.Models
         /// Deep Clones the instance of <see cref="Group"/>
         /// </summary>
         /// <returns></returns>
-        public Group Clone() => new Group()
+        public Group Clone() => new()
         {
             GroupId = GroupId,
             Name = Name,

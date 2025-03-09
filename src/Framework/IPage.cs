@@ -44,10 +44,10 @@ namespace Roblox_Sharp.Framework
         /// <param name="page"></param>
         /// <returns></returns>
         /// <exception cref="IndexOutOfRangeException"> if there is no previous page</exception>
-        public static IPage<T> operator --(IPage<T> page) => page.Previous();
+        public static IPage<T> operator --(IPage<T> page) => page.go_Previous();
 
         /// <inheritdoc cref="operator --(IPage{T})"/>
-        public abstract IPage<T> Previous(List<T>? data = null);
+        abstract IPage<T> go_Previous(List<T>? data = null);
 
         /// <summary>
         /// Goes forward 1 page
@@ -55,10 +55,10 @@ namespace Roblox_Sharp.Framework
         /// <param name="page"></param>
         /// <returns></returns>
         /// <exception cref="IndexOutOfRangeException">if there is no next page</exception>
-        public static IPage<T> operator ++(IPage<T> page) => page.Next();
+        public static IPage<T> operator ++(IPage<T> page) => page.go_Next();
 
         /// <inheritdoc cref="operator ++(IPage{T})"/>
-        public abstract IPage<T> Next(List<T>? data = null);
+        abstract IPage<T> go_Next(List<T>? data = null);
 
         /// <summary>
         /// <inheritdoc cref="IEnumerable.GetEnumerator"/>

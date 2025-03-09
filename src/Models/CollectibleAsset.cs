@@ -26,8 +26,8 @@ namespace Roblox_Sharp.Models
         [JsonPropertyName("assetId")]
         public ulong AssetId
         {
-            get => base._id ?? throw new NotRequestedException(nameof(AssetId));
-            init => base._id = value;
+            get => base.CreationId ?? throw new NotRequestedException(nameof(AssetId));
+            init => base.CreationId = value;
         }
 
         /// <summary>

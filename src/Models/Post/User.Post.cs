@@ -18,12 +18,12 @@ public partial class User
         /// <summary>
         /// max number of ids that can be requested at a time
         /// </summary>
-        public const byte MAX_IDS = 100;
+        public const byte MAXCreationIdS = 100;
 
         /// <summary>
         /// max number of usernames that can be requested at a time
         /// </summary>
-        public const byte MAX_USERNAMES = MAX_IDS;
+        public const byte MAX_USERNAMES = MAXCreationIdS;
 
         /// <summary>
         /// exclude banned users
@@ -45,7 +45,7 @@ public partial class User
 
         public Post(IEnumerable<ulong> userIds, bool excludeBannedUsers = false)
         {
-            if (userIds.Count() > MAX_IDS) throw new InvalidUserException("Too many userIds");
+            if (userIds.Count() > MAXCreationIdS) throw new InvalidUserException("Too many userIds");
 
             UserIds = userIds;
 

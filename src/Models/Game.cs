@@ -8,7 +8,6 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// Represents a game
     /// </summary>
-    [Obsolete("This class is not finished")]
     public partial class Game : Creation<Game>, ICloneable<Game>
     {
         /// <summary>
@@ -17,8 +16,8 @@ namespace Roblox_Sharp.Models
         [JsonPropertyName("universeId")]
         public ulong UniverseId
         {
-            get => base._id ?? throw new NotRequestedException(nameof(UniverseId));
-            init => base._id = value;
+            get => base.CreationId ?? throw new NotRequestedException(nameof(UniverseId));
+            init => base.CreationId = value;
         }
 
         /// <summary>
@@ -37,7 +36,7 @@ namespace Roblox_Sharp.Models
         /// Deep Clones the instance of <see cref="Game"/>
         /// </summary>
         /// <returns></returns>
-        public Game Clone() => new Game
+        public Game Clone() => new()
         {
             UniverseId = this.UniverseId,
             Name = this.Name,

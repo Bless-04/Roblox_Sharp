@@ -31,8 +31,8 @@ public partial class User
         [JsonPropertyName("userId")]
         public ulong UserId
         {
-            get => base._id ?? throw new NotRequestedException(nameof(UserId));
-            init => base._id = value;
+            get => base.CreationId ?? throw new NotRequestedException(nameof(UserId));
+            init => base.CreationId = value;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ public partial class User
         /// Deep Clones the instance of <see cref="User.Presence"/>
         /// </summary>
         /// <returns></returns>
-        public Presence Clone() => new Presence()
+        public Presence Clone() => new()
         {
             PresenceType = PresenceType,
             LastLocation = LastLocation,

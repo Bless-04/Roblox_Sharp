@@ -9,7 +9,7 @@ public partial class Avatar
         /// <summary>
         /// the type of the asset
         /// </summary>
-        public class Type
+        public record Type
         {
             /// <summary>
             /// the id of the Asset_Type

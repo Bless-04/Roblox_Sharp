@@ -22,11 +22,11 @@ namespace Roblox_Sharp.Models
         [JsonPropertyName("data")]
         public IReadOnlyList<T> Data { get; set; } = [];
 
-        /// <inheritdoc cref="Previous(List{T}?)"/>
-        public static Page<T> operator --(Page<T> page) => (Page<T>)page.Previous();
+        /// <inheritdoc cref="go_Previous(List{T}?)"/>
+        public static Page<T> operator --(Page<T> page) => (Page<T>)page.go_Previous();
 
         /// <inheritdoc/>
-        public IPage<T> Previous(List<T>? data = null)
+        public IPage<T> go_Previous(List<T>? data = null)
         {
             if (this.NextPageCursor == null) throw new IndexOutOfRangeException("There is no next Page");
             this.PreviousPageCursor = this.NextPageCursor;
@@ -37,7 +37,7 @@ namespace Roblox_Sharp.Models
         }
 
         /// <inheritdoc/>
-        public IPage<T> Next(List<T>? data = null)
+        public IPage<T> go_Next(List<T>? data = null)
         {
             if (this.PreviousPageCursor == null) throw new IndexOutOfRangeException("There is no previous Page");
             this.NextPageCursor = this.PreviousPageCursor;
@@ -46,7 +46,7 @@ namespace Roblox_Sharp.Models
             return this;
         }
 
-        /// <inheritdoc cref="Next(List{T}?)"/>
-        public static Page<T> operator ++(Page<T> page) => (Page<T>)page.Next();
+        /// <inheritdoc cref="IPage{T}.go_Next(List{T}?)"/>
+        public static Page<T> operator ++(Page<T> page) => (Page<T>)page.go_Next();
     }
 }
