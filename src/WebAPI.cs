@@ -25,7 +25,7 @@ namespace Roblox_Sharp
         /// </summary>
         public static HttpClient Client => _client;
 
-        /*
+        /* not needed
         /// <summary>
         /// <see cref="JsonSerializerOptions"></see> used for all web requests
         /// </summary>
