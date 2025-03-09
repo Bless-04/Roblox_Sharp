@@ -57,7 +57,7 @@ namespace xUnitTests.Integration
         {
             ulong test = await Friends_v1.Get_FollowingsCountAsync(BUILDERMAN); //builderman follows millions of players
 
-            Assert.True(test > ushort.MaxValue, "Get_FollowingsCount() is failing");
+            Assert.True(test > ushort.MaxValue, $"{nameof(Get_FollowingsCount)} is failing");
         }
 
         [IntegrationTrait.Long_Integration]

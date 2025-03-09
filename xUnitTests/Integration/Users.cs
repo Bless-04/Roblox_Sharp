@@ -88,7 +88,7 @@ namespace xUnitTests.Integration
         public async Task Get_UsernameHistory()
         {
             //7733466 is an admin
-            Page<User> y = await Users_v1.Get_UsernameHistoryAsync(7733466, Limit.Ten);
+            Page<string> y = await Users_v1.Get_UsernameHistoryAsync(7733466, Limit.Ten);
 
             Assert.False(y.Data.Count == 0, "Page.data should not be empty");
         }

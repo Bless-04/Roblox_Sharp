@@ -42,7 +42,7 @@ namespace xUnitTests.Integration
         {
             IReadOnlyList<Group> groups = await Groups_v2.Get_GroupsAsync([1, 2, 3]);
 
-            Assert.True(groups.Count == 3, "Group.count is failing");
+            Assert.True(groups.Count == 3, $"{nameof(groups.Count)} is failing");
 
             Group group1 = groups[0];
             Group group2 = groups[1];
@@ -57,7 +57,7 @@ namespace xUnitTests.Integration
             Assert.True(
                 group1.Created.Year == group2.Created.Year &&
                 group3.Created.Year == group2.Created.Year,
-                "Group.created.Year is failing"
+                $"{nameof(group1.Created.Year)} is failing"
             ); // all created in 2009
         }
     }

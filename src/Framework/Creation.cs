@@ -18,6 +18,7 @@ namespace Roblox_Sharp.Framework
         [JsonInclude]
         [JsonPropertyName("id")]
         protected ulong? _id { get; init; } = uniqueId;
+
         /// <inheritdoc/>
         public int CompareTo(Creation<T>? other)
         {

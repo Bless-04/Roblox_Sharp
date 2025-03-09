@@ -19,7 +19,7 @@ namespace xUnitTests.Integration
             IReadOnlyList<ulong> assets = await Avatars_v1.Get_CurrentlyWearingAsync(ROBLOX);
 
             Assert.NotNull(assets);
-            Assert.True(assets.Count > 0, "Assets.Count is failing");
+            Assert.True(assets.Count > 0, $"{nameof(Get_CurrentlyWearing)} is failing");
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_Avatar()
         {
-#pragma warning disable CS0618 // Type or member is obsolete ; testing
+            #pragma warning disable CS0618 // Type or member is obsolete ; testing
             Avatar v1 = await Avatars_v1.Get_AvatarAsync(ROBLOX);
             Avatar v2 = await Avatars_v2.Get_AvatarAsync(ROBLOX);
 

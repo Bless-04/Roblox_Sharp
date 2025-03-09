@@ -1,8 +1,10 @@
 ﻿using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
+using Roblox_Sharp.Models.Internal;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using static Roblox_Sharp.WebAPI;
@@ -107,15 +109,23 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="SORT"></param>
         /// <param name="page"></param>
         /// <returns></returns>
-        public static async Task<Page<User>> Get_UsernameHistoryAsync(ulong userId, Limit LIMIT = Limit.Minimum, Sort SORT = Sort.Asc, Page<User>? page = null) =>
+        public static async Task<Page<string>> Get_UsernameHistoryAsync(ulong userId, Limit LIMIT = Limit.Minimum, Sort SORT = Sort.Asc, Page<User>? page = null)
+        {
             //url example 'https://users.roblox.com/v1/users/416181091/username-history?limit=100&sortOrder=Asc
-            JsonSerializer.Deserialize<Page<User>>(
+            Page<UsernameHistory_Response> response = JsonSerializer.Deserialize<Page<UsernameHistory_Response>>(
                 await Get_RequestAsync(
                     $"https://users.roblox.com/v1/users/{userId}" +
                     $"/username-history?limit={EnumExtensions.ToString(LIMIT)}" +
                     $"&cursor={page?.NextPageCursor}" +
-                    $"&sortOrder={SORT}")
-            )!;
+                    $"&sortOrder={SORT}"))!;
+            
+            return new()
+            {
+                NextPageCursor = response.NextPageCursor,
+                PreviousPageCursor = response.PreviousPageCursor,
+                Data = [.. response.Data.Select(history => history.name)]
+            };
+        }
 
         /// <summary>
         /// Gets the minimal Authenticated User asynchronously
