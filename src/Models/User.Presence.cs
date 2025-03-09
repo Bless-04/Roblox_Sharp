@@ -1,5 +1,6 @@
 ﻿using Roblox_Sharp.Enums;
 using Roblox_Sharp.Framework;
+using Roblox_Sharp.Exceptions;
 using System;
 using System.Text.Json.Serialization;
 
@@ -28,7 +29,11 @@ public partial class User
     {
         /// <inheritdoc/>
         [JsonPropertyName("userId")]
-        public ulong UserId { get; init; }
+        public ulong UserId
+        {
+            get => base._id ?? throw new NotRequestedException(nameof(UserId));
+            init => base._id = value;
+        }
 
         /// <summary>
         /// <see cref="UserPresenceType"/> type of user

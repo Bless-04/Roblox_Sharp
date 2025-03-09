@@ -1407,18 +1407,6 @@
             Frequents rank for the user.
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.Models.User.op_Explicit(System.UInt64)~Roblox_Sharp.Models.User">
-            <summary>
-            <inheritdoc cref="P:Roblox_Sharp.Models.User.UserId"/>
-            </summary>
-            <param name="userId"></param>
-        </member>
-        <member name="M:Roblox_Sharp.Models.User.op_Explicit(System.String)~Roblox_Sharp.Models.User">
-            <summary>
-            <inheritdoc cref="P:Roblox_Sharp.Models.User.Username"/>
-            </summary>
-            <param name="username"></param>
-        </member>
         <member name="M:Roblox_Sharp.Models.User.Clone">
             <inheritdoc/>
         </member>

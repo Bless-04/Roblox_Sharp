@@ -43,6 +43,11 @@ namespace Roblox_Sharp.Framework
         public bool Equals(Creation<T>? other) => other != null && _id == other._id;
 
         /// <summary>
+        /// creates a ulong using the id of the creation
+        /// </summary>
+        /// <param name="creation"></param>
+        public static implicit operator ulong?(Creation<T> creation) => creation._id;
+        /// <summary>
         /// a creation is <b> less than </b> another if it is newer. newer creations have larger ids than older ones
         /// </summary>
         /// <param name="left"></param>

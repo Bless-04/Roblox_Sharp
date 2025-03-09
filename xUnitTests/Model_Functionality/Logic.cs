@@ -25,8 +25,8 @@ namespace xUnitTests.Model_Functionality
         {
             // x > y > z
             User x = new User() { UserId = 1 }; //roblox
-            User y = new User() { UserId = 16 }; //erik.cassel
-            User z = new User() { UserId = 156 }; //builderman
+            User.Presence y = new() { UserId = 16 }; //erik.cassel
+            Creation<IUser> z = new User() { UserId = 156 }; //builderman
             User X = new User() { UserId = 1 }; //roblox
 
             Assert.False(x.Equals(y));
