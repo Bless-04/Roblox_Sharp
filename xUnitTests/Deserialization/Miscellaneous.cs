@@ -1,10 +1,11 @@
-﻿using Roblox_Sharp.Framework;
+﻿using Roblox_Sharp.Enums.Thumbnail;
+using Roblox_Sharp.Framework;
 using Roblox_Sharp.Models;
 using System.Text.Json;
 
 namespace xUnitTests.Deserialization
 {
-    [Trait(nameof(xUnitTests), nameof(Deserialization))]
+    [Trait(nameof(Roblox_Sharp.Models), nameof(Deserialization))]
     public class Miscellaneous
     {
         /// <summary>
@@ -35,12 +36,12 @@ namespace xUnitTests.Deserialization
 
             Assert.NotNull(page);
 
-            Assert.Equal("string", page.previousPageCursor);
-            Assert.Equal("string", page.nextPageCursor);
+            Assert.Equal("string", page.PreviousPageCursor);
+            Assert.Equal("string", page.NextPageCursor);
 
-            Assert.True(1 == page.data.Count, "Page should have 1 item");
+            Assert.True(1 == page.Data.Count, "Page should have 1 item");
 
-            Assert.Equal("string", page.data[0].Name);
+            Assert.Equal("string", page.Data[0].Name);
 
         }
 
@@ -58,10 +59,10 @@ namespace xUnitTests.Deserialization
             Thumbnail? thumbnail = JsonSerializer.Deserialize<Thumbnail>(json_response);
 
             Assert.NotNull(thumbnail);
-            Assert.Equal<ulong>(1, thumbnail.targetId);
-            Assert.Equal("Error", thumbnail.state);
-            Assert.Equal("string", thumbnail.imageUrl);
-            Assert.Equal("string", thumbnail.version);
+            Assert.Equal<ulong>(1, thumbnail.TargetId);
+            Assert.Equal(State.Error, thumbnail.State);
+            Assert.Equal("string", thumbnail.ImageUrl);
+            Assert.Equal("string", thumbnail.Version);
 
         }
 
@@ -82,7 +83,7 @@ namespace xUnitTests.Deserialization
             CollectibleAsset? test = JsonSerializer.Deserialize<CollectibleAsset>(json);
 
             Assert.NotNull(test);
-            Assert.Equal<byte>(0, (byte)(test.userAssetId & test.serialNumber & test.assetId & test.recentAveragePrice & test.originalPrice & test.assetStock & (byte)test.buildersClubMembershipType));
+            Assert.Equal<byte>(0, (byte)(test.UserAssetId & test.SerialNumber & test.AssetId & test.RecentAveragePrice & test.OriginalPrice & test.AssetStock & (byte)test.BuildersClubMembershipType));
 
             RoundTripTest(test);
         }
@@ -101,7 +102,7 @@ namespace xUnitTests.Deserialization
             Item? test = JsonSerializer.Deserialize<Item>(json);
 
             Assert.NotNull(test);
-            Assert.Equal(0, (byte)(test.Id & (byte)test.Type & test.InstanceId));
+            Assert.Equal(0, (byte)(test.ItemId & (byte)test.Type & test.InstanceId));
 
             Assert.Equal("string", test.Name);
 

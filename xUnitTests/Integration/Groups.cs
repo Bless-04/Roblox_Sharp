@@ -17,9 +17,10 @@ namespace xUnitTests.Integration
         {
             Group group = await Groups_v1.Get_GroupAsync(2);
 
-            Assert.True(User_Constants.SHEDLETSKY == group.owner.userId, "Group.owner.userId is failing"); //owner is 261
-            Assert.True(2 == group.groupId, "Group.groupId is failing"); //group id is 2
-            Assert.True(group.memberCount > 100000, "Group.memberCount is failing"); //over 100k members as of 11/27/24
+            Assert.NotNull(group.Owner);
+            Assert.True(User_Constants.SHEDLETSKY == group.Owner.UserId, nameof(group.Owner.UserId) + " is failing"); //owner is 261
+            Assert.True(2 == group.GroupId, $"{nameof(group.GroupId)} is failing"); //group id is 2
+            Assert.True(group.MemberCount > 100000, $"{nameof(group.MemberCount)} is failing"); //over 100k members as of 11/27/24
 
             await Assert.ThrowsAsync<InvalidUserException>(() => Groups_v1.Get_GroupAsync(0)); //doesnt exist
         }
@@ -32,7 +33,7 @@ namespace xUnitTests.Integration
 
             Assert.True(roles.Count > 1, "Group.Role.Count is failing");
 
-            Assert.True(roles[1].memberCount > 400000, "Group.Role.memberCount is failing"); //more than 400k as of 11/30
+            Assert.True(roles[1].MemberCount > 400000, "Group.Role.memberCount is failing"); //more than 400k as of 11/30
 
         }
 
@@ -42,22 +43,22 @@ namespace xUnitTests.Integration
         {
             IReadOnlyList<Group> groups = await Groups_v2.Get_GroupsAsync([1, 2, 3]);
 
-            Assert.True(groups.Count == 3, "Group.count is failing");
+            Assert.True(groups.Count == 3, $"{nameof(groups.Count)} is failing");
 
             Group group1 = groups[0];
             Group group2 = groups[1];
             Group group3 = groups[2];
 
             Assert.True(
-                1179762 == group1.owner.userId &&
-                261 == group2.owner.userId &&
-                24941 == group3.owner.userId,
+                1179762 == group1.Owner!.UserId &&
+                261 == group2.Owner!.UserId &&
+                24941 == group3.Owner!.UserId,
                 "Group.owner.userId is failing"
             );
             Assert.True(
-                group1.created.Year == group2.created.Year &&
-                group3.created.Year == group2.created.Year,
-                "Group.created.Year is failing"
+                group1.Created.Year == group2.Created.Year &&
+                group3.Created.Year == group2.Created.Year,
+                $"{nameof(group1.Created.Year)} is failing"
             ); // all created in 2009
         }
     }

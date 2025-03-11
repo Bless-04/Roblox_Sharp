@@ -19,20 +19,20 @@ namespace xUnitTests.Integration
         {
             Page<Badge> page = await Badges_v1.Get_BadgesAsync(16, Limit.Ten); //erik.cassel
 
-            Badge erik_badge1 = page.data[0];
+            Badge erik_badge1 = page.Data[0];
 
-            Assert.NotNull(page.nextPageCursor);
+            Assert.NotNull(page.NextPageCursor);
 
             await Assert.ThrowsAsync<InvalidIdException>(() => Badges_v1.Get_BadgesAsync(0)); //doesnt exist
 
             Assert.NotNull(erik_badge1.creator);
             Assert.NotNull(erik_badge1.awardingUniverse);
 
-            Assert.True(2925703 == erik_badge1.creator.userId, "Badge.creator.userId is failing");
-            Assert.True(2009 == erik_badge1.created.Year, "Badge.created.Year is failing");
-            Assert.True(10277240 == erik_badge1.awardingUniverse.universeId, "Badge.awardingUniverse.universeId is failing"); //game id
+            Assert.True(2925703 == erik_badge1.creator.UserId, nameof(erik_badge1.creator.UserId) + " is failing");
+            Assert.True(2009 == erik_badge1.Created.Year, nameof(erik_badge1.Created.Year) + " is failing");
+            Assert.True(10277240 == erik_badge1.awardingUniverse.UniverseId, nameof(erik_badge1.awardingUniverse.UniverseId) + " is failing"); //game id
 
-            Assert.True(erik_badge1.statistics.awardedCount > 1000000, "Badge.statistics.awardedCount is failing"); ///over 1000000 as of 11/29/24
+            Assert.True(erik_badge1.Statistics.AwardedCount > 1000000, $"{nameof(erik_badge1.Statistics.AwardedCount)}Badge.Statistics.AwardedCount is failing"); ///over 1000000 as of 11/29/24
         }
 
         [IntegrationTrait]
@@ -45,9 +45,9 @@ namespace xUnitTests.Integration
 
             await Assert.ThrowsAsync<InvalidIdException>(() => Badges_v1.Get_BadgeAsync(0)); //doesnt exist
 
-            Assert.True(14417332 == badge.badgeId, "Badge.badgeId is failing");
+            Assert.True(14417332 == badge.BadgeId, nameof(badge.BadgeId) + " is failing");
 
-            Assert.True(badge.created.Year == 2009, "Badge.created.Year is failing");
+            Assert.True(badge.Created.Year == 2009, nameof(badge.Created.Year) + " is failing");
         }
 
         [IntegrationTrait.Long_Integration]
@@ -57,9 +57,9 @@ namespace xUnitTests.Integration
             await Assert.ThrowsAsync<InvalidUserException>(() => Badges_v1.Get_BadgesAwardedDatesAsync(0, [])); //doesnt exist
 
             List<ulong> badges = [2126601323, 2126601209, 94278219];
-            IReadOnlyList<Badge_Award> eriks_badges = await Badges_v1.Get_BadgesAwardedDatesAsync(16, badges); //eik.cassel
+            IReadOnlyList<Badge.Award> eriks_badges = await Badges_v1.Get_BadgesAwardedDatesAsync(16, badges); //eik.cassel
 
-            Assert.True(1 == eriks_badges.Count, "Badge_Award.Count is failing"); //erik has only 1 of these
+            Assert.True(1 == eriks_badges.Count, nameof(eriks_badges.Count) + " is failing"); //erik has only 1 of these
         }
     }
 }

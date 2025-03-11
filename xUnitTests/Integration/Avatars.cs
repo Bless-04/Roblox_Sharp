@@ -1,5 +1,4 @@
 ﻿using Roblox_Sharp.Endpoints;
-using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -20,7 +19,7 @@ namespace xUnitTests.Integration
             IReadOnlyList<ulong> assets = await Avatars_v1.Get_CurrentlyWearingAsync(ROBLOX);
 
             Assert.NotNull(assets);
-            Assert.True(assets.Count > 0, "Assets.Count is failing");
+            Assert.True(assets.Count > 0, $"{nameof(Get_CurrentlyWearing)} is failing");
         }
 
         /// <summary>
@@ -30,16 +29,16 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_Avatar()
         {
-#pragma warning disable CS0618 // Type or member is obsolete ; testing
+            #pragma warning disable CS0618 // Type or member is obsolete ; testing
             Avatar v1 = await Avatars_v1.Get_AvatarAsync(ROBLOX);
             Avatar v2 = await Avatars_v2.Get_AvatarAsync(ROBLOX);
 
-            Assert.Equal(v1.scales, v2.scales); //should be the same ; can be value checked as it is a struct
+            Assert.Equal(v1.Scales, v2.Scales); //should be the same ; can be value checked as it is a struct
 
-            Assert.NotNull(v1.assets);
-            Assert.NotNull(v2.assets);
+            Assert.NotNull(v1.Assets);
+            Assert.NotNull(v2.Assets);
 
-            Assert.Equal(v1.assets[0].meta, v2.assets[0].meta); //can be value checked as it is a struct
+            Assert.Equal(v1.Assets[0].Meta, v2.Assets[0].Meta); //can be value checked as it is a struct
         }
 
     }
