@@ -51,7 +51,6 @@ namespace Roblox_Sharp.Models
         public ulong OriginalPrice { get; init; }
 
         [JsonPropertyName("assetStock")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public ulong AssetStock { get; init; }
 
         /// <remarks>

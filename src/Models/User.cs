@@ -156,7 +156,6 @@ namespace Roblox_Sharp.Models
         /// <inheritdoc cref="UserPresenceType"/>
         /// </summary>
         [JsonPropertyName("presenceType")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public UserPresenceType PresenceType { get; init; }
 
         /// <summary>

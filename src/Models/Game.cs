@@ -24,6 +24,7 @@ namespace Roblox_Sharp.Models
         /// the universe name
         /// </summary>
         [JsonPropertyName("name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? Name { get; init; }
 
         /// <summary>

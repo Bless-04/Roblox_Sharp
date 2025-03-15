@@ -19,6 +19,7 @@ public partial class Badge
 
         /// <inheritdoc/>
         [JsonPropertyName("badgeId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public ulong BadgeId { get; init; }
     }
 }
