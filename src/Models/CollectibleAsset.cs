@@ -12,14 +12,12 @@ namespace Roblox_Sharp.Models
         /// The user asset id
         /// </summary>
         [JsonPropertyName("userAssetId")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public ulong UserAssetId { get; init; }
 
         /// <summary>
         /// The serial number of the user asset
         /// </summary>
         [JsonPropertyName("serialNumber")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public ulong SerialNumber { get; init; }
 
         /// <summary>
