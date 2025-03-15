@@ -10,6 +10,7 @@ public partial class Group
     /// unique to role requests
     /// </summary>
     [JsonPropertyName("roles")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public IReadOnlyList<Role>? Roles { get; init; }
 
     /// <summary>
@@ -50,6 +51,7 @@ public partial class Group
         /// description of the Role
         /// </summary>
         [JsonPropertyName("description")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? Description { get; init; }
     }
 }

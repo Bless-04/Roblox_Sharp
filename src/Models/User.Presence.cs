@@ -42,36 +42,43 @@ public partial class User
         public UserPresenceType PresenceType { get; init; }
 
         [JsonPropertyName("lastLocation")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? LastLocation { get; init; }
 
         /// <summary>
         /// unique place id
         /// </summary>
         [JsonPropertyName("placeId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ulong? PlaceId { get; init; }
 
         [JsonPropertyName("rootPlaceId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ulong? RootPlaceId { get; init; }
 
         /// <summary>
         /// unique game id
         /// </summary>
         [JsonPropertyName("gameId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? GameId { get; init; }
 
         /// <summary>
         /// unique universe id
         /// </summary>
         [JsonPropertyName("universeId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ulong? UniverseId { get; init; }
 
         /// <summary>
         /// exact date and time user was last online
         /// </summary>
         [JsonPropertyName("lastOnline")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime LastOnline { get; init; }
 
         [JsonPropertyName("invisibleModeExpiry")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime InvisibleModeExpiry { get; init; }
 
         /// <summary>
