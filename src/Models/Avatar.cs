@@ -76,6 +76,7 @@ namespace Roblox_Sharp.Models
         /// <inheritdoc cref="Scales"/>
         /// </summary>
         [JsonPropertyName("scales")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Scale? Scales { get; init; }
 
         /// <summary>
@@ -90,19 +91,22 @@ namespace Roblox_Sharp.Models
         /// <note>unique to <seealso cref="Endpoints.Avatars_v1"/> based requests </note>
         /// </summary>
         [JsonPropertyName("bodyColors")]
-        public BodyColor BodyColors { get; init; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public BodyColor? BodyColors { get; init; }
 
         /// <summary>
         /// the rgb hex colors for each bodypart
         /// <note>unique to <seealso cref="Endpoints.Avatars_v2"/> based requests </note>
         /// </summary>
         [JsonPropertyName("bodyColor3s")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public BodyColor3? BodyColor3s { get; init; } 
 
         /// <summary>
         /// the assets worn on the avatar
         /// </summary>
         [JsonPropertyName("assets")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public IReadOnlyList<Asset>? Assets { get; init; }
 
         /// <summary>
@@ -121,6 +125,7 @@ namespace Roblox_Sharp.Models
         /// the emotes on the avatar
         /// </summary>
         [JsonPropertyName("emotes")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public IReadOnlyList<Emote>? Emotes { get; init; }
 
         ///<inheritdoc/>
