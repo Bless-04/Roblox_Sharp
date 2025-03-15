@@ -21,6 +21,7 @@ public partial class Avatar
             /// the name of the Asset_Type
             /// </summary>
             [JsonPropertyName("name")]
+            [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
             public string? Name { get; init; }
         }
     }
