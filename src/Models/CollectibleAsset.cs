@@ -12,12 +12,14 @@ namespace Roblox_Sharp.Models
         /// The user asset id
         /// </summary>
         [JsonPropertyName("userAssetId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public ulong UserAssetId { get; init; }
 
         /// <summary>
         /// The serial number of the user asset
         /// </summary>
         [JsonPropertyName("serialNumber")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public ulong SerialNumber { get; init; }
 
         /// <summary>
@@ -49,6 +51,7 @@ namespace Roblox_Sharp.Models
         public ulong OriginalPrice { get; init; }
 
         [JsonPropertyName("assetStock")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public ulong AssetStock { get; init; }
 
         /// <remarks>
