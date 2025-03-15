@@ -33,7 +33,7 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="userId"></param>
         /// <returns>List of ulong</returns>
         public static async Task<IReadOnlyList<ulong>> Get_CurrentlyWearingAsync(ulong userId) =>
-            JsonSerializer.Deserialize<assetIds_Response>(
+            JsonSerializer.Deserialize<AssetIds_Response>(
                 await Get_RequestAsync($"https://avatar.roblox.com/v1/users/{userId}/currently-wearing")
             )!.assetIds;
     }

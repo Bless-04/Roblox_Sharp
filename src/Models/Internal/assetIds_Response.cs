@@ -2,7 +2,7 @@
 
 namespace Roblox_Sharp.Models.Internal
 {
-    internal class assetIds_Response
+    internal sealed class AssetIds_Response
     {
         public required IReadOnlyList<ulong> assetIds { get; init; }
     }
