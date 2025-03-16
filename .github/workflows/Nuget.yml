@@ -11,10 +11,11 @@ jobs:
         steps:
             - uses: actions/checkout@v2
 
-            # - name: Setup dotnet
-            #   uses: actions/setup-dotnet@v1
-            #   with:
-            #     dotnet-version: 3.1.200
+            - run: dotnet build -c Debug Roblox_Sharp.sln #building
+
+            # - uses: actions/setup-dotnet@v4
+            #  with:
+            #     dotnet-version: "8.x"
 
             # Publish
             - name: publish on version change
