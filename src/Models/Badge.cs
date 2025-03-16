@@ -94,25 +94,28 @@ namespace Roblox_Sharp.Models
         /// the place that awarded the badge
         /// </summary>
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("awardingUniverse")]
 
-        public Game? awardingUniverse { get; init; }
+        public Game? AwardingUniverse { get; init; }
 
         /// <summary>
         /// ambiguous with awarding universe
         /// </summary>
         [JsonInclude]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        protected Game? awarder
+        [JsonPropertyName("awarder")]
+        protected Game? Awarder
         {
-            get => awardingUniverse;
-            init => awardingUniverse = value;
+            get => AwardingUniverse;
+            init => AwardingUniverse = value;
         }
 
         /// <summary>
         /// the user that created the badge
         /// </summary>
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public User? creator { get; init; }
+        [JsonPropertyName("creator")]
+        public User? Creator { get; init; }
 
         /// <inheritdoc/>
         public Badge Clone() => new()
@@ -128,8 +131,8 @@ namespace Roblox_Sharp.Models
             Created = Created,
             Updated= Updated,
             Statistics = Statistics,
-            awardingUniverse = awardingUniverse?.Clone(),
-            creator = creator?.Clone()
+            AwardingUniverse = AwardingUniverse?.Clone(),
+            Creator= Creator?.Clone()
         };
     }
 }

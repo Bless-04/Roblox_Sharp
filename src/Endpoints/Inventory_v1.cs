@@ -28,7 +28,7 @@ namespace Roblox_Sharp.Endpoints
         /// <summary>
         ///Gets owned items of the specified item type.  <br/>
         ///Game Servers can make requests for any user, but can only make requests for game passes that belong to the place sending the request.  <br/>
-        ///Place creators can make requests as if they were the Game Server <br/>
+        ///Place Creators can make requests as if they were the Game Server <br/>
         /// </summary>
         /// <param name="userId">Id of the user in question</param>
         /// <param name="itemType">Type of the item in question (ie. Asset, GamePass, Badge, Bundle)</param>

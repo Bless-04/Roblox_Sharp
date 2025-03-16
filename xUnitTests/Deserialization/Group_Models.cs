@@ -58,14 +58,14 @@ namespace xUnitTests.Deserialization
             Assert.Equal("string", group.Owner.Username);
             Assert.Null(group.Owner.DisplayName);
 
-            Assert.Equal("string", group.shout!.Body);
-            Assert.True(group.shout.Poster.HasVerifiedBadge);
-            Assert.Equal<ulong>(0, group.shout.Poster.UserId);
-            Assert.Equal("string", group.shout.Poster.Username);
-            Assert.Equal("poster", group.shout.Poster.DisplayName);
+            Assert.Equal("string", group.GroupShout!.Body);
+            Assert.True(group.GroupShout.Poster.HasVerifiedBadge);
+            Assert.Equal<ulong>(0, group.GroupShout.Poster.UserId);
+            Assert.Equal("string", group.GroupShout.Poster.Username);
+            Assert.Equal("poster", group.GroupShout.Poster.DisplayName);
 
-            Assert.Equal(2024, group.shout.Created.Year);
-            Assert.Equal(2024, group.shout.Updated.Year);
+            Assert.Equal(2024, group.GroupShout.Created.Year);
+            Assert.Equal(2024, group.GroupShout.Updated.Year);
 
             Assert.Equal<ulong>(0, group.MemberCount);
             Assert.True(group.IsBuildersClubOnly);

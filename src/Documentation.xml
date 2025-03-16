@@ -201,7 +201,7 @@
              <summary>
             Gets owned items of the specified item type.  <br/>
             Game Servers can make requests for any user, but can only make requests for game passes that belong to the place sending the request.  <br/>
-            Place creators can make requests as if they were the Game Server <br/>
+            Place Creators can make requests as if they were the Game Server <br/>
              </summary>
              <param name="userId">Id of the user in question</param>
              <param name="itemType">Type of the item in question (ie. Asset, GamePass, Badge, Bundle)</param>
@@ -932,17 +932,17 @@
             <inheritdoc cref="T:Roblox_Sharp.Models.Badge.Statistic"/>
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Badge.awardingUniverse">
+        <member name="P:Roblox_Sharp.Models.Badge.AwardingUniverse">
             <summary>
             the place that awarded the badge
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Badge.awarder">
+        <member name="P:Roblox_Sharp.Models.Badge.Awarder">
             <summary>
             ambiguous with awarding universe
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Badge.creator">
+        <member name="P:Roblox_Sharp.Models.Badge.Creator">
             <summary>
             the user that created the badge
             </summary>
@@ -1061,7 +1061,7 @@
             group owner <br/>
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Group.shout">
+        <member name="P:Roblox_Sharp.Models.Group.GroupShout">
             <summary>
             most recent group shout <br/>
             </summary>

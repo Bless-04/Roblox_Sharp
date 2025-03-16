@@ -25,12 +25,13 @@ namespace xUnitTests.Integration
 
             await Assert.ThrowsAsync<InvalidIdException>(() => Badges_v1.Get_BadgesAsync(0)); //doesnt exist
 
-            Assert.NotNull(erik_badge1.creator);
-            Assert.NotNull(erik_badge1.awardingUniverse);
+            Assert.NotNull(erik_badge1.Creator);
+            Assert.NotNull(erik_badge1.AwardingUniverse);
+            Assert.NotNull(erik_badge1.Statistics);
 
-            Assert.True(2925703 == erik_badge1.creator.UserId, nameof(erik_badge1.creator.UserId) + " is failing");
+            Assert.True(2925703 == erik_badge1.Creator.UserId, nameof(erik_badge1.Creator.UserId) + " is failing");
             Assert.True(2009 == erik_badge1.Created.Year, nameof(erik_badge1.Created.Year) + " is failing");
-            Assert.True(10277240 == erik_badge1.awardingUniverse.UniverseId, nameof(erik_badge1.awardingUniverse.UniverseId) + " is failing"); //game id
+            Assert.True(10277240 == erik_badge1.AwardingUniverse.UniverseId, nameof(erik_badge1.AwardingUniverse.UniverseId) + " is failing"); //game id
 
             Assert.True(erik_badge1.Statistics.AwardedCount > 1000000, $"{nameof(erik_badge1.Statistics.AwardedCount)}Badge.Statistics.AwardedCount is failing"); ///over 1000000 as of 11/29/24
         }

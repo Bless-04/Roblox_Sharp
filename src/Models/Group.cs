@@ -44,7 +44,7 @@ namespace Roblox_Sharp.Models
         /// </summary>
         [JsonPropertyName("shout")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Group.Shout? shout { get; init; }
+        public Group.Shout? GroupShout { get; init; }
 
         /// <summary>
         /// group member count
@@ -86,7 +86,7 @@ namespace Roblox_Sharp.Models
             Name = Name,
             Description = Description,
             Owner = Owner,
-            shout = shout,
+            GroupShout = GroupShout,
             MemberCount = MemberCount,
             IsBuildersClubOnly = IsBuildersClubOnly,
             PublicEntryAllowed = PublicEntryAllowed,
