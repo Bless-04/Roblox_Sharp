@@ -11,7 +11,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
 
-            - run: dotnet build -c Debug Roblox_Sharp.sln #building
+            - run: dotnet build -c Debug src/Roblox_Sharp.sln #building
 
             # - uses: actions/setup-dotnet@v4
             #  with:
