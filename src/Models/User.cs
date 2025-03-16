@@ -97,6 +97,7 @@ namespace Roblox_Sharp.Models
 
         /// <inheritdoc cref="_displayName"/>
         [JsonPropertyName("displayName")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? DisplayName
         {
             get => _displayName;
@@ -107,12 +108,14 @@ namespace Roblox_Sharp.Models
         /// description for the user
         /// </summary>
         [JsonPropertyName("description")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? Description { get; init; }
 
         /// <summary>
         /// creation date and time of user
         /// </summary>
         [JsonPropertyName("created")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime Created { get; init; }
 
         /// <summary>
@@ -133,6 +136,7 @@ namespace Roblox_Sharp.Models
         ///ExternalAppDisplayName is the name used in that app(e.g.QQ nickname
         /// </summary>
         [JsonPropertyName("externalAppDisplayName")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? ExternalAppDisplayName { get; init; }
 
         /// <summary>
@@ -145,6 +149,7 @@ namespace Roblox_Sharp.Models
         /// The username requested by the client 
         /// </summary>
         [JsonPropertyName("requestedUsername")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? RequestedUsername { get; init; }
 
         /// <summary>
@@ -157,13 +162,14 @@ namespace Roblox_Sharp.Models
         /// list of previous usernames
         /// </summary>
         [JsonPropertyName("previousUsernames")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public IReadOnlyList<string>? PreviousUsernames { get; init; }
 
         /// <summary>
         /// <see langword="true"/> if user is currently online
         /// </summary>
         [JsonPropertyName("isOnline")]
-        public bool IsOnline { get; init; }
+        public bool IsOnline { get; init; } = false;
 
         /// <summary>
         /// <see langword="true"/> if user is deleted/banned/terminated

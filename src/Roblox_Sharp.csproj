@@ -22,7 +22,7 @@
     <PackageLicenseFile>License</PackageLicenseFile>
     <RepositoryUrl>https://github.com/Bless-04/Roblox_Sharp</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Bless-04/Roblox_Sharp</PackageProjectUrl>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
     <SignAssembly>True</SignAssembly>
     <DelaySign>True</DelaySign>
   </PropertyGroup>

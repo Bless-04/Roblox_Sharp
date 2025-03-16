@@ -29,18 +29,21 @@ namespace Roblox_Sharp.Models
         /// group description
         /// </summary>
         [JsonPropertyName("description")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? Description { get; init; }
 
         /// <summary>
         /// group owner <br/>
         /// </summary>
         [JsonPropertyName("owner")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public User? Owner { get; init; }
 
         /// <summary>
         /// most recent group shout <br/>
         /// </summary>
         [JsonPropertyName("shout")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Group.Shout? shout { get; init; }
 
         /// <summary>

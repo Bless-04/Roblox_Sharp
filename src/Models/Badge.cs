@@ -24,24 +24,29 @@ namespace Roblox_Sharp.Models
         /// the name of the badge 
         /// </summary>
         [JsonPropertyName("name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+
         public string? BadgeName { get; init; }
 
         /// <summary>
         /// the badge description 
         /// </summary>
         [JsonPropertyName("description")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? Description { get; init; }
 
         /// <summary>
         /// the localized name of the badge 
         /// </summary>
         [JsonPropertyName("displayName")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? DisplayName { get; init; }
 
         /// <summary>
         /// the localized description of the badge
         /// </summary>
         [JsonPropertyName("displayDescription")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? DisplayDescription { get; init; }
 
         /// <summary>
@@ -54,41 +59,49 @@ namespace Roblox_Sharp.Models
         /// The badge icon asset Id.
         /// </summary>
         [JsonPropertyName("iconImageId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public ulong IconImageId { get; init; }
 
         /// <summary>
         /// The localized badge icon asset Id.
         /// </summary>
         [JsonPropertyName("displayIconImageId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public ulong DisplayIconImageId { get; init; }
 
         /// <summary>
         /// When the badge was created.
         /// </summary>
         [JsonPropertyName("created")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime Created { get; init; }
 
         /// <summary>
         /// When the badge was updated.
         /// </summary>
         [JsonPropertyName("updated")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime Updated { get; init; }
 
         /// <summary>
         /// <inheritdoc cref="Badge.Statistic"/>
         /// </summary>
         [JsonPropertyName("statistics")]
-        public Statistic Statistics { get; init; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public Statistic? Statistics { get; init; }
 
         /// <summary>
         /// the place that awarded the badge
         /// </summary>
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+
         public Game? awardingUniverse { get; init; }
 
         /// <summary>
         /// ambiguous with awarding universe
         /// </summary>
         [JsonInclude]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         protected Game? awarder
         {
             get => awardingUniverse;
@@ -98,6 +111,7 @@ namespace Roblox_Sharp.Models
         /// <summary>
         /// the user that created the badge
         /// </summary>
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public User? creator { get; init; }
 
         /// <inheritdoc/>

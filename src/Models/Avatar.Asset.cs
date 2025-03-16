@@ -26,6 +26,7 @@ public partial class Avatar
         /// the name of the asset
         /// </summary>
         [JsonPropertyName("assetName")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? AssetName { get; init; }
 
         /// <summary>
@@ -45,12 +46,14 @@ public partial class Avatar
         public Avatar.Asset.Type? AssetType { get; init; }
 
         [JsonPropertyName("currentVersionId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public ulong CurrentVersionId { get; init; }
 
         /// <summary>
         /// <inheritdoc cref="Metadata"/>
         /// </summary>
         [JsonPropertyName("meta")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Metadata? Meta { get; init; }
 
         /// <summary>

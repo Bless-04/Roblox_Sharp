@@ -34,12 +34,14 @@ public partial class Group
         /// The shouts created date 
         /// </summary>
         [JsonPropertyName("created")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime Created { get; init; }
 
         /// <summary>
         /// The date of the last Group Shout 
         /// </summary>
         [JsonPropertyName("updated")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime Updated { get; init; }
     }
 

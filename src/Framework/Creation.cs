@@ -21,6 +21,7 @@ namespace Roblox_Sharp.Framework
         /// </summary>
         [JsonInclude]
         [JsonPropertyName("id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         protected ulong? CreationId { get; init; } = uniqueId;
 
         ulong? ICreation.CreationId => CreationId;
