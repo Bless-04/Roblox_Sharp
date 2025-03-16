@@ -2,7 +2,7 @@ name: Nuget Publish
 on:
     workflow_dispatch:
     push:
-        branches: [main, stable, unstable]
+        branches: [main, stable]
 
 jobs:
     publish:
@@ -12,10 +12,6 @@ jobs:
             - uses: actions/checkout@v2
 
             - run: dotnet build -c Debug src/Roblox_Sharp.sln #building
-
-            # - uses: actions/setup-dotnet@v4
-            #  with:
-            #     dotnet-version: "8.x"
 
             # Publish
             - name: publish on version change
