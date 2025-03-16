@@ -1,8 +1,8 @@
-name: publish to nuget
+name: Nuget Publish
 on:
     workflow_dispatch:
     push:
-        branches: [main, stable, unstable]
+        branches: [main, stable]
 
 jobs:
     publish:
