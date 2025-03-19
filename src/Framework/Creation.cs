@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
 #pragma warning disable CA1707 // Identifiers should not contain underscores ;
 
 namespace Roblox_Sharp.Framework
 {
-
-
     /// <summary>
     /// generalized template for any roblox object that has a <paramref name="uniqueId"/>
     /// </summary>
@@ -14,7 +14,8 @@ namespace Roblox_Sharp.Framework
     /// uses <typeparamref name="T"/> to automatically implement <see cref="IComparable{T}"/> and <see cref="IEquatable{T}"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Creation<T>(ulong? uniqueId = null) : ICreation, IEquatable<Creation<T>>, IComparable<Creation<T>> 
+    public abstract class Creation<T>(ulong? uniqueId = null) : 
+        ICreation, IEquatable<Creation<T>>, IComparable<Creation<T>> , IEqualityComparer<Creation<T>>
     {
         /// <summary>
         /// The unique id of the creation; Null if not requested
@@ -76,6 +77,14 @@ namespace Roblox_Sharp.Framework
 
         /// <inheritdoc/>
         public override bool Equals(object? obj) => Equals(obj as Creation<T>);
+
+        #region IEqualityComparer
+        /// <inheritdoc/>
+        public bool Equals(Creation<T>? x, Creation<T>? y) => x?.CreationId == y?.CreationId;
+
+        /// <inheritdoc/>
+        public int GetHashCode([DisallowNull] Creation<T> obj) => obj.CreationId.GetHashCode();
+        #endregion
     }
 }
 

@@ -4,7 +4,7 @@
     /// All endpoints for game discovery, and details
     /// <b><see href="https://games.roblox.com//docs/index.html?urls.primaryName=Games%20Api%20v2">Games Documentation</see></b>
     /// </summary>
-    public static class Games_v2
+    internal static class Games_v2
     {
 
 
