@@ -50,10 +50,12 @@ namespace xUnitTests.Serialization
         public void Thumbnail_State() 
         {
             foreach (State thumbnail_state in Enum.GetValues<State>())
-            {
                 RoundTrip<State>(thumbnail_state);
-            }
-        } 
+            
+        }
+
+        [Fact]
+        public void Avatar_Asset() => RoundTrip<Avatar.Asset>(new Avatar.Asset() { AssetId = 1, AssetName= nameof(Miscellaneous) });
     }
     
 
