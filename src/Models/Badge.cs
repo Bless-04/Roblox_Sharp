@@ -95,7 +95,6 @@ namespace Roblox_Sharp.Models
         /// </summary>
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("awardingUniverse")]
-
         public Game? AwardingUniverse { get; init; }
 
         /// <summary>
