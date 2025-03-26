@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using Roblox_Sharp.Framework;
+using Roblox_Sharp.Abstractions;
 using Roblox_Sharp.Models;
 
 namespace xUnitTests.Model_Functionality

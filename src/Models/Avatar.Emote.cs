@@ -1,4 +1,4 @@
-﻿using Roblox_Sharp.Framework;
+﻿using Roblox_Sharp.Abstractions;
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models;

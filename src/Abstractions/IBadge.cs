@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Roblox_Sharp.Framework
+namespace Roblox_Sharp.Abstractions
 {
     public interface IBadge
     {   

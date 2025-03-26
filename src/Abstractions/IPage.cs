@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Roblox_Sharp.Framework
+namespace Roblox_Sharp.Abstractions
 {
     /// <summary>
     /// template for all the page based requests that have a previous and next cursor

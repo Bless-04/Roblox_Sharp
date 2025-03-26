@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Roblox_Sharp.Framework;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
 #pragma warning disable CA1707 // Identifiers should not contain underscores ;
 
-namespace Roblox_Sharp.Framework
+namespace Roblox_Sharp.Abstractions
 {
     /// <summary>
     /// generalized template for any roblox object that has a <paramref name="uniqueId"/>

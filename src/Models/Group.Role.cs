@@ -1,7 +1,7 @@
-﻿using Roblox_Sharp.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Roblox_Sharp.Exceptions;
 using System.Text.Json.Serialization;
+using Roblox_Sharp.Abstractions;
 namespace Roblox_Sharp.Models;
 
 public partial class Group

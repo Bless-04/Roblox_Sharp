@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Roblox_Sharp.Framework
+﻿namespace Roblox_Sharp.Abstractions
 {
     /// <summary>
     /// base class for any roblox <see cref="IUser"></see> to represents a user with a unique user id

@@ -4,7 +4,7 @@ using System;
 namespace Roblox_Sharp.Exceptions
 {
     /// <summary>
-    /// Exception thrown when a <see cref="Roblox_Sharp.Framework.IUser"/> based argument is invalid/does not exist/banned/terminated 
+    /// Exception thrown when a <see cref="Abstractions.IUser"/> based argument is invalid/does not exist/banned/terminated 
     /// </summary>
     public class InvalidUserException : Exception
     {

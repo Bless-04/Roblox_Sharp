@@ -1,4 +1,4 @@
-﻿using Roblox_Sharp.Framework;
+﻿using Roblox_Sharp.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;

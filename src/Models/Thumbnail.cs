@@ -1,7 +1,7 @@
-﻿using Roblox_Sharp.Framework;
-using Roblox_Sharp.Models.Internal.JsonConverters;
+﻿using Roblox_Sharp.Models.Internal.JsonConverters;
 using System.Text.Json.Serialization;
 using Roblox_Sharp.Enums.Thumbnail;
+using Roblox_Sharp.Abstractions;
 
 namespace Roblox_Sharp.Models;
 /** example return 
