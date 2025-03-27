@@ -8,10 +8,8 @@ namespace Roblox_Sharp.Enums
     /// used to get string representations of enums that cant use the literal variable name 
     /// and also contains helpful functions
     /// </summary>
-    public static class EnumExtensions
+    internal static class EnumExtensions
     {
-
-
         /// <summary>
         /// used to check if an enum is blacklisted
         /// </summary>

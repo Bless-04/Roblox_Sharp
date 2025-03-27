@@ -1,15 +1,14 @@
-﻿using Roblox_Sharp.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 
-namespace Roblox_Sharp.Models;
+namespace Roblox_Sharp.Models.v1;
 
-public partial class Response
+public partial class User
 {
     /// <summary>
-    /// class used to serialize <see cref="Response"/> POST based requests
+    /// class used to serialize <see cref="User"/> POST based requests
     /// </summary>
     /// <remarks>Does not require X-CSRF-Token protection because this is essentially a get request but as a POST to avoid URI limits.</remarks>
 
@@ -45,7 +44,7 @@ public partial class Response
 
         public Post(IEnumerable<ulong> userIds, bool excludeBannedUsers = false)
         {
-            if (userIds.Count() > MAX_USERIDS) throw new InvalidUserException("Too many userIds");
+            if (userIds.Count() > MAX_USERIDS) return;
 
             UserIds = userIds;
 
