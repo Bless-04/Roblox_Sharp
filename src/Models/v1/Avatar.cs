@@ -69,7 +69,7 @@ namespace Roblox_Sharp.Models
 
 
     /// <summary>
-    /// used to serialize avatar based requests
+    /// used to serialize v
     /// </summary>
     public static class Avatar
     {
@@ -121,17 +121,5 @@ namespace Roblox_Sharp.Models
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public IReadOnlyList<Emote>? Emotes { get; init; }
 
-        ///<inheritdoc/>
-        public Avatar Clone() => new()
-        {
-            Scales = Scales,
-            PlayerAvatarType = PlayerAvatarType,
-            BodyColors = BodyColors,
-            BodyColor3s = BodyColor3s,
-            Assets = Assets,
-            DefaultShirtApplied = DefaultShirtApplied,
-            DefaultPantsApplied = DefaultPantsApplied,
-            Emotes = Emotes
-        };
     }
 }
