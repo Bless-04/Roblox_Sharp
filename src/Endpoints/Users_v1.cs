@@ -1,6 +1,5 @@
 ﻿using Roblox_Sharp.Enums;
 using Roblox_Sharp.Exceptions;
-using Roblox_Sharp.Models;
 using Roblox_Sharp.Models.Internal;
 using System;
 using System.Collections.Generic;

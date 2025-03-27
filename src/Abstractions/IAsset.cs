@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Roblox_Sharp.Abstractions
+﻿namespace Roblox_Sharp.Abstractions
 {
     /// <summary>
     /// Represents an asset

@@ -53,4 +53,9 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\v3\" />
+    <Folder Include="Models\v2\" />
+  </ItemGroup>
+
 </Project>

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Roblox_Sharp.Abstractions
+﻿namespace Roblox_Sharp.Abstractions
 {
-    public interface IBadge
+    /// <summary>
+    /// Represents a badge
+    /// </summary>
+    public interface IBadge 
     {   
         /// <summary>
         /// The unique id of the <see cref="IBadge"/>

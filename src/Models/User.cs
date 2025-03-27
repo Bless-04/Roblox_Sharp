@@ -49,8 +49,8 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize User based requests
     /// </summary>
-    [DebuggerDisplay("@{Username} (ID {UserId})")]
-    public partial class User() : Creation<IUser>, 
+
+    public partial class User : Creation<IUser>, 
         IUser, ICloneable<User>, IFormattable
     {
         /// <summary>
@@ -253,7 +253,7 @@ namespace Roblox_Sharp.Models
             {
                 //user id 
                 "id" => $"(ID {UserId}) ",
-                "name" => "@{username} ",
+                "name" =>  Username ,
                 "display" => DisplayName + ' ' ?? Username,
                 "joined" => CreatedString + ' ',
                 _ => throw new FormatException()
