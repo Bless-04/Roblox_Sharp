@@ -44,7 +44,6 @@ public partial class User
 
         public Post(IEnumerable<ulong> userIds, bool excludeBannedUsers = false)
         {
-            if (userIds.Count() > MAX_USERIDS) return;
 
             UserIds = userIds;
 
