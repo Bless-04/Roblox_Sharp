@@ -24,11 +24,7 @@ public partial class User
         /// </summary>
         public const byte MAX_USERNAMES = MAX_USERIDS;
 
-        /// <summary>
-        /// exclude banned users
-        /// </summary>
-        [JsonPropertyName("excludeBannedUsers")]
-        public bool ExcludeBannedUsers { get; set; }
+        
 
         /// <summary>
         /// array of user ids for the post request

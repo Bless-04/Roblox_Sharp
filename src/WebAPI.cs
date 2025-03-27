@@ -1,6 +1,6 @@
-﻿using Roblox_Sharp.Exceptions;
-using Roblox_Sharp.Models;
+﻿using Roblox_Sharp.Models;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -69,7 +69,7 @@ namespace Roblox_Sharp
         /// sets to default if null
         /// </summary>
         /// <param name="new_client"></param>
-        public static void Set_HttpClient(HttpClient new_client) => Interlocked.Exchange(ref _client, new_client).Dispose(); //internet says this make it thread safe
+        public static void Set_HttpClient(HttpClient new_client) => Interlocked.Exchange(ref _client, new_client).Dispose(); //thread safe because of this?
 
         /// <summary>
         /// sets the name of the user agent used for all requests
@@ -83,13 +83,13 @@ namespace Roblox_Sharp
 
 
         #region Requests
+
         /// <summary>
-        /// helper function for get requests for roblox api
+        /// Helper Functions for making get requests
         /// </summary>
         /// <param name="url"></param>
-        /// <returns>content string</returns>
-        /// <exception cref="InvalidUserException">When the userid doesnt exist or is terminated/banned</exception>
-        public static async Task<string> Get_RequestAsync(string url)
+        /// <returns></returns>
+        public static async Task<string> Get_RequestAsync([StringSyntax(StringSyntaxAttribute.Uri)] string url)
         {
             using HttpResponseMessage response = await _client.GetAsync(url);
             {
@@ -99,22 +99,16 @@ namespace Roblox_Sharp
             }
         }
 
+        /*
         /// <summary>
         /// function for User.Post request that is pretty much a get request
         /// </summary>
-        /// <param name="url"></param>
-        /// <param name="POST"></param>
-        /// <returns></returns>
-        /// <exception cref="InvalidUserException"></exception>
-        /// <exception cref="InvalidIdException"></exception>
-        public static async Task<string> Post_RequestAsync(string url, Response.Post POST)
+        public static async Task<string> Post_RequestAsync([StringSyntax(StringSyntaxAttribute.Uri)] string url, Response.Post POST)
         {
             using HttpResponseMessage response = await _client.PostAsync(url, new StringContent(JsonSerializer.Serialize(POST),Encoding.UTF8, "application/json"));
             {
-                
-            RaiseRequestEvents(response);
-
-            return await response.Content.ReadAsStringAsync();
+                RaiseRequestEvents(response);
+                return await response.Content.ReadAsStringAsync();
             }
                 
         }

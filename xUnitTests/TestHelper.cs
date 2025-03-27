@@ -4,6 +4,8 @@ namespace xUnitTests
 {
     public static class TestHelper
     {
+        public static string isFailing(string variable_name) => $"{variable_name} is failing";
+
         public static bool RoundTrip<T>(T obj)
         {
             string json1 = JsonSerializer.Serialize<T>(obj);

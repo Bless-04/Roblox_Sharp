@@ -3,9 +3,9 @@ using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Roblox_Sharp.Models.Internal.JsonConverters
+namespace Roblox_Sharp.Models.JsonConverters
 {
-    internal sealed class Avatar_Type_Converter : JsonConverter<AvatarType>
+    public class Avatar_Type_Converter : JsonConverter<AvatarType>
     {
         public override AvatarType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

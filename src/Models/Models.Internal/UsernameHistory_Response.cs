@@ -1,4 +1,4 @@
-﻿namespace Roblox_Sharp.Models.Internal
+﻿namespace Roblox_Sharp.Models
 {
     internal sealed class UsernameHistory_Response
     {

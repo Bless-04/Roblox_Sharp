@@ -1,6 +1,4 @@
-﻿using Roblox_Sharp.Enums;
-using Roblox_Sharp.Exceptions;
-using System;
+﻿using System;
 using System.Text.Json.Serialization;
 using Roblox_Sharp.Abstractions;
 
@@ -25,50 +23,42 @@ public partial class User
    }
  ]
 }*/
-    public class Presence : Creation<IUser>, IUser, ICloneable<Response.Presence>
+    public partial class Presence : Abstractions.User, ICloneable<User.Presence>
     {
-        /// <inheritdoc/>
-        [JsonPropertyName("userId")]
-        public ulong UserId
-        {
-            get => base.CreationId ?? throw new NotRequestedException(nameof(UserId));
-            init => base.CreationId = value;
-        }
-
         /// <summary>
-        /// <see cref="UserPresenceType"/> type of user
+        /// <see cref="User.Presence.Type"/> type of user
         /// </summary>
         [JsonPropertyName("presenceType")]
-        public UserPresenceType PresenceType { get; init; }
+        public User.Presence.Type PresenceType { get; init; }
 
         [JsonPropertyName("lastLocation")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? LastLocation { get; init; }
+        public required string LastLocation { get; init; }
 
         /// <summary>
         /// unique place id
         /// </summary>
         [JsonPropertyName("placeId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public ulong? PlaceId { get; init; }
+        public ulong PlaceId { get; init; }
 
         [JsonPropertyName("rootPlaceId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public ulong? RootPlaceId { get; init; }
+        public ulong RootPlaceId { get; init; }
 
         /// <summary>
         /// unique game id
         /// </summary>
         [JsonPropertyName("gameId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? GameId { get; init; }
+        public string GameId { get; init; }
 
         /// <summary>
         /// unique universe id
         /// </summary>
         [JsonPropertyName("universeId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public ulong? UniverseId { get; init; }
+        public ulong UniverseId { get; init; }
 
         /// <summary>
         /// exact date and time user was last online
@@ -82,11 +72,13 @@ public partial class User
         public DateTime InvisibleModeExpiry { get; init; }
 
         /// <summary>
-        /// Deep Clones the instance of <see cref="Response.Presence"/>
+        /// Deep Clones the instance of <see cref="User.Presence"/>
         /// </summary>
         /// <returns></returns>
         public Presence Clone() => new()
         {
+            UserId = UserId,
+            Username = Username,
             PresenceType = PresenceType,
             LastLocation = LastLocation,
             PlaceId = PlaceId,

@@ -1169,17 +1169,17 @@
             The date of the last Group Shout 
             </summary>
         </member>
-        <member name="T:Roblox_Sharp.Models.Internal.Count_Response">
+        <member name="T:Roblox_Sharp.Models.Count_Response">
             <summary>
             used to serialize the responses with a count field 
             </summary>
         </member>
-        <member name="T:Roblox_Sharp.Models.Internal.JsonConverters.Color_Converter">
+        <member name="T:Roblox_Sharp.Models.JsonConverters.Color_Converter">
             <summary>
             used to convert the color to and from RGB hex
             </summary>
         </member>
-        <member name="T:Roblox_Sharp.Models.Internal.Presence_Response">
+        <member name="T:Roblox_Sharp.Models.Presence_Response">
             <summary>
             used for response of userPresence requests
             </summary>

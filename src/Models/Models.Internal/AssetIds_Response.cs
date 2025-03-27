@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Roblox_Sharp.Models.Internal
+namespace Roblox_Sharp.Models
 {
     internal sealed class AssetIds_Response
     {

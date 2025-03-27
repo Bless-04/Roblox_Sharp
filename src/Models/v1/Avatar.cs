@@ -1,6 +1,6 @@
 ﻿using Roblox_Sharp.Abstractions;
 using Roblox_Sharp.Enums;
-using Roblox_Sharp.Models.Internal.JsonConverters;
+using Roblox_Sharp.Models.JsonConverters;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -71,7 +71,7 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// used to serialize v
     /// </summary>
-    public static class Avatar
+    public partial class Avatar
     {
         /// <summary>
         /// <inheritdoc cref="Scale"/>
@@ -93,14 +93,14 @@ namespace Roblox_Sharp.Models
         /// </summary>
         [JsonPropertyName("bodyColors")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public BodyColor? BodyColors { get; init; }
+        public BodyColor BodyColors { get; init; }
 
         /// <summary>
         /// the assets worn on the avatar
         /// </summary>
         [JsonPropertyName("assets")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public IReadOnlyList<Asset>? Assets { get; init; }
+        public IReadOnlyList<Asset> Assets { get; init; }
 
         /// <summary>
         /// <see langword="true"/> if the default shirt is applied to this avatar
@@ -119,7 +119,7 @@ namespace Roblox_Sharp.Models
         /// </summary>
         [JsonPropertyName("emotes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public IReadOnlyList<Emote>? Emotes { get; init; }
+        public IReadOnlyList<Emote> Emotes { get; init; }
 
     }
 }

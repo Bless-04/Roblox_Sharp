@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Roblox_Sharp.Models.v1;
+using System;
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models;
@@ -28,7 +29,7 @@ public partial class Group
         /// user information of the Group Shouts poster
         /// </summary>
         [JsonPropertyName("poster")]
-        required public Response Poster { get; init; }
+        required public User Poster { get; init; }
 
         /// <summary>
         /// The shouts created date 

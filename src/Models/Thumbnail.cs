@@ -1,7 +1,7 @@
-﻿using Roblox_Sharp.Models.Internal.JsonConverters;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using Roblox_Sharp.Enums.Thumbnail;
 using Roblox_Sharp.Abstractions;
+using Roblox_Sharp.Models.JsonConverters;
 
 namespace Roblox_Sharp.Models;
 /** example return 
@@ -28,7 +28,7 @@ public class Thumbnail : ICreation
     [JsonPropertyName("targetId")]
     public ulong TargetId { get; init; }
 
-    ulong? ICreation.CreationId => TargetId;
+    ulong ICreation.Id => TargetId;
 
     [JsonConverter(typeof(Thumbnail_State_Converter))]
     [JsonPropertyName("state")]
@@ -38,10 +38,10 @@ public class Thumbnail : ICreation
     /// image url of thumbnail 
     /// </summary>
     [JsonPropertyName("imageUrl")]
-    required public string ImageUrl { get; init; }
+    public required string ImageUrl { get; init; }
 
     [JsonPropertyName("version")]
-    required public string Version { get; init; }
+    public required string Version { get; init; }
 
 
 }

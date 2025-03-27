@@ -1,4 +1,4 @@
-﻿namespace Roblox_Sharp.Models.Internal
+﻿namespace Roblox_Sharp.Models
 {
     internal readonly struct Inventory_Response
     {

@@ -1,6 +1,5 @@
-﻿using Roblox_Sharp.Exceptions;
-using System.Text.Json.Serialization;
-using System;
+﻿using System.Text.Json.Serialization;
+
 using Roblox_Sharp.Abstractions;
 namespace Roblox_Sharp.Models
 {
@@ -16,8 +15,8 @@ namespace Roblox_Sharp.Models
         [JsonPropertyName("universeId")]
         public ulong UniverseId
         {
-            get => base.CreationId ?? throw new NotRequestedException(nameof(UniverseId));
-            init => base.CreationId = value;
+            get => base.Id;
+            init => base.Id = value;
         }
 
         /// <summary>

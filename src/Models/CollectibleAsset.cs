@@ -1,6 +1,4 @@
-﻿using Roblox_Sharp.Exceptions;
-using Roblox_Sharp.Enums;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using Roblox_Sharp.Abstractions;
 
 namespace Roblox_Sharp.Models
@@ -26,10 +24,10 @@ namespace Roblox_Sharp.Models
         [JsonPropertyName("assetId")]
         public ulong AssetId
         {
-            get => base.CreationId ?? throw new NotRequestedException(nameof(AssetId));
-            init => base.CreationId = value;
+            get => base.Id;
+            init => base.Id = value;
         }
-
+            
         /// <summary>
         /// The asset name of the asset
         /// </summary>
@@ -51,12 +49,13 @@ namespace Roblox_Sharp.Models
         [JsonPropertyName("assetStock")]
         public ulong AssetStock { get; init; }
 
+        /*
         /// <remarks>
         /// Should only be either <see cref="BuildersClubMembershipType.None"/>, <see cref="BuildersClubMembershipType.RobloxPremium"/> 
         /// </remarks>
         [JsonPropertyName("buildersClubMembershipType")]
         public BuildersClubMembershipType BuildersClubMembershipType { get; init; }
-
+        */
         /// <summary>
         /// Whether the user asset has an active hold
         /// </summary>

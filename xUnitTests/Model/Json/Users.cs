@@ -1,5 +1,4 @@
-﻿using Roblox_Sharp.Enums;
-using Roblox_Sharp.Models.v1;
+﻿using Roblox_Sharp.Models.v1;
 using System.Text.Json;
 
 using static xUnitTests.TestHelper;
@@ -35,11 +34,10 @@ namespace xUnitTests.Model.Json
 
             Assert.NotNull(user);
 
-            Assert.True(user.Description.Length > 50);
+            Assert.True(user.Description.Length > 50,isFailing(nameof(user.Description)));
             Assert.Equal(2006, user.Created.Year);
-            Assert.False(user.IsBanned);
-            Assert.Equal("string", user.ExternalAppDisplayName);
-            Assert.True(user.HasVerifiedBadge);
+            Assert.False(user.IsBanned,isFailing(nameof(user.IsBanned)));
+            Assert.True(user.HasVerifiedBadge,isFailing(nameof(user.HasVerifiedBadge)));
             Assert.Equal<ulong>(1, user.UserId);
             Assert.Equal("string", user.Username);
             Assert.Null(user.DisplayName);

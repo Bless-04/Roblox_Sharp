@@ -1,4 +1,4 @@
-﻿namespace Roblox_Sharp.Models.Internal
+﻿namespace Roblox_Sharp.Models
 {
     /// <summary>
     /// used to serialize the responses with a count field 

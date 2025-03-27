@@ -1,5 +1,4 @@
-﻿using Roblox_Sharp.Exceptions;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using Roblox_Sharp.Abstractions;
 
 namespace Roblox_Sharp.Models
@@ -15,8 +14,8 @@ namespace Roblox_Sharp.Models
         [JsonPropertyName("groupId")]
         public ulong GroupId
         {
-            get => base.CreationId ?? throw new NotRequestedException(nameof(GroupId));
-            init => base.CreationId = value;
+            get => base.Id;
+            init => base.Id = value;
         }
 
         /// <summary>
@@ -37,14 +36,14 @@ namespace Roblox_Sharp.Models
         /// </summary>
         [JsonPropertyName("owner")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Response? Owner { get; init; }
+        public required User Owner { get; init; }
 
         /// <summary>
         /// most recent group shout <br/>
         /// </summary>
         [JsonPropertyName("shout")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Group.Shout? GroupShout { get; init; }
+        public required Group.Shout GroupShout { get; init; }
 
         /// <summary>
         /// group member count

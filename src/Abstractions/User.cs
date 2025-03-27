@@ -22,6 +22,12 @@ namespace Roblox_Sharp.Abstractions
     public abstract class User : Creation<IUser>, IUser , IFormattable
     {
         /// <summary>
+        /// The <see cref="StringComparer"/> used to compare the <see cref="User.Username"/>
+        /// </summary>
+        [JsonIgnore]
+        public static StringComparer UsernameComparer { get; } = StringComparer.OrdinalIgnoreCase;
+
+        /// <summary>
         /// The user's unique username
         /// </summary>
         [JsonPropertyName("username")]

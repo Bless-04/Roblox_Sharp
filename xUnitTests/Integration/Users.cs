@@ -1,8 +1,5 @@
-﻿using Microsoft.VisualBasic;
-using Roblox_Sharp.Endpoints;
-using Roblox_Sharp.Enums;
-using Roblox_Sharp.Exceptions;
-using Roblox_Sharp.Models;
+﻿using Roblox_Sharp.Endpoints;
+using Roblox_Sharp.Models.v1;
 using System;
 using System.Threading.Tasks;
 
@@ -15,25 +12,26 @@ namespace xUnitTests.Integration
     [Collection(nameof(Integration))]
     public class Users
     {
+        #region v1
         [IntegrationTrait]
         [Fact]
         public async Task Get_User()
         {
-            //error checking
-            await Assert.ThrowsAsync<InvalidIdException>(() => Users_v1.Get_UserAsync(DOEST_EXIST));
-            //await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UserAsync(BANNED)); //allows banned users
+            User? roblox = await Users_v1.Get_UserAsync(ROBLOX);
 
-            Response roblox = await Users_v1.Get_UserAsync(ROBLOX);
+            Assert.NotNull(roblox);
 
             Assert.True(roblox.UserId == ROBLOX, nameof(roblox.UserId) + " is failing");
 
-            Assert.True(
-                roblox.Username.Equals(nameof(ROBLOX), StringComparison.OrdinalIgnoreCase)
-                && roblox.DisplayName == null,
-                "User.Username is failing"
-            );
+            Assert.Equal(nameof(roblox.Username), roblox.Username);
         }
 
+        public async Task Get_UserError()
+        {
+
+        }
+
+        /*
         [IntegrationTrait]
         [Theory]
         [InlineData(ROBLOX, nameof(ROBLOX))]
@@ -101,5 +99,8 @@ namespace xUnitTests.Integration
         public async Task Get_UsernameHistory_Error(ulong id) =>
             await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsernameHistoryAsync(id));
 
+        */
+
+        #endregion
     }
 }

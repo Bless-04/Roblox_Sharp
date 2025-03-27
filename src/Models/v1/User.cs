@@ -5,12 +5,13 @@ using Roblox_Sharp.Abstractions;
 namespace Roblox_Sharp.Models.v1
 {
     /// <summary>
-    /// class used to serialize User v1 based requests <br/>
-    /// <see href="https://users.roblox.com/v1/users/1">Request Url</see>
+    /// used to deserialize <see cref="Endpoints.Users_v1.Get_UserAsync(ulong)"/>
+    /// <see href="https://users.roblox.com//docs/index.html">Users v1</see>
     /// </summary>
     public partial class User : Abstractions.User,
         IUser, ICloneable<User>, IFormattable
     {
+        #region Properties
         /// <summary>
         /// The users display name
         /// </summary>
@@ -40,26 +41,27 @@ namespace Roblox_Sharp.Models.v1
         /// </summary>
         [JsonPropertyName("hasVerifiedBadge")]
         public bool HasVerifiedBadge { get; init; }
+        #endregion
 
-        #region Ignored
+        #region Special Properties
 
         [JsonInclude]
         [JsonPropertyName("id")]
-        private ulong _id { init => base.Id = value; }
+        private ulong id { init => base.Id = value; }
 
         [JsonInclude]
         [JsonPropertyName("name")]
-        private string _name { init => base.Username = value; }
+        private string name { init => base.Username = value; }
 
+        /*
         /// <summary>
-        /// <b>Unused, legacy attribute. For now always null to not disturb existing client code that might rely on its existence. </b><br></br>
+        /// <b>Unused, legacy attribute. For now always <see langword="null"/> to not disturb existing client code that might rely on its existence. </b><br></br>
         ///Used when user is logged in from third party app (e.g. QQ) <br></br>
         ///ExternalAppDisplayName is the name used in that app(e.g.QQ nickname
         /// </summary>
         //[JsonPropertyName("externalAppDisplayName")]
-        [JsonIgnore]
-        public string? ExternalAppDisplayName => null;
-
+        //public string? ExternalAppDisplayName { get; } = null;
+        */
         /// <summary>
         /// creation date and time in the same format as the roblox website 
         /// </summary>

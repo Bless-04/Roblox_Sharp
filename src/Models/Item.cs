@@ -1,7 +1,7 @@
-﻿using Roblox_Sharp.Exceptions;
+﻿
 using Roblox_Sharp.Enums;
-using System.Text.Json.Serialization;
 using Roblox_Sharp.Abstractions;
+using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models
 {
@@ -13,11 +13,11 @@ namespace Roblox_Sharp.Models
         /// <summary>
         /// The ID of the item
         /// </summary>
-        [JsonPropertyName("Id")]
+        [JsonPropertyName("id")]
         public ulong ItemId
         {
-            get => base.CreationId ?? throw new NotRequestedException(nameof(ItemId));
-            init => base.CreationId = value;
+            get => base.Id;
+            init => base.Id = value;
         }
 
         ulong IAsset.AssetId => ItemId;

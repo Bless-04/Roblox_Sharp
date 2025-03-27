@@ -1,9 +1,8 @@
 ﻿using Roblox_Sharp.Abstractions;
-using Roblox_Sharp.Exceptions;
-using Roblox_Sharp.Framework;
 using System;
 using System.Text.Json.Serialization;
 
+/*
 namespace Roblox_Sharp.Models
 {
     /// <summary>
@@ -17,8 +16,8 @@ namespace Roblox_Sharp.Models
         [JsonPropertyName("badgeId")]
         public ulong BadgeId
         {
-            get => base.CreationId ?? throw new NotRequestedException(nameof(BadgeId));
-            init => base.CreationId = value;
+            get => base.Id;
+            init => base.Id = value;
         }
 
         /// <summary>
@@ -136,3 +135,4 @@ namespace Roblox_Sharp.Models
         };
     }
 }
+*/

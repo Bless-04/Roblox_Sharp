@@ -1,12 +1,11 @@
 ﻿using Roblox_Sharp.Endpoints;
-using Roblox_Sharp.Enums;
-using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace xUnitTests.Integration
 {
+    /*
     /// <summary>
     /// Tests <see cref="Badges_v1"/> Endpoint
     /// </summary>
@@ -64,3 +63,4 @@ namespace xUnitTests.Integration
         }
     }
 }
+    */

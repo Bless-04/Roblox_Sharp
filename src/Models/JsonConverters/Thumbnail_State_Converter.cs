@@ -4,10 +4,9 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using Roblox_Sharp.Enums.Thumbnail;
 
-namespace Roblox_Sharp.Models.Internal.JsonConverters
+namespace Roblox_Sharp.Models.JsonConverters
 {
-
-    internal sealed class Thumbnail_State_Converter : JsonConverter<State>
+    public class Thumbnail_State_Converter : JsonConverter<State>
     {
         public override State Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

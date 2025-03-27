@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Abstractions;
 
 
@@ -18,8 +17,8 @@ public partial class Avatar
         [JsonPropertyName("assetId")]
         public ulong AssetId
         {
-            get => base.CreationId ?? throw new NotRequestedException(nameof(AssetId));
-            init => base.CreationId = value;
+            get => Id;
+            init => Id = value;
         }
 
         /// <summary>

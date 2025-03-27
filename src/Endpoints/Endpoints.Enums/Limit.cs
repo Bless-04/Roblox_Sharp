@@ -1,5 +1,5 @@
 ﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member; The names are self explanatory
-namespace Roblox_Sharp.Enums
+namespace Roblox_Sharp.Endpoints
 {
     /// <summary>
     /// The number of results per request.
