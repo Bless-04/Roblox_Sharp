@@ -16,6 +16,11 @@ namespace Roblox_Sharp.Endpoints
     /// </summary>
     public static class Users_v1
     {
+        #region Display Names
+        #endregion
+
+        #region Users
+        #endregion
         /// <summary>
         /// Gets a list of users that either have a similar username or display name of the given <paramref name="keyword"/> asynchronously
         /// <br></br><b><seealso href="https://users.roblox.com/docs//index.html">Users Documentation v1</seealso></b>

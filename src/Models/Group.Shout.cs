@@ -28,7 +28,7 @@ public partial class Group
         /// user information of the Group Shouts poster
         /// </summary>
         [JsonPropertyName("poster")]
-        required public User Poster { get; init; }
+        required public UserResponse Poster { get; init; }
 
         /// <summary>
         /// The shouts created date 

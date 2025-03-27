@@ -1,7 +1,6 @@
 ﻿using Roblox_Sharp.Exceptions;
 using Roblox_Sharp.Models;
 using System;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -18,12 +17,12 @@ namespace Roblox_Sharp
     /// </summary>
     public static class WebAPI
     {
-        private static HttpClient _client = new();
+        internal static HttpClient _client = new();
 
         /// <summary>
         /// <see cref="HttpClient"></see> used for all web requests
         /// </summary>
-        public static HttpClient Client => _client;
+        public static HttpClient Client() => _client;
 
         /* not needed
         /// <summary>
@@ -37,8 +36,9 @@ namespace Roblox_Sharp
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
         */
+
         /// <summary>
-        /// an event that is raised only when the web request is successful/statuscode 200
+        /// an event that is raised when the web request is successful/statuscode 200
         /// </summary>
         public static event EventHandler? OnSuccessfulRequest;
 
@@ -47,6 +47,14 @@ namespace Roblox_Sharp
         /// </summary>
         public static event EventHandler? OnFailedRequest;
 
+        internal static void RaiseRequestEvents(HttpResponseMessage response,EventArgs? args = null)
+        {
+            args ??= EventArgs.Empty;
+
+            if (response.IsSuccessStatusCode) OnSuccessfulRequest?.Invoke(response, args);
+            else OnFailedRequest?.Invoke(response, args);
+        }
+       
         static WebAPI()
         {
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -54,6 +62,7 @@ namespace Roblox_Sharp
             //_client.DefaultRequestHeaders.Authorization needed for auth
         }
 
+        
         /// <summary>
         /// sets the <see cref="HttpClient"/> used for all web requests
         /// useful for configuring httpclient
@@ -72,20 +81,8 @@ namespace Roblox_Sharp
             _client.DefaultRequestHeaders.UserAgent.TryParseAdd(name);
         }
 
-        internal static bool SuccessfulRequest(HttpResponseMessage response)
-        {
-            if (response.IsSuccessStatusCode)
-            {
-                OnSuccessfulRequest?.Invoke(response, EventArgs.Empty);
-                return true;
-            }
-            else
-            {
-                OnFailedRequest?.Invoke(response, EventArgs.Empty);
-                return false;
-            }
-        }
 
+        #region Requests
         /// <summary>
         /// helper function for get requests for roblox api
         /// </summary>
@@ -96,18 +93,9 @@ namespace Roblox_Sharp
         {
             using HttpResponseMessage response = await _client.GetAsync(url);
             {
-                if (SuccessfulRequest(response)) return await response.Content.ReadAsStringAsync();
+                RaiseRequestEvents(response);
 
-                //errors
-                throw response.StatusCode switch
-                {
-                    HttpStatusCode.TooManyRequests => new RateLimitException($"Rate Limit Exceeded\n{url}\nStatusCode: {response.StatusCode}\n{response.Content}"),
-                    HttpStatusCode.BadRequest => new InvalidUserException($"User either doesnt exist or is terminated/banned \nStatusCode: {response.StatusCode}\n{url}"),
-                    HttpStatusCode.NotFound => new InvalidIdException($"Invalid User Id\nStatusCode: {response.StatusCode}\n{url}"),
-                    (HttpStatusCode)443 => new HttpRequestException("There is an Internet Connection Issue\nPlease Connect to the Internet"),
-                    HttpStatusCode.InternalServerError => new HttpRequestException($"There may be a problem with the Roblox Servers.\nStatusCode: {response.StatusCode}\n{url}"),
-                    _ => new NotImplementedException($"Unhandled Error\nStatusCode: {response.StatusCode} \n{response.Content}"),
-                };
+                return await response.Content.ReadAsStringAsync();
             }
         }
 
@@ -119,34 +107,16 @@ namespace Roblox_Sharp
         /// <returns></returns>
         /// <exception cref="InvalidUserException"></exception>
         /// <exception cref="InvalidIdException"></exception>
-        public static async Task<string> Post_RequestAsync(string url, User.Post POST)
+        public static async Task<string> Post_RequestAsync(string url, UserResponse.Post POST)
         {
-            using HttpResponseMessage response = await _client.PostAsync(
-                    url, new StringContent(
-                    JsonSerializer.Serialize(POST),
-                    Encoding.UTF8, "application/json")
-                );
+            using HttpResponseMessage response = await _client.PostAsync(url, new StringContent(JsonSerializer.Serialize(POST),Encoding.UTF8, "application/json"));
             {
-                if (SuccessfulRequest(response))
-                    return await response.Content.ReadAsStringAsync();
-                //errors
-                switch (response.StatusCode)
-                {
-                    case HttpStatusCode.TooManyRequests:
-                        throw new RateLimitException($"Rate Limit Exceeded\n{url}\nStatusCode: {response.StatusCode}");
-
-                    case HttpStatusCode.BadRequest:
-                        if (POST.UserIds != null) throw new InvalidIdException("A userId may not exist , or there is to many");
-                        else throw new InvalidUserException("A username may not exist,or there is too many");
-
-                    case (HttpStatusCode)443:
-                        throw new HttpRequestException("There is an Internet Connection Issue\nPlease Connect to the Internet");
-
-                    default:
-                        throw new NotImplementedException($"Unhandled Error: {response.StatusCode}\n{url}\n{response.Content}");
-                }
                 
+            RaiseRequestEvents(response);
+
+            return await response.Content.ReadAsStringAsync();
             }
+                
         }
         /* Not needed yet
         public static async Task<string> Post_RequestAsync<T>(string url,)

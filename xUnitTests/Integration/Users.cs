@@ -23,7 +23,7 @@ namespace xUnitTests.Integration
             await Assert.ThrowsAsync<InvalidIdException>(() => Users_v1.Get_UserAsync(DOEST_EXIST));
             //await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UserAsync(BANNED)); //allows banned users
 
-            User roblox = await Users_v1.Get_UserAsync(ROBLOX);
+            UserResponse roblox = await Users_v1.Get_UserAsync(ROBLOX);
 
             Assert.True(roblox.UserId == ROBLOX, nameof(roblox.UserId) + " is failing");
 
@@ -41,7 +41,7 @@ namespace xUnitTests.Integration
         [InlineData(SHEDLETSKY, nameof(SHEDLETSKY))]
         public async Task Get_Usernames(ulong id, string Username)
         {
-            User test = (await Users_v1.Get_UsernamesAsync([id]))[0];//
+            UserResponse test = (await Users_v1.Get_UsernamesAsync([id]))[0];//
 
             Assert.NotNull(test.Username);
             Assert.True(
@@ -66,7 +66,7 @@ namespace xUnitTests.Integration
         [InlineData(SHEDLETSKY, nameof(SHEDLETSKY))]
         public async Task Get_Users(ulong expectedCreationId, string Username)
         {
-            User test = (await Users_v1.Get_UsersAsync([Username]))[0];
+            UserResponse test = (await Users_v1.Get_UsersAsync([Username]))[0];
 
             await Assert.ThrowsAsync<InvalidUserException>(() => Users_v1.Get_UsersAsync([]));
 
@@ -77,7 +77,7 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_UserSearch()
         {
-            Page<User> page = await Users_v1.Get_UserSearchAsync("robl", Limit.MAX);
+            Page<UserResponse> page = await Users_v1.Get_UserSearchAsync("robl", Limit.MAX);
 
             Assert.True(page.Data.Count != 0, "Page.data should not be empty");
             Assert.True(page.PreviousPageCursor == null, "previouspagecursor should be null");

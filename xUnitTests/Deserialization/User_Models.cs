@@ -27,7 +27,7 @@ namespace xUnitTests.Deserialization
                 ""displayName"": ""string""
             }";
 
-            User? user = JsonSerializer.Deserialize<User>(json_response);
+            UserResponse? user = JsonSerializer.Deserialize<UserResponse>(json_response);
 
             Assert.NotNull(user);
 
@@ -64,13 +64,13 @@ namespace xUnitTests.Deserialization
               ]
             }";
 
-            Page<User>? page = JsonSerializer.Deserialize<Page<User>>(json_response);
+            Page<UserResponse>? page = JsonSerializer.Deserialize<Page<UserResponse>>(json_response);
             Assert.NotNull(page);
 
             Assert.Equal("string", page.PreviousPageCursor);
             Assert.Equal("string", page.NextPageCursor);
 
-            User user = page.Data[0];
+            UserResponse user = page.Data[0];
 
             Assert.NotNull(user.PreviousUsernames);
             Assert.Single(user.PreviousUsernames);
@@ -95,10 +95,10 @@ namespace xUnitTests.Deserialization
                 ""userId"": 0
             }";
 
-            User? user = JsonSerializer.Deserialize<User>(json_response);
+            UserResponse? user = JsonSerializer.Deserialize<UserResponse>(json_response);
             Assert.NotNull(user);
 
-            User.Presence? presence = JsonSerializer.Deserialize<User.Presence>(json_response);
+            UserResponse.Presence? presence = JsonSerializer.Deserialize<UserResponse.Presence>(json_response);
             Assert.NotNull(presence);
 
 
@@ -125,7 +125,7 @@ namespace xUnitTests.Deserialization
               ""invisibleModeExpiry"": ""2024-12-23T16:36:03.740Z""
             }";
 
-            User.Presence? userPresence = JsonSerializer.Deserialize<User.Presence>(json_response);
+            UserResponse.Presence? userPresence = JsonSerializer.Deserialize<UserResponse.Presence>(json_response);
 
 
             Assert.NotNull(userPresence);

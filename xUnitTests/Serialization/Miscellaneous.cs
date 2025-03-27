@@ -29,7 +29,7 @@ namespace xUnitTests.Serialization
         [Fact]
         public void User()
         {
-            User x = new()
+            UserResponse x = new()
             {
                 UserId = 1,
                 Username = nameof(Miscellaneous),
@@ -39,7 +39,7 @@ namespace xUnitTests.Serialization
 
             Assert.Null(x.DisplayName);
 
-            RoundTrip<User>(x);
+            RoundTrip<UserResponse>(x);
         }
 
         [Fact]

@@ -67,24 +67,25 @@ namespace Roblox_Sharp.Models
   ]
 }*/
 
+
     /// <summary>
     /// used to serialize avatar based requests
     /// </summary>
     public partial class Avatar : ICloneable<Avatar>
     {
         /// <summary>
-        /// <inheritdoc cref="Scales"/>
+        /// <inheritdoc cref="Scale"/>
         /// </summary>
         [JsonPropertyName("scales")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Scale? Scales { get; init; }
+        public required Scale Scales { get; init; }
 
         /// <summary>
         /// <inheritdoc cref="AvatarType"/>
         /// </summary>
         [JsonConverter(typeof(Avatar_Type_Converter))]
         [JsonPropertyName("playerAvatarType")]
-        public AvatarType PlayerAvatarType { get; init; }
+        public required AvatarType PlayerAvatarType { get; init; }
 
         /// <summary>
         /// the brickcolor ids for each bodypart
@@ -93,14 +94,6 @@ namespace Roblox_Sharp.Models
         [JsonPropertyName("bodyColors")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public BodyColor? BodyColors { get; init; }
-
-        /// <summary>
-        /// the rgb hex colors for each bodypart
-        /// <note>unique to <seealso cref="Endpoints.Avatars_v2"/> based requests </note>
-        /// </summary>
-        [JsonPropertyName("bodyColor3s")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public BodyColor3? BodyColor3s { get; init; } 
 
         /// <summary>
         /// the assets worn on the avatar

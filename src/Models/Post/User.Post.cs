@@ -6,10 +6,10 @@ using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models;
 
-public partial class User
+public partial class UserResponse
 {
     /// <summary>
-    /// class used to serialize <see cref="User"/> POST based requests
+    /// class used to serialize <see cref="UserResponse"/> POST based requests
     /// </summary>
     /// <remarks>Does not require X-CSRF-Token protection because this is essentially a get request but as a POST to avoid URI limits.</remarks>
 

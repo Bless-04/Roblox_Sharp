@@ -22,9 +22,9 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>User[]</returns>
-        public static async Task<IReadOnlyList<User>> Get_FriendsAsync(ulong userId) =>
+        public static async Task<IReadOnlyList<UserResponse>> Get_FriendsAsync(ulong userId) =>
             //url example 'https://friends.roblox.com/v1/users/16/friends?userSort=0
-            JsonSerializer.Deserialize<Page<User>>(
+            JsonSerializer.Deserialize<Page<UserResponse>>(
                 await Get_RequestAsync($"https://friends.roblox.com/v1/users/{userId}/friends")
             )!.Data!;
 
@@ -39,8 +39,8 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="page">The page to start at.</param>
         /// <returns>Page</returns>
         /// <exception><inheritdoc cref="WebAPI.Get_RequestAsync(string)"/></exception>
-        public static async Task<Page<User>> Get_FollowersAsync(ulong userId, Limit limit = Limit.Minimum, Sort sortOrder = Sort.Asc, Page<User>? page = null) =>
-            JsonSerializer.Deserialize<Page<User>>(
+        public static async Task<Page<UserResponse>> Get_FollowersAsync(ulong userId, Limit limit = Limit.Minimum, Sort sortOrder = Sort.Asc, Page<UserResponse>? page = null) =>
+            JsonSerializer.Deserialize<Page<UserResponse>>(
                 await Get_RequestAsync(
                     $"https://friends.roblox.com/v1/users/{userId}" +
                     $"/followers?limit=50&sortOrder={sortOrder}" +
@@ -98,9 +98,9 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="sortOrder"></param>
         /// <param name="cursor"></param>
         /// <returns>Page</returns>
-        public static async Task<Page<User>> Get_FollowingsAsync(ulong userId, Limit limit = Limit.Minimum, Sort sortOrder = Sort.Asc, string? cursor = null) =>
+        public static async Task<Page<UserResponse>> Get_FollowingsAsync(ulong userId, Limit limit = Limit.Minimum, Sort sortOrder = Sort.Asc, string? cursor = null) =>
             // url example https://friends.roblox.com/v1/users/1/followings?limit=10&sortOrder=Asc
-            JsonSerializer.Deserialize<Page<User>>(
+            JsonSerializer.Deserialize<Page<UserResponse>>(
                 await Get_RequestAsync(
                 $"https://friends.roblox.com/v1/users/{userId}/followings?" +
                 $"limit={EnumExtensions.ToString(limit)}" +

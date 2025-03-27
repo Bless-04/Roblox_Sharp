@@ -50,8 +50,8 @@ namespace Roblox_Sharp.Models
     /// class used to serialize User based requests
     /// </summary>
 
-    public partial class User : Creation<IUser>, 
-        IUser, ICloneable<User>, IFormattable
+    public partial class UserResponse : User,
+        IUser, ICloneable<UserResponse>, IFormattable
     {
         /// <summary>
         /// constructor for user
@@ -59,7 +59,7 @@ namespace Roblox_Sharp.Models
         /// <param name="userId">id of the user</param>
         /// <param name="username">username of the user</param>
         /// <param name="displayName">displayname of the user</param>
-        public User(ulong userId, string username, string? displayName = null) : this()
+        public UserResponse(ulong userId, string username, string? displayName = null) : this()
         {
             this.UserId = userId;
             this.Username = username;
@@ -195,7 +195,7 @@ namespace Roblox_Sharp.Models
 
         #region Functions
         /// <inheritdoc/>
-        public User Clone() => new()
+        public UserResponse Clone() => new()
         {
             UserId = UserId,
             Username = Username,
@@ -214,7 +214,7 @@ namespace Roblox_Sharp.Models
             FriendFrequentRank = FriendFrequentRank
         };
 
-        /// <summary> a simple string representation of the <see cref="User"/> in the format <br/> 
+        /// <summary> a simple string representation of the <see cref="UserResponse"/> in the format <br/> 
         /// displayname@username (ID id)
         /// </summary> 
         public override string ToString() => $"{DisplayName}@{Username} (ID {UserId})";

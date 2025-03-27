@@ -6,7 +6,7 @@ using Roblox_Sharp.Abstractions;
 
 namespace Roblox_Sharp.Models;
 
-public partial class User
+public partial class UserResponse
 {
     /**
      * example return 
@@ -25,7 +25,7 @@ public partial class User
    }
  ]
 }*/
-    public class Presence : Creation<IUser>, IUser, ICloneable<User.Presence>
+    public class Presence : Creation<IUser>, IUser, ICloneable<UserResponse.Presence>
     {
         /// <inheritdoc/>
         [JsonPropertyName("userId")]
@@ -82,7 +82,7 @@ public partial class User
         public DateTime InvisibleModeExpiry { get; init; }
 
         /// <summary>
-        /// Deep Clones the instance of <see cref="User.Presence"/>
+        /// Deep Clones the instance of <see cref="UserResponse.Presence"/>
         /// </summary>
         /// <returns></returns>
         public Presence Clone() => new()
