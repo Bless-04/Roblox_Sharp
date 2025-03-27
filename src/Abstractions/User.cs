@@ -5,6 +5,17 @@ using System.Text.Json.Serialization;
 namespace Roblox_Sharp.Abstractions
 {
     /// <summary>
+    /// represents any User based request that contains the unique user id
+    /// </summary>
+    public interface IUser
+    {
+        /// <summary>
+        /// the Unique numeric id of the <see cref="IUser"/>.
+        /// </summary>
+        ulong UserId { get; }
+    }
+
+    /// <summary>
     /// represents any User based request that contains the user id and the username
     /// </summary>
     [DebuggerDisplay("{Username} (ID {UserId})")]

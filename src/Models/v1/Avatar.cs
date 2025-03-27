@@ -71,7 +71,7 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// used to serialize avatar based requests
     /// </summary>
-    public partial class Avatar : ICloneable<Avatar>
+    public static class Avatar
     {
         /// <summary>
         /// <inheritdoc cref="Scale"/>

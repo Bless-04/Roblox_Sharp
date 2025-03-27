@@ -4,7 +4,6 @@ namespace Roblox_Sharp.Abstractions
 {
     ///<inheritdoc cref="ICloneable"/>
     public interface ICloneable<T> : ICloneable
-        where T : new()
     {
 
         /// <summary>

@@ -37,7 +37,7 @@ namespace Roblox_Sharp.Models
         /// </summary>
         [JsonPropertyName("owner")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public UserResponse? Owner { get; init; }
+        public Response? Owner { get; init; }
 
         /// <summary>
         /// most recent group shout <br/>

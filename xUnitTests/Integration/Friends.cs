@@ -75,7 +75,7 @@ namespace xUnitTests.Integration
         [InlineData(Limit.Ten)]
         public async Task Get_Followings(Limit limit = Limit.Maximum, Sort sort = Sort.Asc, string? cursor = null)
         {
-            Page<UserResponse> test = await Friends_v1.Get_FollowingsAsync(BUILDERMAN, limit, sort, cursor);
+            Page<Response> test = await Friends_v1.Get_FollowingsAsync(BUILDERMAN, limit, sort, cursor);
             Assert.True(test.Data.Count == (int)limit, "Get_Followings() is failing");
         }
 
@@ -91,8 +91,8 @@ namespace xUnitTests.Integration
         public async Task Get_Friends()
         {
 
-            IReadOnlyList<UserResponse> erik_friends = await Friends_v1.Get_FriendsAsync(16); //erik
-            IReadOnlyList<UserResponse> roblox_friends = await Friends_v1.Get_FriendsAsync(ROBLOX); //roblox
+            IReadOnlyList<Response> erik_friends = await Friends_v1.Get_FriendsAsync(16); //erik
+            IReadOnlyList<Response> roblox_friends = await Friends_v1.Get_FriendsAsync(ROBLOX); //roblox
 
             Assert.True(erik_friends.Count != 0 && roblox_friends.Count == 0, "Get_Friends() is failing");
 
@@ -106,7 +106,7 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_Followers()
         {
-            Page<UserResponse> page = await Friends_v1.Get_FollowersAsync(ROBLOX); //roblox
+            Page<Response> page = await Friends_v1.Get_FollowersAsync(ROBLOX); //roblox
 
             //old page
             ulong someCreationId = page.Data[0].UserId;

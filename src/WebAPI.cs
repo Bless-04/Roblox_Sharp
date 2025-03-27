@@ -107,7 +107,7 @@ namespace Roblox_Sharp
         /// <returns></returns>
         /// <exception cref="InvalidUserException"></exception>
         /// <exception cref="InvalidIdException"></exception>
-        public static async Task<string> Post_RequestAsync(string url, UserResponse.Post POST)
+        public static async Task<string> Post_RequestAsync(string url, Response.Post POST)
         {
             using HttpResponseMessage response = await _client.PostAsync(url, new StringContent(JsonSerializer.Serialize(POST),Encoding.UTF8, "application/json"));
             {
@@ -122,5 +122,6 @@ namespace Roblox_Sharp
         public static async Task<string> Post_RequestAsync<T>(string url,)
 
         */
+        #endregion
     }
 }

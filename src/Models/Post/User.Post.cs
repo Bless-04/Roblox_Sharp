@@ -6,10 +6,10 @@ using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models;
 
-public partial class UserResponse
+public partial class Response
 {
     /// <summary>
-    /// class used to serialize <see cref="UserResponse"/> POST based requests
+    /// class used to serialize <see cref="Response"/> POST based requests
     /// </summary>
     /// <remarks>Does not require X-CSRF-Token protection because this is essentially a get request but as a POST to avoid URI limits.</remarks>
 
@@ -18,12 +18,12 @@ public partial class UserResponse
         /// <summary>
         /// max number of ids that can be requested at a time
         /// </summary>
-        public const byte MAXCreationIdS = 100;
+        public const byte MAX_USERIDS = 100;
 
         /// <summary>
         /// max number of usernames that can be requested at a time
         /// </summary>
-        public const byte MAX_USERNAMES = MAXCreationIdS;
+        public const byte MAX_USERNAMES = MAX_USERIDS;
 
         /// <summary>
         /// exclude banned users
@@ -45,7 +45,7 @@ public partial class UserResponse
 
         public Post(IEnumerable<ulong> userIds, bool excludeBannedUsers = false)
         {
-            if (userIds.Count() > MAXCreationIdS) throw new InvalidUserException("Too many userIds");
+            if (userIds.Count() > MAX_USERIDS) throw new InvalidUserException("Too many userIds");
 
             UserIds = userIds;
 

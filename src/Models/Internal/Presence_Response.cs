@@ -8,6 +8,6 @@ namespace Roblox_Sharp.Models.Internal
     /// since arrays are a reference type, its not worth making this a struct
     internal sealed class Presence_Response
     {
-        public required IReadOnlyList<UserResponse.Presence> userPresences { get; init; }
+        public required IReadOnlyList<Response.Presence> userPresences { get; init; }
     }
 }

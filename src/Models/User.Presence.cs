@@ -4,9 +4,9 @@ using System;
 using System.Text.Json.Serialization;
 using Roblox_Sharp.Abstractions;
 
-namespace Roblox_Sharp.Models;
+namespace Roblox_Sharp.Models.v1;
 
-public partial class UserResponse
+public partial class User
 {
     /**
      * example return 
@@ -25,7 +25,7 @@ public partial class UserResponse
    }
  ]
 }*/
-    public class Presence : Creation<IUser>, IUser, ICloneable<UserResponse.Presence>
+    public class Presence : Creation<IUser>, IUser, ICloneable<Response.Presence>
     {
         /// <inheritdoc/>
         [JsonPropertyName("userId")]
@@ -82,7 +82,7 @@ public partial class UserResponse
         public DateTime InvisibleModeExpiry { get; init; }
 
         /// <summary>
-        /// Deep Clones the instance of <see cref="UserResponse.Presence"/>
+        /// Deep Clones the instance of <see cref="Response.Presence"/>
         /// </summary>
         /// <returns></returns>
         public Presence Clone() => new()

@@ -115,7 +115,7 @@ namespace Roblox_Sharp.Models
         /// </summary>
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("creator")]
-        public UserResponse? Creator { get; init; }
+        public Response? Creator { get; init; }
 
         /// <inheritdoc/>
         public Badge Clone() => new()
