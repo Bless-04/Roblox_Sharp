@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Text.Json.Serialization;
 
 #pragma warning disable CA1707 // Identifiers should not contain underscores ;
 
@@ -18,7 +17,6 @@ namespace Roblox_Sharp.Abstractions
         ICreation, IEquatable<Creation<T>>, IComparable<Creation<T>> , IEqualityComparer<Creation<T>>
     {
         /// <inheritdoc cref="ICreation.Id"/>
-        [JsonPropertyName("id")]
         protected ulong Id { get; init; }
 
         ulong ICreation.Id => Id;

@@ -2,7 +2,7 @@
 
 namespace xUnitTests
 {
-    public static class TestHelper
+    public class TestHelper
     {
         public static string isFailing(string variable_name) => $"{variable_name} is failing";
 

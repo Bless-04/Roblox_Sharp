@@ -17,6 +17,7 @@ namespace Roblox_Sharp
     /// </summary>
     public static class WebAPI
     {
+       
         internal static HttpClient _client = new();
 
         /// <summary>
@@ -40,19 +41,19 @@ namespace Roblox_Sharp
         /// <summary>
         /// an event that is raised when the web request is successful/statuscode 200
         /// </summary>
-        public static event EventHandler? OnSuccessfulRequest;
+        public static event EventHandler<HttpResponseMessage>? OnSuccessfulRequest;
 
         /// <summary>
         /// an event that is raised when the web request fails / statuscode is not 200
         /// </summary>
-        public static event EventHandler? OnFailedRequest;
+        public static event EventHandler<HttpResponseMessage>? OnFailedRequest;
 
-        internal static void RaiseRequestEvents(HttpResponseMessage response,EventArgs? args = null)
+        internal static void RaiseRequestEvents()
         {
             args ??= EventArgs.Empty;
 
-            if (response.IsSuccessStatusCode) OnSuccessfulRequest?.Invoke(response, args);
-            else OnFailedRequest?.Invoke(response, args);
+            if (response.IsSuccessStatusCode) OnSuccessfulRequest?.Invoke(Client(), response);
+            else OnFailedRequest?.Invoke(Client(), response);
         }
        
         static WebAPI()

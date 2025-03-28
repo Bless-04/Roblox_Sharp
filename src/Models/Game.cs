@@ -7,7 +7,7 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// Represents a game
     /// </summary>
-    public partial class Game : Creation<Game>, ICloneable<Game>
+    public partial class Game : Creation<Game>
     {
         /// <summary>
         /// the universe id 

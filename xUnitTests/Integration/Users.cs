@@ -1,4 +1,5 @@
-﻿using Roblox_Sharp.Endpoints;
+﻿using Roblox_Sharp;
+using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Models.v1;
 using System;
 using System.Threading.Tasks;
@@ -12,7 +13,9 @@ namespace xUnitTests.Integration
     [Collection(nameof(Integration))]
     public class Users
     {
+
         #region v1
+
         [IntegrationTrait]
         [Fact]
         public async Task Get_User()
@@ -21,13 +24,27 @@ namespace xUnitTests.Integration
 
             Assert.NotNull(roblox);
 
-            Assert.True(roblox.UserId == ROBLOX, nameof(roblox.UserId) + " is failing");
+            Assert.True(roblox.UserId == ROBLOX, TestHelper.isFailing(nameof(roblox.UserId)));
 
-            Assert.Equal(nameof(roblox.Username), roblox.Username);
+            Assert.Equal(nameof(ROBLOX), roblox.Username, ignoreCase: true);
         }
 
-        public async Task Get_UserError()
+        [IntegrationTrait]
+        [Fact]
+        public async Task Get_UserFail()
         {
+            
+            WebAPI.OnFailedRequest += (sender,args) =>
+            {
+                var s = 
+            }
+            
+            User? user = await Users_v1.Get_UserAsync(5);
+           
+            
+            Assert.Null(user);
+
+            
 
         }
 

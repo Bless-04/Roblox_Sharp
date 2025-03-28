@@ -6,7 +6,7 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize Group based requests
     /// </summary>
-    public partial class Group : Creation<Group>, ICloneable<Group>
+    public partial class Group : Creation<Group>
     {
         /// <summary>
         /// the unique groups id

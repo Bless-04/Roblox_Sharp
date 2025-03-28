@@ -23,7 +23,7 @@ public partial class User
    }
  ]
 }*/
-    public partial class Presence : Abstractions.User, ICloneable<User.Presence>
+    public partial class Presence : Abstractions.User
     {
         /// <summary>
         /// <see cref="User.Presence.Type"/> type of user
@@ -33,7 +33,7 @@ public partial class User
 
         [JsonPropertyName("lastLocation")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public required string LastLocation { get; init; }
+        public string LastLocation { get; init; }
 
         /// <summary>
         /// unique place id
@@ -51,7 +51,7 @@ public partial class User
         /// </summary>
         [JsonPropertyName("gameId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string GameId { get; init; }
+        public string GameId { get; init; } // why is this a string
 
         /// <summary>
         /// unique universe id
@@ -70,23 +70,5 @@ public partial class User
         [JsonPropertyName("invisibleModeExpiry")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime InvisibleModeExpiry { get; init; }
-
-        /// <summary>
-        /// Deep Clones the instance of <see cref="User.Presence"/>
-        /// </summary>
-        /// <returns></returns>
-        public Presence Clone() => new()
-        {
-            UserId = UserId,
-            Username = Username,
-            PresenceType = PresenceType,
-            LastLocation = LastLocation,
-            PlaceId = PlaceId,
-            RootPlaceId = RootPlaceId,
-            GameId = GameId,
-            UniverseId = UniverseId,
-            LastOnline = LastOnline,
-            InvisibleModeExpiry = InvisibleModeExpiry
-        };
     }
 }

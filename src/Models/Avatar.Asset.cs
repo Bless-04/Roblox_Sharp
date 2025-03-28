@@ -9,7 +9,7 @@ public partial class Avatar
     /// <summary>
     /// Assets that a players Avatar can equip
     /// </summary>
-    public partial class Asset : Creation<IAsset>, IAsset, ICloneable<Asset>
+    public partial class Asset : Creation<IAsset>, IAsset
     {
         /// <summary>
         /// <inheritdoc/>

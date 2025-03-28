@@ -9,20 +9,20 @@ namespace Roblox_Sharp.Models.v1
     /// <see href="https://users.roblox.com//docs/index.html">Users v1</see>
     /// </summary>
     public partial class User : Abstractions.User,
-        IUser, ICloneable<User>, IFormattable
+        IUser
     {
         #region Properties
         /// <summary>
         /// The users display name
         /// </summary>
         [JsonPropertyName("displayName")]
-        public required string DisplayName { get; init; }
+        public string DisplayName { get; init; } = string.Empty;
 
         /// <summary>
         /// The users description 
         /// </summary>
         [JsonPropertyName("description")]
-        public required string Description { get; init; }
+        public string Description { get; init; } = string.Empty;
 
         /// <summary>
         /// creation date and time of user; When the User signed up
@@ -49,9 +49,11 @@ namespace Roblox_Sharp.Models.v1
         [JsonPropertyName("id")]
         private ulong id { init => base.Id = value; }
 
+        
         [JsonInclude]
         [JsonPropertyName("name")]
         private string name { init => base.Username = value; }
+        
 
         /*
         /// <summary>
@@ -69,17 +71,6 @@ namespace Roblox_Sharp.Models.v1
         public string CreatedString => Created.ToString("d");
         #endregion
 
-        /// <inheritdoc cref="User"/>
-        public User Clone() => new()
-        {
-            UserId = Id,
-            Username = Username,
-            DisplayName = DisplayName,
-            Description = Description,
-            Created = Created,
-            IsBanned = IsBanned,
-            HasVerifiedBadge = HasVerifiedBadge,
-        };
     }
 }
 

@@ -10,12 +10,11 @@ namespace xUnitTests.Model.Json
     [Trait(nameof(Roblox_Sharp.Models), nameof(Json))]
     public class Users
     {
-
         /// <summary>
         /// Tests Serialization for <see cref="Roblox_Sharp.Models.v1.User"/>
         /// </summary>
         [Fact]
-        public void Get_User()
+        public void User_Json()
         {
             const string json_response = @"
             {
@@ -39,8 +38,8 @@ namespace xUnitTests.Model.Json
             Assert.False(user.IsBanned,isFailing(nameof(user.IsBanned)));
             Assert.True(user.HasVerifiedBadge,isFailing(nameof(user.HasVerifiedBadge)));
             Assert.Equal<ulong>(1, user.UserId);
-            Assert.Equal("string", user.Username);
-            Assert.Null(user.DisplayName);
+            Assert.Equal("Roblox", user.Username);
+            Assert.Equal(user.Username,user.DisplayName);
 
             Assert.True(RoundTrip(user));
         }
