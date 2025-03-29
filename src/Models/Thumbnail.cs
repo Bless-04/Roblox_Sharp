@@ -20,7 +20,7 @@ namespace Roblox_Sharp.Models;
 /// <summary>
 /// class used to serialize Thumbnail based requests
 /// </summary>
-public class Thumbnail : ICreation
+public partial class Thumbnail : ICreation
 {
     /// <summary>
     /// The thumbnail target id
@@ -32,7 +32,7 @@ public class Thumbnail : ICreation
 
     [JsonConverter(typeof(Thumbnail_State_Converter))]
     [JsonPropertyName("state")]
-    required public State State { get; init; }
+    public required State State { get; init; }
 
     /// <summary>
     /// image url of thumbnail 
@@ -43,5 +43,6 @@ public class Thumbnail : ICreation
     [JsonPropertyName("version")]
     public required string Version { get; init; }
 
-
+    /// <inheritdoc/>
+    public bool Exists() => TargetId != default;
 }

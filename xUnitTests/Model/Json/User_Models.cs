@@ -5,16 +5,16 @@ using static xUnitTests.TestHelper;
 namespace xUnitTests.Model.Json
 {
     /// <summary>
-    /// Tests Serialization for <see cref="Roblox_Sharp.Models.v1.User"/>
+    /// Tests Serialization for <see cref="Roblox_Sharp.Abstractions.User"/> based Models
     /// </summary>
     [Trait(nameof(Roblox_Sharp.Models), nameof(Json))]
-    public class Users
+    public class User_Models
     {
         /// <summary>
         /// Tests Serialization for <see cref="Roblox_Sharp.Models.v1.User"/>
         /// </summary>
         [Fact]
-        public void User_Json()
+        public void User()
         {
             const string json_response = @"
             {

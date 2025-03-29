@@ -1,7 +1,5 @@
-﻿using Roblox_Sharp;
-using Roblox_Sharp.Endpoints;
+﻿using Roblox_Sharp.Endpoints;
 using Roblox_Sharp.Models.v1;
-using System;
 using System.Threading.Tasks;
 
 using static xUnitTests.User_Constants;
@@ -11,7 +9,7 @@ namespace xUnitTests.Integration
     /// Tests <see cref="Users_v1"/> endpoint
     /// </summary>
     [Collection(nameof(Integration))]
-    public class Users
+    public class Users_Endpoint
     {
 
         #region v1
@@ -33,19 +31,18 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_UserFail()
         {
-            
-            WebAPI.OnFailedRequest += (sender,args) =>
-            {
-                var s = 
-            }
-            
-            User? user = await Users_v1.Get_UserAsync(5);
            
-            
+            User? user = await Users_v1.Get_UserAsync(7);
+
             Assert.Null(user);
 
             
 
+        }
+
+        public async Task Get_Users()
+        {
+            var users = await Users_v1.Get_UsersAsync();
         }
 
         /*

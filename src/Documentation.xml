@@ -4,14 +4,21 @@
         <name>Roblox_Sharp</name>
     </assembly>
     <members>
+        <member name="T:Roblox_Sharp.Abstractions.ICreation">
+            <summary>
+            generalized template for any roblox object that has a unique <see cref="P:Roblox_Sharp.Abstractions.ICreation.Id"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Abstractions.ICreation.Id">
+            <summary>
+            The unique id of the creation
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.Abstractions.Creation`1">
             <summary>
-            generalized template for any roblox creation that has a unique id for comparisons
+            generalized template for any roblox creation that has a unique id for comparisons <br/>
+            uses <typeparamref name="T"/> for comparisons
             </summary>
-            <summary>
-            uses <typeparamref name="T"/> to automatically implement <see cref="T:System.IComparable`1"/> and <see cref="T:System.IEquatable`1"/>
-            </summary>
-            <typeparam name="T"></typeparam>
         </member>
         <member name="P:Roblox_Sharp.Abstractions.Creation`1.Id">
             <inheritdoc cref="P:Roblox_Sharp.Abstractions.ICreation.Id"/>
@@ -85,16 +92,6 @@
         <member name="P:Roblox_Sharp.Abstractions.IBadge.BadgeId">
             <summary>
             The unique id of the <see cref="T:Roblox_Sharp.Abstractions.IBadge"/>
-            </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Abstractions.ICreation">
-            <summary>
-            generalized template for any roblox object that has a unique <see cref="P:Roblox_Sharp.Abstractions.ICreation.Id"/>
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Abstractions.ICreation.Id">
-            <summary>
-            The unique id of the creation
             </summary>
         </member>
         <member name="T:Roblox_Sharp.Abstractions.IPage">
@@ -173,7 +170,7 @@
             represents any User based request that contains the user id and the username
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Abstractions.User.UsernameComparer">
+        <member name="F:Roblox_Sharp.Abstractions.User.UsernameComparer">
             <summary>
             The <see cref="T:System.StringComparer"/> used to compare the <see cref="P:Roblox_Sharp.Abstractions.User.Username"/>
             </summary>
@@ -300,6 +297,54 @@
             bitwise mappings for <see cref="T:Roblox_Sharp.Enums.Thumbnail.Size"/> <br/>
             variables names must match the ones in <see cref="T:Roblox_Sharp.Enums.Thumbnail.Size"/>
             </summary>
+        </member>
+        <member name="T:Roblox_Sharp.FetchedData">
+            <summary>
+            represents data fetched from the roblox api
+            </summary>
+            <param name="json"></param>
+            <param name="success"></param>
+        </member>
+        <member name="M:Roblox_Sharp.FetchedData.#ctor(System.String,System.Boolean)">
+            <summary>
+            represents data fetched from the roblox api
+            </summary>
+            <param name="json"></param>
+            <param name="success"></param>
+        </member>
+        <member name="F:Roblox_Sharp.FetchedData.Json">
+            <summary>
+            the fetched json data
+            </summary>
+        </member>
+        <member name="F:Roblox_Sharp.FetchedData.Success">
+            <summary>
+            whether the fetch was successful
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.FetchedData.op_Implicit(System.ValueTuple{System.String,System.Boolean})~Roblox_Sharp.FetchedData">
+            <summary>
+            lossless convert from tuple to FetchedData
+            </summary>
+            <param name="tuple"></param>
+        </member>
+        <member name="M:Roblox_Sharp.FetchedData.op_Implicit(Roblox_Sharp.FetchedData)~System.ValueTuple{System.String,System.Boolean}">
+            <summary>
+            lossless convert to tuple
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Roblox_Sharp.FetchedData.op_Explicit(Roblox_Sharp.FetchedData)~System.Boolean">
+            <summary>
+            lossy convert to bool
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Roblox_Sharp.FetchedData.ToString">
+            <summary>
+            returns the <see cref="F:Roblox_Sharp.FetchedData.Json"/>
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Roblox_Sharp.Models.Avatar">
             <summary>
@@ -840,6 +885,9 @@
             image url of thumbnail 
             </summary>
         </member>
+        <member name="M:Roblox_Sharp.Models.Thumbnail.Exists">
+            <inheritdoc/>
+        </member>
         <member name="T:Roblox_Sharp.Models.ResourceError">
             <summary>
             <see href="https://create.roblox.com/docs/cloud/reference/errors">Errors Documentation</see>
@@ -965,6 +1013,11 @@
             an event that is raised when the web request fails / statuscode is not 200
             </summary>
         </member>
+        <member name="M:Roblox_Sharp.WebAPI.Deserialize``1(Roblox_Sharp.FetchedData)">
+            <returns>
+            <see langword="null"/> or <see langword="default"/> if the request is not successful
+            </returns>
+        </member>
         <member name="M:Roblox_Sharp.WebAPI.Set_HttpClient(System.Net.Http.HttpClient)">
             <summary>
             sets the <see cref="T:System.Net.Http.HttpClient"/> used for all web requests
@@ -984,7 +1037,7 @@
             Helper Functions for making get requests
             </summary>
             <param name="url"></param>
-            <returns></returns>
+            <returns> <see cref="T:Roblox_Sharp.FetchedData"/></returns>
         </member>
     </members>
 </doc>

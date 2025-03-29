@@ -1,23 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 #pragma warning disable CA1707 // Identifiers should not contain underscores ;
 
 namespace Roblox_Sharp.Abstractions
 {
     /// <summary>
-    /// generalized template for any roblox creation that has a unique id for comparisons
+    /// generalized template for any roblox object that has a unique <see cref="ICreation.Id"/>
     /// </summary>
+    public interface ICreation
+    {
+        /// <summary>
+        /// The unique id of the creation
+        /// </summary>
+        ulong Id { get; }
+    }
+
     /// <summary>
-    /// uses <typeparamref name="T"/> to automatically implement <see cref="IComparable{T}"/> and <see cref="IEquatable{T}"/>
+    /// generalized template for any roblox creation that has a unique id for comparisons <br/>
+    /// uses <typeparamref name="T"/> for comparisons
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     public abstract class Creation<T> : 
         ICreation, IEquatable<Creation<T>>, IComparable<Creation<T>> , IEqualityComparer<Creation<T>>
     {
         /// <inheritdoc cref="ICreation.Id"/>
-        protected ulong Id { get; init; }
+        protected ulong Id { get; init; } = default;
 
         ulong ICreation.Id => Id;
 

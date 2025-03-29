@@ -1,4 +1,6 @@
-﻿using Roblox_Sharp.Models;
+﻿using Roblox_Sharp.Abstractions;
+using Roblox_Sharp.Models;
+using Roblox_Sharp.Models.v1;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
@@ -48,14 +50,26 @@ namespace Roblox_Sharp
         /// </summary>
         public static event EventHandler<HttpResponseMessage>? OnFailedRequest;
 
-        internal static void RaiseRequestEvents()
+        #region internal helpers
+        internal static bool RaiseRequestEvents(HttpResponseMessage response)
         {
-            args ??= EventArgs.Empty;
-
-            if (response.IsSuccessStatusCode) OnSuccessfulRequest?.Invoke(Client(), response);
-            else OnFailedRequest?.Invoke(Client(), response);
+            if (response.IsSuccessStatusCode)
+            {
+                OnSuccessfulRequest?.Invoke(null, response);
+                return true;
+            }
+                OnFailedRequest?.Invoke(null, response);
+                return false;
         }
-       
+        
+        /// <returns>
+        /// <see langword="null"/> or <see langword="default"/> if the request is not successful
+        /// </returns>
+        internal static T? Deserialize<T>(FetchedData data) => data.Success ? JsonSerializer.Deserialize<T>(data.Json) : default;
+        
+           
+        #endregion
+
         static WebAPI()
         {
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -89,15 +103,12 @@ namespace Roblox_Sharp
         /// Helper Functions for making get requests
         /// </summary>
         /// <param name="url"></param>
-        /// <returns></returns>
-        public static async Task<string> Get_RequestAsync([StringSyntax(StringSyntaxAttribute.Uri)] string url)
+        /// <returns> <see cref="FetchedData"/></returns>
+        public static async Task<FetchedData> Get_RequestAsync([StringSyntax(StringSyntaxAttribute.Uri)] string url)
         {
             using HttpResponseMessage response = await _client.GetAsync(url);
-            {
-                RaiseRequestEvents(response);
-
-                return await response.Content.ReadAsStringAsync();
-            }
+                return new(await response.Content.ReadAsStringAsync(), RaiseRequestEvents(response));
+            
         }
 
         /*

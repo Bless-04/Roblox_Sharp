@@ -51,6 +51,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Include="FetchedData.cs" />
   </ItemGroup>
 
   <ItemGroup>

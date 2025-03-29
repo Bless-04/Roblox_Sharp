@@ -25,7 +25,7 @@ namespace Roblox_Sharp.Abstractions
         /// The <see cref="StringComparer"/> used to compare the <see cref="User.Username"/>
         /// </summary>
         [JsonIgnore]
-        public static StringComparer UsernameComparer { get; } = StringComparer.OrdinalIgnoreCase;
+        public static readonly StringComparer UsernameComparer = StringComparer.OrdinalIgnoreCase;
 
         /// <summary>
         /// The user's unique username
@@ -75,5 +75,6 @@ namespace Roblox_Sharp.Abstractions
                 "name" => "@{username} ",
                 _ => throw new FormatException()
             };
+
     }
 }
