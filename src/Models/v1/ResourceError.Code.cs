@@ -21,7 +21,7 @@ public partial class ResourceError
         NOT_FOUND = 404,
         ABORTED = 409,
         RESOURCE_EXHAUSTED = 429,
-        CANCELLED = 499, 
+        CANCELLED = 499,
         INTERNAL = 500,
         NOT_IMPLEMENTED = 501,
         UNAVAILABLE = 503

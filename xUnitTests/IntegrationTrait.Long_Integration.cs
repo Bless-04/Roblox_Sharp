@@ -10,20 +10,20 @@ public partial class IntegrationTrait
     /// Exists for tests that are easiliy rate limited
     /// Also Marks Test with Long Integration Trait
     /// </summary>
-    
+
     [TraitDiscoverer("Xunit.Sdk.TraitDiscoverer", "xunit.core")]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public sealed class Long_Integration : BeforeAfterTestAttribute,
         ITraitAttribute
     {
 
-        public Long_Integration(string name = nameof(Roblox_Sharp.Endpoints), string value = nameof(Long_Integration)){}
-        
+        public Long_Integration(string name = nameof(Roblox_Sharp.Endpoints), string value = nameof(Long_Integration)) { }
+
 
         public override void Before(MethodInfo methodUnderTest) => Task.Delay(61000).Wait();
 
-        
 
-        
+
+
     }
 }

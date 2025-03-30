@@ -3,8 +3,8 @@
     /// <summary>
     /// Represents a badge
     /// </summary>
-    public interface IBadge 
-    {   
+    public interface IBadge
+    {
         /// <summary>
         /// The unique id of the <see cref="IBadge"/>
         /// </summary>

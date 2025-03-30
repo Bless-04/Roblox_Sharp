@@ -4,7 +4,8 @@ namespace Roblox_Sharp.Models.v1;
 
 public partial class User
 {
-    public partial class Presence { 
+    public partial class Presence
+    {
 
         /// <summary>
         /// The Type of the <see cref="User.Presence"/>

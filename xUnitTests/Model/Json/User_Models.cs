@@ -1,4 +1,5 @@
-﻿using Roblox_Sharp.Models.v1;
+﻿using Roblox_Sharp.Models;
+using Roblox_Sharp.Models.v1;
 using System.Text.Json;
 
 using static xUnitTests.TestHelper;
@@ -27,21 +28,43 @@ namespace xUnitTests.Model.Json
               ""name"": ""Roblox"",
               ""displayName"": ""Roblox""
             }";
-            
+
 
             User? user = JsonSerializer.Deserialize<User>(json_response);
 
             Assert.NotNull(user);
 
-            Assert.True(user.Description.Length > 50,isFailing(nameof(user.Description)));
+            Assert.True(user.Description.Length > 50, isFailing(nameof(user.Description)));
             Assert.Equal(2006, user.Created.Year);
-            Assert.False(user.IsBanned,isFailing(nameof(user.IsBanned)));
-            Assert.True(user.HasVerifiedBadge,isFailing(nameof(user.HasVerifiedBadge)));
+            Assert.False(user.IsBanned, isFailing(nameof(user.IsBanned)));
+            Assert.True(user.HasVerifiedBadge, isFailing(nameof(user.HasVerifiedBadge)));
             Assert.Equal<ulong>(1, user.UserId);
             Assert.Equal("Roblox", user.Username);
-            Assert.Equal(user.Username,user.DisplayName);
+            Assert.Equal(user.Username, user.DisplayName);
 
             Assert.True(RoundTrip(user));
+        }
+
+        [Fact]
+        public void UserByUserId()
+        {
+            const string json = "{\r\n  \"data\": [\r\n    {\r\n      \"hasVerifiedBadge\": true,\r\n      \"id\": 1,\r\n      \"name\": \"Roblox\",\r\n      \"displayName\": \"Roblox\"\r\n    },\r\n    {\r\n      \"hasVerifiedBadge\": true,\r\n      \"id\": 156,\r\n      \"name\": \"builderman\",\r\n      \"displayName\": \"builderman\"\r\n    },\r\n    {\r\n      \"hasVerifiedBadge\": false,\r\n      \"id\": 256,\r\n      \"name\": \"UN109175575\",\r\n      \"displayName\": \"UN109175575\"\r\n    }\r\n  ]\r\n}";
+
+            var page = JsonSerializer.Deserialize<Page<UserByUserId>>(json);
+
+            Assert.NotNull(page);
+
+            Assert.True(page.Count != 0, isFailing(nameof(page.Count)));
+
+            var user1 = page.Data[0];
+
+            Assert.NotNull(page);
+        }
+
+        [Fact]
+        public void UserByUsername()
+        {
+
         }
 
     }

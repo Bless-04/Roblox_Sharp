@@ -1,6 +1,5 @@
-﻿using System.Text.Json.Serialization;
-
-using Roblox_Sharp.Abstractions;
+﻿using Roblox_Sharp.Abstractions;
+using System.Text.Json.Serialization;
 namespace Roblox_Sharp.Models
 {
     //TODO: finish
@@ -38,9 +37,9 @@ namespace Roblox_Sharp.Models
         /// <returns></returns>
         public Game Clone() => new()
         {
-            UniverseId = this.UniverseId,
-            Name = this.Name,
-            RootPlaceId = this.RootPlaceId
+            UniverseId = UniverseId,
+            Name = Name,
+            RootPlaceId = RootPlaceId
         };
     }
 }

@@ -31,18 +31,21 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_UserFail()
         {
-           
+
             User? user = await Users_v1.Get_UserAsync(7);
 
             Assert.Null(user);
-
-            
-
         }
 
-        public async Task Get_Users()
+        [IntegrationTrait]
+        [Fact]
+        public async Task Get_UserByUsername()
         {
-            var users = await Users_v1.Get_UsersAsync();
+            var users = await Users_v1.Get_UsersAsync(["Babxue"]);
+
+            Assert.NotNull(users);
+
+            Assert.True(users.Count > 0);
         }
 
         /*

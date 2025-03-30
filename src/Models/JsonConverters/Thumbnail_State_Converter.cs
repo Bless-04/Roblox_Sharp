@@ -1,8 +1,8 @@
 ﻿using Roblox_Sharp.Enums;
-using System;
-using System.Text.Json.Serialization;
-using System.Text.Json;
 using Roblox_Sharp.Enums.Thumbnail;
+using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models.JsonConverters
 {

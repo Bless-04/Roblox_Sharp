@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Text.Json.Serialization;
 
 #pragma warning disable CA1707 // Identifiers should not contain underscores ;
 
@@ -22,8 +21,8 @@ namespace Roblox_Sharp.Abstractions
     /// generalized template for any roblox creation that has a unique id for comparisons <br/>
     /// uses <typeparamref name="T"/> for comparisons
     /// </summary>
-    public abstract class Creation<T> : 
-        ICreation, IEquatable<Creation<T>>, IComparable<Creation<T>> , IEqualityComparer<Creation<T>>
+    public abstract class Creation<T> :
+        ICreation, IEquatable<Creation<T>>, IComparable<Creation<T>>, IEqualityComparer<Creation<T>>
     {
         /// <inheritdoc cref="ICreation.Id"/>
         protected ulong Id { get; init; } = default;
@@ -31,10 +30,10 @@ namespace Roblox_Sharp.Abstractions
         ulong ICreation.Id => Id;
 
         /// <inheritdoc/>
-        public int CompareTo(Creation<T>? other) => other is null 
-            ? 1 
+        public int CompareTo(Creation<T>? other) => other is null
+            ? 1
             : (int)(Id - other.Id); // older if smaller
-       
+
         /// <summary>
         /// equal if and only if the ids are the same
         /// </summary>

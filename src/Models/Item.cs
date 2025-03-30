@@ -1,6 +1,6 @@
 ﻿
-using Roblox_Sharp.Enums;
 using Roblox_Sharp.Abstractions;
+using Roblox_Sharp.Enums;
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models

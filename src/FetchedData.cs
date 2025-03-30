@@ -7,7 +7,7 @@ namespace Roblox_Sharp
     /// </summary>
     /// <param name="json"></param>
     /// <param name="success"></param>
-    public class FetchedData(string? json, bool success) 
+    public class FetchedData(string? json, bool success)
     {
         /// <summary>
         /// the fetched json data
@@ -18,7 +18,7 @@ namespace Roblox_Sharp
         /// <summary>
         /// whether the fetch was successful
         /// </summary>
-        public readonly bool Success = success && json != string.Empty;
+        public readonly bool Success = json is not null && json != string.Empty && success;
 
         #region lossless convert
         /// <summary>
@@ -32,7 +32,7 @@ namespace Roblox_Sharp
         /// </summary>
         /// <param name="data"></param>
         public static implicit operator (string json, bool success)(FetchedData data) => (data.Json, data.Success);
-        
+
         #endregion
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Roblox_Sharp
         /// </summary>
         /// <param name="data"></param>
         public static explicit operator bool(FetchedData data) => data.Success;
-       
+
         /// <summary>
         /// returns the <see cref="Json"/>
         /// </summary>

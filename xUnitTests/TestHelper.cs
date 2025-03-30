@@ -1,5 +1,5 @@
-﻿using Roblox_Sharp.Abstractions;
-using System.Diagnostics.CodeAnalysis;
+﻿using Roblox_Sharp;
+using System;
 using System.Text.Json;
 
 namespace xUnitTests
@@ -9,26 +9,31 @@ namespace xUnitTests
         public static readonly string[] Errors =
         {
             @"{
-  ""errors"": [
-    {
-      ""code"": 3,
-      ""message"": ""The user id is invalid.""
-    }
-  ]
-}",
+          ""errors"": [
+            {
+              ""code"": 3,
+              ""message"": ""The user id is invalid.""
+            }
+          ]
+        }",
         };
 
         public static string isFailing(string variable_name) => $"{variable_name} is failing";
 
 
-        public static bool HelperTests<T>(T obj)
+        static TestHelper()
         {
-            Assert.True(RoundTrip(obj),isFailing(nameof(RoundTrip)));
+            WebAPI.OnFailedRequest += (obj, args) =>
+            {
 
-            //Assert.True(ErrorTest(obj as ICreation),isFailing(nameof(ErrorTest)));
 
-            return true;
+
+                Console.WriteLine(args.Reponse);
+            };
         }
+
+
+      
 
         public static bool RoundTrip<T>(T obj)
         {
@@ -45,6 +50,6 @@ namespace xUnitTests
             string json2 = JsonSerializer.Serialize<T>(deobj);
 
             return true;
-        }        
+        }
     }
 }

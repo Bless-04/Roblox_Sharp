@@ -19,7 +19,7 @@ namespace Roblox_Sharp.Abstractions
     /// represents any User based request that contains the user id and the username
     /// </summary>
     [DebuggerDisplay("{Username} (ID {UserId})")]
-    public abstract class User : Creation<IUser>, IUser , IFormattable
+    public abstract class User : Creation<IUser>, IUser, IFormattable
     {
         /// <summary>
         /// The <see cref="StringComparer"/> used to compare the <see cref="User.Username"/>
@@ -45,7 +45,7 @@ namespace Roblox_Sharp.Abstractions
         /// A string representation of the <see cref="User"/>
         /// </returns>
         public override string ToString() => $"{Username} (ID {UserId})";
-      
+
         /// /// <summary>
         /// Formats the <see cref="User"/> information based on the provided format string.
         /// Supported format strings:

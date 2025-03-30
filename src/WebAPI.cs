@@ -1,11 +1,7 @@
-﻿using Roblox_Sharp.Abstractions;
-using Roblox_Sharp.Models;
-using Roblox_Sharp.Models.v1;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,7 +15,7 @@ namespace Roblox_Sharp
     /// </summary>
     public static class WebAPI
     {
-       
+
         internal static HttpClient _client = new();
 
         /// <summary>
@@ -43,31 +39,25 @@ namespace Roblox_Sharp
         /// <summary>
         /// an event that is raised when the web request is successful/statuscode 200
         /// </summary>
-        public static event EventHandler<HttpResponseMessage>? OnSuccessfulRequest;
+        public static event EventHandler? OnSuccessfulRequest;
 
         /// <summary>
         /// an event that is raised when the web request fails / statuscode is not 200
         /// </summary>
-        public static event EventHandler<HttpResponseMessage>? OnFailedRequest;
+        public static event EventHandler<FailedRequestEventArgs>? OnFailedRequest;
 
         #region internal helpers
-        internal static bool RaiseRequestEvents(HttpResponseMessage response)
+        internal static void FireRequestEvents(HttpResponseMessage response)
         {
-            if (response.IsSuccessStatusCode)
-            {
-                OnSuccessfulRequest?.Invoke(null, response);
-                return true;
-            }
-                OnFailedRequest?.Invoke(null, response);
-                return false;
+            if (response.IsSuccessStatusCode) OnSuccessfulRequest?.Invoke(null, EventArgs.Empty);
+            else OnFailedRequest?.Invoke(null, new FailedRequestEventArgs(response));
         }
-        
+
         /// <returns>
         /// <see langword="null"/> or <see langword="default"/> if the request is not successful
         /// </returns>
         internal static T? Deserialize<T>(FetchedData data) => data.Success ? JsonSerializer.Deserialize<T>(data.Json) : default;
-        
-           
+
         #endregion
 
         static WebAPI()
@@ -77,9 +67,9 @@ namespace Roblox_Sharp
             //_client.DefaultRequestHeaders.Authorization needed for auth
         }
 
-        
+
         /// <summary>
-        /// sets the <see cref="HttpClient"/> used for all web requests
+        /// atomically sets the <see cref="HttpClient"/> used for all web requests
         /// useful for configuring httpclient
         /// sets to default if null
         /// </summary>
@@ -107,8 +97,9 @@ namespace Roblox_Sharp
         public static async Task<FetchedData> Get_RequestAsync([StringSyntax(StringSyntaxAttribute.Uri)] string url)
         {
             using HttpResponseMessage response = await _client.GetAsync(url);
-                return new(await response.Content.ReadAsStringAsync(), RaiseRequestEvents(response));
             
+            FireRequestEvents(response);
+            return new FetchedData(await response.Content.ReadAsStringAsync(), response.IsSuccessStatusCode);
         }
 
         /*
@@ -119,7 +110,7 @@ namespace Roblox_Sharp
         {
             using HttpResponseMessage response = await _client.PostAsync(url, new StringContent(JsonSerializer.Serialize(POST),Encoding.UTF8, "application/json"));
             {
-                RaiseRequestEvents(response);
+                FireRequestEvents(response);
                 return await response.Content.ReadAsStringAsync();
             }
                 

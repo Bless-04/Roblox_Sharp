@@ -14,7 +14,7 @@ namespace Roblox_Sharp.Models.JsonConverters
            ColorTranslator.FromHtml(
               reader.GetString()![0] != '#' //if for some reason it doesnt start with a #
                    ? $"#{reader.GetString()}"
-                   : reader.GetString() ?? throw new JsonException("Error when converting " + nameof(Color)) 
+                   : reader.GetString() ?? throw new JsonException("Error when converting " + nameof(Color))
            );
 
         public override void Write(Utf8JsonWriter writer, Color value, JsonSerializerOptions options) =>

@@ -1,6 +1,6 @@
+using Roblox_Sharp.Abstractions;
 using System;
 using System.Text.Json.Serialization;
-using Roblox_Sharp.Abstractions;
 
 namespace Roblox_Sharp.Models.v1
 {
@@ -49,11 +49,11 @@ namespace Roblox_Sharp.Models.v1
         [JsonPropertyName("id")]
         private ulong id { init => base.Id = value; }
 
-        
+
         [JsonInclude]
         [JsonPropertyName("name")]
         private string name { init => base.Username = value; }
-        
+
 
         /*
         /// <summary>

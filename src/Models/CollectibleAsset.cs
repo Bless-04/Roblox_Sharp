@@ -1,5 +1,5 @@
-﻿using System.Text.Json.Serialization;
-using Roblox_Sharp.Abstractions;
+﻿using Roblox_Sharp.Abstractions;
+using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models
 {
@@ -27,7 +27,7 @@ namespace Roblox_Sharp.Models
             get => base.Id;
             init => base.Id = value;
         }
-            
+
         /// <summary>
         /// The asset name of the asset
         /// </summary>

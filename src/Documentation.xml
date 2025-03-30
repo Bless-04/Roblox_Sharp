@@ -298,6 +298,16 @@
             variables names must match the ones in <see cref="T:Roblox_Sharp.Enums.Thumbnail.Size"/>
             </summary>
         </member>
+        <member name="T:Roblox_Sharp.FailedRequestEventArgs">
+            <summary>
+            event args for requests
+            </summary>
+        </member>
+        <member name="M:Roblox_Sharp.FailedRequestEventArgs.#ctor(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            event args for requests
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.FetchedData">
             <summary>
             represents data fetched from the roblox api
@@ -1020,7 +1030,7 @@
         </member>
         <member name="M:Roblox_Sharp.WebAPI.Set_HttpClient(System.Net.Http.HttpClient)">
             <summary>
-            sets the <see cref="T:System.Net.Http.HttpClient"/> used for all web requests
+            atomically sets the <see cref="T:System.Net.Http.HttpClient"/> used for all web requests
             useful for configuring httpclient
             sets to default if null
             </summary>
