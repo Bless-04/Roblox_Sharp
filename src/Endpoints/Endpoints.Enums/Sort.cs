@@ -2,6 +2,9 @@
 
 namespace Roblox_Sharp.Endpoints
 {
+    /// <summary>
+    /// The order the results are sorted in.
+    /// </summary>
     public enum Sort : byte
     {
         Asc,

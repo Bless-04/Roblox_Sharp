@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Roblox_Sharp.Models.v1;
+using Roblox_Sharp.Models;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -54,8 +57,10 @@ namespace Roblox_Sharp
         }
 
         /// <returns>
+        /// the deserialized <typeparamref name="T"/> <br/> 
         /// <see langword="null"/> or <see langword="default"/> if the request is not successful
         /// </returns>
+        /// <inheritdoc cref="JsonSerializer.Deserialize{TValue}(string, JsonSerializerOptions?)"/>
         internal static T? Deserialize<T>(FetchedData data) => data.Success ? JsonSerializer.Deserialize<T>(data.Json) : default;
 
         #endregion
@@ -80,24 +85,42 @@ namespace Roblox_Sharp
         /// sets the name of the user agent used for all requests
         /// </summary>
         /// <param name="name"></param>
-        public static void Set_UserAgent(string name)
+        /// <inheritdoc cref="HttpHeaderValueCollection{T}.TryParseAdd(string?)"/>
+        public static bool Set_UserAgent(string name)
         {
             _client.DefaultRequestHeaders.UserAgent.Clear();
-            _client.DefaultRequestHeaders.UserAgent.TryParseAdd(name);
+            return _client.DefaultRequestHeaders.UserAgent.TryParseAdd(name);
         }
 
 
         #region Requests
 
         /// <summary>
-        /// Helper Functions for making get requests
+        /// Helper Functions for making get requests <br/>
+        /// <inheritdoc cref="HttpClient.GetAsync(string?)"/>
         /// </summary>
         /// <param name="url"></param>
-        /// <returns> <see cref="FetchedData"/></returns>
+        /// <returns><see cref="FetchedData"/></returns>
+        /// <inheritdoc cref="HttpClient.GetAsync(string?)"/>
         public static async Task<FetchedData> Get_RequestAsync([StringSyntax(StringSyntaxAttribute.Uri)] string url)
         {
             using HttpResponseMessage response = await _client.GetAsync(url);
             
+            FireRequestEvents(response);
+            return new FetchedData(await response.Content.ReadAsStringAsync(),response.IsSuccessStatusCode);
+        }
+
+        /// <summary>
+        /// Helper Functions for making post requests
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url">the req url</param>
+        /// <param name="model">the post model</param>
+        /// <returns><see cref="FetchedData"/></returns>
+        public static async Task<FetchedData> Post_RequestAsync<T>([StringSyntax(StringSyntaxAttribute.Uri)] string url,T model)
+        {
+            using HttpResponseMessage response = await _client.PostAsJsonAsync(url, model);
+
             FireRequestEvents(response);
             return new FetchedData(await response.Content.ReadAsStringAsync(), response.IsSuccessStatusCode);
         }

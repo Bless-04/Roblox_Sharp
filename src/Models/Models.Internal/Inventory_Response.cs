@@ -1,7 +1,10 @@
-﻿namespace Roblox_Sharp.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Roblox_Sharp.Models
 {
     internal readonly struct Inventory_Response
     {
-        public required bool canView { get; init; }
+        [JsonPropertyName("canView")]
+        public required bool CanView { get; init; }
     }
 }

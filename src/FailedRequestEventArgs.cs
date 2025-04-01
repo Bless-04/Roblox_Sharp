@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using System.Net.Http;
 
 namespace Roblox_Sharp
@@ -10,13 +9,16 @@ namespace Roblox_Sharp
     public class FailedRequestEventArgs (HttpResponseMessage response) : EventArgs
     {
 
-        public readonly HttpStatusCode StatusCode = response.StatusCode;
-
-        public readonly HttpRequestMessage? Request = response.RequestMessage;
+        public readonly HttpResponseMessage Response = response;
 
 
-        public readonly HttpResponseMessage Reponse = response;
-        
+        /// <summary>
+        /// disposes the response
+        /// </summary>
+        ~FailedRequestEventArgs()
+        {
+            Response.Dispose();
+        }
         
     }
 }

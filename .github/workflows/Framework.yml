@@ -21,15 +21,6 @@ jobs:
             - name: Build Roblox_Sharp
               run: dotnet build -c Debug Roblox_Sharp.sln
 
-            - name: Model Functionality
-              run: dotnet test -c Debug --no-build --filter Models=Model_Functionality
-
-              continue-on-error: true
-
-            - name: JSON Serialization
-              run: dotnet test -c Debug --no-build --filter Models=Serialization
-
-              continue-on-error: true
-
-            - name: JSON Deserialization
-              run: dotnet test -c Debug --no-build --filter Models=Deserialization
+            - name: Json Serialization/Deserialization
+              run: dotnet test -c Debug --no-build --filter Models=Json
+              #continue-on-error: true

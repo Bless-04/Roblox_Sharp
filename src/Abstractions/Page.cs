@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Abstractions
@@ -19,10 +20,6 @@ namespace Roblox_Sharp.Abstractions
         /// next page cursor of the request.<br/> <see langword="null"/> if there are no more pages or instance is the last page
         /// </summary>
         public string? NextPageCursor { get; }
-
-        IPage go_Previous();
-
-        IPage go_Next();
     }
 
     /// <summary>
@@ -32,21 +29,37 @@ namespace Roblox_Sharp.Abstractions
     /// <remarks>indirectly implements <seealso cref="IReadOnlyList{T}"/> </remarks>
     public abstract class Page<T> : IPage
     {
+       // protected Func<string?, string?>? cursorChanger = null;
+
         /// <inheritdoc/>
         [JsonPropertyName("previousPageCursor")]
-        public string? PreviousPageCursor { get; protected set; }
+        public string? PreviousPageCursor { get; set; }
 
         /// <inheritdoc/>
         [JsonPropertyName("nextPageCursor")]
-        public string? NextPageCursor { get; protected set; }
+        public string? NextPageCursor { get; set; }
 
         /// <summary>
         /// List of <typeparamref name="T"/> returned by the request
         /// </summary>
         [JsonPropertyName("data")]
-        public IReadOnlyList<T> Data { get; protected set; } = [];
+        public IReadOnlyList<T> Data { get; set; } = [];
+
+        /// <returns>
+        /// 
+        /// <see cref="NextPageCursor"/> <br/>
+        /// <see langword="null"/> if there is no next page
+        /// </returns>
+        public static explicit operator string?(Page<T> page) => page.NextPageCursor;
+
+        /// <returns>
+        /// <see langword="true"/> if there is a next page
+        /// </returns>
+        [JsonIgnore]
+        public bool HasNextPage => NextPageCursor != null;
 
         /// <inheritdoc cref="IReadOnlyCollection{T}.Count"/>
+        [JsonIgnore]
         public int Count => Data.Count;
 
         /// <inheritdoc cref="IReadOnlyList{T}.this[int]"/>
@@ -87,6 +100,8 @@ namespace Roblox_Sharp.Abstractions
         public static Page<T> operator ++(Page<T> page) => page.go_Next();
 
         public abstract Page<T> go_Next();
+
+        public abstract Page<T> go_Previous();
 
         /// <summary>
         /// <inheritdoc cref="IEnumerable.GetEnumerator"/>

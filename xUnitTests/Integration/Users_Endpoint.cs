@@ -9,8 +9,9 @@ namespace xUnitTests.Integration
     /// Tests <see cref="Users_v1"/> endpoint
     /// </summary>
     [Collection(nameof(Integration))]
-    public class Users_Endpoint
+    public class Users_Endpoint : TestHelper
     {
+        const bool ExcludeBannedUsers = false;
 
         #region v1
 
@@ -22,17 +23,22 @@ namespace xUnitTests.Integration
 
             Assert.NotNull(roblox);
 
-            Assert.True(roblox.UserId == ROBLOX, TestHelper.isFailing(nameof(roblox.UserId)));
+            Assert.True(roblox.UserId == ROBLOX, isFailing(nameof(roblox.UserId)));
 
             Assert.Equal(nameof(ROBLOX), roblox.Username, ignoreCase: true);
+            Assert.True(roblox.Description.Length > 50,isFailing(nameof(roblox.Description)));
+            Assert.True(roblox.DisplayName.Length > 0,isFailing(nameof(roblox.DisplayName)));
+
+            Assert.True(roblox.HasVerifiedBadge, isFailing(nameof(roblox.HasVerifiedBadge)));
+
+            Assert.False(roblox.IsBanned, isFailing(nameof(roblox.IsBanned)));
         }
 
-        [IntegrationTrait]
+        [IntegrationTrait.FailCase]
         [Fact]
-        public async Task Get_UserFail()
+        public async Task Get_User_Fail()
         {
-
-            User? user = await Users_v1.Get_UserAsync(7);
+            User? user = await Users_v1.Get_UserAsync(DOEST_EXIST);
 
             Assert.Null(user);
         }
@@ -41,13 +47,83 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_UserByUsername()
         {
-            var users = await Users_v1.Get_UsersAsync(["Babxue"]);
+            string message = isFailing(nameof(Users_v1.Get_UsersAsync) + " for usernames");
+
+            var users = await Users_v1.Get_UsersAsync(["erik.cassel","Roblox"],ExcludeBannedUsers);
 
             Assert.NotNull(users);
+            Assert.True(users.Count == 2,message);
 
-            Assert.True(users.Count > 0);
+            foreach (var user in users)
+            {
+                Assert.NotNull(user);
+                Assert.Equal(user.Username,user.RequestedUsername);
+                Assert.True(user.UserId != default,message);
+                Assert.True(user.Username.Length > 0,message);
+            }
         }
 
+        [IntegrationTrait.FailCase]
+        [Fact]
+        public async Task Get_UserByUsername_Fail()
+        {
+            var user = await Users_v1.Get_UsersAsync([""],ExcludeBannedUsers);
+            
+            Assert.Empty(user!);
+        }
+
+        [IntegrationTrait]
+        [Fact]
+        public async Task Get_UserById()
+        {
+            string message = isFailing(nameof(Users_v1.Get_UsersAsync) + " for ids");
+            var users = await Users_v1.Get_UsersAsync([ROBLOX,SHEDLETSKY,BUILDERMAN],ExcludeBannedUsers);
+
+            Assert.NotNull(users);
+            Assert.True(users.Count == 3, message);
+
+            foreach (var user in users)
+            {
+                Assert.NotNull(user);
+
+                if (user.UserId == SHEDLETSKY) Assert.False(user.HasVerifiedBadge, message);
+                else Assert.True(user.HasVerifiedBadge,message);
+                Assert.True(user.UserId != default,message);
+                Assert.True(user.Username.Length > 0, message);
+            }
+        }
+
+        [IntegrationTrait.FailCase]
+        [Fact]
+        public async Task Get_UserById_Fail()
+        {
+            var user = await Users_v1.Get_UsersAsync([DOEST_EXIST],ExcludeBannedUsers);
+
+            Assert.Empty(user!);
+        }
+
+        [IntegrationTrait.RateLimitted]
+        [Fact]
+        public async Task Get_UsernameHistory()
+        {
+            var user = await Users_v1.Get_UsernameHistoryAsync(INCEPTIONTIME);
+
+            
+            Assert.NotNull(user);
+            Assert.True(user.Count > 1 && user[0].Length > 0, isFailing(nameof(Get_UsernameHistory)));
+        }
+
+
+        [IntegrationTrait.RateLimitted.FailCase2]
+        [Fact]
+        public async Task Get_UsernameHistory_Fail()
+        {
+            var user = await Users_v1.Get_UsernameHistoryAsync(DELETED);
+
+            Assert.Null(user);
+        }
+
+        
         /*
         [IntegrationTrait]
         [Theory]

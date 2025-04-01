@@ -35,10 +35,17 @@ jobs:
             - name: Build Roblox_Sharp
               run: dotnet build
 
-            - name: Short Integration Tests
+            - name: (Success) Integration Tests
               run: dotnet test -c Debug --no-build  --filter Endpoints=Integration
-
               continue-on-error: true
 
-            - name: Long Integration Tests
-              run: dotnet test -c Debug --no-build --filter Endpoints=Long_Integration
+            - name: (Fail) Integration Tests
+              run: dotnet test -c Debug --no-build --filter Endpoints=FailCase
+              continue-on-error: true
+
+            - name: (Success) Ratelimitted Integration Tests
+              run: dotnet test -c Debug --no-build --filter Endpoints=Ratelimitted
+              continue-on-error: true
+
+            - name: (Fail) Ratelimitted Integration Tests
+              run: dotnet test -c Debug --no-build --filter Endpoints=FailCase2

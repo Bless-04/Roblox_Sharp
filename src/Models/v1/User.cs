@@ -1,60 +1,51 @@
-using Roblox_Sharp.Abstractions;
 using System;
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models.v1
 {
+    /*
+     {
+  "description": "string",
+  "created": "2025-04-01T03:44:14.631Z",
+  "isBanned": true,
+  "externalAppDisplayName": "string",
+  "hasVerifiedBadge": true,
+  "id": 0,
+  "name": "string",
+  "displayName": "string"
+}
+     */
     /// <summary>
     /// used to deserialize <see cref="Endpoints.Users_v1.Get_UserAsync(ulong)"/>
     /// <see href="https://users.roblox.com//docs/index.html">Users v1</see>
     /// </summary>
-    public partial class User : Abstractions.User,
-        IUser
+    public partial class User : UserAuthenticated
     {
         #region Properties
-        /// <summary>
-        /// The users display name
-        /// </summary>
-        [JsonPropertyName("displayName")]
-        public string DisplayName { get; init; } = string.Empty;
-
         /// <summary>
         /// The users description 
         /// </summary>
         [JsonPropertyName("description")]
-        public string Description { get; init; } = string.Empty;
+        public required string Description { get; init; } 
 
         /// <summary>
         /// creation date and time of user; When the User signed up
         /// </summary>
         [JsonPropertyName("created")]
-        public DateTime Created { get; init; }
+        public required DateTime Created { get; init; }
 
         /// <summary>
         /// <see langword="true"/> if the user is banned
         /// </summary>
         [JsonPropertyName("isBanned")]
-        public bool IsBanned { get; init; }
+        public required bool IsBanned { get; init; }
 
         /// <summary>
         /// <see langword="true"/> only if the user has a verified badge
         /// </summary>
         [JsonPropertyName("hasVerifiedBadge")]
-        public bool HasVerifiedBadge { get; init; }
+        public required bool HasVerifiedBadge { get; init; }
         #endregion
-
-        #region Special Properties
-
-        [JsonInclude]
-        [JsonPropertyName("id")]
-        private ulong id { init => base.Id = value; }
-
-
-        [JsonInclude]
-        [JsonPropertyName("name")]
-        private string name { init => base.Username = value; }
-
-
         /*
         /// <summary>
         /// <b>Unused, legacy attribute. For now always <see langword="null"/> to not disturb existing client code that might rely on its existence. </b><br></br>
@@ -69,8 +60,6 @@ namespace Roblox_Sharp.Models.v1
         /// </summary>
         [JsonIgnore]
         public string CreatedString => Created.ToString("d");
-        #endregion
-
     }
 }
 

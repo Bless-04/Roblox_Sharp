@@ -7,7 +7,7 @@ namespace Roblox_Sharp
     /// </summary>
     /// <param name="json"></param>
     /// <param name="success"></param>
-    public class FetchedData(string? json, bool success)
+    public class FetchedData(in string? json,in bool success)
     {
         /// <summary>
         /// the fetched json data
@@ -25,13 +25,13 @@ namespace Roblox_Sharp
         /// lossless convert from tuple to FetchedData
         /// </summary>
         /// <param name="tuple"></param>
-        public static implicit operator FetchedData((string json, bool success) tuple) => new(tuple.json, tuple.success);
+        public static implicit operator FetchedData(in (string json, bool success) tuple) => new(tuple.json, tuple.success);
 
         /// <summary>
         /// lossless convert to tuple
         /// </summary>
         /// <param name="data"></param>
-        public static implicit operator (string json, bool success)(FetchedData data) => (data.Json, data.Success);
+        public static implicit operator (string json, bool success)(in FetchedData data) => (data.Json, data.Success);
 
         #endregion
 

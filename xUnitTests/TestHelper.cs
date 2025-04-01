@@ -1,39 +1,24 @@
 ﻿using Roblox_Sharp;
 using System;
+using System.Diagnostics;
 using System.Text.Json;
 
 namespace xUnitTests
 {
-    public static class TestHelper
+    public class TestHelper
     {
-        public static readonly string[] Errors =
+        public TestHelper() 
         {
-            @"{
-          ""errors"": [
-            {
-              ""code"": 3,
-              ""message"": ""The user id is invalid.""
-            }
-          ]
-        }",
-        };
+            if (!WebAPI.Set_UserAgent(nameof(xUnitTests))) throw new Exception(nameof(WebAPI.Set_UserAgent));
 
-        public static string isFailing(string variable_name) => $"{variable_name} is failing";
-
-
-        static TestHelper()
-        {
-            WebAPI.OnFailedRequest += (obj, args) =>
-            {
-
-
-
-                Console.WriteLine(args.Reponse);
-            };
+            WebAPI.OnFailedRequest += (obj, args) => Debug.WriteLine(args.Response);
+            
         }
+            
 
 
-      
+        /// <returns><paramref name="variable_name"/> is failing</returns>
+        public static string isFailing(string variable_name) => $"{variable_name} is failing";
 
         public static bool RoundTrip<T>(T obj)
         {
@@ -47,7 +32,7 @@ namespace xUnitTests
             Assert.Equal(deobj, obj);
             Assert.Equal(deobj.GetHashCode(), obj.GetHashCode());
 
-            string json2 = JsonSerializer.Serialize<T>(deobj);
+            
 
             return true;
         }

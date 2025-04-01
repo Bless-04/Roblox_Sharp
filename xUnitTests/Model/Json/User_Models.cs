@@ -59,13 +59,50 @@ namespace xUnitTests.Model.Json
             var user1 = page.Data[0];
 
             Assert.NotNull(page);
+            foreach (var user in page.Data)
+            {
+                Assert.NotNull(user);
+                Assert.True(user.UserId > 0, isFailing(nameof(user.UserId)));
+                Assert.True(user.Username.Length > 0, isFailing(nameof(user.Username)));
+                Assert.True(user.DisplayName.Length > 0, isFailing(nameof(user.DisplayName)));
+            }
+
+            Assert.True(RoundTrip(user1));
+
         }
 
         [Fact]
         public void UserByUsername()
         {
+            const string json = "{\r\n      \"requestedUsername\": \"string\",\r\n      \"hasVerifiedBadge\": true,\r\n      \"id\": 8,\r\n      \"name\": \"string\",\r\n      \"displayName\": \"string\"\r\n    }";
+
+            var user = JsonSerializer.Deserialize<UserByUsername>(json);
+
+            Assert.NotNull(user);
+            Assert.True(user.HasVerifiedBadge, isFailing(nameof(user.HasVerifiedBadge)));
+            Assert.True(user.UserId ==8, isFailing(nameof(user.UserId)));
+            Assert.True(user.Username.Length > 0, isFailing(nameof(user.Username)));
+            Assert.True(user.DisplayName.Length > 0, isFailing(nameof(user.DisplayName)));
+
+            Assert.True(RoundTrip(user));
 
         }
 
+        [Fact]
+        public void UserAuthenticated()
+        {
+            const string json = "  {\r\n  \"id\": 1,\r\n  \"name\": \"string\",\r\n  \"displayName\": \"string\"\r\n}";
+
+            var user = JsonSerializer.Deserialize<UserAuthenticated>(json);
+
+            Assert.NotNull(user);
+            Assert.True(user.UserId == 1, isFailing(nameof(user.UserId)));
+            Assert.True(user.Username.Length > 0, isFailing(nameof(user.Username)));
+            Assert.True(user.DisplayName.Length > 0, isFailing(nameof(user.DisplayName)));
+
+            Assert.Equal(user.Username, user.DisplayName);
+            Assert.True(RoundTrip(user));
+
+        }
     }
 }

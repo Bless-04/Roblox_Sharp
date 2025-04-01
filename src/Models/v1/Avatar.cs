@@ -3,7 +3,7 @@ using Roblox_Sharp.Models.JsonConverters;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Roblox_Sharp.Models
+namespace Roblox_Sharp.Models.v1
 {
     //example return 
     /*{
@@ -66,7 +66,7 @@ namespace Roblox_Sharp.Models
   ]
 }*/
 
-
+    /*
     /// <summary>
     /// used to serialize v
     /// </summary>
@@ -121,4 +121,7 @@ namespace Roblox_Sharp.Models
         public IReadOnlyList<Emote> Emotes { get; init; }
 
     }
+    */
 }
+    
+    

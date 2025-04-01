@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 #pragma warning disable CA1707 // Identifiers should not contain underscores ;
 
@@ -21,10 +22,12 @@ namespace Roblox_Sharp.Abstractions
     /// generalized template for any roblox creation that has a unique id for comparisons <br/>
     /// uses <typeparamref name="T"/> for comparisons
     /// </summary>
-    public abstract class Creation<T> :
-        ICreation, IEquatable<Creation<T>>, IComparable<Creation<T>>, IEqualityComparer<Creation<T>>
+    public abstract class Creation<T> : ICreation, 
+        IEquatable<Creation<T>>, IComparable<Creation<T>>, IEqualityComparer<Creation<T>>
     {
+
         /// <inheritdoc cref="ICreation.Id"/>
+        [JsonIgnore]
         protected ulong Id { get; init; } = default;
 
         ulong ICreation.Id => Id;
@@ -47,7 +50,14 @@ namespace Roblox_Sharp.Abstractions
         /// creates a ulong using the id of the creation
         /// </summary>
         /// <param name="creation"></param>
-        public static implicit operator ulong(Creation<T> creation) => creation.Id;
+        public static explicit operator ulong(Creation<T> creation) => creation.Id;
+
+        /// <summary>
+        /// returns <see langword="true"/> if the id is not 0
+        /// </summary>
+        /// <param name="creation"></param>
+        public static explicit operator bool(Creation<T> creation) => creation.Id != default;
+
         /// <summary>
         /// a creation is <b> less than </b> another if it is newer. newer creations have larger ids than older ones
         /// </summary>

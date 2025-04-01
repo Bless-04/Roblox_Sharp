@@ -6,18 +6,18 @@ namespace Roblox_Sharp.Endpoints
     /// </summary>
     public enum Limit : byte
     {
-
         Ten = 10,
         Min = Ten,
         Minimum = Ten,
+        Lowest = Ten,
 
         TwentyFive = 25,
 
         Fifty = 50,
 
         OneHundred = 100,
-        MAX = OneHundred,
         Max = OneHundred,
-        Maximum = OneHundred
+        Maximum = OneHundred,
+        Highest = OneHundred
     }
 }

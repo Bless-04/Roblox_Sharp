@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Roblox_Sharp.Models
+namespace Roblox_Sharp.Models.v1
 {
     /// <summary>
     /// <see href="https://create.roblox.com/docs/cloud/reference/errors">Errors Documentation</see>

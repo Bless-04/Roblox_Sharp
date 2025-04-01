@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 
 namespace Roblox_Sharp.Models;
-
+/*
 public partial class Avatar
 {
     /// <summary>
@@ -69,3 +69,4 @@ public partial class Avatar
         };
     }
 }
+*/

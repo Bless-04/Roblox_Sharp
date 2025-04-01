@@ -1,5 +1,6 @@
 ﻿using Roblox_Sharp.Models.v1;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models
 {
@@ -9,6 +10,7 @@ namespace Roblox_Sharp.Models
     /// since arrays are a reference type, its not worth making this a struct
     internal sealed class Presence_Response
     {
-        public required IReadOnlyList<User.Presence> userPresences { get; init; }
+        [JsonPropertyName("userPresences")]
+        public required IReadOnlyList<User.Presence> UserPresences { get; init; }
     }
 }

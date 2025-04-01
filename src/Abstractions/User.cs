@@ -31,11 +31,11 @@ namespace Roblox_Sharp.Abstractions
         /// The user's unique username
         /// </summary>
         [JsonPropertyName("username")]
-        public string Username { get; init; } = string.Empty;
+        public virtual string Username { get; init; } = string.Empty;
 
-        /// <inheritdoc/>
+        /// <inheritdoc/> 
         [JsonPropertyName("userId")]
-        public ulong UserId
+        public virtual ulong UserId
         {
             get => base.Id;
             init => base.Id = value;

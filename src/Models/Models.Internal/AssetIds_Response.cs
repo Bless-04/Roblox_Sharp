@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models
 {
     internal sealed class AssetIds_Response
     {
-        public required IReadOnlyList<ulong> assetIds { get; init; }
+        [JsonPropertyName("assetIds")]
+        public required IReadOnlyList<ulong> AssetIds { get; init; }
     }
 }

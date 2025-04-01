@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Polymorphism\" />
+    <Folder Include="Model\Relations\" />
   </ItemGroup>
 
 </Project>

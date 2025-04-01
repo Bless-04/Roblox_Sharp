@@ -1,7 +1,10 @@
-﻿namespace Roblox_Sharp.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Roblox_Sharp.Models
 {
-    internal sealed class UsernameHistory_Response
+    internal sealed class UsernameHistory_Response 
     {
-        public required string name { get; init; }
+        [JsonPropertyName("name")]
+        public required string Name { get; init; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using System.Text.Json.Serialization;
 
-namespace Roblox_Sharp.Models;
+namespace Roblox_Sharp.Models.v1;
 
 public partial class Avatar
 {

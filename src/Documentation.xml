@@ -35,9 +35,15 @@
             <see langword="true"/> if ids are the same
             </returns>
         </member>
-        <member name="M:Roblox_Sharp.Abstractions.Creation`1.op_Implicit(Roblox_Sharp.Abstractions.Creation{`0})~System.UInt64">
+        <member name="M:Roblox_Sharp.Abstractions.Creation`1.op_Explicit(Roblox_Sharp.Abstractions.Creation{`0})~System.UInt64">
             <summary>
             creates a ulong using the id of the creation
+            </summary>
+            <param name="creation"></param>
+        </member>
+        <member name="M:Roblox_Sharp.Abstractions.Creation`1.op_Explicit(Roblox_Sharp.Abstractions.Creation{`0})~System.Boolean">
+            <summary>
+            returns <see langword="true"/> if the id is not 0
             </summary>
             <param name="creation"></param>
         </member>
@@ -109,36 +115,53 @@
             next page cursor of the request.<br/> <see langword="null"/> if there are no more pages or instance is the last page
             </summary>
         </member>
-        <member name="T:Roblox_Sharp.Abstractions.IPage`1">
+        <member name="T:Roblox_Sharp.Abstractions.Page`1">
             <summary>
             used for all the page based requests ; requests that can return multiple pages or have a data[] field
             </summary>
             <typeparam name="T">The data type</typeparam>
             <remarks>indirectly implements <seealso cref="T:System.Collections.Generic.IReadOnlyList`1"/> </remarks>
         </member>
-        <member name="P:Roblox_Sharp.Abstractions.IPage`1.Data">
+        <member name="P:Roblox_Sharp.Abstractions.Page`1.PreviousPageCursor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Roblox_Sharp.Abstractions.Page`1.NextPageCursor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Roblox_Sharp.Abstractions.Page`1.Data">
             <summary>
             List of <typeparamref name="T"/> returned by the request
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Abstractions.IPage`1.Count">
+        <member name="M:Roblox_Sharp.Abstractions.Page`1.op_Explicit(Roblox_Sharp.Abstractions.Page{`0})~System.String">
+            <returns>
+            
+            <see cref="P:Roblox_Sharp.Abstractions.Page`1.NextPageCursor"/> <br/>
+            <see langword="null"/> if there is no next page
+            </returns>
+        </member>
+        <member name="P:Roblox_Sharp.Abstractions.Page`1.HasNextPage">
+            <returns>
+            <see langword="true"/> if there is a next page
+            </returns>
+        </member>
+        <member name="P:Roblox_Sharp.Abstractions.Page`1.Count">
             <inheritdoc cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>
         </member>
-        <member name="P:Roblox_Sharp.Abstractions.IPage`1.Item(System.Int32)">
+        <member name="P:Roblox_Sharp.Abstractions.Page`1.Item(System.Int32)">
             <inheritdoc cref="P:System.Collections.Generic.IReadOnlyList`1.Item(System.Int32)"/>
         </member>
-        <member name="M:Roblox_Sharp.Abstractions.IPage`1.op_Decrement(Roblox_Sharp.Abstractions.IPage{`0})">
+        <member name="M:Roblox_Sharp.Abstractions.Page`1.op_Decrement(Roblox_Sharp.Abstractions.Page{`0})">
             <summary>
             Goes back 1 page <br></br>
             </summary>
             <param name="page"></param>
             <returns></returns>
-            <exception cref="T:System.IndexOutOfRangeException"> if there is no previous page</exception>
         </member>
-        <member name="M:Roblox_Sharp.Abstractions.IPage`1.go_Previous(System.Collections.Generic.List{`0})">
-            <inheritdoc cref="M:Roblox_Sharp.Abstractions.IPage`1.op_Decrement(Roblox_Sharp.Abstractions.IPage{`0})"/>
+        <member name="M:Roblox_Sharp.Abstractions.Page`1.go_Previous(System.Collections.Generic.List{`0})">
+            <inheritdoc/>
         </member>
-        <member name="M:Roblox_Sharp.Abstractions.IPage`1.op_Increment(Roblox_Sharp.Abstractions.IPage{`0})">
+        <member name="M:Roblox_Sharp.Abstractions.Page`1.op_Increment(Roblox_Sharp.Abstractions.Page{`0})">
             <summary>
             Goes forward 1 page
             </summary>
@@ -146,10 +169,7 @@
             <returns></returns>
             <exception cref="T:System.IndexOutOfRangeException">if there is no next page</exception>
         </member>
-        <member name="M:Roblox_Sharp.Abstractions.IPage`1.go_Next(System.Collections.Generic.List{`0})">
-            <inheritdoc cref="M:Roblox_Sharp.Abstractions.IPage`1.op_Increment(Roblox_Sharp.Abstractions.IPage{`0})"/>
-        </member>
-        <member name="M:Roblox_Sharp.Abstractions.IPage`1.GetEnumerator">
+        <member name="M:Roblox_Sharp.Abstractions.Page`1.GetEnumerator">
             <summary>
             <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
             </summary>
@@ -181,7 +201,7 @@
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Abstractions.User.UserId">
-            <inheritdoc/>
+            <inheritdoc/> 
         </member>
         <member name="M:Roblox_Sharp.Abstractions.User.ToString">
             <returns>
@@ -216,6 +236,11 @@
             The number of results per request.
             </summary>
         </member>
+        <member name="T:Roblox_Sharp.Endpoints.Sort">
+            <summary>
+            The order the results are sorted in.
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.Endpoints.Users_v1">
             <summary>
             endpoints for direct Roblox user information. <br></br>
@@ -228,6 +253,28 @@
             </summary>
             <param name="ID">The users id</param>
             <returns> The deserialized <see cref="T:Roblox_Sharp.Models.v1.User"/> if successful</returns>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_AuthenticatedAsync">
+            <summary>
+            Gets the minimal user information for the authenticated user
+            </summary>
+            <returns>The deserialized <see cref="T:Roblox_Sharp.Models.v1.UserAuthenticated"/></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsersAsync(System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+            Get users information given a <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <paramref name="Usernames"/>
+            </summary>
+            <param name="Usernames"></param>
+            <param name="ExcludeBannedUsers"></param>
+            <returns><see cref="T:System.Collections.Generic.IReadOnlyList`1"/> of <see cref="T:Roblox_Sharp.Models.v1.UserByUsername"/></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsersAsync(System.Collections.Generic.IEnumerable{System.UInt64},System.Boolean)">
+            <summary>
+            Get users information given a <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <paramref name="UserIds"/>
+            </summary>
+            <param name="UserIds"></param>
+            <param name="ExcludeBannedUsers"></param>
+            <returns><see cref="T:System.Collections.Generic.IReadOnlyList`1"/> of <see cref="T:Roblox_Sharp.Models.v1.UserByUserId"/></returns>
         </member>
         <member name="T:Roblox_Sharp.Enums.AssetType">
             <summary>
@@ -308,6 +355,11 @@
             event args for requests
             </summary>
         </member>
+        <member name="M:Roblox_Sharp.FailedRequestEventArgs.Finalize">
+            <summary>
+            disposes the response
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.FetchedData">
             <summary>
             represents data fetched from the roblox api
@@ -315,7 +367,7 @@
             <param name="json"></param>
             <param name="success"></param>
         </member>
-        <member name="M:Roblox_Sharp.FetchedData.#ctor(System.String,System.Boolean)">
+        <member name="M:Roblox_Sharp.FetchedData.#ctor(System.String@,System.Boolean@)">
             <summary>
             represents data fetched from the roblox api
             </summary>
@@ -332,13 +384,13 @@
             whether the fetch was successful
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.FetchedData.op_Implicit(System.ValueTuple{System.String,System.Boolean})~Roblox_Sharp.FetchedData">
+        <member name="M:Roblox_Sharp.FetchedData.op_Implicit(System.ValueTuple{System.String,System.Boolean}@)~Roblox_Sharp.FetchedData">
             <summary>
             lossless convert from tuple to FetchedData
             </summary>
             <param name="tuple"></param>
         </member>
-        <member name="M:Roblox_Sharp.FetchedData.op_Implicit(Roblox_Sharp.FetchedData)~System.ValueTuple{System.String,System.Boolean}">
+        <member name="M:Roblox_Sharp.FetchedData.op_Implicit(Roblox_Sharp.FetchedData@)~System.ValueTuple{System.String,System.Boolean}">
             <summary>
             lossless convert to tuple
             </summary>
@@ -356,47 +408,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Roblox_Sharp.Models.Avatar">
-            <summary>
-            used to serialize v
-            </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Models.Avatar.Asset">
-            <summary>
-            Assets that a players Avatar can equip
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.AssetId">
-            <summary>
-            <inheritdoc/>
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.AssetName">
-            <summary>
-            the name of the asset
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset._name">
-            <summary>
-            <inheritdoc cref="P:Roblox_Sharp.Models.Avatar.Asset.AssetName"/>
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.AssetType">
-            <summary>
-            <inheritdoc cref="T:Roblox_Sharp.Enums.AssetType"/>
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Meta">
-            <summary>
-            <inheritdoc cref="T:Roblox_Sharp.Models.Avatar.Asset.Metadata"/>
-            </summary>
-        </member>
-        <member name="M:Roblox_Sharp.Models.Avatar.Asset.Clone">
-            <summary>
-            Deep Clones the instance of <see cref="T:Roblox_Sharp.Models.Avatar.Asset"/>
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:Roblox_Sharp.Models.Avatar.Asset.Type">
             <summary>
             the type of the asset
@@ -410,42 +421,6 @@
         <member name="P:Roblox_Sharp.Models.Avatar.Asset.Type.Name">
             <summary>
             the name of the Asset_Type
-            </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Models.Avatar.Asset.Metadata">
-            <summary>
-            metadata of the asset
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.Position">
-            <summary>
-            (x, y , z) position of the asset
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.Rotation">
-            <summary>
-            (x, y, z) rotation of the asset
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.Scale">
-            <summary>
-            (x, y, z) scale of the asset
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.Version">
-            <summary>
-            Client-authoritative meta model format version
-            <code>the default is always 1</code>
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.Puffiness">
-            <summary>
-            layered clothing puffiness
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Metadata.Order">
-            <summary>
-            layered clothing order
             </summary>
         </member>
         <member name="T:Roblox_Sharp.Models.Avatar.BodyColor3">
@@ -504,77 +479,6 @@
         <member name="T:Roblox_Sharp.Models.Avatar.Scale">
             <summary>
             Holds the scaling of the avatar
-            </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Models.Avatar.BodyColor">
-            <summary>
-            body color of the avatar using brickcolorid
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor.HeadColorId">
-            <summary>
-            The BrickColor id for head color
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor.TorsoColorId">
-            <summary>
-            The BrickColor id for torso color
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor.RightArmColorId">
-            <summary>
-            The BrickColor id for right arm color
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor.LeftArmColorId">
-            <summary>
-            The BrickColor id for left arm color
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor.RightLegColorId">
-            <summary>
-            The BrickColor id for right leg color
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor.LeftLegColorId">
-            <summary>
-            The BrickColor id for left leg color
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Scales">
-            <summary>
-            <inheritdoc cref="T:Roblox_Sharp.Models.Avatar.Scale"/>
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.PlayerAvatarType">
-            <summary>
-            <inheritdoc cref="T:Roblox_Sharp.Enums.AvatarType"/>
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColors">
-            <summary>
-            the brickcolor ids for each bodypart
-            <note>unique to <seealso cref="!:Endpoints.Avatars_v1"/> based requests </note>
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Assets">
-            <summary>
-            the assets worn on the avatar
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.DefaultShirtApplied">
-            <summary>
-            <see langword="true"/> if the default shirt is applied to this avatar
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.DefaultPantsApplied">
-            <summary>
-            <see langword="true"/> if the default pants are applied to this avatar
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Emotes">
-            <summary>
-            the emotes on the avatar
             </summary>
         </member>
         <member name="T:Roblox_Sharp.Models.Badge.Award">
@@ -839,34 +743,19 @@
             </summary>
             since arrays are a reference type, its not worth making this a struct
         </member>
-        <member name="T:Roblox_Sharp.Models.Page`1">
-            <inheritdoc cref="T:Roblox_Sharp.Abstractions.IPage`1"/>
-        </member>
-        <member name="M:Roblox_Sharp.Models.Page`1.#ctor">
-            <inheritdoc cref="T:Roblox_Sharp.Abstractions.IPage`1"/>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Page`1.PreviousPageCursor">
-            <inheritdoc cref="P:Roblox_Sharp.Abstractions.IPage.PreviousPageCursor"/>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Page`1.NextPageCursor">
-            <inheritdoc cref="P:Roblox_Sharp.Abstractions.IPage.NextPageCursor"/>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Page`1.Data">
+        <member name="T:Roblox_Sharp.Models.UserByX">
             <summary>
-            <inheritdoc cref="P:Roblox_Sharp.Abstractions.IPage`1.Data"/>
+            for  <see cref="T:Roblox_Sharp.Models.v1.UserByUserId"/> and <see cref="T:Roblox_Sharp.Models.v1.UserByUsername"/>
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.Models.Page`1.op_Decrement(Roblox_Sharp.Models.Page{`0})">
-            <inheritdoc cref="M:Roblox_Sharp.Models.Page`1.go_Previous(System.Collections.Generic.List{`0})"/>
+        <member name="M:Roblox_Sharp.Models.UserByX.ToString">
+            <returns>A serialized version of the <see cref="T:Roblox_Sharp.Models.UserByX"/> </returns>
         </member>
-        <member name="M:Roblox_Sharp.Models.Page`1.go_Previous(System.Collections.Generic.List{`0})">
-            <inheritdoc/>
+        <member name="T:Roblox_Sharp.Models.Page`1">
+            <inheritdoc cref="T:Roblox_Sharp.Models.Page`1"/>
         </member>
-        <member name="M:Roblox_Sharp.Models.Page`1.go_Next(System.Collections.Generic.List{`0})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Roblox_Sharp.Models.Page`1.op_Increment(Roblox_Sharp.Models.Page{`0})">
-            <inheritdoc cref="M:Roblox_Sharp.Abstractions.IPage`1.go_Next(System.Collections.Generic.List{`0})"/>
+        <member name="M:Roblox_Sharp.Models.Page`1.#ctor">
+            <inheritdoc cref="T:Roblox_Sharp.Models.Page`1"/>
         </member>
         <member name="T:Roblox_Sharp.Models.Thumbnail">
             example return 
@@ -898,22 +787,93 @@
         <member name="M:Roblox_Sharp.Models.Thumbnail.Exists">
             <inheritdoc/>
         </member>
-        <member name="T:Roblox_Sharp.Models.ResourceError">
+        <member name="T:Roblox_Sharp.Models.v1.Avatar.Asset.Metadata">
+            <summary>
+            metadata of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Asset.Metadata.Position">
+            <summary>
+            (x, y , z) position of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Asset.Metadata.Rotation">
+            <summary>
+            (x, y, z) rotation of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Asset.Metadata.Scale">
+            <summary>
+            (x, y, z) scale of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Asset.Metadata.Version">
+            <summary>
+            Client-authoritative meta model format version
+            <code>the default is always 1</code>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Asset.Metadata.Puffiness">
+            <summary>
+            layered clothing puffiness
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Asset.Metadata.Order">
+            <summary>
+            layered clothing order
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.v1.Avatar.BodyColor">
+            <summary>
+            body color of the avatar using brickcolorid
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.BodyColor.HeadColorId">
+            <summary>
+            The BrickColor id for head color
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.BodyColor.TorsoColorId">
+            <summary>
+            The BrickColor id for torso color
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.BodyColor.RightArmColorId">
+            <summary>
+            The BrickColor id for right arm color
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.BodyColor.LeftArmColorId">
+            <summary>
+            The BrickColor id for left arm color
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.BodyColor.RightLegColorId">
+            <summary>
+            The BrickColor id for right leg color
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.BodyColor.LeftLegColorId">
+            <summary>
+            The BrickColor id for left leg color
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.v1.ResourceError">
             <summary>
             <see href="https://create.roblox.com/docs/cloud/reference/errors">Errors Documentation</see>
             </summary>
         </member>
-        <member name="T:Roblox_Sharp.Models.ResourceError.Code">
+        <member name="T:Roblox_Sharp.Models.v1.ResourceError.Code">
             <summary>
             v1 Error codes model
             </summary>
         </member>
-        <member name="F:Roblox_Sharp.Models.ResourceError.Code.INVALID_ARGUMENT">
+        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.INVALID_ARGUMENT">
             <summary>
             You passed an invalid argument, such as an invalid universeId. You might also have missing or invalid headers, such as Content-Length and Content-Type.
             </summary>
         </member>
-        <member name="F:Roblox_Sharp.Models.ResourceError.Code.INSUFFICIENT_SCOPE">
+        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.INSUFFICIENT_SCOPE">
             <summary>
             The request requires higher privileges than provided by the access token.
             </summary>
@@ -922,11 +882,6 @@
             <summary>
             used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserAsync(System.UInt64)"/>
             <see href="https://users.roblox.com//docs/index.html">Users v1</see>
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.v1.User.DisplayName">
-            <summary>
-            The users display name
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.v1.User.Description">
@@ -1002,6 +957,40 @@
             The Type of the <see cref="T:Roblox_Sharp.Models.v1.User.Presence"/>
             </summary>
         </member>
+        <member name="T:Roblox_Sharp.Models.v1.UserAuthenticated">
+            <summary>
+            used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_AuthenticatedAsync"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserAuthenticated.UserId">
+            <inheritdoc/>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserAuthenticated.Username">
+            <inheritdoc/>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserAuthenticated.DisplayName">
+            <summary>
+            The users display name
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.v1.UserByUserId">
+            <summary>
+            used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsersAsync(System.Collections.Generic.IEnumerable{System.UInt64},System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserByUserId.HasVerifiedBadge">
+            <inheritdoc cref="P:Roblox_Sharp.Models.v1.User.HasVerifiedBadge"/>
+        </member>
+        <member name="T:Roblox_Sharp.Models.v1.UserByUsername">
+            <summary>
+            used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsersAsync(System.Collections.Generic.IEnumerable{System.String},System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserByUsername.RequestedUsername">
+            <summary>
+            The requested username
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.WebAPI">
             <summary>
             static class that holds the functions and logic used for making web requests to Roblox API <br></br>
@@ -1025,8 +1014,10 @@
         </member>
         <member name="M:Roblox_Sharp.WebAPI.Deserialize``1(Roblox_Sharp.FetchedData)">
             <returns>
+            the deserialized <typeparamref name="T"/> <br/> 
             <see langword="null"/> or <see langword="default"/> if the request is not successful
             </returns>
+            <inheritdoc cref="M:System.Text.Json.JsonSerializer.Deserialize``1(System.String,System.Text.Json.JsonSerializerOptions)"/>
         </member>
         <member name="M:Roblox_Sharp.WebAPI.Set_HttpClient(System.Net.Http.HttpClient)">
             <summary>
@@ -1041,13 +1032,25 @@
             sets the name of the user agent used for all requests
             </summary>
             <param name="name"></param>
+            <inheritdoc cref="M:System.Net.Http.Headers.HttpHeaderValueCollection`1.TryParseAdd(System.String)"/>
         </member>
         <member name="M:Roblox_Sharp.WebAPI.Get_RequestAsync(System.String)">
             <summary>
-            Helper Functions for making get requests
+            Helper Functions for making get requests <br/>
+            <inheritdoc cref="M:System.Net.Http.HttpClient.GetAsync(System.String)"/>
             </summary>
             <param name="url"></param>
-            <returns> <see cref="T:Roblox_Sharp.FetchedData"/></returns>
+            <returns><see cref="T:Roblox_Sharp.FetchedData"/></returns>
+            <inheritdoc cref="M:System.Net.Http.HttpClient.GetAsync(System.String)"/>
+        </member>
+        <member name="M:Roblox_Sharp.WebAPI.Post_RequestAsync``1(System.String,``0)">
+            <summary>
+            Helper Functions for making post requests
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="url">the req url</param>
+            <param name="model">the post model</param>
+            <returns><see cref="T:Roblox_Sharp.FetchedData"/></returns>
         </member>
     </members>
 </doc>
