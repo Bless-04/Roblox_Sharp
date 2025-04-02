@@ -878,6 +878,46 @@
             The request requires higher privileges than provided by the access token.
             </summary>
         </member>
+        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.PERMISSION_DENIED">
+            <summary>
+            Your request doesn't have sufficient scope to perform the operation.
+            </summary>
+        </member>
+        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.NOT_FOUND">
+            <summary>
+            The system can't find your specified resources, such as a data store.
+            </summary>
+        </member>
+        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.ABORTED">
+            <summary>
+            The operation was aborted due to a conflict, such as publishing a place that is not part of the universe.
+            </summary>
+        </member>
+        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.RESOURCE_EXHAUSTED">
+            <summary>
+            You don't have enough quota to perform the operation, typically due to sending too many requests.
+            </summary>
+        </member>
+        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.CANCELLED">
+            <summary>
+            The system terminates the request, typically due to a client side timeout.
+            </summary>
+        </member>
+        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.INTERNAL">
+            <summary>
+            Internal server error. Typically a server bug.
+            </summary>
+        </member>
+        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.NOT_IMPLEMENTED">
+            <summary>
+            The server doesn't implement the API method.
+            </summary>
+        </member>
+        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.UNAVAILABLE">
+            <summary>
+            Service unavailable. Typically the server is down.
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.Models.v1.User">
             <summary>
             used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserAsync(System.UInt64)"/>
@@ -926,6 +966,9 @@
                }
              ]
             }
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.User.Presence.UserId">
+            <inheritdoc/>
         </member>
         <member name="P:Roblox_Sharp.Models.v1.User.Presence.PresenceType">
             <summary>
