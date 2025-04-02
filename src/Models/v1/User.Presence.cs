@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Roblox_Sharp.Abstractions;
+using System;
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models.v1;
@@ -22,8 +23,16 @@ public partial class User
    }
  ]
 }*/
-    public partial class Presence : Abstractions.User
+    public partial class Presence : Creation<IUser>, IUser
     {
+        /// <inheritdoc/>
+        [JsonPropertyName("userId")]
+        public ulong UserId
+        {
+            get => base.Id;
+            init => base.Id = value;
+        }
+
         /// <summary>
         /// <see cref="User.Presence.Type"/> type of user
         /// </summary>
@@ -31,43 +40,36 @@ public partial class User
         public User.Presence.Type PresenceType { get; init; }
 
         [JsonPropertyName("lastLocation")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string LastLocation { get; init; }
+        public required string LastLocation { get; init; }
 
         /// <summary>
         /// unique place id
         /// </summary>
         [JsonPropertyName("placeId")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ulong PlaceId { get; init; }
 
         [JsonPropertyName("rootPlaceId")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ulong RootPlaceId { get; init; }
 
         /// <summary>
         /// unique game id
         /// </summary>
         [JsonPropertyName("gameId")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string GameId { get; init; } // why is this a string
+        public required string GameId { get; init; } // why is this a string
 
         /// <summary>
         /// unique universe id
         /// </summary>
         [JsonPropertyName("universeId")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ulong UniverseId { get; init; }
 
         /// <summary>
         /// exact date and time user was last online
         /// </summary>
         [JsonPropertyName("lastOnline")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime LastOnline { get; init; }
 
         [JsonPropertyName("invisibleModeExpiry")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime InvisibleModeExpiry { get; init; }
     }
 }
