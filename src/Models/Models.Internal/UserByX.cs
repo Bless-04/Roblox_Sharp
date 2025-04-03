@@ -7,7 +7,7 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// for  <see cref="Models.v1.UserByUserId"/> and <see cref="Models.v1.UserByUsername"/>
     /// </summary>
-    internal class UserByX
+    internal sealed class UserByX
     {
         #region Properties
         public bool ExcludeBannedUsers { get; }

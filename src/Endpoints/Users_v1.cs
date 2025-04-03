@@ -51,7 +51,15 @@ namespace Roblox_Sharp.Endpoints
 
         #region Usernames
 
-        public static async Task<Page<string>?> Get_UsernameHistoryAsync(ulong userId, Limit limit=Limit.Ten,string? cursor=null,Sort sortOrder=Sort.Asc)
+        /// <summary>
+        /// Retrieves the username history for a particular <paramref name="userId"/>
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="limit"></param>
+        /// <param name="sortOrder"></param>
+        /// <param name="cursor"></param>
+        /// <returns></returns>
+        public static async Task<Page<string>?> Get_UsernameHistoryAsync(ulong userId, Limit limit=Limit.Ten,Sort sortOrder=Sort.Asc,string? cursor=null)
         {
             //url example 'https://users.roblox.com/v1/users/416181091/username-history?limit=100&sortOrder=Asc
           

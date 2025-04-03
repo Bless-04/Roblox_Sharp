@@ -50,7 +50,7 @@ namespace Roblox_Sharp
         public static event EventHandler<FailedRequestEventArgs>? OnFailedRequest;
 
         #region internal helpers
-        internal static void FireRequestEvents(HttpResponseMessage response)
+        internal static void FireRequestEvents(in HttpResponseMessage response)
         {
             if (response.IsSuccessStatusCode) OnSuccessfulRequest?.Invoke(null, EventArgs.Empty);
             else OnFailedRequest?.Invoke(null, new FailedRequestEventArgs(response));
@@ -61,7 +61,7 @@ namespace Roblox_Sharp
         /// <see langword="null"/> or <see langword="default"/> if the request is not successful
         /// </returns>
         /// <inheritdoc cref="JsonSerializer.Deserialize{TValue}(string, JsonSerializerOptions?)"/>
-        internal static T? Deserialize<T>(FetchedData data) => data.Success ? JsonSerializer.Deserialize<T>(data.Json) : default;
+        internal static T? Deserialize<T>(in FetchedData data) => data.Success ? JsonSerializer.Deserialize<T>(data.Json) : default;
 
         #endregion
 
@@ -79,7 +79,7 @@ namespace Roblox_Sharp
         /// sets to default if null
         /// </summary>
         /// <param name="new_client"></param>
-        public static void Set_HttpClient(HttpClient new_client) => Interlocked.Exchange(ref _client, new_client).Dispose(); //thread safe because of this?
+        public static void Set_HttpClient(in HttpClient new_client) => Interlocked.Exchange(ref _client, new_client).Dispose(); //thread safe because of this?
 
         /// <summary>
         /// sets the name of the user agent used for all requests
