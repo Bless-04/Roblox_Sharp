@@ -30,11 +30,11 @@ Install-Package Roblox_Sharp -Version <version>
 ### Folder Structure
 ```
 src/
-├── Abstraction/            # namepsace for base classes and interfaces that models inherit from to keep consistency
-├── Endpoints/              # namespace where static Endpoint classes are              
-│   ├── Endpoints.Enums/    # folder for holding Endpoint based enums; same namespace as Endpoints
+├── Abstraction/            # base classes and interfaces that models inherit from to keep consistency
+├── Endpoints/              # where static Endpoint classes are              
+│   ├── Endpoints.Enums/    # folder for holding Endpoint based enums; still in the Endpoints namespace
 ├── Models/                 # Json response deserialization models
-│   ├── Models.Internal/    # Internals Models for specific requests; same namespace as Models but everything is internal
+│   ├── Models.Internal/    # Internals Models for specific requests; still in the Models namespace 
 │   ├── JsonConverters/     # Json converter models
 │   ├── v1/                 # Models for v1 endpoints
 │   ├── v2/                 # Models for v2 endpoints
