@@ -39,7 +39,7 @@ src/						# Roblox_Sharp library source
 │   ├── v1/                 # Models for v1 endpoints
 │   ├── v2/                 # Models for v2 endpoints
 │   ├── v3/                 # Models for v3 endpoints
-Tests/						# Roblox_Sharp Tests
+Tests/						# Roblox_Sharp xUnit Tests
 ├── Integration/            # Tests the Endpoint functions for both success and fail case       
 ├── Model /                 # Model based tests
 │   ├── Json/               # Model Json serialization and deserialization Tests
