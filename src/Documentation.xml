@@ -208,29 +208,6 @@
             A string representation of the <see cref="T:Roblox_Sharp.Abstractions.User"/>
             </returns>
         </member>
-        <member name="M:Roblox_Sharp.Abstractions.User.ToString(System.String,System.IFormatProvider)">
-            /// <summary>
-            Formats the <see cref="T:Roblox_Sharp.Abstractions.User"/> information based on the provided format string.
-            Supported format strings:
-            <list type="table">
-              <listheader>
-                <term>Format</term>
-                <description>Output</description>
-              </listheader>
-              <item>
-                <term>"id"</term>
-                <description>Returns the <see cref="P:Roblox_Sharp.Abstractions.User.UserId"/></description>
-              </item>
-              <item>
-                <term>"name"</term>
-                <description>Returns the <see cref="P:Roblox_Sharp.Abstractions.User.Username"/></description>
-              </item>
-            </list>
-            </summary>
-            <returns>
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-            </returns>
-        </member>
         <member name="T:Roblox_Sharp.Endpoints.Limit">
             <summary>
             The number of results per request.
