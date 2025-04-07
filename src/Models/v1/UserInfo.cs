@@ -19,7 +19,7 @@ namespace Roblox_Sharp.Models.v1
     /// used to deserialize <see cref="Endpoints.Users_v1.Get_UserAsync(ulong)"/>
     /// <see href="https://users.roblox.com//docs/index.html">Users v1</see>
     /// </summary>
-    public class DetailedUser : UserAuthenticated
+    public class UserInfo : UserAuthenticated
     {
         #region Properties
         /// <summary>
