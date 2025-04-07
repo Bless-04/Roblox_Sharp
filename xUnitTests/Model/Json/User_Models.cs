@@ -29,7 +29,6 @@ namespace xUnitTests.Model.Json
               ""displayName"": ""Roblox""
             }";
 
-
             UserInfo? user = JsonSerializer.Deserialize<UserInfo>(json_response);
 
             Assert.NotNull(user);
