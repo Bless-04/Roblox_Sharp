@@ -12,7 +12,7 @@ namespace xUnitTests.Model.Json
     public class User_Models
     {
         /// <summary>
-        /// Tests Serialization for <see cref="Roblox_Sharp.Models.v1.User"/>
+        /// Tests Serialization for <see cref="Roblox_Sharp.Models.v1.UserInfo"/>
         /// </summary>
         [Fact]
         public void User()
@@ -30,7 +30,7 @@ namespace xUnitTests.Model.Json
             }";
 
 
-            User? user = JsonSerializer.Deserialize<User>(json_response);
+            UserInfo? user = JsonSerializer.Deserialize<UserInfo>(json_response);
 
             Assert.NotNull(user);
 

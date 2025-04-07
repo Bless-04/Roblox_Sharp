@@ -4,8 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models.v1;
 
-public partial class User
-{
+
     /**
      * example return 
     * {
@@ -23,7 +22,7 @@ public partial class User
    }
  ]
 }*/
-    public partial class Presence : Creation<IUser>, IUser
+    public partial class UserPresence : Creation<IUser>, IUser
     {
         /// <inheritdoc/>
         [JsonPropertyName("userId")]
@@ -34,10 +33,10 @@ public partial class User
         }
 
         /// <summary>
-        /// <see cref="User.Presence.Type"/> type of user
+        /// The type of UserPresence type of user
         /// </summary>
         [JsonPropertyName("presenceType")]
-        public User.Presence.Type PresenceType { get; init; }
+        public UserPresence.Type PresenceType { get; init; }
 
         [JsonPropertyName("lastLocation")]
         public required string LastLocation { get; init; }
@@ -72,4 +71,4 @@ public partial class User
         [JsonPropertyName("invisibleModeExpiry")]
         public DateTime InvisibleModeExpiry { get; init; }
     }
-}
+

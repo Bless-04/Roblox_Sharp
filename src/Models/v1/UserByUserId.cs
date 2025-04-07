@@ -15,7 +15,7 @@ namespace Roblox_Sharp.Models.v1
     public class UserByUserId : UserAuthenticated
     {
        
-        /// <inheritdoc cref="User.HasVerifiedBadge"/>
+        /// <inheritdoc cref="UserInfo.HasVerifiedBadge"/>
         [JsonPropertyName("hasVerifiedBadge")]
         public required bool HasVerifiedBadge { get; init; }
     }

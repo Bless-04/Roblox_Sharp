@@ -11,7 +11,7 @@ namespace xUnitTests.Integration
     [Collection(nameof(Integration))]
     public class Users_Endpoint : TestHelper
     {
-        const bool ExcludeBannedUsers = false;
+        public const bool ExcludeBannedUsers = false;
 
         #region v1
 
@@ -19,7 +19,7 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_User()
         {
-            User? roblox = await Users_v1.Get_UserAsync(ROBLOX);
+            UserInfo? roblox = await Users_v1.Get_UserAsync(ROBLOX);
 
             Assert.NotNull(roblox);
 
@@ -38,7 +38,7 @@ namespace xUnitTests.Integration
         [Fact]
         public async Task Get_User_Fail()
         {
-            User? user = await Users_v1.Get_UserAsync(DOEST_EXIST);
+            UserInfo? user = await Users_v1.Get_UserAsync(DOEST_EXIST);
 
             Assert.Null(user);
         }

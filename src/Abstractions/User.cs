@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace Roblox_Sharp.Abstractions
 {
     /// <summary>
-    /// represents any User based request that contains the unique user id
+    /// interface for models representing user information containing properties that have the unique user id 
     /// </summary>
     public interface IUser
     {
@@ -16,7 +16,7 @@ namespace Roblox_Sharp.Abstractions
     }
 
     /// <summary>
-    /// represents any User based request that contains the user id and the username
+    /// abstract class for models representing User information that have properties containing both the unique user id and the unique usernae
     /// </summary>
     [DebuggerDisplay("{Username} (ID {UserId})")]
     public abstract class User : Creation<IUser>, IUser, IFormattable
@@ -30,7 +30,7 @@ namespace Roblox_Sharp.Abstractions
         /// <summary>
         /// The user's unique username
         /// </summary>
-        [JsonPropertyName("username")]
+        [JsonPropertyName("username")] //virtual because sometimes the json property is "name"
         public virtual string Username { get; init; } = string.Empty;
 
         /// <inheritdoc/> 

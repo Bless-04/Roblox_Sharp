@@ -11,6 +11,6 @@ namespace Roblox_Sharp.Models
     internal sealed class Presence_Response
     {
         [JsonPropertyName("userPresences")]
-        public required IReadOnlyList<User.Presence> UserPresences { get; init; }
+        public required IReadOnlyList<UserPresence> UserPresences { get; init; }
     }
 }

@@ -22,8 +22,8 @@ namespace Roblox_Sharp.Endpoints
         /// Gets detailed user information using the user's <paramref name="ID"/>
         /// </summary>
         /// <param name="ID">The users id</param>
-        /// <returns> The deserialized <see cref="User"/> if successful</returns>
-        public static async Task<User?> Get_UserAsync(ulong ID) => Deserialize<User>(await Get_RequestAsync($"https://users.roblox.com/v1/users/{ID}"));
+        /// <returns> The deserialized <see cref="UserInfo"/> if successful</returns>
+        public static async Task<UserInfo?> Get_UserAsync(ulong ID) => Deserialize<UserInfo>(await Get_RequestAsync($"https://users.roblox.com/v1/users/{ID}"));
 
         /// <summary>
         /// Gets the minimal user information for the authenticated user
