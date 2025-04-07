@@ -34,7 +34,7 @@ src/
 ├── Endpoints/              # where static Endpoint classes are              
 │   ├── Endpoints.Enums/    # folder for holding Endpoint based enums; still in the Endpoints namespace
 ├── Models/                 # Json response deserialization models
-│   ├── Models.Internal/    # Internals Models for specific requests; still in the Models namespace 
+│   ├── Models.Internal/    # folder for Internals Models that exist for specific requests; still in the Models namespace 
 │   ├── JsonConverters/     # Json converter models
 │   ├── v1/                 # Models for v1 endpoints
 │   ├── v2/                 # Models for v2 endpoints
