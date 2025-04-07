@@ -25,7 +25,6 @@ namespace Roblox_Sharp.Abstractions
     public abstract class Creation<T> : ICreation, 
         IEquatable<Creation<T>>, IComparable<Creation<T>>, IEqualityComparer<Creation<T>>
     {
-
         /// <inheritdoc cref="ICreation.Id"/>
         [JsonIgnore]
         protected ulong Id { get; init; } = default;
@@ -75,7 +74,7 @@ namespace Roblox_Sharp.Abstractions
         public static bool operator >(Creation<T> left, Creation<T> right) => left.Id < right.Id;
 
         ///<inheritdoc cref="object.GetHashCode"/>
-        ///<remarks>uses the same hashcode function as <see langword="ulong"/></remarks>
+        ///<remarks>uses the same <see cref="HashCode"/> function as <see langword="ulong"/></remarks>
         public override int GetHashCode() => Id.GetHashCode();
 
         /// <inheritdoc/>
