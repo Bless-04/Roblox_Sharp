@@ -12,7 +12,7 @@
 [Endpoints](lib/Endpoints) Sourced From [roblox-web-apis](https://github.com/matthewdean/roblox-web-apis/blob/master/README.md) and [create.roblox.com](https://create.roblox.com/docs/cloud/legacy)
 
 # Roblox_Sharp
-Roblox_Sharp is a C#/.NET library that serves as a unofficial asynchronouse wrapper for Roblox's Web API system. The library is built on .NET 8.0, and depends on the standard library (no external dependencies)
+Roblox_Sharp is a C#/.NET library that serves as a unofficial asynchronouse wrapper for Roblox's Web API system. The library is built on .NET 8.0 and uses no external dependencies.
 
 <!--
 See [wiki](https://github.com/Thundermaker300/Roblox_Sharp/wiki) for all extensive documentation. This wiki is work in progress! Every public member within the framework is documented via C#'s XML documentation, so users of Visual Studio and Visual Studio Code (and likely other IDEs) should be covered!
