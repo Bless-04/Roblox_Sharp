@@ -27,7 +27,7 @@ Install-Package Roblox_Sharp -Version <version>
 
 <!--Roblox_Sharp can also be installed by downloading the DLL under the "Releases" and adding it to your project manually. -->
 
-### Structure 
+### Folder Structure 
 ```
 src/
 ├── Abstraction/            # namepsace for base classes that models inherit from to keep consistency
