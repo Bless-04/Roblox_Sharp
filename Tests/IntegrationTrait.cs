@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit.Sdk;
 
-namespace xUnitTests
+namespace Tests
 {
     /// <summary>
     /// For normal web integration Tests

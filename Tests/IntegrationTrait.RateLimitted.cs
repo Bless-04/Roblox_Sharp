@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Xunit.Sdk;
 
-namespace xUnitTests;
+namespace Tests;
 public partial class IntegrationTrait
 {
     /// <summary>

@@ -3,7 +3,7 @@ using Roblox_Sharp.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace xUnitTests.Integration
+namespace Tests.Integration
 {
     
     /// <summary>

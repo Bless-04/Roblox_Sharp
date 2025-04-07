@@ -1,4 +1,4 @@
-﻿namespace xUnitTests
+﻿namespace Tests
 {
     public static class User_Constants
     {

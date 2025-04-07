@@ -5,7 +5,7 @@ using System.Linq;
 
 using System.Threading.Tasks;
 
-namespace xUnitTests.Integration
+namespace Tests.Integration
 {
     /// <summary>
     /// Tests <see cref="Presence_v1"/> endpoint

@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit.Sdk;
 
-namespace xUnitTests;
+namespace Tests;
 public partial class IntegrationTrait
 {
     [TraitDiscoverer("Xunit.Sdk.TraitDiscoverer", "xunit.core")]

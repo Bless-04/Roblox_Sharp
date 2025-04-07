@@ -1,4 +1,4 @@
-﻿namespace xUnitTests.Integration
+﻿namespace Tests.Integration
 {
     /*
     /// <summary>

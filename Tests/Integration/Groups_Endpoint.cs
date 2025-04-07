@@ -2,7 +2,7 @@
 using Roblox_Sharp.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-namespace xUnitTests.Integration
+namespace Tests.Integration
 {
     /// <summary>
     /// Tests <see cref="Groups_v1"/> and <see cref="Groups_v2"/> endpoints

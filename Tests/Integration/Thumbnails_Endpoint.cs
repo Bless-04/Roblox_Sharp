@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace xUnitTests.Integration
+namespace Tests.Integration
 {
     /// <summary>
     /// Tests <see cref="Thumbnails_v1"/> endpoint

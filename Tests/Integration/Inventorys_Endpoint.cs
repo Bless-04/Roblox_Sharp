@@ -1,8 +1,8 @@
 ﻿/*using Roblox_Sharp.Endpoints;
 using System.Threading.Tasks;
 
-using static xUnitTests.User_Constants;
-namespace xUnitTests.Integration
+using static Tests.User_Constants;
+namespace Tests.Integration
 {
     /// <summary>
     /// Tests <see cref="Inventory_v1"/> Endpoint

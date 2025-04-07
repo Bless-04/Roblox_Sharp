@@ -2,8 +2,8 @@
 using Roblox_Sharp.Models.v1;
 using System.Threading.Tasks;
 
-using static xUnitTests.User_Constants;
-namespace xUnitTests.Integration
+using static Tests.User_Constants;
+namespace Tests.Integration
 {
     /// <summary>
     /// Tests <see cref="Users_v1"/> endpoint

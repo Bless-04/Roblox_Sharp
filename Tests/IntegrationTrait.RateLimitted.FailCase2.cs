@@ -1,4 +1,4 @@
-namespace xUnitTests;
+namespace Tests;
 public partial class IntegrationTrait
 {
     public partial class RateLimitted

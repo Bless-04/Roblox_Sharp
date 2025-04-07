@@ -2,8 +2,8 @@
 using Roblox_Sharp.Models.v1;
 using System.Text.Json;
 
-using static xUnitTests.TestHelper;
-namespace xUnitTests.Model.Json
+using static Tests.TestHelper;
+namespace Tests.Model.Json
 {
     /// <summary>
     /// Tests Serialization for <see cref="Roblox_Sharp.Abstractions.User"/> based Models

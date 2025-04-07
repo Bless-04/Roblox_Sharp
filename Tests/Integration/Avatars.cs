@@ -3,8 +3,8 @@ using Roblox_Sharp.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using static xUnitTests.User_Constants;
-namespace xUnitTests.Integration
+using static Tests.User_Constants;
+namespace Tests.Integration
 {
     /// <summary>
     /// Tests <see cref="Avatars_v1"/> and <see cref="Avatars_v2"/> Endpoints

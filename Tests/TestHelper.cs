@@ -3,13 +3,13 @@ using System;
 using System.Diagnostics;
 using System.Text.Json;
 
-namespace xUnitTests
+namespace Tests
 {
     public class TestHelper
     {
         public TestHelper() 
         {
-            if (!WebAPI.Set_UserAgent(nameof(xUnitTests))) throw new Exception(nameof(WebAPI.Set_UserAgent));
+            if (!WebAPI.Set_UserAgent(nameof(Tests))) throw new Exception(nameof(WebAPI.Set_UserAgent));
 
             WebAPI.OnFailedRequest += (obj, args) => Debug.WriteLine(args.Response);
             
