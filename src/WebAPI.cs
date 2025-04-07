@@ -21,7 +21,11 @@ namespace Roblox_Sharp
         /// <summary>
         /// <see cref="HttpClient"></see> used for all web requests
         /// </summary>
-        public static ref readonly HttpClient Client => ref _client;
+        public static HttpClient Client
+        {
+            get => _client;
+            set => Interlocked.Exchange(ref _client, value).Dispose(); //thread safe because of this probably;
+        }
 
         /* not needed
         /// <summary>
@@ -69,16 +73,7 @@ namespace Roblox_Sharp
             //_client.DefaultRequestHeaders.Authorization needed for auth
         }
 
-
         #region Set
-        /// <summary>
-        /// atomically sets the <see cref="HttpClient"/> used for all web requests
-        /// useful for configuring httpclient
-        /// sets to default if null
-        /// </summary>
-        /// <param name="new_client"></param>
-        public static void Set_HttpClient(in HttpClient new_client) => Interlocked.Exchange(ref _client, new_client).Dispose(); //thread safe because of this?
-
         /// <summary>
         /// sets the name of the user agent used for all requests
         /// </summary>
