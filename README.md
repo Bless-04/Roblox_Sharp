@@ -33,7 +33,7 @@ src/
 ├── Abstraction/            # namepsace for base classes and interfaces that models inherit from to keep consistency
 ├── Endpoints/              # namespace where static Endpoint classes are              
 │   ├── Endpoints.Enums/    # folder for holding Endpoint based enums; same namespace as Endpoints
-├── Models/                 # Json response models
+├── Models/                 # models used to deserialize the json responses
 │   ├── Models.Internal/    # Internals Models for specific requests; same namespace as Models but everything is internal
 │   ├── JsonConverters/     # Json converter models
 │   ├── v1/                 # Models for v1 endpoints
