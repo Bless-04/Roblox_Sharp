@@ -15,7 +15,7 @@ namespace xUnitTests.Model.Json
         /// Tests Serialization for <see cref="Roblox_Sharp.Models.v1.UserInfo"/>
         /// </summary>
         [Fact]
-        public void User()
+        public void UserInfo()
         {
             const string json_response = @"
             {

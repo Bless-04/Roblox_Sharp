@@ -177,7 +177,7 @@
         </member>
         <member name="T:Roblox_Sharp.Abstractions.IUser">
             <summary>
-            represents any User based request that contains the unique user id
+            interface for models representing user information containing properties that have the unique user id 
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Abstractions.IUser.UserId">
@@ -187,7 +187,7 @@
         </member>
         <member name="T:Roblox_Sharp.Abstractions.User">
             <summary>
-            represents any User based request that contains the user id and the username
+            abstract class for models representing User information that have properties containing both the unique user id and the unique usernae
             </summary>
         </member>
         <member name="F:Roblox_Sharp.Abstractions.User.UsernameComparer">
@@ -252,7 +252,7 @@
             Gets detailed user information using the user's <paramref name="ID"/>
             </summary>
             <param name="ID">The users id</param>
-            <returns> The deserialized <see cref="T:Roblox_Sharp.Models.v1.User"/> if successful</returns>
+            <returns> The deserialized <see cref="T:Roblox_Sharp.Models.v1.UserInfo"/> if successful</returns>
         </member>
         <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_AuthenticatedAsync">
             <summary>
@@ -275,6 +275,16 @@
             <param name="UserIds"></param>
             <param name="ExcludeBannedUsers"></param>
             <returns><see cref="T:System.Collections.Generic.IReadOnlyList`1"/> of <see cref="T:Roblox_Sharp.Models.v1.UserByUserId"/></returns>
+        </member>
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsernameHistoryAsync(System.UInt64,Roblox_Sharp.Endpoints.Limit,Roblox_Sharp.Endpoints.Sort,System.String)">
+            <summary>
+            Retrieves the username history for a particular <paramref name="userId"/>
+            </summary>
+            <param name="userId"></param>
+            <param name="limit"></param>
+            <param name="sortOrder"></param>
+            <param name="cursor"></param>
+            <returns></returns>
         </member>
         <member name="T:Roblox_Sharp.Enums.AssetType">
             <summary>
@@ -918,88 +928,6 @@
             Service unavailable. Typically the server is down.
             </summary>
         </member>
-        <member name="T:Roblox_Sharp.Models.v1.User">
-            <summary>
-            used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserAsync(System.UInt64)"/>
-            <see href="https://users.roblox.com//docs/index.html">Users v1</see>
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.v1.User.Description">
-            <summary>
-            The users description 
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.v1.User.Created">
-            <summary>
-            creation date and time of user; When the User signed up
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.v1.User.IsBanned">
-            <summary>
-            <see langword="true"/> if the user is banned
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.v1.User.HasVerifiedBadge">
-            <summary>
-            <see langword="true"/> only if the user has a verified badge
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.v1.User.CreatedString">
-            <summary>
-            creation date and time in the same format as the roblox website 
-            </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Models.v1.User.Presence">
-                 * example return 
-                * {
-             "userPresences": [
-               {
-                 "userPresenceType": 0,
-                 "lastLocation": "string",
-                 "placeId": 0,
-                 "rootPlaceId": 0,
-                 "gameId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                 "universeId": 0,
-                 "userId": 0,
-                 "lastOnline": "2024-09-12T16:24:42.067Z",
-                 "invisibleModeExpiry": "2024-09-12T16:24:42.067Z"
-               }
-             ]
-            }
-        </member>
-        <member name="P:Roblox_Sharp.Models.v1.User.Presence.UserId">
-            <inheritdoc/>
-        </member>
-        <member name="P:Roblox_Sharp.Models.v1.User.Presence.PresenceType">
-            <summary>
-            <see cref="T:Roblox_Sharp.Models.v1.User.Presence.Type"/> type of user
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.v1.User.Presence.PlaceId">
-            <summary>
-            unique place id
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.v1.User.Presence.GameId">
-            <summary>
-            unique game id
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.v1.User.Presence.UniverseId">
-            <summary>
-            unique universe id
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.v1.User.Presence.LastOnline">
-            <summary>
-            exact date and time user was last online
-            </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Models.v1.User.Presence.Type">
-            <summary>
-            The Type of the <see cref="T:Roblox_Sharp.Models.v1.User.Presence"/>
-            </summary>
-        </member>
         <member name="T:Roblox_Sharp.Models.v1.UserAuthenticated">
             <summary>
             used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_AuthenticatedAsync"/>
@@ -1022,7 +950,7 @@
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.v1.UserByUserId.HasVerifiedBadge">
-            <inheritdoc cref="P:Roblox_Sharp.Models.v1.User.HasVerifiedBadge"/>
+            <inheritdoc cref="P:Roblox_Sharp.Models.v1.UserInfo.HasVerifiedBadge"/>
         </member>
         <member name="T:Roblox_Sharp.Models.v1.UserByUsername">
             <summary>
@@ -1032,6 +960,88 @@
         <member name="P:Roblox_Sharp.Models.v1.UserByUsername.RequestedUsername">
             <summary>
             The requested username
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.v1.UserInfo">
+            <summary>
+            used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserAsync(System.UInt64)"/>
+            <see href="https://users.roblox.com//docs/index.html">Users v1</see>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserInfo.Description">
+            <summary>
+            The users description 
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserInfo.Created">
+            <summary>
+            creation date and time of user; When the User signed up
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserInfo.IsBanned">
+            <summary>
+            <see langword="true"/> if the user is banned
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserInfo.HasVerifiedBadge">
+            <summary>
+            <see langword="true"/> only if the user has a verified badge
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserInfo.CreatedString">
+            <summary>
+            creation date and time in the same format as the roblox website 
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.v1.UserPresence">
+                 * example return 
+                * {
+             "userPresences": [
+               {
+                 "userPresenceType": 0,
+                 "lastLocation": "string",
+                 "placeId": 0,
+                 "rootPlaceId": 0,
+                 "gameId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                 "universeId": 0,
+                 "userId": 0,
+                 "lastOnline": "2024-09-12T16:24:42.067Z",
+                 "invisibleModeExpiry": "2024-09-12T16:24:42.067Z"
+               }
+             ]
+            }
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserPresence.UserId">
+            <inheritdoc/>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserPresence.PresenceType">
+            <summary>
+            The type of UserPresence type of user
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserPresence.PlaceId">
+            <summary>
+            unique place id
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserPresence.GameId">
+            <summary>
+            unique game id
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserPresence.UniverseId">
+            <summary>
+            unique universe id
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserPresence.LastOnline">
+            <summary>
+            exact date and time user was last online
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.v1.UserPresence.Type">
+            <summary>
+            The Type of the <see cref="T:Roblox_Sharp.Models.v1.UserPresence.Type"/>
             </summary>
         </member>
         <member name="T:Roblox_Sharp.WebAPI">
@@ -1055,14 +1065,14 @@
             an event that is raised when the web request fails / statuscode is not 200
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.WebAPI.Deserialize``1(Roblox_Sharp.FetchedData)">
+        <member name="M:Roblox_Sharp.WebAPI.Deserialize``1(Roblox_Sharp.FetchedData@)">
             <returns>
             the deserialized <typeparamref name="T"/> <br/> 
             <see langword="null"/> or <see langword="default"/> if the request is not successful
             </returns>
             <inheritdoc cref="M:System.Text.Json.JsonSerializer.Deserialize``1(System.String,System.Text.Json.JsonSerializerOptions)"/>
         </member>
-        <member name="M:Roblox_Sharp.WebAPI.Set_HttpClient(System.Net.Http.HttpClient)">
+        <member name="M:Roblox_Sharp.WebAPI.Set_HttpClient(System.Net.Http.HttpClient@)">
             <summary>
             atomically sets the <see cref="T:System.Net.Http.HttpClient"/> used for all web requests
             useful for configuring httpclient
