@@ -1,4 +1,4 @@
-[![Nuget](https://img.shields.io/nuget/v/Roblox_Sharp.svg)](https://www.nuget.org/packages/Roblox_Sharp/)
+﻿[![Nuget](https://img.shields.io/nuget/v/Roblox_Sharp.svg)](https://www.nuget.org/packages/Roblox_Sharp/)
 [![License](https://img.shields.io/github/license/Bless-04/Roblox_Sharp.svg)](LICENSE)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Roblox_Sharp)](https://www.nuget.org/packages/Roblox_Sharp)
 
@@ -27,3 +27,21 @@ Install-Package Roblox_Sharp -Version <version>
 
 <!--Roblox_Sharp can also be installed by downloading the DLL under the "Releases" and adding it to your project manually. -->
 
+### Structure 
+```
+src/
+├── Abstraction/            # namepsace for base classes that models inherit from to keep consistency
+├── Endpoints/              # namespace where static Endpoint classes are              
+│   ├── Endpoints.Enums/    # folder for holding Endpoint based enums; same namespace as Endpoints
+├── Models/                 # Json response models
+│   ├── Models.Internal/    # Models for very specific requests; same namespace as Models but everything is internal
+│   ├── JsonConverters/     # Json converter models
+│   ├── v1/                 # Models for v1 endpoints
+│   ├── v2/                 # Models for v2 endpoints
+│   ├── v3/                 # Models for v3 endpoints
+Tests/
+├── Integration/            # Tests the Endpoint function for both success and fail cases          
+├── Model /                 # Model based tests
+│   ├── Json/               # Model Json serialization and deserialization Tests
+│   ├── Polymorphism/       # Model Inheritance based tests; Tests that certain models can be used in the same context (example: User based models all have UserId and Username)
+```
