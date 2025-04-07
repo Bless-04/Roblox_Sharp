@@ -1,6 +1,4 @@
-﻿using Roblox_Sharp.Models.v1;
-using Roblox_Sharp.Models;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -18,13 +16,12 @@ namespace Roblox_Sharp
     /// </summary>
     public static class WebAPI
     {
-
         internal static HttpClient _client = new();
 
         /// <summary>
         /// <see cref="HttpClient"></see> used for all web requests
         /// </summary>
-        public static HttpClient Client() => _client;
+        public static ref readonly HttpClient Client => ref _client;
 
         /* not needed
         /// <summary>
@@ -73,6 +70,7 @@ namespace Roblox_Sharp
         }
 
 
+        #region Set
         /// <summary>
         /// atomically sets the <see cref="HttpClient"/> used for all web requests
         /// useful for configuring httpclient
@@ -91,7 +89,7 @@ namespace Roblox_Sharp
             _client.DefaultRequestHeaders.UserAgent.Clear();
             return _client.DefaultRequestHeaders.UserAgent.TryParseAdd(name);
         }
-
+        #endregion
 
         #region Requests
 

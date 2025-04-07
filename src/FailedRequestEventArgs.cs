@@ -8,17 +8,9 @@ namespace Roblox_Sharp
     /// </summary>
     public class FailedRequestEventArgs (HttpResponseMessage response) : EventArgs
     {
-
-        public readonly HttpResponseMessage Response = response;
-
-
         /// <summary>
-        /// disposes the response
+        /// the response
         /// </summary>
-        ~FailedRequestEventArgs()
-        {
-            Response.Dispose();
-        }
-        
+        public readonly HttpResponseMessage Response = response;
     }
 }
