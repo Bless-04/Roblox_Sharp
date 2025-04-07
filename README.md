@@ -29,7 +29,7 @@ Install-Package Roblox_Sharp -Version <version>
 
 ### Folder Structure
 ```
-src/						            # Roblox_Sharp library source
+src/
 ├── Abstraction/            # namepsace for base classes and interfaces that models inherit from to keep consistency
 ├── Endpoints/              # namespace where static Endpoint classes are              
 │   ├── Endpoints.Enums/    # folder for holding Endpoint based enums; same namespace as Endpoints
@@ -39,7 +39,7 @@ src/						            # Roblox_Sharp library source
 │   ├── v1/                 # Models for v1 endpoints
 │   ├── v2/                 # Models for v2 endpoints
 │   ├── v3/                 # Models for v3 endpoints
-Tests/						          # Roblox_Sharp xUnit Tests
+Tests/	
 ├── Integration/            # Tests the Endpoint functions for both success and fail case       
 ├── Model /                 # Model based tests
 │   ├── Json/               # Model Json serialization and deserialization Tests
