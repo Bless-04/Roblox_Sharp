@@ -16,6 +16,13 @@ namespace Roblox_Sharp
     /// </summary>
     public static class WebAPI
     {
+        static WebAPI()
+        {
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Set_UserAgent(nameof(Roblox_Sharp));
+            //_client.DefaultRequestHeaders.Authorization needed for auth
+        }
+
         internal static HttpClient _client = new();
 
         /// <summary>
@@ -66,12 +73,7 @@ namespace Roblox_Sharp
 
         #endregion
 
-        static WebAPI()
-        {
-            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            Set_UserAgent(nameof(Roblox_Sharp));
-            //_client.DefaultRequestHeaders.Authorization needed for auth
-        }
+
 
         #region Set
         /// <summary>
@@ -98,9 +100,9 @@ namespace Roblox_Sharp
         public static async Task<FetchedData> Get_RequestAsync([StringSyntax(StringSyntaxAttribute.Uri)] string url)
         {
             using HttpResponseMessage response = await _client.GetAsync(url);
-            
+
             FireRequestEvents(response);
-            return new FetchedData(await response.Content.ReadAsStringAsync(),response.IsSuccessStatusCode);
+            return new FetchedData(await response.Content.ReadAsStringAsync(), response.IsSuccessStatusCode);
         }
 
         /// <summary>
@@ -110,7 +112,7 @@ namespace Roblox_Sharp
         /// <param name="url">the req url</param>
         /// <param name="model">the post model</param>
         /// <returns><see cref="FetchedData"/></returns>
-        public static async Task<FetchedData> Post_RequestAsync<T>([StringSyntax(StringSyntaxAttribute.Uri)] string url,T model)
+        public static async Task<FetchedData> Post_RequestAsync<T>([StringSyntax(StringSyntaxAttribute.Uri)] string url, T model)
         {
             using HttpResponseMessage response = await _client.PostAsJsonAsync(url, model);
 

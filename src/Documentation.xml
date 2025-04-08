@@ -65,7 +65,7 @@
         </member>
         <member name="M:Roblox_Sharp.Abstractions.Creation`1.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <remarks>uses the same hashcode function as <see langword="ulong"/></remarks>
+            <remarks>uses the same <see cref="T:System.HashCode"/> function as <see langword="ulong"/></remarks>
         </member>
         <member name="M:Roblox_Sharp.Abstractions.Creation`1.Equals(System.Object)">
             <inheritdoc/>
@@ -263,6 +263,16 @@
             <param name="cursor"></param>
             <returns></returns>
         </member>
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserSearchAsync(System.String,System.String,Roblox_Sharp.Endpoints.Limit,System.String)">
+            <summary>
+            Searches for user's by <paramref name="keyword"/>
+            </summary>
+            <param name="keyword">The search keyword</param>
+            <param name="sessionId"></param>
+            <param name="LIMIT">The number of results per request</param>
+            <param name="cursor">The paging cursor for the previous or next page</param>
+            <returns> The deserialized <see cref="T:Roblox_Sharp.Models.Page`1"/>  of <see cref="T:Roblox_Sharp.Models.v1.UserBySearch"/> if successful</returns>
+        </member>
         <member name="T:Roblox_Sharp.Enums.AssetType">
             <summary>
             The asset type id of asset with id Roblox.Inventory.Api.V2.UserAssetItemModelV2.AssetId. <br/>
@@ -342,9 +352,9 @@
             event args for requests
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.FailedRequestEventArgs.Finalize">
+        <member name="F:Roblox_Sharp.FailedRequestEventArgs.Response">
             <summary>
-            disposes the response
+            the response
             </summary>
         </member>
         <member name="T:Roblox_Sharp.FetchedData">
@@ -921,6 +931,16 @@
             The users display name
             </summary>
         </member>
+        <member name="T:Roblox_Sharp.Models.v1.UserBySearch">
+            <summary>
+            Used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserSearchAsync(System.String,System.String,Roblox_Sharp.Endpoints.Limit,System.String)"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.UserBySearch.PreviousUsernames">
+            <summary>
+            The users past previous usernames
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.Models.v1.UserByUserId">
             <summary>
             used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsersAsync(System.Collections.Generic.IEnumerable{System.UInt64},System.Boolean)"/>
@@ -1027,7 +1047,7 @@
             <b><see href="https://github.com/matthewdean/roblox-web-apis?tab=readme-ov-file">Endpoints Documentation</see></b>
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.WebAPI.Client">
+        <member name="P:Roblox_Sharp.WebAPI.Client">
             <summary>
             <see cref="T:System.Net.Http.HttpClient"></see> used for all web requests
             </summary>
@@ -1048,14 +1068,6 @@
             <see langword="null"/> or <see langword="default"/> if the request is not successful
             </returns>
             <inheritdoc cref="M:System.Text.Json.JsonSerializer.Deserialize``1(System.String,System.Text.Json.JsonSerializerOptions)"/>
-        </member>
-        <member name="M:Roblox_Sharp.WebAPI.Set_HttpClient(System.Net.Http.HttpClient@)">
-            <summary>
-            atomically sets the <see cref="T:System.Net.Http.HttpClient"/> used for all web requests
-            useful for configuring httpclient
-            sets to default if null
-            </summary>
-            <param name="new_client"></param>
         </member>
         <member name="M:Roblox_Sharp.WebAPI.Set_UserAgent(System.String)">
             <summary>

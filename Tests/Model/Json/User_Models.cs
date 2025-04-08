@@ -1,4 +1,5 @@
-﻿using Roblox_Sharp.Models;
+﻿using Roblox_Sharp.Endpoints;
+using Roblox_Sharp.Models;
 using Roblox_Sharp.Models.v1;
 using System.Text.Json;
 
@@ -79,7 +80,7 @@ namespace Tests.Model.Json
 
             Assert.NotNull(user);
             Assert.True(user.HasVerifiedBadge, isFailing(nameof(user.HasVerifiedBadge)));
-            Assert.True(user.UserId ==8, isFailing(nameof(user.UserId)));
+            Assert.True(user.UserId == 8, isFailing(nameof(user.UserId)));
             Assert.True(user.Username.Length > 0, isFailing(nameof(user.Username)));
             Assert.True(user.DisplayName.Length > 0, isFailing(nameof(user.DisplayName)));
 
@@ -102,6 +103,17 @@ namespace Tests.Model.Json
             Assert.Equal(user.Username, user.DisplayName);
             Assert.True(RoundTrip(user));
 
+        }
+
+        [Fact]
+        public void UserBySearch()
+        {
+            Limit x = Limit.TwentyFive;
+
+            var b = (byte)x;
+
+
+            b = 9;
         }
     }
 }

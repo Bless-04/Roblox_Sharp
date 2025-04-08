@@ -1,4 +1,5 @@
 ﻿using Roblox_Sharp.Endpoints;
+using Roblox_Sharp.Models;
 using Roblox_Sharp.Models.v1;
 using System.Threading.Tasks;
 
@@ -26,8 +27,8 @@ namespace Tests.Integration
             Assert.True(roblox.UserId == ROBLOX, isFailing(nameof(roblox.UserId)));
 
             Assert.Equal(nameof(ROBLOX), roblox.Username, ignoreCase: true);
-            Assert.True(roblox.Description.Length > 50,isFailing(nameof(roblox.Description)));
-            Assert.True(roblox.DisplayName.Length > 0,isFailing(nameof(roblox.DisplayName)));
+            Assert.True(roblox.Description.Length > 50, isFailing(nameof(roblox.Description)));
+            Assert.True(roblox.DisplayName.Length > 0, isFailing(nameof(roblox.DisplayName)));
 
             Assert.True(roblox.HasVerifiedBadge, isFailing(nameof(roblox.HasVerifiedBadge)));
 
@@ -49,17 +50,17 @@ namespace Tests.Integration
         {
             string message = isFailing(nameof(Users_v1.Get_UsersAsync) + " for usernames");
 
-            var users = await Users_v1.Get_UsersAsync(["erik.cassel","Roblox"],ExcludeBannedUsers);
+            var users = await Users_v1.Get_UsersAsync(["erik.cassel", "Roblox"], ExcludeBannedUsers);
 
             Assert.NotNull(users);
-            Assert.True(users.Count == 2,message);
+            Assert.True(users.Count == 2, message);
 
             foreach (var user in users)
             {
                 Assert.NotNull(user);
-                Assert.Equal(user.Username,user.RequestedUsername);
-                Assert.True(user.UserId != default,message);
-                Assert.True(user.Username.Length > 0,message);
+                Assert.Equal(user.Username, user.RequestedUsername);
+                Assert.True(user.UserId != default, message);
+                Assert.True(user.Username.Length > 0, message);
             }
         }
 
@@ -67,8 +68,8 @@ namespace Tests.Integration
         [Fact]
         public async Task Get_UserByUsername_Fail()
         {
-            var user = await Users_v1.Get_UsersAsync([""],ExcludeBannedUsers);
-            
+            var user = await Users_v1.Get_UsersAsync([""], ExcludeBannedUsers);
+
             Assert.Empty(user!);
         }
 
@@ -77,7 +78,7 @@ namespace Tests.Integration
         public async Task Get_UserById()
         {
             string message = isFailing(nameof(Users_v1.Get_UsersAsync) + " for ids");
-            var users = await Users_v1.Get_UsersAsync([ROBLOX,SHEDLETSKY,BUILDERMAN],ExcludeBannedUsers);
+            var users = await Users_v1.Get_UsersAsync([ROBLOX, SHEDLETSKY, BUILDERMAN], ExcludeBannedUsers);
 
             Assert.NotNull(users);
             Assert.True(users.Count == 3, message);
@@ -87,8 +88,8 @@ namespace Tests.Integration
                 Assert.NotNull(user);
 
                 if (user.UserId == SHEDLETSKY) Assert.False(user.HasVerifiedBadge, message);
-                else Assert.True(user.HasVerifiedBadge,message);
-                Assert.True(user.UserId != default,message);
+                else Assert.True(user.HasVerifiedBadge, message);
+                Assert.True(user.UserId != default, message);
                 Assert.True(user.Username.Length > 0, message);
             }
         }
@@ -97,7 +98,7 @@ namespace Tests.Integration
         [Fact]
         public async Task Get_UserById_Fail()
         {
-            var user = await Users_v1.Get_UsersAsync([DOEST_EXIST],ExcludeBannedUsers);
+            var user = await Users_v1.Get_UsersAsync([DOEST_EXIST], ExcludeBannedUsers);
 
             Assert.Empty(user!);
         }
@@ -108,7 +109,7 @@ namespace Tests.Integration
         {
             var user = await Users_v1.Get_UsernameHistoryAsync(INCEPTIONTIME);
 
-            
+
             Assert.NotNull(user);
             Assert.True(user.Count > 1 && user[0].Length > 0, isFailing(nameof(Get_UsernameHistory)));
         }
@@ -123,7 +124,29 @@ namespace Tests.Integration
             Assert.Null(user);
         }
 
-        
+        [IntegrationTrait.RateLimitted]
+        [Fact]
+        public async Task Get_UserSearch()
+        {
+            Limit limit = Limit.Max;
+            Page<UserBySearch>? page = await Users_v1.Get_UserSearchAsync(nameof(INCEPTIONTIME), LIMIT: limit);
+
+            Assert.NotNull(page);
+            Assert.NotEmpty(page.Data);
+            Assert.True(page.Count == (byte)limit, isFailing(nameof(Users_v1.Get_UserSearchAsync)));
+
+            var user = page[0];
+
+            Assert.NotNull(user);
+            Assert.NotEmpty(user.PreviousUsernames);
+            Assert.True(user.UserId != default, isFailing(nameof(user.UserId)));
+            Assert.True(user.Username.Length > 0, isFailing(nameof(user.Username)));
+        }
+
+        [IntegrationTrait.RateLimitted.FailCase2]
+        [Fact]
+        public async Task Get_UserSearch_Fail() => Assert.Null(await Users_v1.Get_UserSearchAsync(string.Empty));
+
         /*
         [IntegrationTrait]
         [Theory]
