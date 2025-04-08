@@ -109,7 +109,6 @@ namespace Tests.Integration
         {
             var user = await Users_v1.Get_UsernameHistoryAsync(INCEPTIONTIME);
 
-
             Assert.NotNull(user);
             Assert.True(user.Count > 1 && user[0].Length > 0, isFailing(nameof(Get_UsernameHistory)));
         }
@@ -128,7 +127,7 @@ namespace Tests.Integration
         [Fact]
         public async Task Get_UserSearch()
         {
-            Limit limit = Limit.Max;
+            const Limit limit = Limit.Max;
             Page<UserBySearch>? page = await Users_v1.Get_UserSearchAsync(nameof(INCEPTIONTIME), LIMIT: limit);
 
             Assert.NotNull(page);

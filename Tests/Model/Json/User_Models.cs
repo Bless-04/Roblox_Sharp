@@ -68,7 +68,6 @@ namespace Tests.Model.Json
             }
 
             Assert.True(RoundTrip(user1));
-
         }
 
         [Fact]
@@ -102,18 +101,24 @@ namespace Tests.Model.Json
 
             Assert.Equal(user.Username, user.DisplayName);
             Assert.True(RoundTrip(user));
-
         }
 
         [Fact]
         public void UserBySearch()
         {
-            Limit x = Limit.TwentyFive;
+            const string json = "{\r\n      \"previousUsernames\": [\r\n        \"string\"\r\n      ],\r\n      \"hasVerifiedBadge\": true,\r\n      \"id\": 1,\r\n      \"name\": \"string\",\r\n      \"displayName\": \"string\"\r\n    }";
 
-            var b = (byte)x;
+            UserBySearch? user = JsonSerializer.Deserialize<UserBySearch>(json);
 
+            Assert.NotNull(user);
+            Assert.Single(user.PreviousUsernames);
+            Assert.True(user.HasVerifiedBadge, isFailing(nameof(user.HasVerifiedBadge)));
+            Assert.True(user.UserId == 1, isFailing(nameof(user.UserId)));
+            Assert.True(user.Username.Length > 0, isFailing(nameof(user.Username)));
+            Assert.True(user.DisplayName.Length > 0, isFailing(nameof(user.DisplayName)));
+            Assert.Equal(user.DisplayName, user.DisplayName);
 
-            b = 9;
+            Assert.True(RoundTrip(user));
         }
     }
 }
