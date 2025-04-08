@@ -29,9 +29,7 @@ namespace Tests.Integration
             Assert.Equal(nameof(ROBLOX), roblox.Username, ignoreCase: true);
             Assert.True(roblox.Description.Length > 50, isFailing(nameof(roblox.Description)));
             Assert.True(roblox.DisplayName.Length > 0, isFailing(nameof(roblox.DisplayName)));
-
             Assert.True(roblox.HasVerifiedBadge, isFailing(nameof(roblox.HasVerifiedBadge)));
-
             Assert.False(roblox.IsBanned, isFailing(nameof(roblox.IsBanned)));
         }
 
