@@ -26,22 +26,3 @@ Install-Package Roblox_Sharp -Version <version>
 ```
 
 <!--Roblox_Sharp can also be installed by downloading the DLL under the "Releases" and adding it to your project manually. -->
-
-### Folder Structure
-```
-src/
-├── Abstraction/            # base classes and interfaces that models inherit from to keep consistency
-├── Endpoints/              # where static Endpoint classes are              
-│   ├── Endpoints.Enums/    # folder for holding Endpoint based enums; still in the Endpoints namespace
-├── Models/                 # Json response deserialization models
-│   ├── Models.Internal/    # folder for Internals Models that exist for specific requests; still in the Models namespace 
-│   ├── JsonConverters/     # Json converter models
-│   ├── v1/                 # Models for v1 endpoints
-│   ├── v2/                 # Models for v2 endpoints
-│   ├── v3/                 # Models for v3 endpoints
-Tests/	
-├── Integration/            # Tests the Endpoint functions for both success and fail case       
-├── Model /                 # Model based tests
-│   ├── Json/               # Model Json serialization and deserialization Tests
-│   ├── Polymorphism/       # Model Inheritance based tests; Tests that certain models can be used in the same context (example: User based models all have UserId and Username)
-```
