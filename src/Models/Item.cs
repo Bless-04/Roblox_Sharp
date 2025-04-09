@@ -8,7 +8,7 @@ namespace Roblox_Sharp.Models
     /// <summary>
     /// class used to serialize Item based requests
     /// </summary>
-    public class Item : Creation<Item>, IAsset
+    public partial class Item : Asset
     {
         /// <summary>
         /// The ID of the item
@@ -20,21 +20,24 @@ namespace Roblox_Sharp.Models
             init => base.Id = value;
         }
 
-        ulong IAsset.AssetId => ItemId;
-
         /// <summary>
         /// The name of the item
         /// </summary>
-        public required string Name { get; init; }
+        [JsonPropertyName("Name")]
+        public required string ItemName
+        {
+            get => base.AssetName;
+            init => base.AssetName = value;
+        }
 
         /// <summary>
         /// The type of the item
         /// </summary>
-        public ItemType Type { get; init; }
+        public required Item.Type ItemType { get; init; }
 
         /// <summary>
         /// The instance id of the item if applicable
         /// </summary>
-        public ulong InstanceId { get; init; }
+        public required ulong InstanceId { get; init; }
     }
 }

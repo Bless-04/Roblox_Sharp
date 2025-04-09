@@ -4,6 +4,29 @@
         <name>Roblox_Sharp</name>
     </assembly>
     <members>
+        <member name="T:Roblox_Sharp.Abstractions.IAsset">
+            <summary>
+            Represents an asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Abstractions.IAsset.AssetId">
+            <summary>
+            The unique id of the <see cref="T:Roblox_Sharp.Abstractions.IAsset"/>
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Abstractions.Asset">
+            <summary>
+            Represents a general asset model
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Abstractions.Asset.AssetId">
+            <inheritdoc cref="P:Roblox_Sharp.Abstractions.IAsset.AssetId"/>
+        </member>
+        <member name="P:Roblox_Sharp.Abstractions.Asset.AssetName">
+            <summary>
+            the name of the asset
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.Abstractions.ICreation">
             <summary>
             generalized template for any roblox object that has a unique <see cref="P:Roblox_Sharp.Abstractions.ICreation.Id"/>
@@ -79,16 +102,6 @@
         </member>
         <member name="M:Roblox_Sharp.Abstractions.Creation`1.GetHashCode(Roblox_Sharp.Abstractions.Creation{`0})">
             <inheritdoc/>
-        </member>
-        <member name="T:Roblox_Sharp.Abstractions.IAsset">
-            <summary>
-            Represents an asset
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Abstractions.IAsset.AssetId">
-            <summary>
-            The unique id of the <see cref="T:Roblox_Sharp.Abstractions.IAsset"/>
-            </summary>
         </member>
         <member name="T:Roblox_Sharp.Abstractions.IBadge">
             <summary>
@@ -207,6 +220,20 @@
             <returns>
             A string representation of the <see cref="T:Roblox_Sharp.Abstractions.User"/>
             </returns>
+        </member>
+        <member name="T:Roblox_Sharp.Endpoints.Avatars_v1">
+            <summary>
+            Endpoints relating to the customization of player avatars <br></br>
+            <b><see href="https://avatar.roblox.com//docs/index.html?urls.primaryName=Avatar%20Api%20v2">Avatars Documentation</see></b>
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Roblox_Sharp.Endpoints.Avatars_v1.Get_AvatarAsync(System.UInt64)" -->
+        <member name="M:Roblox_Sharp.Endpoints.Avatars_v1.Get_CurrentlyWearingAsync(System.UInt64)">
+            <summary>
+            Gets a list of asset ids that the <paramref name="userId"/> is currently wearing
+            </summary>
+            <param name="userId"></param>
+            <returns><see cref="T:System.Collections.Generic.IReadOnlyList`1"/> of asset ids </returns>
         </member>
         <member name="T:Roblox_Sharp.Endpoints.Limit">
             <summary>
@@ -405,79 +432,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Roblox_Sharp.Models.Avatar.Asset.Type">
-            <summary>
-            the type of the asset
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Type.Id">
-            <summary>
-            the id of the Asset_Type
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Asset.Type.Name">
-            <summary>
-            the name of the Asset_Type
-            </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Models.Avatar.BodyColor3">
-            <summary>
-            the body color of the avatar using RGB hex
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3.HeadColor3">
-            <summary>
-            The RGB hex color for head color, e.g. #FFFFFF
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3.TorsoColor3">
-            <summary>
-            The RGB hex color for torso color
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3.RightArmColor3">
-            <summary>
-            The RGB hex color for right arm color, e.g. #FFFFFF
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3.LeftArmColor3">
-            <summary>
-            The RGB hex color for left arm color, e.g. #FFFFFF
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3.RightLegColor3">
-            <summary>
-            The RGB hex color for right leg color, e.g. #FFFFFF
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.BodyColor3.LeftLegColor3">
-            <summary>
-            The RGB hex color for left leg color, e.g. #FFFFFF
-            </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Models.Avatar.Emote">
-            <summary>
-            a roblox emote
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Emote.Position">
-            <summary>
-            the position the emote is equipped to
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Emote.AssetId">
-            <inheritdoc cref="P:Roblox_Sharp.Abstractions.IAsset.AssetId"/>
-        </member>
-        <member name="P:Roblox_Sharp.Models.Avatar.Emote.AssetName">
-            <summary>
-            the name of the emote
-            </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Models.Avatar.Scale">
-            <summary>
-            Holds the scaling of the avatar
-            </summary>
-        </member>
         <member name="T:Roblox_Sharp.Models.Badge.Award">
             <summary>
             Badge.Award
@@ -521,14 +475,9 @@
             The serial number of the user asset
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.CollectibleAsset.AssetId">
+        <member name="P:Roblox_Sharp.Models.CollectibleAsset.AssetName">
             <summary>
-            <inheritdoc/>
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.CollectibleAsset.Name">
-            <summary>
-            The asset name of the asset
+            The asset name of the <see cref="T:Roblox_Sharp.Models.CollectibleAsset"/>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.CollectibleAsset.RecentAveragePrice">
@@ -709,12 +658,12 @@
             The ID of the item
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Item.Name">
+        <member name="P:Roblox_Sharp.Models.Item.ItemName">
             <summary>
             The name of the item
             </summary>
         </member>
-        <member name="P:Roblox_Sharp.Models.Item.Type">
+        <member name="P:Roblox_Sharp.Models.Item.ItemType">
             <summary>
             The type of the item
             </summary>
@@ -724,10 +673,28 @@
             The instance id of the item if applicable
             </summary>
         </member>
+        <member name="M:Roblox_Sharp.Models.JsonConverters.Avatar_Type_Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.JsonConverters.Avatar_Type_Converter.Write(System.Text.Json.Utf8JsonWriter,Roblox_Sharp.Models.v1.Avatar.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Roblox_Sharp.Models.JsonConverters.Color_Converter">
             <summary>
             used to convert the color to and from RGB hex
             </summary>
+        </member>
+        <member name="M:Roblox_Sharp.Models.JsonConverters.Color_Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.JsonConverters.Color_Converter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.JsonConverters.Thumbnail_State_Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Roblox_Sharp.Models.JsonConverters.Thumbnail_State_Converter.Write(System.Text.Json.Utf8JsonWriter,Roblox_Sharp.Enums.Thumbnail.State,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Roblox_Sharp.Models.Count_Response">
             <summary>
@@ -784,6 +751,31 @@
         <member name="M:Roblox_Sharp.Models.Thumbnail.Exists">
             <inheritdoc/>
         </member>
+        <member name="T:Roblox_Sharp.Models.v1.Avatar">
+            <summary>
+            used to serialize v
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.v1.Avatar.Asset">
+            <summary>
+            Assets that a players Avatar can equip
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Asset.AssetId">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Asset.AssetName">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Asset.AssetType">
+            <summary>
+            <inheritdoc cref="T:Roblox_Sharp.Enums.AssetType"/>
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.Models.v1.Avatar.Asset.Metadata">
             <summary>
             metadata of the asset
@@ -820,6 +812,21 @@
             layered clothing order
             </summary>
         </member>
+        <member name="T:Roblox_Sharp.Models.v1.Avatar.Asset.Type">
+            <summary>
+            the type of the asset
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Asset.Type.Id">
+            <summary>
+            the id of the Asset_Type
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Asset.Type.Name">
+            <summary>
+            the name of the Asset_Type
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.Models.v1.Avatar.BodyColor">
             <summary>
             body color of the avatar using brickcolorid
@@ -853,6 +860,62 @@
         <member name="P:Roblox_Sharp.Models.v1.Avatar.BodyColor.LeftLegColorId">
             <summary>
             The BrickColor id for left leg color
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Scales">
+            <summary>
+            <inheritdoc cref="T:Roblox_Sharp.Models.v1.Avatar.Scale"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.PlayerAvatarType">
+            <summary>
+            <inheritdoc cref="T:Roblox_Sharp.Models.v1.Avatar.Type"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.BodyColors">
+            <summary>
+            the brickcolor ids for each bodypart
+            <note>unique to <seealso cref="T:Roblox_Sharp.Endpoints.Avatars_v1"/> based requests </note>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Assets">
+            <summary>
+            the assets worn on the avatar
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.DefaultShirtApplied">
+            <summary>
+            <see langword="true"/> if the default shirt is applied to this avatar
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.DefaultPantsApplied">
+            <summary>
+            <see langword="true"/> if the default pants are applied to this avatar
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Emotes">
+            <summary>
+            the emotes on the avatar
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.v1.Avatar.Emote">
+            <summary>
+            a roblox emote
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Models.v1.Avatar.Emote.Position">
+            <summary>
+            the position the emote is equipped to
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.v1.Avatar.Scale">
+            <summary>
+            Holds the scaling of the avatar
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Models.v1.Avatar.Type">
+            <summary>
+            Represents the avatars animation type
             </summary>
         </member>
         <member name="T:Roblox_Sharp.Models.v1.ResourceError">

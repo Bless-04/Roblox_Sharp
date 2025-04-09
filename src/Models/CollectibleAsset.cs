@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace Roblox_Sharp.Models
 {
 
-    public class CollectibleAsset : Creation<IAsset>, IAsset
+    public class CollectibleAsset : Asset
     {
         /// <summary>
         /// The user asset id
@@ -19,20 +19,10 @@ namespace Roblox_Sharp.Models
         public ulong SerialNumber { get; init; }
 
         /// <summary>
-        /// <inheritdoc/>
-        /// </summary>
-        [JsonPropertyName("assetId")]
-        public ulong AssetId
-        {
-            get => base.Id;
-            init => base.Id = value;
-        }
-
-        /// <summary>
-        /// The asset name of the asset
+        /// The asset name of the <see cref="CollectibleAsset"/>
         /// </summary>
         [JsonPropertyName("name")]
-        public required string Name { get; init; }
+        public required override string AssetName { get; init; }
 
         /// <summary>
         /// The recent average price of the user asset

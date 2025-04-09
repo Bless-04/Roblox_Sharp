@@ -10,6 +10,7 @@ namespace Roblox_Sharp.Models.JsonConverters
     /// </summary>
     public class Color_Converter : JsonConverter<Color>
     {
+        /// <inheritdoc/>
         public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
            ColorTranslator.FromHtml(
               reader.GetString()![0] != '#' //if for some reason it doesnt start with a #
@@ -17,6 +18,7 @@ namespace Roblox_Sharp.Models.JsonConverters
                    : reader.GetString() ?? throw new JsonException("Error when converting " + nameof(Color))
            );
 
+        /// <inheritdoc/>
         public override void Write(Utf8JsonWriter writer, Color value, JsonSerializerOptions options) =>
             writer.WriteStringValue(
                 ColorTranslator.ToHtml(value)

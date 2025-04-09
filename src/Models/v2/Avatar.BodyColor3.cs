@@ -1,8 +1,8 @@
 ﻿using Roblox_Sharp.Models.JsonConverters;
 using System.Drawing;
 using System.Text.Json.Serialization;
-namespace Roblox_Sharp.Models;
-
+namespace Roblox_Sharp.Models.v2;
+/*
 public partial class Avatar
 {
 
@@ -55,3 +55,4 @@ public partial class Avatar
         public Color LeftLegColor3 { get; init; }
     }
 }
+*/

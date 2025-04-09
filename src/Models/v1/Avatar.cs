@@ -1,5 +1,4 @@
-﻿using Roblox_Sharp.Enums;
-using Roblox_Sharp.Models.JsonConverters;
+﻿using Roblox_Sharp.Models.JsonConverters;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -66,7 +65,7 @@ namespace Roblox_Sharp.Models.v1
   ]
 }*/
 
-    /*
+
     /// <summary>
     /// used to serialize v
     /// </summary>
@@ -76,30 +75,27 @@ namespace Roblox_Sharp.Models.v1
         /// <inheritdoc cref="Scale"/>
         /// </summary>
         [JsonPropertyName("scales")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public required Scale Scales { get; init; }
 
         /// <summary>
-        /// <inheritdoc cref="AvatarType"/>
+        /// <inheritdoc cref="Avatar.Type"/>
         /// </summary>
         [JsonConverter(typeof(Avatar_Type_Converter))]
         [JsonPropertyName("playerAvatarType")]
-        public required AvatarType PlayerAvatarType { get; init; }
+        public required Avatar.Type PlayerAvatarType { get; init; }
 
         /// <summary>
         /// the brickcolor ids for each bodypart
         /// <note>unique to <seealso cref="Endpoints.Avatars_v1"/> based requests </note>
         /// </summary>
         [JsonPropertyName("bodyColors")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public BodyColor BodyColors { get; init; }
+        public required BodyColor BodyColors { get; init; }
 
         /// <summary>
         /// the assets worn on the avatar
         /// </summary>
         [JsonPropertyName("assets")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public IReadOnlyList<Asset> Assets { get; init; }
+        public required IReadOnlyList<Asset> Assets { get; init; }
 
         /// <summary>
         /// <see langword="true"/> if the default shirt is applied to this avatar
@@ -117,11 +113,9 @@ namespace Roblox_Sharp.Models.v1
         /// the emotes on the avatar
         /// </summary>
         [JsonPropertyName("emotes")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public IReadOnlyList<Emote> Emotes { get; init; }
+        public required IReadOnlyList<Emote> Emotes { get; init; }
 
     }
-    */
+
 }
-    
-    
+

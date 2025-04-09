@@ -5,16 +5,16 @@ using System.Text.Json;
 
 namespace Tests
 {
-    public class TestHelper
+    public abstract class TestHelper
     {
-        public TestHelper() 
+        public TestHelper()
         {
             if (!WebAPI.Set_UserAgent(nameof(Tests))) throw new Exception(nameof(WebAPI.Set_UserAgent));
 
             WebAPI.OnFailedRequest += (obj, args) => Debug.WriteLine(args.Response);
-            
+
         }
-            
+
 
 
         /// <returns><paramref name="variable_name"/> is failing</returns>
@@ -32,7 +32,7 @@ namespace Tests
             Assert.Equal(deobj, obj);
             Assert.Equal(deobj.GetHashCode(), obj.GetHashCode());
 
-            
+
 
             return true;
         }
