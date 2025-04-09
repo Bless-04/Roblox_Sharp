@@ -690,6 +690,9 @@
         <member name="M:Roblox_Sharp.Models.JsonConverters.Color_Converter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Roblox_Sharp.Models.JsonConverters.Thumbnail_State_Converter">
+            <inheritdoc/> using <see cref="T:Roblox_Sharp.Enums.Thumbnail.State"/>
+        </member>
         <member name="M:Roblox_Sharp.Models.JsonConverters.Thumbnail_State_Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>

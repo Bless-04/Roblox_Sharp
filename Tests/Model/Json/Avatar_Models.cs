@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 using Roblox_Sharp.Models.v1;
 using Roblox_Sharp.Models.v2;
 
@@ -19,11 +14,11 @@ namespace Tests.Model.Json
             const string json = @"{
   ""scales"": {
     ""height"": 1.05,
-    ""width"": 1,
-    ""head"": 1,
-    ""depth"": 1,
-    ""proportion"": 0,
-    ""bodyType"": 0
+    ""width"": 1.05,
+    ""head"": 1.05,
+    ""depth"": 1.05,
+    ""proportion"": 1.06,
+    ""bodyType"": 1.4
   },
   ""playerAvatarType"": ""R15"",
   ""bodyColors"": {
@@ -208,8 +203,8 @@ namespace Tests.Model.Json
       ""currentVersionId"": 17524595677
     }
   ],
-  ""defaultShirtApplied"": false,
-  ""defaultPantsApplied"": false,
+  ""defaultShirtApplied"": true,
+  ""defaultPantsApplied"": true,
   ""emotes"": [
     {
       ""assetId"": 10214406616,
@@ -257,6 +252,9 @@ namespace Tests.Model.Json
             Avatar? avatar = JsonSerializer.Deserialize<Avatar>(json);
             Assert.NotNull(avatar);
 
+            Avatar.Type type = avatar.PlayerAvatarType;
+            Assert.Equal(Avatar.Type.R15, type);
+
             Avatar.Scale scale = avatar.Scales;
             Assert.Equal(1.05, scale.Height);
             Assert.Equal(1.05, scale.Width);
@@ -264,6 +262,14 @@ namespace Tests.Model.Json
             Assert.Equal(1.05, scale.Depth);
             Assert.Equal(1.06, scale.Proportion);
             Assert.Equal(1.4, scale.BodyType);
+
+            Avatar.BodyColor bodycolor = avatar.BodyColors;
+            Assert.Equal(1003, bodycolor.HeadColorId);
+            Assert.Equal(1003, bodycolor.TorsoColorId);
+            Assert.Equal(1003, bodycolor.RightArmColorId);
+            Assert.Equal(1003, bodycolor.LeftArmColorId);
+            Assert.Equal(1003, bodycolor.RightLegColorId);
+            Assert.Equal(1003, bodycolor.LeftLegColorId);
 
             Assert.NotEmpty(avatar.Assets);
             Avatar.Asset asset = avatar.Assets[0];
@@ -274,15 +280,18 @@ namespace Tests.Model.Json
             Assert.True(asset.AssetName.Length > 0, isFailing(nameof(asset.AssetName)));
             Assert.Equal("Hat", asset.AssetType.ToString());
 
-
-
-
+            Assert.NotEmpty(avatar.Emotes);
+            Avatar.Emote emote = avatar.Emotes[0];
+            Assert.Equal<ulong>(10214406616, emote.AssetId);
+            Assert.True(emote.AssetName.Length > 10, isFailing(nameof(emote.AssetName)));
+            Assert.Equal(1, emote.Position);
 
             Assert.True(RoundTrip(avatar));
         }
         #endregion
 
         #region v2
+        [Fact]
         public void Avatar2()
         {
 

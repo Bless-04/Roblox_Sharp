@@ -27,7 +27,6 @@ public partial class Avatar
         [JsonPropertyName("name")]
         public required override string AssetName { get; init; }
 
-
         /// <summary>
         /// <inheritdoc cref="Roblox_Sharp.Enums.AssetType"/>
         /// </summary>

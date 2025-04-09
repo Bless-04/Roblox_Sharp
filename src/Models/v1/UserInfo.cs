@@ -26,7 +26,7 @@ namespace Roblox_Sharp.Models.v1
         /// The users description 
         /// </summary>
         [JsonPropertyName("description")]
-        public required string Description { get; init; } 
+        public required string Description { get; init; }
 
         /// <summary>
         /// creation date and time of user; When the User signed up
@@ -46,6 +46,7 @@ namespace Roblox_Sharp.Models.v1
         [JsonPropertyName("hasVerifiedBadge")]
         public required bool HasVerifiedBadge { get; init; }
         #endregion
+
         /*
         /// <summary>
         /// <b>Unused, legacy attribute. For now always <see langword="null"/> to not disturb existing client code that might rely on its existence. </b><br></br>

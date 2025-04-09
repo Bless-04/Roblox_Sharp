@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models.JsonConverters
 {
+    /// <inheritdoc/> using <see cref="State"/>
     public class Thumbnail_State_Converter : JsonConverter<State>
     {
         /// <inheritdoc/>
