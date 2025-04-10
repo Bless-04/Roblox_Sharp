@@ -3,7 +3,7 @@
 namespace Roblox_Sharp.Abstractions
 {
     /// <summary>
-    /// Represents an asset
+    /// Provides an abstraction of a roblox asset
     /// </summary>
     public interface IAsset
     {
@@ -14,7 +14,7 @@ namespace Roblox_Sharp.Abstractions
     }
 
     /// <summary>
-    /// Represents a general asset model
+    /// Represents a base implementation of a roblox asset
     /// </summary>
     public abstract class Asset : Creation<IAsset>, IAsset
     {

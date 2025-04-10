@@ -6,7 +6,7 @@
     <members>
         <member name="T:Roblox_Sharp.Abstractions.IAsset">
             <summary>
-            Represents an asset
+            Provides an abstraction of a roblox asset
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Abstractions.IAsset.AssetId">
@@ -16,7 +16,7 @@
         </member>
         <member name="T:Roblox_Sharp.Abstractions.Asset">
             <summary>
-            Represents a general asset model
+            Represents a base implementation of a roblox asset
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Abstractions.Asset.AssetId">
@@ -25,6 +25,31 @@
         <member name="P:Roblox_Sharp.Abstractions.Asset.AssetName">
             <summary>
             the name of the asset
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Abstractions.IBadge">
+            <summary>
+            Represents a abstraction for a roblox badge
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Abstractions.IBadge.BadgeId">
+            <summary>
+            The unique id of the <see cref="T:Roblox_Sharp.Abstractions.IBadge"/>
+            </summary>
+        </member>
+        <member name="T:Roblox_Sharp.Abstractions.Badge">
+            <summary>
+            Represents a base implementation for a complete roblox badge
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Abstractions.Badge.BadgeId">
+            <summary>
+            The unique id of the <see cref="T:Roblox_Sharp.Abstractions.Badge"/>
+            </summary>
+        </member>
+        <member name="P:Roblox_Sharp.Abstractions.Badge.BadgeName">
+            <summary>
+            The name of the <see cref="T:Roblox_Sharp.Abstractions.Badge"/>
             </summary>
         </member>
         <member name="T:Roblox_Sharp.Abstractions.ICreation">
@@ -103,16 +128,6 @@
         <member name="M:Roblox_Sharp.Abstractions.Creation`1.GetHashCode(Roblox_Sharp.Abstractions.Creation{`0})">
             <inheritdoc/>
         </member>
-        <member name="T:Roblox_Sharp.Abstractions.IBadge">
-            <summary>
-            Represents a badge
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Abstractions.IBadge.BadgeId">
-            <summary>
-            The unique id of the <see cref="T:Roblox_Sharp.Abstractions.IBadge"/>
-            </summary>
-        </member>
         <member name="T:Roblox_Sharp.Abstractions.IPage">
             <summary>
             template for all the page based requests that have a previous and next cursor
@@ -190,7 +205,7 @@
         </member>
         <member name="T:Roblox_Sharp.Abstractions.IUser">
             <summary>
-            interface for models representing user information containing properties that have the unique user id 
+            Provides a abstraction for a roblox user containing only the UserId
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Abstractions.IUser.UserId">
@@ -200,7 +215,7 @@
         </member>
         <member name="T:Roblox_Sharp.Abstractions.User">
             <summary>
-            abstract class for models representing User information that have properties containing both the unique user id and the unique usernae
+            Represents a base implementation for a roblox user containing both UserId and Username
             </summary>
         </member>
         <member name="F:Roblox_Sharp.Abstractions.User.UsernameComparer">
@@ -227,7 +242,14 @@
             <b><see href="https://avatar.roblox.com//docs/index.html?urls.primaryName=Avatar%20Api%20v2">Avatars Documentation</see></b>
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Roblox_Sharp.Endpoints.Avatars_v1.Get_AvatarAsync(System.UInt64)" -->
+        <member name="M:Roblox_Sharp.Endpoints.Avatars_v1.Get_AvatarAsync(System.UInt64)">
+            <summary>
+            Returns details about a avatar using specified with <paramref name="userId"/> <br></br>
+            Allows requesting terminated users
+            </summary>
+            <param name="userId"></param>
+            <returns> The deserialized <see cref="T:Roblox_Sharp.Models.v1.Avatar"/> if successful</returns>
+        </member>
         <member name="M:Roblox_Sharp.Endpoints.Avatars_v1.Get_CurrentlyWearingAsync(System.UInt64)">
             <summary>
             Gets a list of asset ids that the <paramref name="userId"/> is currently wearing
@@ -416,6 +438,13 @@
             returns the <see cref="F:Roblox_Sharp.FetchedData.Json"/>
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:Roblox_Sharp.FetchedData.Deserialize``1">
+            <returns>
+            the deserialized <typeparamref name="T"/> <br/> 
+            <see langword="null"/> or <see langword="default"/> if the request is not successful
+            </returns>
+            <inheritdoc cref="M:System.Text.Json.JsonSerializer.Deserialize``1(System.String,System.Text.Json.JsonSerializerOptions)"/>
         </member>
         <member name="T:Roblox_Sharp.Models.Badge.Award">
             <summary>
@@ -1126,12 +1155,11 @@
             an event that is raised when the web request fails / statuscode is not 200
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.WebAPI.Deserialize``1(Roblox_Sharp.FetchedData)">
-            <returns>
-            the deserialized <typeparamref name="T"/> <br/> 
-            <see langword="null"/> or <see langword="default"/> if the request is not successful
-            </returns>
-            <inheritdoc cref="M:System.Text.Json.JsonSerializer.Deserialize``1(System.String,System.Text.Json.JsonSerializerOptions)"/>
+        <member name="M:Roblox_Sharp.WebAPI.FireRequestEvents(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Raises the <see cref="E:Roblox_Sharp.WebAPI.OnSuccessfulRequest"/> and <see cref="E:Roblox_Sharp.WebAPI.OnFailedRequest"/> events
+            </summary>
+            <param name="response"></param>
         </member>
         <member name="M:Roblox_Sharp.WebAPI.Set_UserAgent(System.String)">
             <summary>

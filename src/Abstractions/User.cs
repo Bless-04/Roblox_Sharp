@@ -1,14 +1,11 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection.Metadata;
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Abstractions
 {
     /// <summary>
-    /// interface for models representing user information containing properties that have the unique user id 
+    /// Provides a abstraction for a roblox user containing only the UserId
     /// </summary>
     public interface IUser
     {
@@ -19,7 +16,7 @@ namespace Roblox_Sharp.Abstractions
     }
 
     /// <summary>
-    /// abstract class for models representing User information that have properties containing both the unique user id and the unique usernae
+    /// Represents a base implementation for a roblox user containing both UserId and Username
     /// </summary>
     [DebuggerDisplay("{Username} (ID {UserId})")]
     public abstract class User : Creation<IUser>, IUser
