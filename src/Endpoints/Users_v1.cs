@@ -24,13 +24,15 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="ID">The users id</param>
         /// <returns> The deserialized <see cref="UserInfo"/> if successful</returns>
-        public static async Task<UserInfo?> Get_UserAsync(ulong ID) => Deserialize<UserInfo>(await Get_RequestAsync($"https://users.roblox.com/v1/users/{ID}"));
+        public static async Task<UserInfo?> Get_UserAsync(ulong ID) => (await Get_RequestAsync($"https://users.roblox.com/v1/users/{ID}"))
+            .Deserialize<UserInfo>();
 
         /// <summary>
         /// Gets the minimal user information for the authenticated user
         /// </summary>
         /// <returns>The deserialized <see cref="UserAuthenticated"/></returns>
-        public static async Task<UserAuthenticated?> Get_AuthenticatedAsync() => Deserialize<UserAuthenticated>(await Get_RequestAsync("https://users.roblox.com/v1/users/authenticated"));
+        public static async Task<UserAuthenticated?> Get_AuthenticatedAsync() => (await Get_RequestAsync("https://users.roblox.com/v1/users/authenticated"))
+            .Deserialize<UserAuthenticated>();
 
         /// <summary>
         /// Get users information given a <see cref="IEnumerable{T}"/> of <paramref name="Usernames"/>
@@ -38,7 +40,7 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="Usernames"></param>
         /// <param name="ExcludeBannedUsers"></param>
         /// <returns><see cref="IReadOnlyList{T}"/> of <see cref="UserByUsername"/></returns>
-        public static async Task<IReadOnlyList<UserByUsername>?> Get_UsersAsync(IEnumerable<string> Usernames, bool ExcludeBannedUsers) => Deserialize<Page<UserByUsername>?>(await Post_RequestAsync("https://users.roblox.com/v1/usernames/users", new UserByX(Usernames, ExcludeBannedUsers)))?.Data;
+        public static async Task<IReadOnlyList<UserByUsername>?> Get_UsersAsync(IEnumerable<string> Usernames, bool ExcludeBannedUsers) => (await Post_RequestAsync("https://users.roblox.com/v1/usernames/users", new UserByX(Usernames, ExcludeBannedUsers))).Deserialize<Page<UserByUsername>>()?.Data;
 
         /// <summary>
         /// Get users information given a <see cref="IEnumerable{T}"/> of <paramref name="UserIds"/>
@@ -46,7 +48,10 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="UserIds"></param>
         /// <param name="ExcludeBannedUsers"></param>
         /// <returns><see cref="IReadOnlyList{T}"/> of <see cref="UserByUserId"/></returns>
-        public static async Task<IReadOnlyList<UserByUserId>?> Get_UsersAsync(IEnumerable<ulong> UserIds, bool ExcludeBannedUsers) => Deserialize<Page<UserByUserId>?>(await Post_RequestAsync("https://users.roblox.com/v1/users", new UserByX(UserIds, ExcludeBannedUsers)))?.Data;
+        public static async Task<IReadOnlyList<UserByUserId>?> Get_UsersAsync(IEnumerable<ulong> UserIds, bool ExcludeBannedUsers) =>
+            (await Post_RequestAsync("https://users.roblox.com/v1/users", new UserByX(UserIds, ExcludeBannedUsers)))
+            .Deserialize<Page<UserByUserId>>()?
+            .Data;
 
         #endregion
 
@@ -64,13 +69,12 @@ namespace Roblox_Sharp.Endpoints
         {
             //url example 'https://users.roblox.com/v1/users/416181091/username-history?limit=100&sortOrder=Asc
 
-            Page<UsernameHistory_Response>? page = Deserialize<Page<UsernameHistory_Response>>(
-                await Get_RequestAsync(
+            Page<UsernameHistory_Response>? page = (await Get_RequestAsync(
                     $"https://users.roblox.com/v1/users/{userId}" +
                     $"/username-history?limit={limit}" +
                     $"&cursor={cursor}" +
-                    $"&sortOrder={sortOrder}")
-            );
+                    $"&sortOrder={sortOrder}"))
+            .Deserialize<Page<UsernameHistory_Response>>();
 
             if (page == null) return null;
 
@@ -95,15 +99,13 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="cursor">The paging cursor for the previous or next page</param>
         /// <returns> The deserialized <see cref="Page{T}"/>  of <see cref="UserBySearch"/> if successful</returns>
         public static async Task<Page<UserBySearch>?> Get_UserSearchAsync(string keyword, string? sessionId = null, Limit LIMIT = Limit.Ten, string? cursor = null)
-        => Deserialize<Page<UserBySearch>>(
-            await Get_RequestAsync(
+        => (await Get_RequestAsync(
                     $"https://users.roblox.com/v1/users/search?" +
                     $"keyword={keyword}" +
                     $"&sessionId={sessionId}" +
                     $"&limit={(byte)LIMIT}" +
-                    $"&cursor={cursor}")
-            ); /* example url https://users.roblox.com/v1/users/search?keyword=string&sessionId=session&limit=10*/
-
+                    $"&cursor={cursor}"))
+            .Deserialize<Page<UserBySearch>>(); /* example url https://users.roblox.com/v1/users/search?keyword=string&sessionId=session&limit=10*/
 
         #endregion
     }

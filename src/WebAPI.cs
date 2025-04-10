@@ -57,23 +57,15 @@ namespace Roblox_Sharp
         /// </summary>
         public static event EventHandler<FailedRequestEventArgs>? OnFailedRequest;
 
-        #region internal helpers
-        internal static void FireRequestEvents(in HttpResponseMessage response)
+        /// <summary>
+        /// Raises the <see cref="OnSuccessfulRequest"/> and <see cref="OnFailedRequest"/> events
+        /// </summary>
+        /// <param name="response"></param>
+        public static void FireRequestEvents(this HttpResponseMessage response)
         {
             if (response.IsSuccessStatusCode) OnSuccessfulRequest?.Invoke(null, EventArgs.Empty);
             else OnFailedRequest?.Invoke(null, new FailedRequestEventArgs(response));
         }
-
-        /// <returns>
-        /// the deserialized <typeparamref name="T"/> <br/> 
-        /// <see langword="null"/> or <see langword="default"/> if the request is not successful
-        /// </returns>
-        /// <inheritdoc cref="JsonSerializer.Deserialize{TValue}(string, JsonSerializerOptions?)"/>
-        internal static T? Deserialize<T>(in FetchedData data) => data.Success ? JsonSerializer.Deserialize<T>(data.Json) : default;
-
-        #endregion
-
-
 
         #region Set
         /// <summary>
@@ -101,7 +93,7 @@ namespace Roblox_Sharp
         {
             using HttpResponseMessage response = await _client.GetAsync(url);
 
-            FireRequestEvents(response);
+            response.FireRequestEvents();
             return new FetchedData(await response.Content.ReadAsStringAsync(), response.IsSuccessStatusCode);
         }
 
@@ -116,9 +108,11 @@ namespace Roblox_Sharp
         {
             using HttpResponseMessage response = await _client.PostAsJsonAsync(url, model);
 
-            FireRequestEvents(response);
+            response.FireRequestEvents();
             return new FetchedData(await response.Content.ReadAsStringAsync(), response.IsSuccessStatusCode);
         }
+
+
 
         /*
         /// <summary>

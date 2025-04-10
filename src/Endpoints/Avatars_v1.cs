@@ -18,13 +18,12 @@ namespace Roblox_Sharp.Endpoints
         /// Allows requesting terminated users
         /// </summary>
         /// <param name="userId"></param>
-        /// <returns><see cref="Avatar"></returns>
+        /// <returns> The deserialized <see cref="Avatar"/> if successful</returns>
         [Obsolete("Avatars_v2's method is better")]
         public static async Task<Avatar?> Get_AvatarAsync(ulong userId) =>
-            //url https://avatar.roblox.com/v1/users/1/avatar
-            Deserialize<Avatar>(
-                await Get_RequestAsync($"https://avatar.roblox.com/v1/users/{userId}/avatar")
-            );
+                //url https://avatar.roblox.com/v1/users/1/avatar
+                (await Get_RequestAsync($"https://avatar.roblox.com/v1/users/{userId}/avatar")).Deserialize<Avatar>();
+
 
         /// <summary>
         /// Gets a list of asset ids that the <paramref name="userId"/> is currently wearing
@@ -32,8 +31,8 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="userId"></param>
         /// <returns><see cref="IReadOnlyList{T}"/> of asset ids </returns>
         public static async Task<IReadOnlyList<ulong>?> Get_CurrentlyWearingAsync(ulong userId) =>
-            Deserialize<AssetIds_Response>(
-                await Get_RequestAsync($"https://avatar.roblox.com/v1/users/{userId}/currently-wearing")
-            )?.AssetIds;
+            (await Get_RequestAsync($"https://avatar.roblox.com/v1/users/{userId}/currently-wearing"))
+            .Deserialize<AssetIds_Response>()?
+            .AssetIds;
     }
 }

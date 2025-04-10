@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
 
 namespace Roblox_Sharp
 {
@@ -7,7 +8,7 @@ namespace Roblox_Sharp
     /// </summary>
     /// <param name="json"></param>
     /// <param name="success"></param>
-    public class FetchedData(in string? json,in bool success)
+    public class FetchedData(in string? json, in bool success)
     {
         /// <summary>
         /// the fetched json data
@@ -46,5 +47,12 @@ namespace Roblox_Sharp
         /// </summary>
         /// <returns></returns>
         public override string ToString() => Json;
+
+        /// <returns>
+        /// the deserialized <typeparamref name="T"/> <br/> 
+        /// <see langword="null"/> or <see langword="default"/> if the request is not successful
+        /// </returns>
+        /// <inheritdoc cref="JsonSerializer.Deserialize{TValue}(string, JsonSerializerOptions?)"/>
+        public T? Deserialize<T>() => this.Success ? JsonSerializer.Deserialize<T>(this.Json) : default;
     }
 }

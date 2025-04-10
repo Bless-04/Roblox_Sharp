@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Abstractions
@@ -29,7 +28,7 @@ namespace Roblox_Sharp.Abstractions
     /// <remarks>indirectly implements <seealso cref="IReadOnlyList{T}"/> </remarks>
     public abstract class Page<T> : IPage
     {
-       // protected Func<string?, string?>? cursorChanger = null;
+        // protected Func<string?, string?>? cursorChanger = null;
 
         /// <inheritdoc/>
         [JsonPropertyName("previousPageCursor")]
@@ -89,8 +88,8 @@ namespace Roblox_Sharp.Abstractions
             Data = (IReadOnlyList<T>?)data ?? [];
         }
 
-       
-        
+
+
         /// <summary>
         /// Goes forward 1 page
         /// </summary>

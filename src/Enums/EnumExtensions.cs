@@ -19,7 +19,7 @@ namespace Roblox_Sharp.Enums
         /// <returns>
         /// <see langword="true"/> if the enum is blacklisted
         /// </returns>
-        public static bool IsBlackListed(Enum value, Enum[] blacklist) => blacklist.Contains(value);
+        public static bool IsBlackListed(this Enum value, Enum[] blacklist) => blacklist.Contains(value);
 
         /// <summary>
         /// converts an enum to a flag
@@ -35,30 +35,10 @@ namespace Roblox_Sharp.Enums
         /// <typeparam name="T"></typeparam>
         /// <param name="text"></param>
         /// <exception cref="ArgumentException"></exception>
-        public static T ToEnum<T>(string text) where T : Enum => int.TryParse(text, out int value)
+        public static T ToEnum<T>(this string text) where T : Enum => int.TryParse(text, out int value)
             ? (T)Enum.ToObject(typeof(T), value)
             : (T)Enum.Parse(typeof(T), text, ignoreCase: true);
 
-        /// <summary>
-        /// gives a string representation of a limit
-        /// </summary>
-        /// <param name="LIMIT"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToString(Limit LIMIT) => LIMIT switch
-        {
-            Limit.Ten => "10",
-            Limit.TwentyFive => "25",
-            Limit.Fifty => "50",
-            Limit.OneHundred => "100",
-            _ => throw new NotImplementedException($"'{LIMIT}' Limit is not implemented")
-        };
 
-        /// <summary>
-        /// gives a string representation of a thumbnail size
-        /// </summary>
-        /// <param name="SIZE"></param>
-        /// <returns></returns>
-        public static string ToString(Size SIZE) => $"{(ushort)SIZE}x{(ushort)SIZE}";
     }
 }

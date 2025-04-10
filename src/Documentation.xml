@@ -343,21 +343,6 @@
             <param name="text"></param>
             <exception cref="T:System.ArgumentException"></exception>
         </member>
-        <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToString(Roblox_Sharp.Endpoints.Limit)">
-            <summary>
-            gives a string representation of a limit
-            </summary>
-            <param name="LIMIT"></param>
-            <returns></returns>
-            <exception cref="T:System.NotImplementedException"></exception>
-        </member>
-        <member name="M:Roblox_Sharp.Enums.EnumExtensions.ToString(Roblox_Sharp.Enums.Thumbnail.Size)">
-            <summary>
-            gives a string representation of a thumbnail size
-            </summary>
-            <param name="SIZE"></param>
-            <returns></returns>
-        </member>
         <member name="T:Roblox_Sharp.Enums.Thumbnail.Size">
             <summary>
             Thumbnail sizes
@@ -921,6 +906,19 @@
             Represents the avatars animation type
             </summary>
         </member>
+        <member name="F:Roblox_Sharp.Models.v1.Avatar.Type.R6">
+            <remarks>
+            The classic simple avatar with 6 limbs. <br/> 
+            This avatar type provides a retro feel but is limited in animations and additional customization. <br/> 
+            Changes to the body scale property do not affect <see cref="F:Roblox_Sharp.Models.v1.Avatar.Type.R6"/> characters.
+            </remarks>
+        </member>
+        <member name="F:Roblox_Sharp.Models.v1.Avatar.Type.R15">
+            <summary>
+            The modern avatar with 15 limbs. <br/>
+            This avatar has more limbs than <see cref="F:Roblox_Sharp.Models.v1.Avatar.Type.R6"/> allowing for more flexible customization, accessory options, and animations.
+            </summary>
+        </member>
         <member name="T:Roblox_Sharp.Models.v1.ResourceError">
             <summary>
             <see href="https://create.roblox.com/docs/cloud/reference/errors">Errors Documentation</see>
@@ -1128,7 +1126,7 @@
             an event that is raised when the web request fails / statuscode is not 200
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.WebAPI.Deserialize``1(Roblox_Sharp.FetchedData@)">
+        <member name="M:Roblox_Sharp.WebAPI.Deserialize``1(Roblox_Sharp.FetchedData)">
             <returns>
             the deserialized <typeparamref name="T"/> <br/> 
             <see langword="null"/> or <see langword="default"/> if the request is not successful
