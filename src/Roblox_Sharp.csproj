@@ -25,7 +25,7 @@
     <Version>3.0.0</Version>
     <SignAssembly>True</SignAssembly>
     <DelaySign>True</DelaySign>
-    <AssemblyVersion>2.0.2</AssemblyVersion>
+    <AssemblyVersion>3.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

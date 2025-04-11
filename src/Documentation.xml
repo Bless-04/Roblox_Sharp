@@ -770,7 +770,7 @@
         </member>
         <member name="T:Roblox_Sharp.Models.v1.Avatar">
             <summary>
-            used to serialize v
+            used to serialize v1 <see cref="T:Roblox_Sharp.Endpoints.Avatars_v1"/>
             </summary>
         </member>
         <member name="T:Roblox_Sharp.Models.v1.Avatar.Asset">
@@ -1155,7 +1155,7 @@
             an event that is raised when the web request fails / statuscode is not 200
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.WebAPI.FireRequestEvents(System.Net.Http.HttpResponseMessage)">
+        <member name="M:Roblox_Sharp.WebAPI.FireEvents(System.Net.Http.HttpResponseMessage)">
             <summary>
             Raises the <see cref="E:Roblox_Sharp.WebAPI.OnSuccessfulRequest"/> and <see cref="E:Roblox_Sharp.WebAPI.OnFailedRequest"/> events
             </summary>

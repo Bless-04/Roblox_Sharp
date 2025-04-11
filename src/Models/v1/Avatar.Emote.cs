@@ -2,7 +2,7 @@
 
 namespace Roblox_Sharp.Models.v1;
 
-public partial class Avatar
+public partial record Avatar
 {
     /*{
       ""assetId"": 10214406616,
@@ -12,7 +12,7 @@ public partial class Avatar
     /// <summary>
     /// a roblox emote
     /// </summary>
-    public class Emote : Asset
+    public class Emote : Abstractions.Asset
     {
         /// <summary>
         /// the position the emote is equipped to

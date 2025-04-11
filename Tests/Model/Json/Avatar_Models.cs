@@ -1,11 +1,10 @@
-﻿using System.Text.Json;
-using Roblox_Sharp.Models.v1;
-using Roblox_Sharp.Models.v2;
+﻿using Roblox_Sharp.Models.v1;
+using System.Text.Json;
 
 namespace Tests.Model.Json
 {
     [Trait(nameof(Roblox_Sharp.Models), nameof(Json))]
-    public class Avatar_Models : TestHelper
+    public class Avatar_Models
     {
         #region v1
         [Fact]
@@ -255,6 +254,7 @@ namespace Tests.Model.Json
             Avatar.Type type = avatar.PlayerAvatarType;
             Assert.Equal(Avatar.Type.R15, type);
 
+
             Avatar.Scale scale = avatar.Scales;
             Assert.Equal(1.05, scale.Height);
             Assert.Equal(1.05, scale.Width);
@@ -275,18 +275,18 @@ namespace Tests.Model.Json
             Avatar.Asset asset = avatar.Assets[0];
             Assert.Equal<ulong>(111902832, asset.AssetId);
             Assert.Equal<ulong>(883364938, asset.CurrentVersionId);
-            Assert.True(asset.AssetName.Length > 5, isFailing(nameof(asset.AssetName)));
+            Assert.True(asset.AssetName.Length > 5, nameof(asset.AssetName).isFailing());
             Assert.Equal(8, (byte)asset.AssetType.Id);
-            Assert.True(asset.AssetName.Length > 0, isFailing(nameof(asset.AssetName)));
-            Assert.Equal("Hat", asset.AssetType.ToString());
+            Assert.True(asset.AssetName.Length > 0, nameof(asset.AssetName).isFailing());
+            Assert.Equal("Hat", asset.AssetType.Name);
+            Assert.True(asset.RoundTrip());
 
             Assert.NotEmpty(avatar.Emotes);
             Avatar.Emote emote = avatar.Emotes[0];
             Assert.Equal<ulong>(10214406616, emote.AssetId);
-            Assert.True(emote.AssetName.Length > 10, isFailing(nameof(emote.AssetName)));
+            Assert.True(emote.AssetName.Length > 10, nameof(emote.AssetName).isFailing());
             Assert.Equal(1, emote.Position);
-
-            Assert.True(RoundTrip(avatar));
+            Assert.True(emote.RoundTrip());
         }
         #endregion
 

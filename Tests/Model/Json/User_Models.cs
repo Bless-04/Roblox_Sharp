@@ -34,15 +34,15 @@ namespace Tests.Model.Json
 
             Assert.NotNull(user);
 
-            Assert.True(user.Description.Length > 50, isFailing(nameof(user.Description)));
+            Assert.True(user.Description.Length > 50, (nameof(user.Description)));
             Assert.Equal(2006, user.Created.Year);
-            Assert.False(user.IsBanned, isFailing(nameof(user.IsBanned)));
-            Assert.True(user.HasVerifiedBadge, isFailing(nameof(user.HasVerifiedBadge)));
+            Assert.False(user.IsBanned, (nameof(user.IsBanned)));
+            Assert.True(user.HasVerifiedBadge, (nameof(user.HasVerifiedBadge)));
             Assert.Equal<ulong>(1, user.UserId);
             Assert.Equal("Roblox", user.Username);
             Assert.Equal(user.Username, user.DisplayName);
 
-            Assert.True(RoundTrip(user));
+            Assert.True(user.RoundTrip());
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace Tests.Model.Json
 
             Assert.NotNull(page);
 
-            Assert.True(page.Count != 0, isFailing(nameof(page.Count)));
+            Assert.True(page.Count != 0, (nameof(page.Count)).isFailing());
 
             var user1 = page.Data[0];
 
@@ -62,12 +62,12 @@ namespace Tests.Model.Json
             foreach (var user in page.Data)
             {
                 Assert.NotNull(user);
-                Assert.True(user.UserId > 0, isFailing(nameof(user.UserId)));
-                Assert.True(user.Username.Length > 0, isFailing(nameof(user.Username)));
-                Assert.True(user.DisplayName.Length > 0, isFailing(nameof(user.DisplayName)));
+                Assert.True(user.UserId > 0, nameof(user.UserId).isFailing());
+                Assert.True(user.Username.Length > 0, nameof(user.Username).isFailing());
+                Assert.True(user.DisplayName.Length > 0, (nameof(user.DisplayName)));
             }
 
-            Assert.True(RoundTrip(user1));
+            Assert.True(user1.RoundTrip());
         }
 
         [Fact]
@@ -78,12 +78,12 @@ namespace Tests.Model.Json
             var user = JsonSerializer.Deserialize<UserByUsername>(json);
 
             Assert.NotNull(user);
-            Assert.True(user.HasVerifiedBadge, isFailing(nameof(user.HasVerifiedBadge)));
-            Assert.True(user.UserId == 8, isFailing(nameof(user.UserId)));
-            Assert.True(user.Username.Length > 0, isFailing(nameof(user.Username)));
-            Assert.True(user.DisplayName.Length > 0, isFailing(nameof(user.DisplayName)));
+            Assert.True(user.HasVerifiedBadge, (nameof(user.HasVerifiedBadge)));
+            Assert.True(user.UserId == 8, (nameof(user.UserId)));
+            Assert.True(user.Username.Length > 0, (nameof(user.Username)));
+            Assert.True(user.DisplayName.Length > 0, (nameof(user.DisplayName)));
 
-            Assert.True(RoundTrip(user));
+            Assert.True(user.RoundTrip());
 
         }
 
@@ -95,12 +95,12 @@ namespace Tests.Model.Json
             var user = JsonSerializer.Deserialize<UserAuthenticated>(json);
 
             Assert.NotNull(user);
-            Assert.True(user.UserId == 1, isFailing(nameof(user.UserId)));
-            Assert.True(user.Username.Length > 0, isFailing(nameof(user.Username)));
-            Assert.True(user.DisplayName.Length > 0, isFailing(nameof(user.DisplayName)));
+            Assert.True(user.UserId == 1, (nameof(user.UserId)));
+            Assert.True(user.Username.Length > 0, (nameof(user.Username)));
+            Assert.True(user.DisplayName.Length > 0, (nameof(user.DisplayName)));
 
             Assert.Equal(user.Username, user.DisplayName);
-            Assert.True(RoundTrip(user));
+            Assert.True(user.RoundTrip());
         }
 
         [Fact]
@@ -112,13 +112,13 @@ namespace Tests.Model.Json
 
             Assert.NotNull(user);
             Assert.Single(user.PreviousUsernames);
-            Assert.True(user.HasVerifiedBadge, isFailing(nameof(user.HasVerifiedBadge)));
-            Assert.True(user.UserId == 1, isFailing(nameof(user.UserId)));
-            Assert.True(user.Username.Length > 0, isFailing(nameof(user.Username)));
-            Assert.True(user.DisplayName.Length > 0, isFailing(nameof(user.DisplayName)));
+            Assert.True(user.HasVerifiedBadge, (nameof(user.HasVerifiedBadge)));
+            Assert.True(user.UserId == 1, (nameof(user.UserId)));
+            Assert.True(user.Username.Length > 0, (nameof(user.Username)));
+            Assert.True(user.DisplayName.Length > 0, (nameof(user.DisplayName)));
             Assert.Equal(user.DisplayName, user.DisplayName);
 
-            Assert.True(RoundTrip(user));
+            Assert.True(user.RoundTrip());
         }
     }
 }

@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -61,7 +60,7 @@ namespace Roblox_Sharp
         /// Raises the <see cref="OnSuccessfulRequest"/> and <see cref="OnFailedRequest"/> events
         /// </summary>
         /// <param name="response"></param>
-        public static void FireRequestEvents(this HttpResponseMessage response)
+        public static void FireEvents(this HttpResponseMessage response)
         {
             if (response.IsSuccessStatusCode) OnSuccessfulRequest?.Invoke(null, EventArgs.Empty);
             else OnFailedRequest?.Invoke(null, new FailedRequestEventArgs(response));
@@ -93,7 +92,7 @@ namespace Roblox_Sharp
         {
             using HttpResponseMessage response = await _client.GetAsync(url);
 
-            response.FireRequestEvents();
+            response.FireEvents();
             return new FetchedData(await response.Content.ReadAsStringAsync(), response.IsSuccessStatusCode);
         }
 
@@ -108,7 +107,7 @@ namespace Roblox_Sharp
         {
             using HttpResponseMessage response = await _client.PostAsJsonAsync(url, model);
 
-            response.FireRequestEvents();
+            response.FireEvents();
             return new FetchedData(await response.Content.ReadAsStringAsync(), response.IsSuccessStatusCode);
         }
 

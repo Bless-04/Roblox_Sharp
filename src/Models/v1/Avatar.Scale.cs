@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models.v1;
 
-public partial class Avatar
+public partial record Avatar
 {
     /// <summary>
     /// Holds the scaling of the avatar

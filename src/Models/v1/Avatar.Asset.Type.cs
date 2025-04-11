@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 namespace Roblox_Sharp.Models.v1;
 
-public partial class Avatar
+public partial record Avatar
 {
     public partial class Asset
     {

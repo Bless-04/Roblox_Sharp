@@ -3,14 +3,14 @@ using Roblox_Sharp.Models;
 using Roblox_Sharp.Models.v1;
 using System.Threading.Tasks;
 
-using static Tests.User_Constants;
+using static Tests.TestHelper;
 namespace Tests.Integration
 {
     /// <summary>
     /// Tests <see cref="Users_v1"/> endpoint
     /// </summary>
     [Collection(nameof(Integration))]
-    public class Users_Endpoint : TestHelper
+    public class Users_Endpoint
     {
         public const bool ExcludeBannedUsers = false;
 
@@ -24,13 +24,14 @@ namespace Tests.Integration
 
             Assert.NotNull(roblox);
 
-            Assert.True(roblox.UserId == ROBLOX, isFailing(nameof(roblox.UserId)));
+
+            Assert.True(roblox.UserId == ROBLOX, nameof(roblox.UserId).isFailing());
 
             Assert.Equal(nameof(ROBLOX), roblox.Username, ignoreCase: true);
-            Assert.True(roblox.Description.Length > 50, isFailing(nameof(roblox.Description)));
-            Assert.True(roblox.DisplayName.Length > 0, isFailing(nameof(roblox.DisplayName)));
-            Assert.True(roblox.HasVerifiedBadge, isFailing(nameof(roblox.HasVerifiedBadge)));
-            Assert.False(roblox.IsBanned, isFailing(nameof(roblox.IsBanned)));
+            Assert.True(roblox.Description.Length > 50, nameof(roblox.Description).isFailing());
+            Assert.True(roblox.DisplayName.Length > 0, nameof(roblox.DisplayName).isFailing());
+            Assert.True(roblox.HasVerifiedBadge, nameof(roblox.HasVerifiedBadge).isFailing());
+            Assert.False(roblox.IsBanned, nameof(roblox.IsBanned).isFailing());
         }
 
         [IntegrationTrait.FailCase]
@@ -46,7 +47,7 @@ namespace Tests.Integration
         [Fact]
         public async Task Get_UserByUsername()
         {
-            string message = isFailing(nameof(Users_v1.Get_UsersAsync) + " for usernames");
+            string message = nameof(Users_v1.Get_UsersAsync).isFailing() + " for usernames";
 
             var users = await Users_v1.Get_UsersAsync(["erik.cassel", "Roblox"], ExcludeBannedUsers);
 
@@ -75,7 +76,7 @@ namespace Tests.Integration
         [Fact]
         public async Task Get_UserById()
         {
-            string message = isFailing(nameof(Users_v1.Get_UsersAsync) + " for ids");
+            string message = nameof(Users_v1.Get_UsersAsync).isFailing() + " for ids";
             var users = await Users_v1.Get_UsersAsync([ROBLOX, SHEDLETSKY, BUILDERMAN], ExcludeBannedUsers);
 
             Assert.NotNull(users);
@@ -108,7 +109,7 @@ namespace Tests.Integration
             var user = await Users_v1.Get_UsernameHistoryAsync(INCEPTIONTIME);
 
             Assert.NotNull(user);
-            Assert.True(user.Count > 1 && user[0].Length > 0, isFailing(nameof(Get_UsernameHistory)));
+            Assert.True(user.Count > 1 && user[0].Length > 0, nameof(Get_UsernameHistory).isFailing());
         }
 
 
@@ -130,14 +131,14 @@ namespace Tests.Integration
 
             Assert.NotNull(page);
             Assert.NotEmpty(page.Data);
-            Assert.True(page.Count == (byte)limit, isFailing(nameof(Users_v1.Get_UserSearchAsync)));
+            Assert.True(page.Count == (byte)limit, nameof(Users_v1.Get_UserSearchAsync).isFailing());
 
             var user = page[0];
 
             Assert.NotNull(user);
             Assert.NotEmpty(user.PreviousUsernames);
-            Assert.True(user.UserId != default, isFailing(nameof(user.UserId)));
-            Assert.True(user.Username.Length > 0, isFailing(nameof(user.Username)));
+            Assert.True(user.UserId != default, nameof(user.UserId).isFailing());
+            Assert.True(user.Username.Length > 0, nameof(user.Username).isFailing());
         }
 
         [IntegrationTrait.RateLimitted.FailCase2]

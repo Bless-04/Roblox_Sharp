@@ -30,6 +30,6 @@ namespace Roblox_Sharp.Abstractions
         /// the name of the asset
         /// </summary>
         [JsonPropertyName("assetName")]
-        public virtual required string AssetName { get; init; }
+        public virtual string AssetName { get; init; } = string.Empty;
     }
 }

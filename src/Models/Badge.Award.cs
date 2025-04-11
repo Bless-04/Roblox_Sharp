@@ -14,12 +14,10 @@ public partial class Badge
         /// date badge was awarded
         /// </summary>
         [JsonPropertyName("awardedDate")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime AwardedDate { get; init; }
 
         /// <inheritdoc/>
         [JsonPropertyName("badgeId")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public ulong BadgeId { get; init; }
     }
 }

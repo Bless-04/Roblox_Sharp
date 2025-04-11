@@ -2,7 +2,7 @@
 
 namespace Roblox_Sharp.Models.v1;
 
-public partial class Avatar
+public partial record Avatar
 {
     /// <summary>
     /// body color of the avatar using brickcolorid

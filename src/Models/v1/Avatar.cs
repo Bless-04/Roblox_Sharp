@@ -67,9 +67,9 @@ namespace Roblox_Sharp.Models.v1
 
 
     /// <summary>
-    /// used to serialize v
+    /// used to serialize v1 <see cref="Endpoints.Avatars_v1"/>
     /// </summary>
-    public partial class Avatar
+    public partial record Avatar
     {
         /// <summary>
         /// <inheritdoc cref="Scale"/>

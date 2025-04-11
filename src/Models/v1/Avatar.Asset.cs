@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Roblox_Sharp.Models.v1;
 
-public partial class Avatar
+public partial record Avatar
 {
     /// <summary>
     /// Assets that a players Avatar can equip
@@ -25,7 +25,11 @@ public partial class Avatar
         /// <inheritdoc/>
         /// </summary>
         [JsonPropertyName("name")]
-        public required override string AssetName { get; init; }
+        public required override string AssetName
+        {
+            get => base.AssetName;
+            init => base.AssetName = value;
+        }
 
         /// <summary>
         /// <inheritdoc cref="Roblox_Sharp.Enums.AssetType"/>
