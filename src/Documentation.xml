@@ -312,7 +312,7 @@
             <param name="cursor"></param>
             <returns></returns>
         </member>
-        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserSearchAsync(System.String,System.String,Roblox_Sharp.Endpoints.Limit,System.String)">
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserSearchAsync(System.String,System.String,Roblox_Sharp.Endpoints.Limit,System.String,System.Threading.CancellationToken)">
             <summary>
             Searches for user's by <paramref name="keyword"/>
             </summary>
@@ -320,6 +320,7 @@
             <param name="sessionId"></param>
             <param name="LIMIT">The number of results per request</param>
             <param name="cursor">The paging cursor for the previous or next page</param>
+            <param name="cancellationToken"></param>
             <returns> The deserialized <see cref="T:Roblox_Sharp.Models.Page`1"/>  of <see cref="T:Roblox_Sharp.Models.v1.UserBySearch"/> if successful</returns>
         </member>
         <member name="T:Roblox_Sharp.Enums.AssetType">
@@ -381,29 +382,21 @@
             event args for requests
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.FailedRequestEventArgs.#ctor(System.Net.Http.HttpResponseMessage)">
-            <summary>
-            event args for requests
-            </summary>
-        </member>
         <member name="F:Roblox_Sharp.FailedRequestEventArgs.Response">
             <summary>
             the response
             </summary>
         </member>
+        <member name="M:Roblox_Sharp.FailedRequestEventArgs.#ctor(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            constructor
+            </summary>
+            <param name="response"></param>
+        </member>
         <member name="T:Roblox_Sharp.FetchedData">
             <summary>
             represents data fetched from the roblox api
             </summary>
-            <param name="json"></param>
-            <param name="success"></param>
-        </member>
-        <member name="M:Roblox_Sharp.FetchedData.#ctor(System.String@,System.Boolean@)">
-            <summary>
-            represents data fetched from the roblox api
-            </summary>
-            <param name="json"></param>
-            <param name="success"></param>
         </member>
         <member name="F:Roblox_Sharp.FetchedData.Json">
             <summary>
@@ -414,6 +407,13 @@
             <summary>
             whether the fetch was successful
             </summary>
+        </member>
+        <member name="M:Roblox_Sharp.FetchedData.#ctor(System.String@,System.Boolean@)">
+            <summary>
+            constructor to represent data fetched from the roblox api
+            </summary>
+            <param name="json"></param>
+            <param name="success"></param>
         </member>
         <member name="M:Roblox_Sharp.FetchedData.op_Implicit(System.ValueTuple{System.String,System.Boolean}@)~Roblox_Sharp.FetchedData">
             <summary>
@@ -427,17 +427,14 @@
             </summary>
             <param name="data"></param>
         </member>
-        <member name="M:Roblox_Sharp.FetchedData.op_Explicit(Roblox_Sharp.FetchedData)~System.Boolean">
+        <member name="M:Roblox_Sharp.FetchedData.op_Explicit(Roblox_Sharp.FetchedData@)~System.Boolean">
             <summary>
             lossy convert to bool
             </summary>
             <param name="data"></param>
         </member>
         <member name="M:Roblox_Sharp.FetchedData.ToString">
-            <summary>
-            returns the <see cref="F:Roblox_Sharp.FetchedData.Json"/>
-            </summary>
-            <returns></returns>
+            <returns> returns the <see cref="F:Roblox_Sharp.FetchedData.Json"/></returns>
         </member>
         <member name="M:Roblox_Sharp.FetchedData.Deserialize``1">
             <returns>
@@ -1026,7 +1023,7 @@
         </member>
         <member name="T:Roblox_Sharp.Models.v1.UserBySearch">
             <summary>
-            Used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserSearchAsync(System.String,System.String,Roblox_Sharp.Endpoints.Limit,System.String)"/>
+            Used to deserialize <see cref="!:Endpoints.Users_v1.Get_UserSearchAsync(string, string?, Endpoints.Limit, string?)"/>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.v1.UserBySearch.PreviousUsernames">
@@ -1040,7 +1037,9 @@
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.v1.UserByUserId.HasVerifiedBadge">
-            <inheritdoc cref="P:Roblox_Sharp.Models.v1.UserInfo.HasVerifiedBadge"/>
+            <summary>
+            <see langword="true"/> only if the user has a verified badge
+            </summary>
         </member>
         <member name="T:Roblox_Sharp.Models.v1.UserByUsername">
             <summary>
@@ -1071,11 +1070,6 @@
         <member name="P:Roblox_Sharp.Models.v1.UserInfo.IsBanned">
             <summary>
             <see langword="true"/> if the user is banned
-            </summary>
-        </member>
-        <member name="P:Roblox_Sharp.Models.v1.UserInfo.HasVerifiedBadge">
-            <summary>
-            <see langword="true"/> only if the user has a verified badge
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.v1.UserInfo.CreatedString">
@@ -1168,21 +1162,23 @@
             <param name="name"></param>
             <inheritdoc cref="M:System.Net.Http.Headers.HttpHeaderValueCollection`1.TryParseAdd(System.String)"/>
         </member>
-        <member name="M:Roblox_Sharp.WebAPI.Get_RequestAsync(System.String)">
+        <member name="M:Roblox_Sharp.WebAPI.Get_RequestAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Helper Functions for making get requests <br/>
             <inheritdoc cref="M:System.Net.Http.HttpClient.GetAsync(System.String)"/>
             </summary>
             <param name="url"></param>
+            <param name="cancellationToken"></param>
             <returns><see cref="T:Roblox_Sharp.FetchedData"/></returns>
             <inheritdoc cref="M:System.Net.Http.HttpClient.GetAsync(System.String)"/>
         </member>
-        <member name="M:Roblox_Sharp.WebAPI.Post_RequestAsync``1(System.String,``0)">
+        <member name="M:Roblox_Sharp.WebAPI.Post_RequestAsync``1(System.String,``0,System.Threading.CancellationToken)">
             <summary>
             Helper Functions for making post requests
             </summary>
             <typeparam name="T"></typeparam>
             <param name="url">the req url</param>
+            <param name="cancellationToken"></param>
             <param name="model">the post model</param>
             <returns><see cref="T:Roblox_Sharp.FetchedData"/></returns>
         </member>
