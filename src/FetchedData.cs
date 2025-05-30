@@ -8,7 +8,7 @@ namespace Roblox_Sharp
     /// </summary>
     /// <param name="json"></param>
     /// <param name="success"></param>
-    public readonly struct FetchedData(in string? json, in bool success)
+    public readonly struct FetchedData([StringSyntax(StringSyntaxAttribute.Json)] in string? json, in bool success)
     {
         /// <summary>
         /// the fetched json data
