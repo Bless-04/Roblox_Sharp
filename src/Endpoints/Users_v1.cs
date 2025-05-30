@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Roblox_Sharp.Enums;
 using Roblox_Sharp.Models;
@@ -23,15 +24,16 @@ namespace Roblox_Sharp.Endpoints
         /// Gets detailed user information using the user's <paramref name="ID"/>
         /// </summary>
         /// <param name="ID">The users id</param>
+        /// <param name="cancellationToken"></param>
         /// <returns> The deserialized <see cref="UserInfo"/> if successful</returns>
-        public static async Task<UserInfo?> Get_UserAsync(ulong ID) => (await Get_RequestAsync($"https://users.roblox.com/v1/users/{ID}"))
+        public static async Task<UserInfo?> Get_UserAsync(ulong ID, CancellationToken cancellationToken = default) => (await Get_RequestAsync($"https://users.roblox.com/v1/users/{ID}", cancellationToken))
             .Deserialize<UserInfo>();
 
         /// <summary>
         /// Gets the minimal user information for the authenticated user
         /// </summary>
         /// <returns>The deserialized <see cref="UserAuthenticated"/></returns>
-        public static async Task<UserAuthenticated?> Get_AuthenticatedAsync() => (await Get_RequestAsync("https://users.roblox.com/v1/users/authenticated"))
+        public static async Task<UserAuthenticated?> Get_AuthenticatedAsync(CancellationToken cancellationToken = default) => (await Get_RequestAsync("https://users.roblox.com/v1/users/authenticated", cancellationToken))
             .Deserialize<UserAuthenticated>();
 
         /// <summary>
@@ -39,16 +41,18 @@ namespace Roblox_Sharp.Endpoints
         /// </summary>
         /// <param name="Usernames"></param>
         /// <param name="ExcludeBannedUsers"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns><see cref="IReadOnlyList{T}"/> of <see cref="UserByUsername"/></returns>
-        public static async Task<IReadOnlyList<UserByUsername>?> Get_UsersAsync(IEnumerable<string> Usernames, bool ExcludeBannedUsers) => (await Post_RequestAsync("https://users.roblox.com/v1/usernames/users", new UserByX(Usernames, ExcludeBannedUsers))).Deserialize<Page<UserByUsername>>()?.Data;
+        public static async Task<IReadOnlyList<UserByUsername>?> Get_UsersAsync(IEnumerable<string> Usernames, bool ExcludeBannedUsers, CancellationToken cancellationToken = default) => (await Post_RequestAsync("https://users.roblox.com/v1/usernames/users", new UserByX(Usernames, ExcludeBannedUsers), cancellationToken)).Deserialize<Page<UserByUsername>>()?.Data;
 
         /// <summary>
         /// Get users information given a <see cref="IEnumerable{T}"/> of <paramref name="UserIds"/>
         /// </summary>
         /// <param name="UserIds"></param>
         /// <param name="ExcludeBannedUsers"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns><see cref="IReadOnlyList{T}"/> of <see cref="UserByUserId"/></returns>
-        public static async Task<IReadOnlyList<UserByUserId>?> Get_UsersAsync(IEnumerable<ulong> UserIds, bool ExcludeBannedUsers) =>
+        public static async Task<IReadOnlyList<UserByUserId>?> Get_UsersAsync(IEnumerable<ulong> UserIds, bool ExcludeBannedUsers, CancellationToken cancellationToken = default) =>
             (await Post_RequestAsync("https://users.roblox.com/v1/users", new UserByX(UserIds, ExcludeBannedUsers)))
             .Deserialize<Page<UserByUserId>>()?
             .Data;
@@ -97,14 +101,15 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="sessionId"></param>
         /// <param name="LIMIT">The number of results per request</param>
         /// <param name="cursor">The paging cursor for the previous or next page</param>
+        /// <param name="cancellationToken"></param>
         /// <returns> The deserialized <see cref="Page{T}"/>  of <see cref="UserBySearch"/> if successful</returns>
-        public static async Task<Page<UserBySearch>?> Get_UserSearchAsync(string keyword, string? sessionId = null, Limit LIMIT = Limit.Ten, string? cursor = null)
+        public static async Task<Page<UserBySearch>?> Get_UserSearchAsync(string keyword, string? sessionId = null, Limit LIMIT = Limit.Ten, string? cursor = null, CancellationToken cancellationToken = default)
         => (await Get_RequestAsync(
                     $"https://users.roblox.com/v1/users/search?" +
                     $"keyword={keyword}" +
                     $"&sessionId={sessionId}" +
                     $"&limit={(byte)LIMIT}" +
-                    $"&cursor={cursor}"))
+                    $"&cursor={cursor}", cancellationToken))
             .Deserialize<Page<UserBySearch>>(); /* example url https://users.roblox.com/v1/users/search?keyword=string&sessionId=session&limit=10*/
 
         #endregion
