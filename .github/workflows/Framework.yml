@@ -1,26 +1,27 @@
-#Builds Roblox_Sharp and also Tests functionality of objects
 name: Framework Functionality
 
 on:
     workflow_dispatch:
     push:
 
-defaults:
-    run:
-        working-directory: "src"
-
 jobs:
     Build:
         runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                dotnet: [4.x, 5.x, 6.x, 7.x, 8.x]
+
+        name: Test with .NET ${{ matrix.dotnet }}
         steps:
             - uses: actions/checkout@v4
+
             - uses: actions/setup-dotnet@v4
               with:
-                  dotnet-version: "8.x"
+                  dotnet-version: ${{ matrix.dotnet }}
 
-            - name: Build Roblox_Sharp
+            - name: Build Solution
               run: dotnet build -c Debug Roblox_Sharp.sln
+              working-directory: src
 
             - name: Json Serialization and Deserialization
               run: dotnet test -c Debug --no-build --filter Models=Json
-              #continue-on-error: true
