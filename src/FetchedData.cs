@@ -8,7 +8,7 @@ namespace Roblox_Sharp
     /// </summary>
     /// <param name="json"></param>
     /// <param name="success"></param>
-    public class FetchedData(in string? json, in bool success)
+    public readonly struct FetchedData(in string? json, in bool success)
     {
         /// <summary>
         /// the fetched json data
@@ -40,7 +40,7 @@ namespace Roblox_Sharp
         /// lossy convert to bool
         /// </summary>
         /// <param name="data"></param>
-        public static explicit operator bool(FetchedData data) => data.Success;
+        public static explicit operator bool(in FetchedData data) => data.Success;
 
         /// <summary>
         /// returns the <see cref="Json"/>
