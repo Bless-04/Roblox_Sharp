@@ -15,7 +15,7 @@
     <PackageTags>Roblox;Roblox API</PackageTags>
     <Authors>Blessing</Authors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageIcon>package image.jpg</PackageIcon>
+    <PackageIcon>logo.png</PackageIcon>
     <NeutralLanguage>en</NeutralLanguage>
     <Copyright></Copyright>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
@@ -43,7 +43,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="..\package image.jpg">
+    <None Include="..\logo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
