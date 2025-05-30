@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 namespace Roblox_Sharp.Models.JsonConverters
 {
     /// <inheritdoc/> using <see cref="State"/>
-    public class Thumbnail_State_Converter : JsonConverter<State>
+    public sealed class Thumbnail_State_Converter : JsonConverter<State>
     {
         /// <inheritdoc/>
         public override State Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

@@ -8,7 +8,7 @@ namespace Roblox_Sharp.Models.JsonConverters
     /// <summary>
     /// used to convert the color to and from RGB hex
     /// </summary>
-    public class Color_Converter : JsonConverter<Color>
+    public sealed class Color_Converter : JsonConverter<Color>
     {
         /// <inheritdoc/>
         public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
