@@ -15,14 +15,7 @@ namespace Roblox_Sharp
     /// </summary>
     public static class WebAPI
     {
-        static WebAPI()
-        {
-            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            Set_UserAgent(nameof(Roblox_Sharp));
-            //_client.DefaultRequestHeaders.Authorization needed for auth
-        }
-
-        internal static HttpClient _client = new();
+        internal static volatile HttpClient _client = new();
 
         /// <summary>
         /// <see cref="HttpClient"></see> used for all web requests
@@ -30,29 +23,24 @@ namespace Roblox_Sharp
         public static HttpClient Client
         {
             get => _client;
-            set => Interlocked.Exchange(ref _client, value).Dispose(); //thread safe because of this probably;
+            set => Interlocked.Exchange(ref _client, value).Dispose(); //atomic dispose of old http client
         }
 
-        /* not needed
-        /// <summary>
-        /// <see cref="JsonSerializerOptions"></see> used for all web requests
-        /// </summary>
-        public static readonly JsonSerializerOptions SerializerOptions = new()
+
+        static WebAPI()
         {
-            PropertyNameCaseInsensitive = true,
-            AllowTrailingCommas = true,
-            WriteIndented = true,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        };
-        */
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Set_UserAgent(nameof(Roblox_Sharp));
+            //_client.DefaultRequestHeaders.Authorization needed for auth
+        }
 
         /// <summary>
-        /// an event that is raised when the web request is successful/statuscode 200
+        /// an event that is raised when the web request is successful/statuscode is between 200 and 299
         /// </summary>
         public static event EventHandler? OnSuccessfulRequest;
 
         /// <summary>
-        /// an event that is raised when the web request fails / statuscode is not 200
+        /// an event that is raised when the web request fails / statuscode is not successful
         /// </summary>
         public static event EventHandler<FailedRequestEventArgs>? OnFailedRequest;
 
@@ -86,14 +74,15 @@ namespace Roblox_Sharp
         /// <inheritdoc cref="HttpClient.GetAsync(string?)"/>
         /// </summary>
         /// <param name="url"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns><see cref="FetchedData"/></returns>
         /// <inheritdoc cref="HttpClient.GetAsync(string?)"/>
-        public static async Task<FetchedData> Get_RequestAsync([StringSyntax(StringSyntaxAttribute.Uri)] string url)
+        public static async ValueTask<FetchedData> Get_RequestAsync([StringSyntax(StringSyntaxAttribute.Uri)] string url, CancellationToken cancellationToken = default)
         {
-            using HttpResponseMessage response = await _client.GetAsync(url);
+            using HttpResponseMessage response = await _client.GetAsync(url, cancellationToken);
 
             response.FireEvents();
-            return new FetchedData(await response.Content.ReadAsStringAsync(), response.IsSuccessStatusCode);
+            return new FetchedData(await response.Content.ReadAsStringAsync(cancellationToken), response.IsSuccessStatusCode);
         }
 
         /// <summary>
@@ -101,35 +90,17 @@ namespace Roblox_Sharp
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url">the req url</param>
+        /// <param name="cancellationToken"></param>
         /// <param name="model">the post model</param>
         /// <returns><see cref="FetchedData"/></returns>
-        public static async Task<FetchedData> Post_RequestAsync<T>([StringSyntax(StringSyntaxAttribute.Uri)] string url, T model)
+        public static async ValueTask<FetchedData> Post_RequestAsync<T>([StringSyntax(StringSyntaxAttribute.Uri)] string url, T model, CancellationToken cancellationToken = default)
         {
-            using HttpResponseMessage response = await _client.PostAsJsonAsync(url, model);
+            using HttpResponseMessage response = await _client.PostAsJsonAsync(url, model, cancellationToken);
 
             response.FireEvents();
-            return new FetchedData(await response.Content.ReadAsStringAsync(), response.IsSuccessStatusCode);
+            return new FetchedData(await response.Content.ReadAsStringAsync(cancellationToken), response.IsSuccessStatusCode);
         }
 
-
-
-        /*
-        /// <summary>
-        /// function for User.Post request that is pretty much a get request
-        /// </summary>
-        public static async Task<string> Post_RequestAsync([StringSyntax(StringSyntaxAttribute.Uri)] string url, Response.Post POST)
-        {
-            using HttpResponseMessage response = await _client.PostAsync(url, new StringContent(JsonSerializer.Serialize(POST),Encoding.UTF8, "application/json"));
-            {
-                FireRequestEvents(response);
-                return await response.Content.ReadAsStringAsync();
-            }
-                
-        }
-        /* Not needed yet
-        public static async Task<string> Post_RequestAsync<T>(string url,)
-
-        */
         #endregion
     }
 }
