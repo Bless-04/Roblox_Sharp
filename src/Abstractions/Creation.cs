@@ -22,7 +22,7 @@ namespace Roblox_Sharp.Abstractions
     /// generalized template for any roblox creation that has a unique id for comparisons <br/>
     /// uses <typeparamref name="T"/> for comparisons
     /// </summary>
-    public abstract class Creation<T> : ICreation, 
+    public abstract class Creation<T> : ICreation,
         IEquatable<Creation<T>>, IComparable<Creation<T>>, IEqualityComparer<Creation<T>>
     {
         /// <inheritdoc cref="ICreation.Id"/>
