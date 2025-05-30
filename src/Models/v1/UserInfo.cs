@@ -19,7 +19,7 @@ namespace Roblox_Sharp.Models.v1
     /// used to deserialize <see cref="Endpoints.Users_v1.Get_UserAsync(ulong)"/>
     /// <see href="https://users.roblox.com//docs/index.html">Users v1</see>
     /// </summary>
-    public class UserInfo : UserAuthenticated
+    public class UserInfo : UserByUserId
     {
         #region Properties
         /// <summary>
@@ -40,12 +40,8 @@ namespace Roblox_Sharp.Models.v1
         [JsonPropertyName("isBanned")]
         public required bool IsBanned { get; init; }
 
-        /// <summary>
-        /// <see langword="true"/> only if the user has a verified badge
-        /// </summary>
-        [JsonPropertyName("hasVerifiedBadge")]
-        public required bool HasVerifiedBadge { get; init; }
         #endregion
+
 
         /*
         /// <summary>

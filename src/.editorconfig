@@ -140,3 +140,6 @@ dotnet_diagnostic.CA1027.severity = suggestion
 
 # IDE0130: Namespace does not match folder structure
 dotnet_diagnostic.IDE0130.severity = suggestion
+
+# IDE0130: Namespace does not match folder structure
+dotnet_style_namespace_match_folder = false

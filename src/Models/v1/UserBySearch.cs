@@ -17,7 +17,7 @@ namespace Roblox_Sharp.Models.v1
      */
 
     /// <summary>
-    /// Used to deserialize <see cref="Endpoints.Users_v1.Get_UserSearchAsync(string, string?, Endpoints.Limit, string?)"/>
+    /// Used to deserialize <see cref="Endpoints.Users_v1.Get_UserSearchAsync(string, string?, Endpoints.Limit, string?, System.Threading.CancellationToken)"/>
     /// </summary>
     public class UserBySearch : UserByUserId
     {
