@@ -3,23 +3,37 @@ using System.Text.Json;
 
 namespace Roblox_Sharp
 {
+
     /// <summary>
     /// represents data fetched from the roblox api
     /// </summary>
-    /// <param name="json"></param>
-    /// <param name="success"></param>
-    public readonly struct FetchedData([StringSyntax(StringSyntaxAttribute.Json)] in string? json, in bool success)
+    public readonly struct FetchedData
     {
         /// <summary>
         /// the fetched json data
         /// </summary>
         [StringSyntax(StringSyntaxAttribute.Json)]
-        public readonly string Json = json ?? string.Empty;
+        public readonly string Json;
 
         /// <summary>
         /// whether the fetch was successful
         /// </summary>
-        public readonly bool Success = json is not null && json != string.Empty && success;
+        /// <returns>
+        /// <inheritdoc cref="System.Net.Http.HttpResponseMessage.IsSuccessStatusCode"/>
+        /// </returns>
+        public readonly bool Success;
+
+        /// <summary>
+        /// constructor to represent data fetched from the roblox api
+        /// </summary>
+        /// <param name="json"></param>
+        /// <param name="success"></param>
+        public FetchedData([StringSyntax(StringSyntaxAttribute.Json)] string? json, bool success)
+        {
+            this.Json = json ?? string.Empty;
+            this.Success = json is not null && json != string.Empty && success;
+        }
+
 
         #region lossless convert
         /// <summary>
@@ -33,19 +47,9 @@ namespace Roblox_Sharp
         /// </summary>
         /// <param name="data"></param>
         public static implicit operator (string json, bool success)(in FetchedData data) => (data.Json, data.Success);
-
         #endregion
 
-        /// <summary>
-        /// lossy convert to bool
-        /// </summary>
-        /// <param name="data"></param>
-        public static explicit operator bool(in FetchedData data) => data.Success;
-
-        /// <summary>
-        /// returns the <see cref="Json"/>
-        /// </summary>
-        /// <returns></returns>
+        /// <returns> returns the <see cref="Json"/></returns>
         public override string ToString() => Json;
 
         /// <returns>

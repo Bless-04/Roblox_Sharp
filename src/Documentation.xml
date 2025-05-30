@@ -407,8 +407,11 @@
             <summary>
             whether the fetch was successful
             </summary>
+            <returns>
+            <inheritdoc cref="P:System.Net.Http.HttpResponseMessage.IsSuccessStatusCode"/>
+            </returns>
         </member>
-        <member name="M:Roblox_Sharp.FetchedData.#ctor(System.String@,System.Boolean@)">
+        <member name="M:Roblox_Sharp.FetchedData.#ctor(System.String,System.Boolean)">
             <summary>
             constructor to represent data fetched from the roblox api
             </summary>
@@ -424,12 +427,6 @@
         <member name="M:Roblox_Sharp.FetchedData.op_Implicit(Roblox_Sharp.FetchedData@)~System.ValueTuple{System.String,System.Boolean}">
             <summary>
             lossless convert to tuple
-            </summary>
-            <param name="data"></param>
-        </member>
-        <member name="M:Roblox_Sharp.FetchedData.op_Explicit(Roblox_Sharp.FetchedData@)~System.Boolean">
-            <summary>
-            lossy convert to bool
             </summary>
             <param name="data"></param>
         </member>
@@ -945,66 +942,6 @@
             This avatar has more limbs than <see cref="F:Roblox_Sharp.Models.v1.Avatar.Type.R6"/> allowing for more flexible customization, accessory options, and animations.
             </summary>
         </member>
-        <member name="T:Roblox_Sharp.Models.v1.ResourceError">
-            <summary>
-            <see href="https://create.roblox.com/docs/cloud/reference/errors">Errors Documentation</see>
-            </summary>
-        </member>
-        <member name="T:Roblox_Sharp.Models.v1.ResourceError.Code">
-            <summary>
-            v1 Error codes model
-            </summary>
-        </member>
-        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.INVALID_ARGUMENT">
-            <summary>
-            You passed an invalid argument, such as an invalid universeId. You might also have missing or invalid headers, such as Content-Length and Content-Type.
-            </summary>
-        </member>
-        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.INSUFFICIENT_SCOPE">
-            <summary>
-            The request requires higher privileges than provided by the access token.
-            </summary>
-        </member>
-        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.PERMISSION_DENIED">
-            <summary>
-            Your request doesn't have sufficient scope to perform the operation.
-            </summary>
-        </member>
-        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.NOT_FOUND">
-            <summary>
-            The system can't find your specified resources, such as a data store.
-            </summary>
-        </member>
-        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.ABORTED">
-            <summary>
-            The operation was aborted due to a conflict, such as publishing a place that is not part of the universe.
-            </summary>
-        </member>
-        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.RESOURCE_EXHAUSTED">
-            <summary>
-            You don't have enough quota to perform the operation, typically due to sending too many requests.
-            </summary>
-        </member>
-        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.CANCELLED">
-            <summary>
-            The system terminates the request, typically due to a client side timeout.
-            </summary>
-        </member>
-        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.INTERNAL">
-            <summary>
-            Internal server error. Typically a server bug.
-            </summary>
-        </member>
-        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.NOT_IMPLEMENTED">
-            <summary>
-            The server doesn't implement the API method.
-            </summary>
-        </member>
-        <member name="F:Roblox_Sharp.Models.v1.ResourceError.Code.UNAVAILABLE">
-            <summary>
-            Service unavailable. Typically the server is down.
-            </summary>
-        </member>
         <member name="T:Roblox_Sharp.Models.v1.UserAuthenticated">
             <summary>
             used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_AuthenticatedAsync"/>
@@ -1023,7 +960,7 @@
         </member>
         <member name="T:Roblox_Sharp.Models.v1.UserBySearch">
             <summary>
-            Used to deserialize <see cref="!:Endpoints.Users_v1.Get_UserSearchAsync(string, string?, Endpoints.Limit, string?)"/>
+            Used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserSearchAsync(System.String,System.String,Roblox_Sharp.Endpoints.Limit,System.String,System.Threading.CancellationToken)"/>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.v1.UserBySearch.PreviousUsernames">
@@ -1141,12 +1078,12 @@
         </member>
         <member name="E:Roblox_Sharp.WebAPI.OnSuccessfulRequest">
             <summary>
-            an event that is raised when the web request is successful/statuscode 200
+            an event that is raised when the web request is successful/statuscode is between 200 and 299
             </summary>
         </member>
         <member name="E:Roblox_Sharp.WebAPI.OnFailedRequest">
             <summary>
-            an event that is raised when the web request fails / statuscode is not 200
+            an event that is raised when the web request fails / statuscode is not successful
             </summary>
         </member>
         <member name="M:Roblox_Sharp.WebAPI.FireEvents(System.Net.Http.HttpResponseMessage)">

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 namespace Roblox_Sharp.Models.v1
 {
@@ -26,6 +24,5 @@ namespace Roblox_Sharp.Models.v1
         /// </summary>
         [JsonPropertyName("previousUsernames")]
         public required IReadOnlyList<string> PreviousUsernames { get; init; }
-
     }
 }
