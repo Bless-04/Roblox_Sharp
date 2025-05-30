@@ -77,7 +77,7 @@ namespace Roblox_Sharp
         /// <param name="cancellationToken"></param>
         /// <returns><see cref="FetchedData"/></returns>
         /// <inheritdoc cref="HttpClient.GetAsync(string?)"/>
-        public static async ValueTask<FetchedData> Get_RequestAsync([StringSyntax(StringSyntaxAttribute.Uri)] string url, CancellationToken cancellationToken = default)
+        public static async Task<FetchedData> Get_RequestAsync([StringSyntax(StringSyntaxAttribute.Uri)] string url, CancellationToken cancellationToken = default)
         {
             using HttpResponseMessage response = await _client.GetAsync(url, cancellationToken);
 
@@ -93,7 +93,7 @@ namespace Roblox_Sharp
         /// <param name="cancellationToken"></param>
         /// <param name="model">the post model</param>
         /// <returns><see cref="FetchedData"/></returns>
-        public static async ValueTask<FetchedData> Post_RequestAsync<T>([StringSyntax(StringSyntaxAttribute.Uri)] string url, T model, CancellationToken cancellationToken = default)
+        public static async Task<FetchedData> Post_RequestAsync<T>([StringSyntax(StringSyntaxAttribute.Uri)] string url, T model, CancellationToken cancellationToken = default)
         {
             using HttpResponseMessage response = await _client.PostAsJsonAsync(url, model, cancellationToken);
 
