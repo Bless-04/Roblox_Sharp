@@ -53,7 +53,7 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="cancellationToken"></param>
         /// <returns><see cref="IReadOnlyList{T}"/> of <see cref="UserByUserId"/></returns>
         public static async Task<IReadOnlyList<UserByUserId>?> Get_UsersAsync(IEnumerable<ulong> UserIds, bool ExcludeBannedUsers, CancellationToken cancellationToken = default) =>
-            (await Post_RequestAsync("https://users.roblox.com/v1/users", new UserByX(UserIds, ExcludeBannedUsers)))
+            (await Post_RequestAsync("https://users.roblox.com/v1/users", new UserByX(UserIds, ExcludeBannedUsers), cancellationToken))
             .Deserialize<Page<UserByUserId>>()?
             .Data;
 
