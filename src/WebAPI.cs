@@ -26,7 +26,6 @@ namespace Roblox_Sharp
             set => Interlocked.Exchange(ref _client, value).Dispose(); //atomic dispose of old http client
         }
 
-
         static WebAPI()
         {
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
