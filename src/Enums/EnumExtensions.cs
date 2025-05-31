@@ -1,6 +1,4 @@
-﻿using Roblox_Sharp.Endpoints;
-using Roblox_Sharp.Enums.Thumbnail;
-using System;
+﻿using System;
 using System.Linq;
 
 namespace Roblox_Sharp.Enums
