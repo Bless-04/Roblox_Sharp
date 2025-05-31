@@ -136,7 +136,7 @@ dotnet_diagnostic.CA1001.severity = warning
 dotnet_diagnostic.CA1010.severity = warning
 dotnet_diagnostic.CA1016.severity = warning
 dotnet_diagnostic.CA1018.severity = warning
-dotnet_diagnostic.CA1027.severity = suggestion
+dotnet_diagnostic.CA1027.severity = silent
 
 # IDE0130: Namespace does not match folder structure
 dotnet_diagnostic.IDE0130.severity = suggestion

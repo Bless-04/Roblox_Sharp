@@ -112,23 +112,6 @@ namespace Roblox_Sharp.Models
         [JsonPropertyName("creator")]
         public Response? Creator { get; init; }
 
-        /// <inheritdoc/>
-        public Badge Clone() => new()
-        {
-            BadgeId = BadgeId,
-            BadgeName = BadgeName,
-            Description = Description,
-            DisplayName = DisplayName,
-            DisplayDescription = DisplayDescription,
-            Enabled = Enabled,
-            IconImageId = IconImageId,
-            DisplayIconImageId = DisplayIconImageId,
-            Created = Created,
-            Updated= Updated,
-            Statistics = Statistics,
-            AwardingUniverse = AwardingUniverse?.Clone(),
-            Creator= Creator?.Clone()
-        };
     }
 }
 */

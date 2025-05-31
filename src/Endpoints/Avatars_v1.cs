@@ -22,7 +22,7 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="cancellationToken"></param>
         /// <returns> The deserialized <see cref="Avatar"/> if successful</returns>
         [Obsolete("Avatars_v2's method is better")]
-        public static async Task<Avatar?> Get_AvatarAsync(ulong userId, CancellationToken cancellationToken = default) => (await Get_RequestAsync($"https://avatar.roblox.com/v1/users/{userId}/avatar")) //url https://avatar.roblox.com/v1/users/1/avatar
+        public static async Task<Avatar?> Get_AvatarAsync(ulong userId, CancellationToken cancellationToken = default) => (await Get_RequestAsync($"https://avatar.roblox.com/v1/users/{userId}/avatar", cancellationToken)) //url https://avatar.roblox.com/v1/users/1/avatar
             .Deserialize<Avatar>();
 
 

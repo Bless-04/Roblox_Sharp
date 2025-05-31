@@ -27,7 +27,7 @@ namespace Roblox_Sharp.Enums
         /// <typeparam name="T">The enums corresponding flag type</typeparam>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static T ToFlag<T>(Enum value) where T : Enum => (T)Enum.Parse(typeof(T), value.ToString(), true);
+        public static T ToFlag<T>(this Enum value) where T : Enum => (T)Enum.Parse(typeof(T), value.ToString(), true);
 
         /// <summary>
         /// converts a string to an enum in which the string is the name of the enum value

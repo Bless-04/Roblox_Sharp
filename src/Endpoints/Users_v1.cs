@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Roblox_Sharp.Enums;
 using Roblox_Sharp.Models;
 using Roblox_Sharp.Models.v1;
 using static Roblox_Sharp.WebAPI;
@@ -68,16 +67,16 @@ namespace Roblox_Sharp.Endpoints
         /// <param name="limit"></param>
         /// <param name="sortOrder"></param>
         /// <param name="cursor"></param>
+        /// <param name="cancellationToken"></param> 
         /// <returns></returns>
-        public static async Task<Page<string>?> Get_UsernameHistoryAsync(ulong userId, Limit limit = Limit.Ten, Sort sortOrder = Sort.Asc, string? cursor = null)
+        public static async Task<Page<string>?> Get_UsernameHistoryAsync(ulong userId, Limit limit = Limit.Ten, Sort sortOrder = Sort.Asc, string? cursor = null, CancellationToken cancellationToken = default)
         {
             //url example 'https://users.roblox.com/v1/users/416181091/username-history?limit=100&sortOrder=Asc
 
-            Page<UsernameHistory_Response>? page = (await Get_RequestAsync(
-                    $"https://users.roblox.com/v1/users/{userId}" +
+            Page<UsernameHistory_Response>? page = (await Get_RequestAsync($"https://users.roblox.com/v1/users/{userId}" +
                     $"/username-history?limit={limit}" +
                     $"&cursor={cursor}" +
-                    $"&sortOrder={sortOrder}"))
+                    $"&sortOrder={sortOrder}", cancellationToken))
             .Deserialize<Page<UsernameHistory_Response>>();
 
             if (page == null) return null;
