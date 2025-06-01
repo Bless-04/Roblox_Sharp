@@ -242,19 +242,21 @@
             <b><see href="https://avatar.roblox.com//docs/index.html?urls.primaryName=Avatar%20Api%20v2">Avatars Documentation</see></b>
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.Endpoints.Avatars_v1.Get_AvatarAsync(System.UInt64)">
+        <member name="M:Roblox_Sharp.Endpoints.Avatars_v1.Get_AvatarAsync(System.UInt64,System.Threading.CancellationToken)">
             <summary>
             Returns details about a avatar using specified with <paramref name="userId"/> <br></br>
             Allows requesting terminated users
             </summary>
             <param name="userId"></param>
+            <param name="cancellationToken"></param>
             <returns> The deserialized <see cref="T:Roblox_Sharp.Models.v1.Avatar"/> if successful</returns>
         </member>
-        <member name="M:Roblox_Sharp.Endpoints.Avatars_v1.Get_CurrentlyWearingAsync(System.UInt64)">
+        <member name="M:Roblox_Sharp.Endpoints.Avatars_v1.Get_CurrentlyWearingAsync(System.UInt64,System.Threading.CancellationToken)">
             <summary>
             Gets a list of asset ids that the <paramref name="userId"/> is currently wearing
             </summary>
             <param name="userId"></param>
+            <param name="cancellationToken"></param>
             <returns><see cref="T:System.Collections.Generic.IReadOnlyList`1"/> of asset ids </returns>
         </member>
         <member name="T:Roblox_Sharp.Endpoints.Limit">
@@ -273,36 +275,39 @@
             <b><see href="https://users.roblox.com/docs//index.html">Users Documentation v1</see></b>
             </summary>
         </member>
-        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserAsync(System.UInt64)">
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserAsync(System.UInt64,System.Threading.CancellationToken)">
             <summary>
             Gets detailed user information using the user's <paramref name="ID"/>
             </summary>
             <param name="ID">The users id</param>
+            <param name="cancellationToken"></param>
             <returns> The deserialized <see cref="T:Roblox_Sharp.Models.v1.UserInfo"/> if successful</returns>
         </member>
-        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_AuthenticatedAsync">
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_AuthenticatedAsync(System.Threading.CancellationToken)">
             <summary>
             Gets the minimal user information for the authenticated user
             </summary>
             <returns>The deserialized <see cref="T:Roblox_Sharp.Models.v1.UserAuthenticated"/></returns>
         </member>
-        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsersAsync(System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsersAsync(System.Collections.Generic.IEnumerable{System.String},System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Get users information given a <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <paramref name="Usernames"/>
             </summary>
             <param name="Usernames"></param>
             <param name="ExcludeBannedUsers"></param>
+            <param name="cancellationToken"></param>
             <returns><see cref="T:System.Collections.Generic.IReadOnlyList`1"/> of <see cref="T:Roblox_Sharp.Models.v1.UserByUsername"/></returns>
         </member>
-        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsersAsync(System.Collections.Generic.IEnumerable{System.UInt64},System.Boolean)">
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsersAsync(System.Collections.Generic.IEnumerable{System.UInt64},System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Get users information given a <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <paramref name="UserIds"/>
             </summary>
             <param name="UserIds"></param>
             <param name="ExcludeBannedUsers"></param>
+            <param name="cancellationToken"></param>
             <returns><see cref="T:System.Collections.Generic.IReadOnlyList`1"/> of <see cref="T:Roblox_Sharp.Models.v1.UserByUserId"/></returns>
         </member>
-        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsernameHistoryAsync(System.UInt64,Roblox_Sharp.Endpoints.Limit,Roblox_Sharp.Endpoints.Sort,System.String)">
+        <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsernameHistoryAsync(System.UInt64,Roblox_Sharp.Endpoints.Limit,Roblox_Sharp.Endpoints.Sort,System.String,System.Threading.CancellationToken)">
             <summary>
             Retrieves the username history for a particular <paramref name="userId"/>
             </summary>
@@ -310,6 +315,7 @@
             <param name="limit"></param>
             <param name="sortOrder"></param>
             <param name="cursor"></param>
+            <param name="cancellationToken"></param> 
             <returns></returns>
         </member>
         <member name="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserSearchAsync(System.String,System.String,Roblox_Sharp.Endpoints.Limit,System.String,System.Threading.CancellationToken)">
@@ -944,7 +950,7 @@
         </member>
         <member name="T:Roblox_Sharp.Models.v1.UserAuthenticated">
             <summary>
-            used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_AuthenticatedAsync"/>
+            used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_AuthenticatedAsync(System.Threading.CancellationToken)"/>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.v1.UserAuthenticated.UserId">
@@ -970,7 +976,7 @@
         </member>
         <member name="T:Roblox_Sharp.Models.v1.UserByUserId">
             <summary>
-            used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsersAsync(System.Collections.Generic.IEnumerable{System.UInt64},System.Boolean)"/>
+            used to deserialize <see cref="!:Endpoints.Users_v1.Get_UsersAsync(System.Collections.Generic.IEnumerable&lt;ulong&gt;, bool)"/>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.v1.UserByUserId.HasVerifiedBadge">
@@ -980,7 +986,7 @@
         </member>
         <member name="T:Roblox_Sharp.Models.v1.UserByUsername">
             <summary>
-            used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_UsersAsync(System.Collections.Generic.IEnumerable{System.String},System.Boolean)"/>
+            used to deserialize <see cref="!:Endpoints.Users_v1.Get_UsersAsync(System.Collections.Generic.IEnumerable&lt;string&gt;, bool)"/>
             </summary>
         </member>
         <member name="P:Roblox_Sharp.Models.v1.UserByUsername.RequestedUsername">
@@ -990,7 +996,7 @@
         </member>
         <member name="T:Roblox_Sharp.Models.v1.UserInfo">
             <summary>
-            used to deserialize <see cref="M:Roblox_Sharp.Endpoints.Users_v1.Get_UserAsync(System.UInt64)"/>
+            used to deserialize <see cref="!:Endpoints.Users_v1.Get_UserAsync(ulong)"/>
             <see href="https://users.roblox.com//docs/index.html">Users v1</see>
             </summary>
         </member>
