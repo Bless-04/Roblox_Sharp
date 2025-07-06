@@ -31,7 +31,7 @@ namespace Roblox_Sharp
         public FetchedData([StringSyntax(StringSyntaxAttribute.Json)] string? json, bool success)
         {
             this.Json = json ?? string.Empty;
-            this.Success = json is not null && json != string.Empty && success;
+            this.Success = !string.IsNullOrEmpty(json) && success;
         }
 
         /// <summary>
