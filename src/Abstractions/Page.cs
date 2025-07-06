@@ -88,8 +88,6 @@ namespace Roblox_Sharp.Abstractions
             Data = (IReadOnlyList<T>?)data ?? [];
         }
 
-
-
         /// <summary>
         /// Goes forward 1 page
         /// </summary>
