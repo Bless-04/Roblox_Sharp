@@ -424,17 +424,12 @@
             <param name="json"></param>
             <param name="success"></param>
         </member>
-        <member name="M:Roblox_Sharp.FetchedData.op_Implicit(System.ValueTuple{System.String,System.Boolean}@)~Roblox_Sharp.FetchedData">
+        <member name="M:Roblox_Sharp.FetchedData.Deconstruct(System.String@,System.Boolean@)">
             <summary>
-            lossless convert from tuple to FetchedData
+            deconstructs the <see cref="T:Roblox_Sharp.FetchedData"/>
             </summary>
-            <param name="tuple"></param>
-        </member>
-        <member name="M:Roblox_Sharp.FetchedData.op_Implicit(Roblox_Sharp.FetchedData@)~System.ValueTuple{System.String,System.Boolean}">
-            <summary>
-            lossless convert to tuple
-            </summary>
-            <param name="data"></param>
+            <param name="json"></param>
+            <param name="success"></param>
         </member>
         <member name="M:Roblox_Sharp.FetchedData.ToString">
             <returns> returns the <see cref="F:Roblox_Sharp.FetchedData.Json"/></returns>
