@@ -34,7 +34,6 @@ namespace Roblox_Sharp
             this.Success = json is not null && json != string.Empty && success;
         }
 
-
         /// <summary>
         /// deconstructs the <see cref="FetchedData"/>
         /// </summary>
