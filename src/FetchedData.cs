@@ -50,6 +50,8 @@ namespace Roblox_Sharp
         /// <see langword="null"/> or <see langword="default"/> if the request is not successful
         /// </returns>
         /// <inheritdoc cref="JsonSerializer.Deserialize{TValue}(string, JsonSerializerOptions?)"/>
-        public T? Deserialize<T>() => this.Success ? JsonSerializer.Deserialize<T>(this.Json) : default;
+        public T? Deserialize<T>() => this.Success
+            ? JsonSerializer.Deserialize<T>(this.Json)
+            : default;
     }
 }
