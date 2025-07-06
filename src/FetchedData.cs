@@ -35,19 +35,12 @@ namespace Roblox_Sharp
         }
 
 
-        #region lossless convert
         /// <summary>
-        /// lossless convert from tuple to FetchedData
+        /// deconstructs the <see cref="FetchedData"/>
         /// </summary>
-        /// <param name="tuple"></param>
-        public static implicit operator FetchedData(in (string json, bool success) tuple) => new(tuple.json, tuple.success);
-
-        /// <summary>
-        /// lossless convert to tuple
-        /// </summary>
-        /// <param name="data"></param>
-        public static implicit operator (string json, bool success)(in FetchedData data) => (data.Json, data.Success);
-        #endregion
+        /// <param name="json"></param>
+        /// <param name="success"></param>
+        public void Deconstruct(out string json, out bool success) => (json, success) = (this.Json, this.Success);
 
         /// <returns> returns the <see cref="Json"/></returns>
         public override string ToString() => Json;
