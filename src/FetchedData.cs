@@ -28,7 +28,7 @@ namespace Roblox_Sharp
         /// </summary>
         /// <param name="json"></param>
         /// <param name="success"></param>
-        public FetchedData([StringSyntax(StringSyntaxAttribute.Json)] string? json, bool success)
+        public FetchedData(string? json, bool success)
         {
             this.Json = json ?? string.Empty;
             this.Success = !string.IsNullOrEmpty(json) && success;
