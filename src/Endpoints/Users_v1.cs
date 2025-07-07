@@ -79,9 +79,9 @@ namespace Roblox_Sharp.Endpoints
                     $"&sortOrder={sortOrder}", cancellationToken))
             .Deserialize<Page<UsernameHistory_Response>>();
 
-            if (page == null) return null;
+            if (page == null) return null; //short circuit to avoid heap alloc + its cleaner
 
-            return new Page<string>()
+            return  new Page<string>()
             {
                 Data = [.. page.Data.Select(u => u.Name)],
                 NextPageCursor = page.NextPageCursor,
